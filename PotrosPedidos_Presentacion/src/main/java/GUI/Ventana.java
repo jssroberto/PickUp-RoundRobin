@@ -38,7 +38,6 @@ public class Ventana extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(350, 700));
         setMinimumSize(new java.awt.Dimension(350, 700));
-        setPreferredSize(new java.awt.Dimension(350, 700));
         setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

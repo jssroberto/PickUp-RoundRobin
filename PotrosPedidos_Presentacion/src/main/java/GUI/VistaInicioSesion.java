@@ -1,5 +1,8 @@
 package GUI;
 
+import Consultas.consultas;
+import javax.swing.JOptionPane;
+
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
@@ -56,7 +59,13 @@ public class VistaInicioSesion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        ventana.cambiarVistaMenu();
+        consultas c = new consultas();
+        if (c.consultarIDYContra(txtID.getText(), txtContraseña.getText())) {
+               ventana.cambiarVistaMenu();
+        }else{
+            JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
+        }
+     
     }//GEN-LAST:event_btnIngresarActionPerformed
 
 
