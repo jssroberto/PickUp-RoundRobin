@@ -17,24 +17,21 @@ public class Producto {
     Integer cantidad;
     String descripcion;
     Float costo;
-    Integer disponible;
     List<Producto> productos;
 
-    public Producto(Long id, String nombre, Integer cantidad, String descripcion, Float costo, Integer disponible) {
+    public Producto(Long id, String nombre, Integer cantidad, String descripcion, Float costo) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.costo = costo;
-        this.disponible = disponible;
     }
 
-    public Producto(String nombre, Integer cantidad, String descripcion, Float costo, Integer disponible) {
+    public Producto(String nombre, Integer cantidad, String descripcion, Float costo) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.costo = costo;
-        this.disponible = disponible;
     }
 
     public Producto() {
@@ -81,13 +78,7 @@ public class Producto {
         this.costo = costo;
     }
 
-    public Integer getDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(Integer disponible) {
-        this.disponible = disponible;
-    }
+ 
 
     public List<Producto> getProductos() {
         return productos;
@@ -97,12 +88,12 @@ public class Producto {
         this.productos = productos;
     }
 
-    
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", costo=" + costo + ", disponible=" + disponible + '}';
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", costo=" + costo + ", productos=" + productos + '}';
     }
 
+   
     
 
     
