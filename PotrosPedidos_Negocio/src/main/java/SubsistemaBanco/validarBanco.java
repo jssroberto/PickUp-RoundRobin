@@ -6,7 +6,7 @@ package SubsistemaBanco;
 
 import SubsistemaCIA.*;
 import Mock.Usuario;
-import Mock.banco;
+import Mock.Banco;
 import java.util.List;
 
 /**
@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class validarBanco implements IValidarBanco {
 
-   private List<banco> banco;
+   private List<Banco> banco;
 
-    public validarBanco(List<banco> banco) {
+    public validarBanco(List<Banco> banco) {
         this.banco = banco;
     }
 
@@ -26,7 +26,7 @@ public class validarBanco implements IValidarBanco {
         if (banco == null) {
             return false;
         }
-        for (banco b : banco) {
+        for (Banco b : banco) {
             if (b.getNombre().equals(nombre) && b.getNumero().equals(numero)&& b.getFecha().equals(fecha) && b.getCvv().equals(cvv)) {
                 return true;
             }

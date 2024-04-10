@@ -2,18 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package SubsistemaConsultarProducto;
+package SubsistemaSacarPrecio;
 
-import Mock.Producto;
-import java.util.ArrayList;
+import Mock.Carrito;
 import java.util.List;
 
 /**
  *
  * @author jl4ma
  */
-public interface IConsultarProducto {
+public interface ISacarPrecio {
     
-    public Producto consultarProducto(long id);
-    
+    public float sacarPrecio(List<Carrito> carrito);
 }

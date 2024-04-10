@@ -13,9 +13,11 @@ import java.util.List;
  * @author jl4ma
  */
 public class ConsultarProducto implements IConsultarProducto{
+    List<Producto> productosCargados;
     List<Producto> productos = new ArrayList<>();
 
-    public ConsultarProducto() {
+    public ConsultarProducto(List<Producto> productosLista) {
+        this.productosCargados = productosLista;
     }
     
     public List<Producto> getProductos() {
@@ -27,8 +29,14 @@ public class ConsultarProducto implements IConsultarProducto{
     }
 
     @Override
-    public Producto consultarProducto(Integer id) {
-                return null;
+    public Producto consultarProducto(long id) {     
+        for (Producto pro: productos) {
+            if (id == pro.getId()) {
+                productos.add(pro);
+                return pro;
+            }
+        }
+        return null;
     }
     
     

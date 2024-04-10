@@ -1,7 +1,7 @@
 package GUI;
 
 import Mock.Usuario;
-import Mock.banco;
+import Mock.Banco;
 import SubsistemaBanco.IValidarBanco;
 import SubsistemaBanco.validarBanco;
 import SubsistemaCIA.IValidarPersona;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class VistaDatosTarjeta extends javax.swing.JPanel {
 
     private Ventana ventana;
-    private banco b = new banco();
+    private Banco b = new Banco();
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -78,7 +78,7 @@ public class VistaDatosTarjeta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        List<banco> banco = b.getListaBanco();
+        List<Banco> banco = b.getListaBanco();
         IValidarBanco vb = new validarBanco(banco);
         String nombre = txtNombre.getText();
         String numero = txtNumero.getText();
