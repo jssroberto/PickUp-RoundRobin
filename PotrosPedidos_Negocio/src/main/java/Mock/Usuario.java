@@ -51,26 +51,26 @@ public class Usuario {
 
     public void generarLista() {
         List<Usuario> lista = new ArrayList<>();
-        lista.add(new Usuario("u1", "c1"));
-        lista.add(new Usuario("u2", "c2"));
-        lista.add(new Usuario("u3", "c3"));
-        lista.add(new Usuario("u4", "c4"));
-        lista.add(new Usuario("u5", "c5"));
-        lista.add(new Usuario("u6", "c6"));
-        lista.add(new Usuario("u7", "c7"));
-        lista.add(new Usuario("u8", "c8"));
-        lista.add(new Usuario("u9", "c9"));
-        lista.add(new Usuario("u10", "c10"));
-        lista.add(new Usuario("u11", "c11"));
-        lista.add(new Usuario("u12", "c12"));
-        lista.add(new Usuario("u13", "c13"));
-        lista.add(new Usuario("u14", "c14"));
-        lista.add(new Usuario("u15", "c15"));
-        lista.add(new Usuario("u16", "c16"));
-        lista.add(new Usuario("u17", "c17"));
-        lista.add(new Usuario("u18", "c18"));
-        lista.add(new Usuario("u19", "c19"));
-        lista.add(new Usuario("u20", "c20"));
+        lista.add(new Usuario("000001234599", "c1"));
+        lista.add(new Usuario("000002345532", "c2"));
+        lista.add(new Usuario("000001222356", "c3"));
+        lista.add(new Usuario("000000244903", "madero"));
+        lista.add(new Usuario("000001254532", "c5"));
+        lista.add(new Usuario("000002352322", "c6"));
+        lista.add(new Usuario("000002324244", "c7"));
+        lista.add(new Usuario("000002342555", "c8"));
+        lista.add(new Usuario("000005566422", "c9"));
+        lista.add(new Usuario("000001214566", "c10"));
+        lista.add(new Usuario("000009786645", "c11"));
+        lista.add(new Usuario("000005685855", "c12"));
+        lista.add(new Usuario("000004744333", "c13"));
+        lista.add(new Usuario("000004568888", "c14"));
+        lista.add(new Usuario("000004774444", "c15"));
+        lista.add(new Usuario("000003636778", "c16"));
+        lista.add(new Usuario("000006344634", "c17"));
+        lista.add(new Usuario("00000244907", "yohan"));
+        lista.add(new Usuario("00000244913", "tito"));
+        lista.add(new Usuario("00000244752", "pablo"));
 
         setListaUsuarios(lista);
     }

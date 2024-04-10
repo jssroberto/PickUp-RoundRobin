@@ -12,14 +12,21 @@ public class Comida {
     String nombre;
     String tipo;
     String cantidad;
-    String disponible;
+    String descripcion;
+    boolean disponible;
 
-    public Comida(String nombre, String tipo, String cantidad, String disponible) {
+    public Comida(String nombre, String tipo, String cantidad, String descripcion, boolean disponible) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantidad = cantidad;
+        this.descripcion = descripcion;
         this.disponible = disponible;
     }
+
+    public Comida() {
+    }
+
+    
 
     public String getNombre() {
         return nombre;
@@ -45,13 +52,23 @@ public class Comida {
         this.cantidad = cantidad;
     }
 
-    public String getDisponible() {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public boolean isDisponible() {
         return disponible;
     }
 
-    public void setDisponible(String disponible) {
+    public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+
+    
     
             
 }
