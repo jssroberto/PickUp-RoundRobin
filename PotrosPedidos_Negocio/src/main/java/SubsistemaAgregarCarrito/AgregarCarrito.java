@@ -15,7 +15,11 @@ import java.util.List;
  */
 public class AgregarCarrito implements IAgregarCarrito{
     List<Carrito> carrito = new ArrayList<>();
-    Carrito cart = new Carrito();
+    Carrito cart;
+
+    public AgregarCarrito(Carrito cart) {
+        this.cart = cart;
+    }
     
     @Override
     public boolean agregarCarrito(Producto producto, Integer cantidad) {

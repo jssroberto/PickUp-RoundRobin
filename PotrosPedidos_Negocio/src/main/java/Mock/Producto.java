@@ -26,6 +26,7 @@ public class Producto {
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.costo = costo;
+        productos= new ArrayList<>();
     }
 
     public Producto(String nombre, Integer cantidad, String descripcion, Float costo) {
@@ -33,9 +34,11 @@ public class Producto {
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.costo = costo;
+        productos= new ArrayList<>();
     }
 
     public Producto() {
+        productos= new ArrayList<>();
     }
 
     
@@ -90,7 +93,6 @@ public class Producto {
     }
 
     public void generarLista(){
-        List<Producto> productos2 = new ArrayList<>();
         productos.add(new Producto(1l, "Hamburguesa Clasica", 10, "asdasdasd", 90.0f));
         productos.add(new Producto(2l, "Torta cubana", 10, "asdasdasd", 75.0f));
         productos.add(new Producto(3l, "Sushi", 10, "asdasdasd", 100.0f));
@@ -99,7 +101,6 @@ public class Producto {
         productos.add(new Producto(6l, "Sandwich", 10, "asdasdasd", 55.0f));
         productos.add(new Producto(7l, "Jamaica", 10, "asdasdasd", 15.0f));
         
-        setProductos(productos2);
     }
     @Override
     public String toString() {

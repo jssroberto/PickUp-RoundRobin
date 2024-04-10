@@ -30,7 +30,7 @@ public class ConsultarProducto implements IConsultarProducto{
 
     @Override
     public Producto consultarProducto(long id) {     
-        for (Producto pro: productos) {
+        for (Producto pro: productosCargados) {
             if (id == pro.getId()) {
                 productos.add(pro);
                 return pro;
