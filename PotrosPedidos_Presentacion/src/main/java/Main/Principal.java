@@ -1,6 +1,6 @@
 package Main;
 
-import GUI.Ventana;
+import GUI.FramePrincipal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,7 +15,7 @@ public class Principal {
     static final Logger logger = Logger.getLogger(Principal.class.getName());
     
     public static void main(String[] args) {   
-            Ventana ventana = new Ventana();
+            FramePrincipal ventana = new FramePrincipal();
             ventana.cambiarVistaInicio();
             ventana.setVisible(true);
     }
