@@ -1,21 +1,33 @@
 package GUI;
 
+import Mock.Usuario;
+import Mock.banco;
+import SubsistemaBanco.IValidarBanco;
+import SubsistemaBanco.validarBanco;
+import SubsistemaCIA.IValidarPersona;
+import SubsistemaCIA.ValidarPersona;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
- * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
- * Permite a los usuarios iniciar sesión proporcionando su nombre de usuario y contraseña.
+ * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
+ * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
+ * usuario y contraseña.
  */
 public class VistaDatosTarjeta extends javax.swing.JPanel {
+
     private Ventana ventana;
+    private banco b = new banco();
 
     /**
      * Constructor de la clase VistaInicioSesion.
-     * 
+     *
      * @param ventana La ventana principal de la aplicación.
      */
     public VistaDatosTarjeta(Ventana ventana) {
         this.ventana = ventana;
         initComponents();
+        b.generarLista();
     }
 
     /**
@@ -26,6 +38,10 @@ public class VistaDatosTarjeta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtcvv = new javax.swing.JTextField();
+        txtfecha = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         btnPagar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
@@ -34,6 +50,10 @@ public class VistaDatosTarjeta extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(350, 700));
         setPreferredSize(new java.awt.Dimension(350, 700));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(txtcvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 60, 30));
+        add(txtfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 140, 30));
+        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 140, 30));
+        add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 140, 30));
 
         btnPagar.setBorder(null);
         btnPagar.setContentAreaFilled(false);
@@ -58,8 +78,18 @@ public class VistaDatosTarjeta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
-        ventana.cambiarVistaMenu();
+        List<banco> banco = b.getListaBanco();
+        IValidarBanco vb = new validarBanco(banco);
+        String nombre = txtNombre.getText();
+        String numero = txtNumero.getText();
+        String fecha = txtfecha.getText();
+        String cvv = txtcvv.getText();
+        if (vb.ValidarBanco(nombre, numero, fecha, cvv)) {
+            ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
+            ventana.cambiarVistaMenu();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
+        }
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -71,5 +101,9 @@ public class VistaDatosTarjeta extends javax.swing.JPanel {
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtcvv;
+    private javax.swing.JTextField txtfecha;
     // End of variables declaration//GEN-END:variables
 }

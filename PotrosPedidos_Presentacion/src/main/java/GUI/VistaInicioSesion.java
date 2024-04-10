@@ -1,24 +1,30 @@
 package GUI;
 
-import Consultas.consultas;
+import Mock.Usuario;
+import SubsistemaCIA.IValidarPersona;
+import SubsistemaCIA.ValidarPersona;
+import java.util.List;
 import javax.swing.JOptionPane;
 
-
 /**
- * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
- * Permite a los usuarios iniciar sesión proporcionando su nombre de usuario y contraseña.
+ * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
+ * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
+ * usuario y contraseña.
  */
 public class VistaInicioSesion extends javax.swing.JPanel {
+
     private Ventana ventana;
+    private Usuario u = new Usuario();
 
     /**
      * Constructor de la clase VistaInicioSesion.
-     * 
+     *
      * @param ventana La ventana principal de la aplicación.
      */
     public VistaInicioSesion(Ventana ventana) {
         this.ventana = ventana;
         initComponents();
+        u.generarLista();
     }
 
     /**
@@ -59,13 +65,15 @@ public class VistaInicioSesion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        consultas c = new consultas();
-        if (c.consultarIDYContra(txtID.getText(), txtContraseña.getText())) {
-               ventana.cambiarVistaMenu();
-        }else{
+        List<Usuario> usuarios = u.getListaUsuarios();
+        IValidarPersona vp = new ValidarPersona(usuarios);
+        if (vp.ValidarPersona(txtID.getText(), new String(txtContraseña.getPassword()))) {
+            ventana.cambiarVistaMenu();
+            ventana.cambiarVistaMenu();
+        } else {
             JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
         }
-     
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
 
