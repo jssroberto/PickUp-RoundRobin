@@ -7,12 +7,13 @@ import javax.persistence.metamodel.StaticMetamodel;
 import org.itson.disenosw.dominio.Carrito;
 import org.itson.disenosw.dominio.Pedido;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-04-15T00:43:35", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-04-15T09:18:00", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
     public static volatile SingularAttribute<Usuario, String> apellidoPaterno;
     public static volatile SingularAttribute<Usuario, String> contrasena;
+    public static volatile SingularAttribute<Usuario, Long> idEstudiante;
     public static volatile SingularAttribute<Usuario, Long> id;
     public static volatile ListAttribute<Usuario, Pedido> pedidos;
     public static volatile SingularAttribute<Usuario, Carrito> carrito;

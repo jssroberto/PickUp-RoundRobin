@@ -11,8 +11,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import mocks.Usuario;
+//import mocks.Usuario;
 import org.itson.disenosw.dominio.Carrito;
+import org.itson.disenosw.dominio.Usuario;
 import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
@@ -30,6 +31,7 @@ public class AgregarCarrito implements IAgregarCarrito {
 
     public void inicializarCarrito(UsuarioDTO usuarioDTO) {
         usuarioDTO.getId();
+//        Usuario usuario = buscarUsuario(usuarioDTO.getId());
     }
 
     @Override
@@ -40,6 +42,8 @@ public class AgregarCarrito implements IAgregarCarrito {
         productos.add(producto3);
         if (producto != null) {
             float costo = producto.getCosto() * cantidad;
+            
+            //esto va en persistencia gracias
             EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
             EntityManager entityManager = entity.createEntityManager();
             entityManager.getTransaction().begin();
@@ -47,6 +51,8 @@ public class AgregarCarrito implements IAgregarCarrito {
             Carrito carrito = new Carrito(costo, cantidad, productos, usuario);
             entityManager.persist(carrito);
             entityManager.getTransaction().commit();
+            //fin de persistencia
+            
             return true;
         } else {
             return false;

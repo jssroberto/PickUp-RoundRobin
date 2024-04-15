@@ -34,6 +34,7 @@ public class Usuario implements Serializable {
     @Column(name = "apellido_materno", length = 30, nullable = false)
     private String apellidoMaterno;
 
+
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Carrito carrito;
 
@@ -70,7 +71,6 @@ public class Usuario implements Serializable {
         this.apellidoMaterno = apellidoMaterno;
         this.carrito = carrito;
     }
-    
 
     public Long getId() {
         return id;
@@ -133,7 +133,5 @@ public class Usuario implements Serializable {
         sb.append('}');
         return sb.toString();
     }
-    
-    
 
 }

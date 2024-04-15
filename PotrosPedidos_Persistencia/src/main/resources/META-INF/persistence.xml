@@ -6,6 +6,7 @@
     <class>org.itson.disenosw.dominio.Producto</class>
     <class>org.itson.disenosw.dominio.Usuario</class>
     <class>org.itson.disenosw.dominio.Carrito</class>
+    <class>org.itson.disenosw.cia.UsuarioCIA</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/potros_pedidos?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
