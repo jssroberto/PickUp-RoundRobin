@@ -25,9 +25,6 @@ public class Usuario implements Serializable {
     @Column(name = "id_usuario")
     private Long id;
 
-    @Column(name = "contrasena", length = 8, nullable = false)
-    private String contrasena;
-
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
 
@@ -46,32 +43,28 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String contrasena, String nombre, String apellidoPaterno, String apellidoMaterno) {
-        this.contrasena = contrasena;
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public Usuario(Long id, String contrasena, String nombre, String apellidoPaterno, String apellidoMaterno) {
+    public Usuario(Long id, String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.id = id;
-        this.contrasena = contrasena;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public Usuario(String contrasena, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito) {
-        this.contrasena = contrasena;
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.carrito = carrito;
     }
 
-    public Usuario(Long id, String contrasena, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito) {
+    public Usuario(Long id, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito) {
         this.id = id;
-        this.contrasena = contrasena;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -85,14 +78,6 @@ public class Usuario implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
     }
 
     public String getNombre() {
@@ -140,7 +125,6 @@ public class Usuario implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("Usuario{");
         sb.append("id=").append(id);
-        sb.append(", contrasena=").append(contrasena);
         sb.append(", nombre=").append(nombre);
         sb.append(", apellidoPaterno=").append(apellidoPaterno);
         sb.append(", apellidoMaterno=").append(apellidoMaterno);

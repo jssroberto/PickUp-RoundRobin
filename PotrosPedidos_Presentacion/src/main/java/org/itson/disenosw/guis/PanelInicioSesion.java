@@ -1,4 +1,4 @@
-package GUI;
+package org.itson.disenosw.guis;
 
 import SubsistemaCIA.IValidarPersona;
 import SubsistemaCIA.ValidarPersona;
@@ -13,16 +13,16 @@ import mocks.Usuario;
  */
 public class PanelInicioSesion extends javax.swing.JPanel {
 
-    private FramePrincipal ventana;
+    private FramePrincipal framePrincipal;
     private Usuario usuario = new Usuario();
 
     /**
      * Constructor de la clase VistaInicioSesion.
      *
-     * @param ventana La ventana principal de la aplicación.
+     * @param framePrincipal La framePrincipal principal de la aplicación.
      */
-    public PanelInicioSesion(FramePrincipal ventana) {
-        this.ventana = ventana;
+    public PanelInicioSesion(FramePrincipal framePrincipal) {
+        this.framePrincipal = framePrincipal;
         initComponents();
         usuario.generarLista();
     }
@@ -72,15 +72,20 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        List<Usuario> usuarios = usuario.getListaUsuarios();
-        IValidarPersona vp = new ValidarPersona(usuarios);
-        if (vp.ValidarPersona(txtID.getText(), new String(txtContraseña.getPassword()))) {
-            ventana.cambiarVistaMenu();
-            ventana.cambiarVistaMenu();
+        if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
+            framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
         } else {
-            JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
+            List<Usuario> usuarios = usuario.getListaUsuarios();
+            IValidarPersona vp = new ValidarPersona(usuarios);
+            //TODO
+            //la contraseña no se debería mandar como string
+            //el metodo validar persona debería lanzar excepcion y cacharse aquí
+            if (vp.ValidarPersona(txtID.getText(), new String(txtContraseña.getPassword()))) {
+                framePrincipal.cambiarVistaMenu();
+            } else {
+                framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
+            }
         }
-
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed

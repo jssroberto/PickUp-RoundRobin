@@ -1,4 +1,4 @@
-package GUI;
+package org.itson.disenosw.guis;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -37,7 +37,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Potro Pedidos");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
         setResizable(false);
 
@@ -172,8 +171,8 @@ public class FramePrincipal extends javax.swing.JFrame {
      *
      * @param mensaje El mensaje a mostrar en el aviso.
      */
-    public void mostrarAviso(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje, "Aviso", JOptionPane.WARNING_MESSAGE);
+    public void mostrarAviso(String mensaje, String titulo) {
+        JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.WARNING_MESSAGE);
     }
 
     /**

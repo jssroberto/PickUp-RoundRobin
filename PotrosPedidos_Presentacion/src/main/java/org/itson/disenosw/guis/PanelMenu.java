@@ -1,4 +1,4 @@
-package GUI;
+package org.itson.disenosw.guis;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -140,7 +140,11 @@ public class PanelMenu extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnProducto4ActionPerformed
 
-
+    public void inicializarCarrito(){
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvanzar;
     private javax.swing.JButton btnCarrito;

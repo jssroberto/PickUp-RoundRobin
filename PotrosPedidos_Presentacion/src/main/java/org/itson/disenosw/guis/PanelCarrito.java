@@ -1,4 +1,4 @@
-package GUI;
+package org.itson.disenosw.guis;
 
 
 /**

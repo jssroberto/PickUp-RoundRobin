@@ -6,13 +6,14 @@ package SubsistemaAgregarCarrito;
 
 import mocks.Productos;
 import org.itson.disenosw.dominio.Producto;
-import mocks.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import mocks.Usuario;
 import org.itson.disenosw.dominio.Carrito;
+import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
  *
@@ -20,13 +21,16 @@ import org.itson.disenosw.dominio.Carrito;
  */
 public class AgregarCarrito implements IAgregarCarrito {
 
-    List<Carrito> carrito = new ArrayList<>();
-    Carrito cart;
+    List<Carrito> carritos = new ArrayList<>();
+    Carrito carrito;
 
-    public AgregarCarrito(Carrito cart) {
-        this.cart = cart;
+    public AgregarCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
 
+    public void inicializarCarrito(UsuarioDTO usuarioDTO) {
+        usuarioDTO.getId();
+    }
 
     @Override
     public boolean agregarCarrito(Productos producto, Integer cantidad, org.itson.disenosw.dominio.Usuario usuario) {
@@ -40,8 +44,8 @@ public class AgregarCarrito implements IAgregarCarrito {
             EntityManager entityManager = entity.createEntityManager();
             entityManager.getTransaction().begin();
             entityManager.persist(producto3);
-            Carrito cart = new Carrito(costo, cantidad, productos, usuario);
-            entityManager.persist(cart);
+            Carrito carrito = new Carrito(costo, cantidad, productos, usuario);
+            entityManager.persist(carrito);
             entityManager.getTransaction().commit();
             return true;
         } else {

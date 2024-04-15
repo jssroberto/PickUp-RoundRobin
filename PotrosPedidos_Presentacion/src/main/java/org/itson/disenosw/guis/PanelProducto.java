@@ -1,4 +1,4 @@
-package GUI;
+package org.itson.disenosw.guis;
 
 import mocks.Productos;
 import SubsistemaAgregarCarrito.AgregarCarrito;
@@ -41,8 +41,8 @@ public class PanelProducto extends javax.swing.JPanel {
 
         btnIngresar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        fondo = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
+        fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
@@ -69,30 +69,39 @@ public class PanelProducto extends javax.swing.JPanel {
         });
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 50, 50));
 
+        txtCantidad.setText("1");
+        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 70, 50));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelProducto.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 70, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        Productos producto = new Productos();
-        producto.generarLista();
-        Usuario usuario = new Usuario("pablomis", "Madero", "Yohan", "Roberto");
-        System.out.println(framePrincipal.getIdProducto());
-        EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
-        EntityManager entityManager = entity.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(usuario);
-        entityManager.getTransaction().commit();
-        List<Productos> productos = producto.getProductos();
-        IConsultarProducto pro = new ConsultarProducto(productos);
-        Carrito carrito = new Carrito();
-        IAgregarCarrito cart = new AgregarCarrito(carrito);
-        cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.parseInt(txtCantidad.getText()), usuario);
-        framePrincipal.cambiarVistaCarrito();
+
+        if (txtCantidad.getText().isBlank()) {
+            framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
+        } else {
+            Productos producto = new Productos();
+            producto.generarLista();
+            Usuario usuario = new Usuario("pablomis", "Madero", "Yohan", "Roberto");
+            System.out.println(framePrincipal.getIdProducto());
+            EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
+            EntityManager entityManager = entity.createEntityManager();
+            entityManager.getTransaction().begin();
+            entityManager.persist(usuario);
+            entityManager.getTransaction().commit();
+            List<Productos> productos = producto.getProductos();
+            IConsultarProducto pro = new ConsultarProducto(productos);
+            Carrito carrito = new Carrito();
+            IAgregarCarrito cart = new AgregarCarrito(carrito);
+            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
+            framePrincipal.setIdProducto(null);
+            framePrincipal.cambiarVistaCarrito();
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        framePrincipal.setIdProducto(null);
         framePrincipal.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 

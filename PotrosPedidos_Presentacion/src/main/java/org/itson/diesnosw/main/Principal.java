@@ -1,6 +1,6 @@
-package Main;
+package org.itson.diesnosw.main;
 
-import GUI.FramePrincipal;
+import org.itson.disenosw.guis.FramePrincipal;
 import java.util.logging.Logger;
 
 /**
