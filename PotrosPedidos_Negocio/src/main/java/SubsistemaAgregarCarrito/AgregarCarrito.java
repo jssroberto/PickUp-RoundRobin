@@ -4,9 +4,9 @@
  */
 package SubsistemaAgregarCarrito;
 
-import Mock.Productos;
+import mocks.Productos;
 import org.itson.disenosw.dominio.Producto;
-import Mock.Usuario;
+import mocks.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

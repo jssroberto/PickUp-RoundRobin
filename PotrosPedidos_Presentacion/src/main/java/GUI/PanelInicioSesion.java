@@ -1,10 +1,10 @@
 package GUI;
 
-import Mock.Usuario;
 import SubsistemaCIA.IValidarPersona;
 import SubsistemaCIA.ValidarPersona;
 import java.util.List;
 import javax.swing.JOptionPane;
+import mocks.Usuario;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class PanelInicioSesion extends javax.swing.JPanel {
 
     private FramePrincipal ventana;
-    private Usuario u = new Usuario();
+    private Usuario usuario = new Usuario();
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -24,7 +24,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     public PanelInicioSesion(FramePrincipal ventana) {
         this.ventana = ventana;
         initComponents();
-        u.generarLista();
+        usuario.generarLista();
     }
 
     /**
@@ -72,7 +72,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        List<Usuario> usuarios = u.getListaUsuarios();
+        List<Usuario> usuarios = usuario.getListaUsuarios();
         IValidarPersona vp = new ValidarPersona(usuarios);
         if (vp.ValidarPersona(txtID.getText(), new String(txtContraseña.getPassword()))) {
             ventana.cambiarVistaMenu();

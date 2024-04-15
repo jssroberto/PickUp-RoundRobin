@@ -5,8 +5,8 @@
 package SubsistemaBanco;
 
 import SubsistemaCIA.*;
-import Mock.Usuario;
-import Mock.Banco;
+import mocks.Usuario;
+import mocks.Banco;
 import java.util.List;
 
 /**

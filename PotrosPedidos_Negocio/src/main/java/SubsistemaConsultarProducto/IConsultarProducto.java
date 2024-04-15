@@ -4,7 +4,7 @@
  */
 package SubsistemaConsultarProducto;
 
-import Mock.Productos;
+import mocks.Productos;
 import java.util.ArrayList;
 import java.util.List;
 

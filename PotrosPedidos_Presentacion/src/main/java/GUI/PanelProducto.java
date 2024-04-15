@@ -1,6 +1,6 @@
 package GUI;
 
-import Mock.Productos;
+import mocks.Productos;
 import SubsistemaAgregarCarrito.AgregarCarrito;
 import SubsistemaAgregarCarrito.IAgregarCarrito;
 import SubsistemaConsultarProducto.ConsultarProducto;
@@ -12,22 +12,22 @@ import javax.persistence.Persistence;
 import org.itson.disenosw.dominio.Carrito;
 import org.itson.disenosw.dominio.Usuario;
 
-
 /**
- * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
- * Permite a los usuarios iniciar sesión proporcionando su nombre de usuario y contraseña.
+ * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
+ * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
+ * usuario y contraseña.
  */
 public class PanelProducto extends javax.swing.JPanel {
-    private FramePrincipal ventana;
-    private int id;
+
+    private final FramePrincipal framePrincipal;
+
     /**
      * Constructor de la clase VistaInicioSesion.
-     * 
-     * @param ventana La ventana principal de la aplicación.
+     *
+     * @param framePrincipal
      */
-    public PanelProducto(FramePrincipal ventana, int id) {
-        this.ventana = ventana;
-        this.id = id;
+    public PanelProducto(FramePrincipal framePrincipal) {
+        this.framePrincipal = framePrincipal;
         initComponents();
     }
 
@@ -76,21 +76,21 @@ public class PanelProducto extends javax.swing.JPanel {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         Productos producto = new Productos();
-        Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario("pablomis", "Madero", "Yohan", "Roberto");
         EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
-            EntityManager entityManager = entity.createEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.persist(usuario);
-            entityManager.getTransaction().commit();
+        EntityManager entityManager = entity.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(usuario);
+        entityManager.getTransaction().commit();
         List<Productos> productos = producto.getProductos();
         IConsultarProducto pro = new ConsultarProducto(productos);
         Carrito carrito = new Carrito();
         IAgregarCarrito cart = new AgregarCarrito(carrito);
-        cart.agregarCarrito(pro.consultarProducto(id), Integer.parseInt(txtCantidad.getText()), usuario);
+        cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.parseInt(txtCantidad.getText()), usuario);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        ventana.cambiarVistaMenu();
+        framePrincipal.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
 

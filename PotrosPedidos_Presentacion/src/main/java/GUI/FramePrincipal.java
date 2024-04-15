@@ -16,13 +16,12 @@ import javax.swing.JPanel;
 public class FramePrincipal extends javax.swing.JFrame {
 
     private JPanel panelActual;
-    int id;
+    private Integer idProducto;
 
     /**
      * Constructor de la clase Ventana.
      */
-    public FramePrincipal(int id) {
-        this.id = id;
+    public FramePrincipal() {
         initComponents();
     }
 
@@ -70,6 +69,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     }
 
+    
+    
     /**
      * Método para cambiar a la vista de la ventana de Inicio. Este método elimina
      * el panel actual
@@ -120,7 +121,7 @@ public class FramePrincipal extends javax.swing.JFrame {
      */
     public void cambiarVistaProducto() {
         limpiarFrame();
-        PanelProducto vistaProducto = new PanelProducto(this, id);
+        PanelProducto vistaProducto = new PanelProducto(this);
         ponerEnJFrame(vistaProducto);
         panelActual = vistaProducto;
     }
@@ -198,4 +199,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    
 }

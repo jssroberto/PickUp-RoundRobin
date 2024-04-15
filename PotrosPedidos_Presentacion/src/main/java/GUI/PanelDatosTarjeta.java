@@ -1,13 +1,12 @@
 package GUI;
 
-import Mock.Usuario;
-import Mock.Banco;
+import mocks.Banco;
+import mocks.Usuario;
 import SubsistemaBanco.IValidarBanco;
 import SubsistemaBanco.validarBanco;
-import SubsistemaCIA.IValidarPersona;
-import SubsistemaCIA.ValidarPersona;
 import java.util.List;
 import javax.swing.JOptionPane;
+import mocks.Banco;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del

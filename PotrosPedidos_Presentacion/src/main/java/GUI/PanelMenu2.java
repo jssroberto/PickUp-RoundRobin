@@ -6,7 +6,8 @@ package GUI;
  */
 public class PanelMenu2 extends javax.swing.JPanel {
 
-    FramePrincipal framePrincipal;
+    private final FramePrincipal framePrincipal;
+    
     /** Creates new form PanelMenu2
      * @param framePrincipal */
     public PanelMenu2(FramePrincipal framePrincipal) {
@@ -89,22 +90,23 @@ public class PanelMenu2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+        framePrincipal.setIdProducto(1);
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto1ActionPerformed
-        FramePrincipal framePrincipal2 = new FramePrincipal(5);
-        framePrincipal2.cambiarVistaProducto();
+        framePrincipal.setIdProducto(1);
+        framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto1ActionPerformed
 
     private void btnProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto2ActionPerformed
-        FramePrincipal framePrincipal2 = new FramePrincipal(6);
-        framePrincipal2.cambiarVistaProducto();
+        framePrincipal.setIdProducto(2);
+        framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto2ActionPerformed
 
     private void btnProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto3ActionPerformed
-        FramePrincipal framePrincipal2 = new FramePrincipal(7);
-        framePrincipal2.cambiarVistaProducto();
+        framePrincipal.setIdProducto(3);
+        framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto3ActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed

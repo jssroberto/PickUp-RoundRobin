@@ -7,12 +7,12 @@ package GUI;
  */
 public class PanelMenu extends javax.swing.JPanel {
 
-    private FramePrincipal framePrincipal = new FramePrincipal(0);
+    private final FramePrincipal framePrincipal;
 
     /**
      * Constructor de la clase VistaInicioSesion.
      *
-     * @param ventana La ventana principal de la aplicación.
+     * @param framePrincipal
      */
     public PanelMenu(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
@@ -105,24 +105,27 @@ public class PanelMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto1ActionPerformed
-        FramePrincipal framePrincipal2 = new FramePrincipal(1);
-        this.framePrincipal = framePrincipal2;
+        framePrincipal.setIdProducto(1);
         framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto1ActionPerformed
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+        framePrincipal.setIdProducto(1);
+
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto2ActionPerformed
-        FramePrincipal framePrincipal2 = new FramePrincipal(2);
-        framePrincipal2.cambiarVistaProducto();
+        framePrincipal.setIdProducto(2);
+
+        framePrincipal.cambiarVistaProducto();
 
     }//GEN-LAST:event_btnProducto2ActionPerformed
 
     private void btnProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto3ActionPerformed
-        FramePrincipal framePrincipal2 = new FramePrincipal(3);
-        framePrincipal2.cambiarVistaProducto();
+        framePrincipal.setIdProducto(3);
+
+        framePrincipal.cambiarVistaProducto();
 
     }//GEN-LAST:event_btnProducto3ActionPerformed
 
@@ -131,8 +134,9 @@ public class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAvanzarActionPerformed
 
     private void btnProducto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto4ActionPerformed
-        FramePrincipal framePrincipal2 = new FramePrincipal(4);
-        framePrincipal2.cambiarVistaProducto();
+        framePrincipal.setIdProducto(4);
+
+        framePrincipal.cambiarVistaProducto();
 
     }//GEN-LAST:event_btnProducto4ActionPerformed
 

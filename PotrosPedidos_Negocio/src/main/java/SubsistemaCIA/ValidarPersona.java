@@ -4,7 +4,7 @@
  */
 package SubsistemaCIA;
 
-import Mock.Usuario;
+import mocks.Usuario;
 import java.util.List;
 
 /**
