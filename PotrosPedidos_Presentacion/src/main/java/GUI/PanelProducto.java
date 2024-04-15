@@ -1,28 +1,20 @@
 package GUI;
 
+
 /**
- * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
- * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
- * usuario y contraseña.
+ * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
+ * Permite a los usuarios iniciar sesión proporcionando su nombre de usuario y contraseña.
  */
 public class PanelProducto extends javax.swing.JPanel {
-
     private FramePrincipal ventana;
-    private Long id;
 
     /**
      * Constructor de la clase VistaInicioSesion.
-     *
+     * 
      * @param ventana La ventana principal de la aplicación.
      */
     public PanelProducto(FramePrincipal ventana) {
         this.ventana = ventana;
-        initComponents();
-    }
-
-    public PanelProducto(FramePrincipal ventana, Long id) {
-        this.ventana = ventana;
-        this.id=id;
         initComponents();
     }
 
@@ -34,48 +26,14 @@ public class PanelProducto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        precio = new javax.swing.JTextField();
-        Nombre = new javax.swing.JTextField();
-        descripcion = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        txtCantidad = new javax.swing.JTextField();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
         setPreferredSize(new java.awt.Dimension(400, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Producto");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 100, 50));
-
-        precio.setEditable(false);
-        precio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precioActionPerformed(evt);
-            }
-        });
-        add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 210, 30));
-
-        Nombre.setEditable(false);
-        Nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreActionPerformed(evt);
-            }
-        });
-        add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 210, 30));
-
-        descripcion.setEditable(false);
-        descripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descripcionActionPerformed(evt);
-            }
-        });
-        add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 210, 30));
 
         btnIngresar.setBorder(null);
         btnIngresar.setContentAreaFilled(false);
@@ -97,50 +55,22 @@ public class PanelProducto extends javax.swing.JPanel {
         });
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 50, 50));
 
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
-            }
-        });
-        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 40, -1));
-
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelProducto.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         ventana.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
-
-    private void precioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_precioActionPerformed
-
-    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreActionPerformed
-
-    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descripcionActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Nombre;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JTextField descripcion;
     private javax.swing.JLabel fondo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField precio;
-    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

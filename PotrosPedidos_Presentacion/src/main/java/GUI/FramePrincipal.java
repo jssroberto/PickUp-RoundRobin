@@ -116,18 +116,13 @@ public class FramePrincipal extends javax.swing.JFrame {
      * Método para cambiar a la vista de la ventana de Menu . Este método elimina
      * el panel actual
      */
-    public void cambiarVistaProducto(Long id) {
-        limpiarFrame();
-        PanelProducto vistaProducto = new PanelProducto(this,id);
-        ponerEnJFrame(vistaProducto);
-        panelActual = vistaProducto;
-    }
-      public void cambiarVistaProducto() {
+    public void cambiarVistaProducto() {
         limpiarFrame();
         PanelProducto vistaProducto = new PanelProducto(this);
         ponerEnJFrame(vistaProducto);
         panelActual = vistaProducto;
     }
+    
     /**
      * Método para cambiar a la vista de la ventana de Datos de Tarjeta . Este método elimina
      * el panel actual
