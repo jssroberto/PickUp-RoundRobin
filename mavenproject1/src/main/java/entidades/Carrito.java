@@ -5,10 +5,16 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,6 +27,16 @@ public class Carrito implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "Precio_Total")
+    private Float precioTotal;
+    @Column(name = "cantidad")
+    private Integer cantidadProductos;
+
+    @OneToMany(mappedBy = "carrito", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Producto> producto;
+    @ManyToOne
+    @JoinColumn(name = "carrito" , referencedColumnName = "id")
+    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -30,29 +46,43 @@ public class Carrito implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public Float getPrecioTotal() {
+        return precioTotal;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Carrito)) {
-            return false;
-        }
-        Carrito other = (Carrito) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setPrecioTotal(Float precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
+    public Integer getCantidadProductos() {
+        return cantidadProductos;
+    }
+
+    public void setCantidadProductos(Integer cantidadProductos) {
+        this.cantidadProductos = cantidadProductos;
+    }
+
+    public List<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(List<Producto> producto) {
+        this.producto = producto;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
     public String toString() {
-        return "entidades.Carrito[ id=" + id + " ]";
+        return "Carrito{" + "id=" + id + ", precioTotal=" + precioTotal + ", cantidadProductos=" + cantidadProductos + ", producto=" + producto + ", usuario=" + usuario + '}';
     }
     
+    
+
 }
