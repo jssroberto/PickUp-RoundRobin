@@ -31,14 +31,16 @@ public class AgregarCarrito implements IAgregarCarrito {
     @Override
     public boolean agregarCarrito(Productos producto, Integer cantidad, org.itson.disenosw.dominio.Usuario usuario) {
         List<Producto> productos = new ArrayList<>();
+        System.out.println(producto.getCantidad());
         Producto producto3 = new Producto(producto.getCosto(), producto.getNombre(), producto.getDescripcion(), cantidad);
         productos.add(producto3);
         if (producto != null) {
             float costo = producto.getCosto() * cantidad;
-            Carrito cart = new Carrito(costo, cantidad, productos, usuario);
             EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
             EntityManager entityManager = entity.createEntityManager();
             entityManager.getTransaction().begin();
+            entityManager.persist(producto3);
+            Carrito cart = new Carrito(costo, cantidad, productos, usuario);
             entityManager.persist(cart);
             entityManager.getTransaction().commit();
             return true;

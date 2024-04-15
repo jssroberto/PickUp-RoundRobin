@@ -76,7 +76,9 @@ public class PanelProducto extends javax.swing.JPanel {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         Productos producto = new Productos();
+        producto.generarLista();
         Usuario usuario = new Usuario("pablomis", "Madero", "Yohan", "Roberto");
+        System.out.println(framePrincipal.getIdProducto());
         EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager entityManager = entity.createEntityManager();
         entityManager.getTransaction().begin();
@@ -87,6 +89,7 @@ public class PanelProducto extends javax.swing.JPanel {
         Carrito carrito = new Carrito();
         IAgregarCarrito cart = new AgregarCarrito(carrito);
         cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.parseInt(txtCantidad.getText()), usuario);
+        framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
