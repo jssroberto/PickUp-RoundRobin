@@ -16,11 +16,13 @@ import javax.swing.JPanel;
 public class FramePrincipal extends javax.swing.JFrame {
 
     private JPanel panelActual;
+    int id;
 
     /**
      * Constructor de la clase Ventana.
      */
-    public FramePrincipal() {
+    public FramePrincipal(int id) {
+        this.id = id;
         initComponents();
     }
 
@@ -118,7 +120,7 @@ public class FramePrincipal extends javax.swing.JFrame {
      */
     public void cambiarVistaProducto() {
         limpiarFrame();
-        PanelProducto vistaProducto = new PanelProducto(this);
+        PanelProducto vistaProducto = new PanelProducto(this, id);
         ponerEnJFrame(vistaProducto);
         panelActual = vistaProducto;
     }

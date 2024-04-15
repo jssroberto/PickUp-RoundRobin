@@ -54,7 +54,7 @@ public class Usuario {
         lista.add(new Usuario("000001234599", "c1"));
         lista.add(new Usuario("000002345532", "c2"));
         lista.add(new Usuario("000001222356", "c3"));
-        lista.add(new Usuario("000000244903", "madero"));
+        lista.add(new Usuario("00000244903", "madero"));
         lista.add(new Usuario("000001254532", "c5"));
         lista.add(new Usuario("000002352322", "c6"));
         lista.add(new Usuario("000002324244", "c7"));

@@ -89,6 +89,14 @@ public class Carrito implements Serializable {
         this.usuario = usuario;
     }
 
+    public Carrito(Float total, Integer cantidadProductos, List<Producto> productos, Usuario usuario) {
+        this.total = total;
+        this.cantidadProductos = cantidadProductos;
+        this.productos = productos;
+        this.usuario = usuario;
+    }
+    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

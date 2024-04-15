@@ -4,7 +4,7 @@
  */
 package SubsistemaConsultarProducto;
 
-import Mock.Producto;
+import Mock.Productos;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface IConsultarProducto {
     
-    public Producto consultarProducto(long id);
+    public Productos consultarProducto(long id);
     
 }

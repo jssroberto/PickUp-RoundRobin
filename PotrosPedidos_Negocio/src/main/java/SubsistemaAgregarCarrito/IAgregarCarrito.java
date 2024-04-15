@@ -5,7 +5,8 @@
 package SubsistemaAgregarCarrito;
 
 import Mock.Carrito;
-import Mock.Producto;
+import Mock.Productos;
+import org.itson.disenosw.dominio.Usuario;
 
 /**
  *
@@ -13,5 +14,5 @@ import Mock.Producto;
  */
 public interface IAgregarCarrito {
     
-    public boolean agregarCarrito(Producto producto, Integer cantidad);
+    public boolean agregarCarrito(Productos producto, Integer cantidad, Usuario usuario);
 }

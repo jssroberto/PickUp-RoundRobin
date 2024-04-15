@@ -14,10 +14,10 @@ public class Carrito {
     
     Integer cantidad;
     Float costoFinal;
-    Producto producto;
+    Productos producto;
     List<Carrito> carrito;
 
-    public Carrito(Integer cantidad, Float costoFinal, Producto producto) {
+    public Carrito(Integer cantidad, Float costoFinal, Productos producto) {
         this.cantidad = cantidad;
         this.costoFinal = costoFinal;
         this.producto = producto;
@@ -41,11 +41,11 @@ public class Carrito {
         this.costoFinal = costoFinal;
     }
 
-    public Producto getProducto() {
+    public Productos getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setProducto(Productos producto) {
         this.producto = producto;
     }
 

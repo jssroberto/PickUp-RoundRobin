@@ -93,15 +93,18 @@ public class PanelMenu2 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto1ActionPerformed
-        framePrincipal.cambiarVistaProducto();
+        FramePrincipal framePrincipal2 = new FramePrincipal(5);
+        framePrincipal2.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto1ActionPerformed
 
     private void btnProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto2ActionPerformed
-        framePrincipal.cambiarVistaProducto();
+        FramePrincipal framePrincipal2 = new FramePrincipal(6);
+        framePrincipal2.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto2ActionPerformed
 
     private void btnProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto3ActionPerformed
-        framePrincipal.cambiarVistaProducto();
+        FramePrincipal framePrincipal2 = new FramePrincipal(7);
+        framePrincipal2.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto3ActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed

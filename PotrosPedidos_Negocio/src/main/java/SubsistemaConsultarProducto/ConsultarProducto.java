@@ -4,7 +4,7 @@
  */
 package SubsistemaConsultarProducto;
 
-import Mock.Producto;
+import Mock.Productos;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,24 +13,24 @@ import java.util.List;
  * @author jl4ma
  */
 public class ConsultarProducto implements IConsultarProducto{
-    List<Producto> productosCargados;
-    List<Producto> productos = new ArrayList<>();
+    List<Productos> productosCargados;
+    List<Productos> productos = new ArrayList<>();
 
-    public ConsultarProducto(List<Producto> productosLista) {
+    public ConsultarProducto(List<Productos> productosLista) {
         this.productosCargados = productosLista;
     }
     
-    public List<Producto> getProductos() {
+    public List<Productos> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(List<Productos> productos) {
         this.productos = productos;
     }
 
     @Override
-    public Producto consultarProducto(long id) {     
-        for (Producto pro: productosCargados) {
+    public Productos consultarProducto(long id) {     
+        for (Productos pro: productosCargados) {
             if (id == pro.getId()) {
                 productos.add(pro);
                 return pro;

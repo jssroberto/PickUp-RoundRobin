@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import org.itson.disenosw.dominio.Producto;
 import org.itson.disenosw.dominio.Usuario;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-04-14T21:00:29", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-04-14T22:41:16", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Carrito.class)
 public class Carrito_ { 
 

@@ -1,5 +1,17 @@
 package GUI;
 
+import Mock.Productos;
+import SubsistemaAgregarCarrito.AgregarCarrito;
+import SubsistemaAgregarCarrito.IAgregarCarrito;
+import SubsistemaConsultarProducto.ConsultarProducto;
+import SubsistemaConsultarProducto.IConsultarProducto;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import org.itson.disenosw.dominio.Carrito;
+import org.itson.disenosw.dominio.Usuario;
+
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
@@ -7,14 +19,15 @@ package GUI;
  */
 public class PanelProducto extends javax.swing.JPanel {
     private FramePrincipal ventana;
-
+    private int id;
     /**
      * Constructor de la clase VistaInicioSesion.
      * 
      * @param ventana La ventana principal de la aplicación.
      */
-    public PanelProducto(FramePrincipal ventana) {
+    public PanelProducto(FramePrincipal ventana, int id) {
         this.ventana = ventana;
+        this.id = id;
         initComponents();
     }
 
@@ -29,6 +42,7 @@ public class PanelProducto extends javax.swing.JPanel {
         btnIngresar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
@@ -57,10 +71,22 @@ public class PanelProducto extends javax.swing.JPanel {
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelProducto.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 70, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        
+        Productos producto = new Productos();
+        Usuario usuario = new Usuario();
+        EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
+            EntityManager entityManager = entity.createEntityManager();
+            entityManager.getTransaction().begin();
+            entityManager.persist(usuario);
+            entityManager.getTransaction().commit();
+        List<Productos> productos = producto.getProductos();
+        IConsultarProducto pro = new ConsultarProducto(productos);
+        Carrito carrito = new Carrito();
+        IAgregarCarrito cart = new AgregarCarrito(carrito);
+        cart.agregarCarrito(pro.consultarProducto(id), Integer.parseInt(txtCantidad.getText()), usuario);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -72,5 +98,6 @@ public class PanelProducto extends javax.swing.JPanel {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
+    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

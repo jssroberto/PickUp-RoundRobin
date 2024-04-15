@@ -105,6 +105,8 @@ public class PanelMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto1ActionPerformed
+        FramePrincipal framePrincipal2 = new FramePrincipal(1);
+        this.framePrincipal = framePrincipal2;
         framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto1ActionPerformed
 
@@ -113,12 +115,14 @@ public class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto2ActionPerformed
-        framePrincipal.cambiarVistaProducto();
+        FramePrincipal framePrincipal2 = new FramePrincipal(2);
+        framePrincipal2.cambiarVistaProducto();
 
     }//GEN-LAST:event_btnProducto2ActionPerformed
 
     private void btnProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto3ActionPerformed
-        framePrincipal.cambiarVistaProducto();
+        FramePrincipal framePrincipal2 = new FramePrincipal(3);
+        framePrincipal2.cambiarVistaProducto();
 
     }//GEN-LAST:event_btnProducto3ActionPerformed
 
@@ -127,7 +131,8 @@ public class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAvanzarActionPerformed
 
     private void btnProducto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto4ActionPerformed
-        framePrincipal.cambiarVistaProducto();
+        FramePrincipal framePrincipal2 = new FramePrincipal(4);
+        framePrincipal2.cambiarVistaProducto();
 
     }//GEN-LAST:event_btnProducto4ActionPerformed
 
