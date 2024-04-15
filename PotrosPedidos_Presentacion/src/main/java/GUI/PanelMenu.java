@@ -7,7 +7,7 @@ package GUI;
  */
 public class PanelMenu extends javax.swing.JPanel {
 
-    private FramePrincipal framePrincipal;
+    private FramePrincipal framePrincipal = new FramePrincipal(0);
 
     /**
      * Constructor de la clase VistaInicioSesion.
