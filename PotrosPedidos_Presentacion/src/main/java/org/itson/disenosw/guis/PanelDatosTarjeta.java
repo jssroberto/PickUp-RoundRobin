@@ -7,6 +7,7 @@ import SubsistemaBanco.validarBanco;
 import java.util.List;
 import javax.swing.JOptionPane;
 import mocks.Banco;
+import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -80,12 +81,13 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         List<Banco> banco = b.getListaBanco();
-        IValidarBanco vb = new validarBanco(banco);
         String nombre = txtNombre.getText();
         String numero = txtNumero.getText();
         String fecha = txtfecha.getText();
         String cvv = txtcvv.getText();
-        if (vb.ValidarBanco(nombre, numero, fecha, cvv)) {
+        TarjetaDTO t = new TarjetaDTO(numero, nombre, fecha, Integer.parseInt(cvv));
+        IValidarBanco vb = new validarBanco();
+        if (vb.ValidarBanco(t)) {
 //            ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
             ventana.cambiarPanelPagoExito();
         } else {

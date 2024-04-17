@@ -19,6 +19,11 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
+    public UsuarioDTO(String contra, String idCia) {
+        this.contra = contra;
+        this.idCia = idCia;
+    }
+
     public UsuarioDTO(Long id, String nombres, String apellidoPaterno, String apellidoMaterno) {
         this.id = id;
         this.nombres = nombres;

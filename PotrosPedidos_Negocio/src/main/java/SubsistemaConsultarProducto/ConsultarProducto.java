@@ -22,6 +22,11 @@ public class ConsultarProducto implements IConsultarProducto{
     
         return cp.consultarProducto(producto.getId());
     }
+
+    @Override
+    public Productos consultarProducto(Integer ID) {
+        return cp.consultarProducto(ID);
+    }
     
     
 }

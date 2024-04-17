@@ -5,6 +5,7 @@ import SubsistemaCIA.ValidarPersona;
 import java.util.List;
 import javax.swing.JOptionPane;
 import mocks.Usuario;
+import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -76,11 +77,12 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
         } else {
             List<Usuario> usuarios = usuario.getListaUsuarios();
-            IValidarPersona vp = new ValidarPersona(usuarios);
+            IValidarPersona vp = new ValidarPersona();
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí
-            if (vp.ValidarPersona(txtID.getText(), new String(txtContraseña.getPassword()))) {
+            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()),txtID.getText());
+            if (vp.ValidarPersona(u)) {
                 framePrincipal.cambiarVistaMenu();
             } else {
                 framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");

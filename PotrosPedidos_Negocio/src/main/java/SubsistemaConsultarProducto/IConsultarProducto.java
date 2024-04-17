@@ -16,5 +16,7 @@ import org.itson.disenosw.dtos.productoDTO;
 public interface IConsultarProducto {
     
     public Productos consultarProducto(productoDTO producto);
+    public Productos consultarProducto(Integer ID);
+    
     
 }

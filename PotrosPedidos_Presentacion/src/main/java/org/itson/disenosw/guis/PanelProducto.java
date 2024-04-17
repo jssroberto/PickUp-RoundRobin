@@ -91,9 +91,10 @@ public class PanelProducto extends javax.swing.JPanel {
             entityManager.persist(usuario);
             entityManager.getTransaction().commit();
             List<Productos> productos = producto.getProductos();
-            IConsultarProducto pro = new ConsultarProducto(productos);
+            IConsultarProducto pro = new ConsultarProducto();
             Carrito carrito = new Carrito();
             IAgregarCarrito cart = new AgregarCarrito(carrito);
+//            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
             cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
             framePrincipal.setIdProducto(null);
             framePrincipal.cambiarVistaCarrito();

@@ -4,7 +4,6 @@
  */
 package org.itson.disenosw.dtos;
 
-import java.time.YearMonth;
 
 /**
  *
@@ -16,20 +15,28 @@ public class TarjetaDTO {
 
     private String numeroTarjeta,nombre;
     
-    private YearMonth fechaVencimiento;
+    private String fechaVencimiento;
 
     private Integer cvv;
 
     public TarjetaDTO() {
     }
 
-    public TarjetaDTO(Long id, String numeroTarjeta, String nombre, YearMonth fechaVencimiento, Integer cvv) {
+    public TarjetaDTO(Long id, String numeroTarjeta, String nombre, String fechaVencimiento, Integer cvv) {
         this.id = id;
         this.numeroTarjeta = numeroTarjeta;
         this.nombre = nombre;
         this.fechaVencimiento = fechaVencimiento;
         this.cvv = cvv;
     }
+
+    public TarjetaDTO(String numeroTarjeta, String nombre, String fechaVencimiento, Integer cvv) {
+        this.numeroTarjeta = numeroTarjeta;
+        this.nombre = nombre;
+        this.fechaVencimiento = fechaVencimiento;
+        this.cvv = cvv;
+    }
+    
 
     public String getNombre() {
         return nombre;
@@ -57,11 +64,11 @@ public class TarjetaDTO {
         this.numeroTarjeta = numeroTarjeta;
     }
 
-    public YearMonth getFechaVencimiento() {
+    public String getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(YearMonth fechaVencimiento) {
+    public void setFechaVencimiento(String fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 
