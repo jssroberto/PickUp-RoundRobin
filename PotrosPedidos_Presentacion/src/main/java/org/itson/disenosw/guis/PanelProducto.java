@@ -83,7 +83,7 @@ public class PanelProducto extends javax.swing.JPanel {
         } else {
             Productos producto = new Productos();
             producto.generarLista();
-            Usuario usuario = new Usuario(244987L, "yoyomo", "Madero", "Yohan", "Roberto");
+            Usuario usuario = new Usuario();
             System.out.println(framePrincipal.getIdProducto());
             EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
             EntityManager entityManager = entity.createEntityManager();

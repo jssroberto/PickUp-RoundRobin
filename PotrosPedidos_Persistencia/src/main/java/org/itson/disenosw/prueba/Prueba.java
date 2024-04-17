@@ -1,11 +1,13 @@
 package org.itson.disenosw.prueba;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.itson.disenosw.dominio.Producto;
+import org.itson.disenosw.banco.Tarjeta;
+import org.itson.disenosw.cia.UsuarioCIA;
 import org.itson.disenosw.dominio.Usuario;
 
 /**
@@ -18,51 +20,56 @@ public class Prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        listaUsuarios.add(new Usuario(1234599l, "c1", "Juan", "Pérez", "García"));
-        listaUsuarios.add(new Usuario(2345532l, "c2", "María", "López", "Fernández"));
-        listaUsuarios.add(new Usuario(1222356l, "c3", "Pedro", "González", "Martínez"));
-        listaUsuarios.add(new Usuario(244903l, "madero", "jose", "madero", "lopez"));
-        listaUsuarios.add(new Usuario(1254532l, "c5", "Carlos", "Martínez", "Díaz"));
-        listaUsuarios.add(new Usuario(2352322l, "c6", "Laura", "Gómez", "Muñoz"));
-        listaUsuarios.add(new Usuario(2324244l, "c7", "Francisco", "Hernández", "Jiménez"));
-        listaUsuarios.add(new Usuario(2342555l, "c8", "Sofía", "Pérez", "Ruiz"));
-        listaUsuarios.add(new Usuario(5566422l, "c9", "Diego", "Sánchez", "López"));
-        listaUsuarios.add(new Usuario(1214566l, "c10", "Elena", "Fernández", "García"));
-        listaUsuarios.add(new Usuario(9786645l, "c11", "Gabriel", "López", "Martínez"));
-        listaUsuarios.add(new Usuario(5685855l, "c12", "Laura", "García", "Hernández"));
-        listaUsuarios.add(new Usuario(4744333l, "c13", "Fernando", "Díaz", "Pérez"));
-        listaUsuarios.add(new Usuario(4568888l, "c14", "Carolina", "Rodríguez", "Gómez"));
-        listaUsuarios.add(new Usuario(4774444l, "c15", "Manuel", "Sánchez", "Fernández"));
-        listaUsuarios.add(new Usuario(3636778l, "c16", "Sara", "Martínez", "López"));
-        listaUsuarios.add(new Usuario(6344634l, "c17", "Pedro", "González", "Ruiz"));
-        listaUsuarios.add(new Usuario(244907l, "yohan", "yohan", "melendrez", "leal"));
-        listaUsuarios.add(new Usuario(244913l, "tito", "jesus", "garcia", "armenta"));
-        listaUsuarios.add(new Usuario(244752l, "pablo", "Pablo", "galan", "valenzuela"));
-        List<Producto> productos = new ArrayList<>();
-        productos.add(new Producto(90.0f, "Hamburguesa Clasica", "Descripción de la Hamburguesa Clasica", 10));
-        productos.add(new Producto(75.0f, "Torta cubana", "Descripción de la Torta cubana", 10));
-        productos.add(new Producto(100.0f, "Sushi", "Descripción del Sushi", 10));
-        productos.add(new Producto(20.0f, "Coca-cola", "Descripción de la Coca-cola", 10));
-        productos.add(new Producto(90.0f, "Hamburguesa de pollo", "Descripción de la Hamburguesa de pollo", 10));
-        productos.add(new Producto(55.0f, "Sandwich", "Descripción del Sandwich", 10));
-        productos.add(new Producto(15.0f, "Jamaica", "Descripción de la Jamaica", 10));
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexionPU");
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(new Usuario("Juan", "Perez", "Garcia"));
+        usuarios.add(new Usuario("Maria", "Lopez", "Martinez"));
+        usuarios.add(new Usuario("Pedro", "Gonzalez", "Santos"));
+        usuarios.add(new Usuario("Ana", "Rodriguez", "Fernandez"));
+        usuarios.add(new Usuario("Luis", "Martinez", "Diaz"));
 
-        EntityManager em = emf.createEntityManager();
+        List<UsuarioCIA> usuariosCIA = new ArrayList<>();
+        usuariosCIA.add(new UsuarioCIA("00000011211", "ABC12345", "Juan", "Perez", "Garcia"));
+        usuariosCIA.add(new UsuarioCIA("00000244454", "DEF67890", "Maria", "Lopez", "Martinez"));
+        usuariosCIA.add(new UsuarioCIA("00000046574", "GHI13579", "Pedro", "Gonzalez", "Santos"));
+        usuariosCIA.add(new UsuarioCIA("00000240157", "JKL24680", "Ana", "Rodriguez", "Fernandez"));
+        usuariosCIA.add(new UsuarioCIA("00000244978", "MNO97531", "Luis", "Martinez", "Diaz"));
 
-        em.getTransaction().begin();
-        for (Usuario usuario : listaUsuarios) {
-            em.persist(usuario);
+        List<Tarjeta> tarjetas = new ArrayList<>();
+        tarjetas.add(new Tarjeta("4696-1641-7464-6464", YearMonth.of(2050, 3), 754));
+        tarjetas.add(new Tarjeta("4696-6542-7464-6464", YearMonth.of(2040, 1), 475));
+        tarjetas.add(new Tarjeta("4696-1641-6546-6464", YearMonth.of(2035, 10), 277));
+        tarjetas.add(new Tarjeta("4696-1641-7464-6541", YearMonth.of(2030, 12), 341));
+        tarjetas.add(new Tarjeta("1545-1641-7464-6464", YearMonth.of(2034, 9), 734));
+
+        EntityManagerFactory emfConexion = Persistence.createEntityManagerFactory("conexionPU");
+        EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("ciaPU");
+        EntityManagerFactory emfBanco = Persistence.createEntityManagerFactory("bancoPU");
+
+        EntityManager emConexion = emfConexion.createEntityManager();
+        EntityManager emCIA = emfCIA.createEntityManager();
+        EntityManager emBanco = emfBanco.createEntityManager();
+
+        emConexion.getTransaction().begin();
+        for (Usuario usuario : usuarios) {
+            emConexion.persist(usuario);
         }
-        for (Producto producto : productos) {
-            em.persist(producto);
+        emConexion.getTransaction().commit();
+        emConexion.close();
+
+        emCIA.getTransaction().begin();
+        for (UsuarioCIA usuarioCIA : usuariosCIA) {
+            emCIA.persist(usuarioCIA);
         }
-        em.getTransaction().commit();
+        emCIA.getTransaction().commit();
+        emCIA.close();
 
-        em.close();
+        emBanco.getTransaction().begin();
+        for (Tarjeta tarjeta : tarjetas) {
+            emBanco.persist(tarjeta);
+        }
+        emBanco.getTransaction().commit();
+        emBanco.close();
 
-        
     }
 
 }

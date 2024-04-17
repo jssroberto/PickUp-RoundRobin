@@ -33,7 +33,9 @@ public class Usuario implements Serializable {
 
     @Column(name = "apellido_materno", length = 30, nullable = false)
     private String apellidoMaterno;
-
+    
+    @Column(name = "id_usuario_cia", nullable = true, unique = true)
+    private Long idUsuarioCia;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Carrito carrito;
@@ -71,6 +73,8 @@ public class Usuario implements Serializable {
         this.apellidoMaterno = apellidoMaterno;
         this.carrito = carrito;
     }
+    
+    
 
     public Long getId() {
         return id;
@@ -104,6 +108,14 @@ public class Usuario implements Serializable {
         this.apellidoMaterno = apellidoMaterno;
     }
 
+    public Long getIdUsuarioCia() {
+        return idUsuarioCia;
+    }
+
+    public void setIdUsuarioCia(Long idUsuarioCia) {
+        this.idUsuarioCia = idUsuarioCia;
+    }
+    
     public Carrito getCarrito() {
         return carrito;
     }
