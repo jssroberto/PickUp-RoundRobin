@@ -8,6 +8,7 @@ import SubsistemaCIA.*;
 import mocks.Usuario;
 import mocks.Banco;
 import java.util.List;
+import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
  *
@@ -15,22 +16,11 @@ import java.util.List;
  */
 public class validarBanco implements IValidarBanco {
 
-   private List<Banco> banco;
-
-    public validarBanco(List<Banco> banco) {
-        this.banco = banco;
-    }
+validarBancoBO vb = new validarBancoBO();
 
     @Override
-    public Boolean ValidarBanco(String nombre, String numero, String fecha, String cvv) {
-        if (banco == null) {
-            return false;
-        }
-        for (Banco b : banco) {
-            if (b.getNombre().equals(nombre) && b.getNumero().equals(numero)&& b.getFecha().equals(fecha) && b.getCvv().equals(cvv)) {
-                return true;
-            }
-        }
-        return false;
+    public Boolean ValidarBanco(TarjetaDTO tarjeta) {
+   
+        return vb.ValidarBanco(tarjeta.getNombre(), tarjeta.getNumeroTarjeta(), tarjeta.getFechaVencimiento().toString(), Integer.toString(tarjeta.getCvv()));
     }
 }

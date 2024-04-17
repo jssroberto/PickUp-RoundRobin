@@ -4,11 +4,13 @@
  */
 package SubsistemaCIA;
 
+import org.itson.disenosw.dtos.UsuarioDTO;
+
 /**
  *
  * @author yohan
  */
 public interface IValidarPersona {
 
-    public Boolean ValidarPersona (String ID,String contra);
+    public Boolean ValidarPersona (UsuarioDTO usuario);
 }

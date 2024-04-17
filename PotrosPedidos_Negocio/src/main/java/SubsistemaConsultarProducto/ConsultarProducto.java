@@ -7,36 +7,20 @@ package SubsistemaConsultarProducto;
 import mocks.Productos;
 import java.util.ArrayList;
 import java.util.List;
+import org.itson.disenosw.dtos.productoDTO;
 
 /**
  *
  * @author jl4ma
  */
 public class ConsultarProducto implements IConsultarProducto{
-    List<Productos> productosCargados;
-    List<Productos> productos = new ArrayList<>();
 
-    public ConsultarProducto(List<Productos> productosLista) {
-        this.productosCargados = productosLista;
-    }
+    consultaPedidoBO cp = new consultaPedidoBO();
     
-    public List<Productos> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Productos> productos) {
-        this.productos = productos;
-    }
-
     @Override
-    public Productos consultarProducto(long id) {     
-        for (Productos pro: productosCargados) {
-            if (id == pro.getId()) {
-                productos.add(pro);
-                return pro;
-            }
-        }
-        return null;
+    public Productos consultarProducto(productoDTO producto) {     
+    
+        return cp.consultarProducto(producto.getId());
     }
     
     

@@ -8,6 +8,7 @@ import SubsistemaConsultarProducto.ConsultarProducto;
 import SubsistemaConsultarProducto.IConsultarProducto;
 import java.util.List;
 import mocks.Productos;
+import org.itson.disenosw.dtos.productoDTO;
 
 /**
  *
@@ -22,9 +23,9 @@ public class NewMain {
         Productos producto = new Productos();
         producto.generarLista();
         List<Productos> productos = producto.getProductos();
-        IConsultarProducto pro = new ConsultarProducto(productos);
-        
-        System.out.println(pro.consultarProducto(1l));
+        IConsultarProducto pro = new ConsultarProducto();
+        productoDTO p =new productoDTO(1l);
+        System.out.println(pro.consultarProducto(p));
     }
     
 }

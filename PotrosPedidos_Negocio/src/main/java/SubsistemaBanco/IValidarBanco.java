@@ -5,6 +5,7 @@
 package SubsistemaBanco;
 
 import SubsistemaCIA.*;
+import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
  *
@@ -12,5 +13,5 @@ import SubsistemaCIA.*;
  */
 public interface IValidarBanco {
 
-    public Boolean ValidarBanco(String nombre, String numero, String fecha, String cvv);
+    public Boolean ValidarBanco(TarjetaDTO tarjeta);
 }

@@ -6,6 +6,7 @@ package SubsistemaCIA;
 
 import mocks.Usuario;
 import java.util.List;
+import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
  *
@@ -13,23 +14,12 @@ import java.util.List;
  */
 public class ValidarPersona implements IValidarPersona {
 
-    private List<Usuario> usuarios;
+validarPersonaBO vp = new validarPersonaBO();
 
-    public ValidarPersona(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
+  
     @Override
-    public Boolean ValidarPersona(String ID, String contra) {
-         if (usuarios == null) {
-            return false;
-        }
-        for (Usuario usuario : usuarios) {
-            if (usuario.getID().equals(ID) && usuario.getContra().equals(contra)) {
-                return true;
-            }
-        }
-        return false;
+    public Boolean ValidarPersona(UsuarioDTO usuario) {
+       return vp.ValidarPersona(usuario.getIdCia(), usuario.getContra());
     }
     
 }

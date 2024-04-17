@@ -7,6 +7,7 @@ package SubsistemaConsultarProducto;
 import mocks.Productos;
 import java.util.ArrayList;
 import java.util.List;
+import org.itson.disenosw.dtos.productoDTO;
 
 /**
  *
@@ -14,6 +15,6 @@ import java.util.List;
  */
 public interface IConsultarProducto {
     
-    public Productos consultarProducto(long id);
+    public Productos consultarProducto(productoDTO producto);
     
 }
