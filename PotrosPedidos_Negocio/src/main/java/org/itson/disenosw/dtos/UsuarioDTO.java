@@ -16,6 +16,9 @@ public class UsuarioDTO {
         this.id = id;
     }
 
+    public UsuarioDTO() {
+    }
+
     public UsuarioDTO(Long id, String nombres, String apellidoPaterno, String apellidoMaterno) {
         this.id = id;
         this.nombres = nombres;

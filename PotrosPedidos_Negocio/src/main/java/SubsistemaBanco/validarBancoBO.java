@@ -18,6 +18,9 @@ public class validarBancoBO {
         this.banco = banco;
     }
 
+    public validarBancoBO() {
+    }
+
     
     public Boolean ValidarBanco(String nombre, String numero, String fecha, String cvv) {
         if (banco == null) {
