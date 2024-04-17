@@ -34,6 +34,7 @@ public class Usuario implements Serializable {
     @Column(name = "apellido_materno", length = 30, nullable = false)
     private String apellidoMaterno;
     
+    //este a futuro debe ser nullable false
     @Column(name = "id_usuario_cia", nullable = true, unique = true)
     private Long idUsuarioCia;
 

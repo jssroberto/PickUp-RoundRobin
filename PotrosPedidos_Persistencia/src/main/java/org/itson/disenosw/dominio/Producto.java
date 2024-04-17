@@ -35,6 +35,9 @@ public class Producto implements Serializable {
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
     
+    @Column(name = "direccion_imagen", nullable = true)
+    private String direccionImagen;
+    
     @ManyToMany(mappedBy = "productos")
     private List<Carrito> carritos;
     
@@ -56,6 +59,23 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
         this.cantidad = cantidad;
     }
+
+    public Producto(Float precio, String nombre, String descripcion, Integer cantidad, String direccionImagen) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.direccionImagen = direccionImagen;
+    }
+
+    public Producto(Float precio, String nombre, Integer cantidad, String direccionImagen) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.direccionImagen = direccionImagen;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -93,6 +113,14 @@ public class Producto implements Serializable {
         return cantidad;
     }
 
+    public String getDireccionImagen() {
+        return direccionImagen;
+    }
+
+    public void setDireccionImagen(String direccionImagen) {
+        this.direccionImagen = direccionImagen;
+    }
+    
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }

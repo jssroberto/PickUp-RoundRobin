@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.itson.disenosw.banco.Tarjeta;
 import org.itson.disenosw.cia.UsuarioCIA;
+import org.itson.disenosw.dominio.Producto;
 import org.itson.disenosw.dominio.Usuario;
 
 /**
@@ -26,6 +27,8 @@ public class Prueba {
         usuarios.add(new Usuario("Pedro", "Gonzalez", "Santos"));
         usuarios.add(new Usuario("Ana", "Rodriguez", "Fernandez"));
         usuarios.add(new Usuario("Luis", "Martinez", "Diaz"));
+        
+        Producto producto = new Producto(100.0F, "Hamburguesa clásica", 18, "/productos/hamburguesaClasica.jpg");
 
         List<UsuarioCIA> usuariosCIA = new ArrayList<>();
         usuariosCIA.add(new UsuarioCIA("00000011211", "ABC12345", "Juan", "Perez", "Garcia"));
@@ -53,6 +56,7 @@ public class Prueba {
         for (Usuario usuario : usuarios) {
             emConexion.persist(usuario);
         }
+        emConexion.persist(producto);
         emConexion.getTransaction().commit();
         emConexion.close();
 
@@ -69,6 +73,8 @@ public class Prueba {
         }
         emBanco.getTransaction().commit();
         emBanco.close();
+
+        
 
     }
 

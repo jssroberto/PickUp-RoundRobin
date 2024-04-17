@@ -3,6 +3,7 @@ org\itson\disenosw\cia\UsuarioCIA.class
 org\itson\disenosw\dominio\Carrito.class
 org\itson\disenosw\dominio\Pedido.class
 org\itson\disenosw\prueba\Prueba.class
+org\itson\disenosw\prueba\PruebaConsulta.class
 org\itson\disenosw\banco\ConvertidorMesAnio.class
 org\itson\disenosw\dominio\Producto.class
 org\itson\disenosw\dominio\EstadoPedido.class
