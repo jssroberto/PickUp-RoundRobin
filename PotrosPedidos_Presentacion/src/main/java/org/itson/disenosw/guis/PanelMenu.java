@@ -92,15 +92,16 @@ public class PanelMenu extends javax.swing.JPanel {
         add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 122, 50, 39));
 
         scpProductos.setBorder(null);
-        add(scpProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 188, 370, 556));
+        add(scpProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 370, 556));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMenu.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+       
         framePrincipal.setIdProducto(1);
-
+       
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed
 

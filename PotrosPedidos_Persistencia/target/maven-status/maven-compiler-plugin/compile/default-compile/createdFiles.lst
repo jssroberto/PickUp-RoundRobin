@@ -8,5 +8,7 @@ org\itson\disenosw\prueba\PruebaConsulta.class
 org\itson\disenosw\banco\ConvertidorMesAnio.class
 org\itson\disenosw\dominio\EstadoPedido.class
 org\itson\disenosw\prueba\JframePruebaImagen$1.class
+DAOs\CiaDAO.class
 org\itson\disenosw\prueba\JframePruebaImagen.class
+IDAOs\ICiaDAO.class
 org\itson\disenosw\banco\Tarjeta.class

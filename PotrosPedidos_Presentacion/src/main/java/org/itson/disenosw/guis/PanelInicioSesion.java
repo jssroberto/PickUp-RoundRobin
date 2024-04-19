@@ -7,6 +7,10 @@ import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import mocks.Usuario;
 import org.itson.disenosw.dtos.UsuarioDTO;
 
@@ -75,26 +79,27 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-//        if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
-//            framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
-//        } else {
-//            UsuarioDTO usuarioDTO = new UsuarioDTO(txtID.getText(), 
-//                    String.valueOf(txtContraseña.getPassword()));    
-            
+        if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
+            framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
+        } else {
+
             framePrincipal.cambiarVistaMenu();
 
-//            List<Usuario> usuarios = usuario.getListaUsuarios();
-//            IValidarPersona vp = new ValidarPersona();
+            IValidarPersona vp = new ValidarPersona();
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí
-//            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtID.getText());
-//            if (vp.ValidarPersona(u)) {
-//                framePrincipal.cambiarVistaMenu();
-//            } else {
-//                framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
-//            }
-//        }
+            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtID.getText());
+            try {
+                if (vp.ValidarPersona(u)) {
+                    framePrincipal.cambiarVistaMenu();
+                } else {
+                    framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex);
+            }
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void setFonts() {

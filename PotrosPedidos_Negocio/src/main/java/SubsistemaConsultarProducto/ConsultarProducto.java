@@ -15,7 +15,7 @@ import org.itson.disenosw.dtos.productoDTO;
  */
 public class ConsultarProducto implements IConsultarProducto{
 
-    consultaPedidoBO cp = new consultaPedidoBO();
+    controlProducto cp = new controlProducto();
     
     @Override
     public Productos consultarProducto(productoDTO producto) {     
