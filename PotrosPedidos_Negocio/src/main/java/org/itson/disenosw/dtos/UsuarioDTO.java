@@ -9,8 +9,8 @@ public class UsuarioDTO {
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private String contra;
     private String idCia;
+    private String contra;
     
     public UsuarioDTO(Long id) {
         this.id = id;
@@ -19,9 +19,9 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String contra, String idCia) {
-        this.contra = contra;
+    public UsuarioDTO(String idCia, String contra) {
         this.idCia = idCia;
+        this.contra = contra;
     }
 
     public UsuarioDTO(Long id, String nombres, String apellidoPaterno, String apellidoMaterno) {

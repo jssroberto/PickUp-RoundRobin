@@ -5,6 +5,38 @@
     <artifactId>PotrosPedidos_Presentacion</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <!--    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <groupId>org.somegroup</groupId>
+                    <artifactId>someartifact</artifactId>
+                    <version>1.0</version>
+                    <packaging>jar</packaging>
+                    <file>${basedir}/dependencies/someartifact-1.0.jar</file>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <exec.mainClass>org.itson.diesnosw.main.Principal</exec.mainClass>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.netbeans.external</groupId>
@@ -21,11 +53,12 @@
             <artifactId>PotrosPedidos_Persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.raven</groupId>
+            <artifactId>win11scroll</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${user.dir}/libs/windows11-scrollbar.jar</systemPath>
+        </dependency>
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
-        <exec.mainClass>com.mycompany.potrospedidos_presentacion.PotrosPedidos_Presentacion</exec.mainClass>
-    </properties>
 </project>

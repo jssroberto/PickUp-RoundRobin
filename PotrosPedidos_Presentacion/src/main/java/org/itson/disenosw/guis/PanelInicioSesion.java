@@ -2,8 +2,11 @@ package org.itson.disenosw.guis;
 
 import SubsistemaCIA.IValidarPersona;
 import SubsistemaCIA.ValidarPersona;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
-import javax.swing.JOptionPane;
 import mocks.Usuario;
 import org.itson.disenosw.dtos.UsuarioDTO;
 
@@ -15,7 +18,6 @@ import org.itson.disenosw.dtos.UsuarioDTO;
 public class PanelInicioSesion extends javax.swing.JPanel {
 
     private FramePrincipal framePrincipal;
-    private Usuario usuario = new Usuario();
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -25,7 +27,8 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     public PanelInicioSesion(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
-        usuario.generarLista();
+//        usuario.generarLista();
+        setFonts();
     }
 
     /**
@@ -47,13 +50,10 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(400, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtID.setBackground(new java.awt.Color(250, 250, 250));
+        txtID.setForeground(new java.awt.Color(0, 0, 0));
         txtID.setBorder(null);
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
-        add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 340, 30));
+        add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 261, 342, 31));
 
         btnIngresar.setBorder(null);
         btnIngresar.setContentAreaFilled(false);
@@ -63,37 +63,52 @@ public class PanelInicioSesion extends javax.swing.JPanel {
                 btnIngresarActionPerformed(evt);
             }
         });
-        add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 170, 53));
+        add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 422, 159, 50));
 
+        txtContraseña.setBackground(new java.awt.Color(250, 250, 250));
+        txtContraseña.setForeground(new java.awt.Color(0, 0, 0));
         txtContraseña.setBorder(null);
-        add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 340, 30));
+        add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 354, 340, 30));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelInicioSesion.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
-            framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
-        } else {
-            List<Usuario> usuarios = usuario.getListaUsuarios();
-            IValidarPersona vp = new ValidarPersona();
+//        if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
+//            framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
+//        } else {
+//            UsuarioDTO usuarioDTO = new UsuarioDTO(txtID.getText(), 
+//                    String.valueOf(txtContraseña.getPassword()));    
+            
+            framePrincipal.cambiarVistaMenu();
+
+//            List<Usuario> usuarios = usuario.getListaUsuarios();
+//            IValidarPersona vp = new ValidarPersona();
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí
-            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()),txtID.getText());
-            if (vp.ValidarPersona(u)) {
-                framePrincipal.cambiarVistaMenu();
-            } else {
-                framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
-            }
-        }
+//            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtID.getText());
+//            if (vp.ValidarPersona(u)) {
+//                framePrincipal.cambiarVistaMenu();
+//            } else {
+//                framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
+//            }
+//        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
+    private void setFonts() {
+        try {
+            InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            Font sizedFont = font.deriveFont(24F);
+            txtID.setFont(sizedFont);
+            txtContraseña.setFont(sizedFont);
+        } catch (FontFormatException | IOException e) {
+            framePrincipal.mostrarAviso(e.getMessage(), "Aviso");
 
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;

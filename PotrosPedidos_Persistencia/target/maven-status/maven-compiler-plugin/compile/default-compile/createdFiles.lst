@@ -1,10 +1,12 @@
 org\itson\disenosw\dominio\Usuario.class
-org\itson\disenosw\cia\UsuarioCIA.class
-org\itson\disenosw\dominio\Carrito.class
 org\itson\disenosw\dominio\Pedido.class
 org\itson\disenosw\prueba\Prueba.class
+org\itson\disenosw\dominio\Producto.class
+org\itson\disenosw\cia\UsuarioCIA.class
+org\itson\disenosw\dominio\Carrito.class
 org\itson\disenosw\prueba\PruebaConsulta.class
 org\itson\disenosw\banco\ConvertidorMesAnio.class
-org\itson\disenosw\dominio\Producto.class
 org\itson\disenosw\dominio\EstadoPedido.class
+org\itson\disenosw\prueba\JframePruebaImagen$1.class
+org\itson\disenosw\prueba\JframePruebaImagen.class
 org\itson\disenosw\banco\Tarjeta.class

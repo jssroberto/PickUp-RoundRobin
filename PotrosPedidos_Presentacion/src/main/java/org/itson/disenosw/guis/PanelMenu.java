@@ -1,5 +1,14 @@
 package org.itson.disenosw.guis;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import raven.scroll.win11.ScrollPaneWin11;
+
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
  * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
@@ -17,6 +26,8 @@ public class PanelMenu extends javax.swing.JPanel {
     public PanelMenu(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
+        setScrollPanel();
+//        mostrarProductos(new ArrayList<>());
     }
 
     /**
@@ -27,12 +38,12 @@ public class PanelMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         btnCarrito = new javax.swing.JButton();
-        btnProducto1 = new javax.swing.JButton();
-        btnProducto2 = new javax.swing.JButton();
-        btnProducto3 = new javax.swing.JButton();
-        btnProducto4 = new javax.swing.JButton();
-        btnAvanzar = new javax.swing.JButton();
+        btnUsuario = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnOrdenar = new javax.swing.JButton();
+        scpProductos = new ScrollPaneWin11();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -48,66 +59,44 @@ public class PanelMenu extends javax.swing.JPanel {
                 btnCarritoActionPerformed(evt);
             }
         });
-        add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 60, 60));
+        add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 15, 50, 50));
 
-        btnProducto1.setBorder(null);
-        btnProducto1.setContentAreaFilled(false);
-        btnProducto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProducto1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuario.setBorder(null);
+        btnUsuario.setContentAreaFilled(false);
+        btnUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProducto1ActionPerformed(evt);
+                btnUsuarioActionPerformed(evt);
             }
         });
-        add(btnProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 188, 370, 100));
+        add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 15, 50, 50));
 
-        btnProducto2.setBorder(null);
-        btnProducto2.setContentAreaFilled(false);
-        btnProducto2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProducto2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBorder(null);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProducto2ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        add(btnProducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 298, 370, 100));
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 117, 50, 50));
 
-        btnProducto3.setBorder(null);
-        btnProducto3.setContentAreaFilled(false);
-        btnProducto3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProducto3.addActionListener(new java.awt.event.ActionListener() {
+        btnOrdenar.setBorder(null);
+        btnOrdenar.setContentAreaFilled(false);
+        btnOrdenar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProducto3ActionPerformed(evt);
+                btnOrdenarActionPerformed(evt);
             }
         });
-        add(btnProducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 408, 370, 100));
+        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 122, 50, 39));
 
-        btnProducto4.setBorder(null);
-        btnProducto4.setContentAreaFilled(false);
-        btnProducto4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProducto4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProducto4ActionPerformed(evt);
-            }
-        });
-        add(btnProducto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 518, 370, 100));
-
-        btnAvanzar.setBorder(null);
-        btnAvanzar.setContentAreaFilled(false);
-        btnAvanzar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAvanzar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAvanzarActionPerformed(evt);
-            }
-        });
-        add(btnAvanzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 640, 60, 40));
+        scpProductos.setBorder(null);
+        add(scpProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 188, 370, 556));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMenu.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto1ActionPerformed
-        framePrincipal.setIdProducto(1);
-        framePrincipal.cambiarVistaProducto();
-    }//GEN-LAST:event_btnProducto1ActionPerformed
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
         framePrincipal.setIdProducto(1);
@@ -115,43 +104,49 @@ public class PanelMenu extends javax.swing.JPanel {
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
-    private void btnProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto2ActionPerformed
-        framePrincipal.setIdProducto(2);
+    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsuarioActionPerformed
 
-        framePrincipal.cambiarVistaProducto();
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    }//GEN-LAST:event_btnProducto2ActionPerformed
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrdenarActionPerformed
 
-    private void btnProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto3ActionPerformed
-        framePrincipal.setIdProducto(3);
+    public void inicializarCarrito() {
 
-        framePrincipal.cambiarVistaProducto();
-
-    }//GEN-LAST:event_btnProducto3ActionPerformed
-
-    private void btnAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvanzarActionPerformed
-        framePrincipal.cambiarPanelMenu2();
-    }//GEN-LAST:event_btnAvanzarActionPerformed
-
-    private void btnProducto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto4ActionPerformed
-        framePrincipal.setIdProducto(4);
-
-        framePrincipal.cambiarVistaProducto();
-
-    }//GEN-LAST:event_btnProducto4ActionPerformed
-
-    public void inicializarCarrito(){
-        
     }
-    
-    
+
+//    public void mostrarProductos(ArrayList<> productos) {
+//
+//        JPanel productosPanel = new JPanel(new GridLayout(0, 1));
+//
+//        for (Producto producto : productos) {
+//            PanelProductos
+//                    panelProducto = new PanelProductos(producto);
+//            productosPanel.add(panelProducto);
+//        }
+//
+//        JScrollPane scrollPane = new JScrollPane(productosPanel);
+//        add(scrollPane);
+//    }
+
+    public void setScrollPanel() {
+        scpProductos.getViewport().setOpaque(false);
+        scpProductos.setOpaque(false);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvanzar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCarrito;
-    private javax.swing.JButton btnProducto1;
-    private javax.swing.JButton btnProducto2;
-    private javax.swing.JButton btnProducto3;
-    private javax.swing.JButton btnProducto4;
+    private javax.swing.JButton btnOrdenar;
+    private javax.swing.JButton btnUsuario;
     private javax.swing.JLabel fondo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane scpProductos;
     // End of variables declaration//GEN-END:variables
 }
+
