@@ -3,6 +3,7 @@ package dominio;
 import cafeteria.ProductoCafeteria;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,20 +35,30 @@ public class Carrito implements Serializable {
     @Column(name = "cantidad_productos", nullable = false)
     private Integer cantidadProductos;
     
-    @ManyToMany
-    @JoinTable(name = "carritos_productos", 
-            joinColumns = @JoinColumn(name = "id_carrito"), 
-            inverseJoinColumns = @JoinColumn(name = "id_producto"))
-    private List<ProductoCafeteria> productos;
-    
     @OneToOne
     @JoinColumn(name = "id_usuario") //referecedColumnName
     private Usuario usuario;
+    
+    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleCarrito> detalleCarrito;
 
     public Carrito() {
     }
 
     public Carrito(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    public Carrito(Float total, Integer cantidadProductos, Usuario usuario, List<DetalleCarrito> detalleCarrito) {
+        this.total = total;
+        this.cantidadProductos = cantidadProductos;
+        this.usuario = usuario;
+        this.detalleCarrito = detalleCarrito;
+    }
+
+    public Carrito(Float total, Integer cantidadProductos, Usuario usuario) {
+        this.total = total;
+        this.cantidadProductos = cantidadProductos;
         this.usuario = usuario;
     }
 
@@ -74,12 +86,12 @@ public class Carrito implements Serializable {
         this.cantidadProductos = cantidadProductos;
     }
 
-    public List<ProductoCafeteria> getProductos() {
-        return productos;
+    public List<DetalleCarrito> getDetalleCarrito() {
+        return detalleCarrito;
     }
 
-    public void setProducto(List<ProductoCafeteria> productos) {
-        this.productos = productos;
+    public void setDetalleCarrito(List<DetalleCarrito> detalleCarrito) {
+        this.detalleCarrito = detalleCarrito;
     }
 
     public Usuario getUsuario() {
@@ -90,13 +102,6 @@ public class Carrito implements Serializable {
         this.usuario = usuario;
     }
 
-    public Carrito(Float total, Integer cantidadProductos, List<ProductoCafeteria> productos, Usuario usuario) {
-        this.total = total;
-        this.cantidadProductos = cantidadProductos;
-        this.productos = productos;
-        this.usuario = usuario;
-    }
-    
 
     @Override
     public String toString() {
@@ -105,7 +110,6 @@ public class Carrito implements Serializable {
         sb.append("id=").append(id);
         sb.append(", total=").append(total);
         sb.append(", cantidadProductos=").append(cantidadProductos);
-        sb.append(", producto=").append(productos);
         sb.append(", usuario=").append(usuario);
         sb.append('}');
         return sb.toString();
