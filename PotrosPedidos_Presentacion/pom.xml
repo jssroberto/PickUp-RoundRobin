@@ -31,6 +31,44 @@
             </plugin>
         </plugins>
     </build>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>Mydir/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <outputDirectory>MyDir</outputDirectory>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib</classpathPrefix>
+                            <!--<mainClass>com.test.entryClassOfJarHavingMainMethod</mainClass>-->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <repositories>
         <repository>
             <id>unknown-jars-temp-repo</id>
@@ -60,10 +98,23 @@
             <artifactId>PotrosPedidos_Persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
+<!--        <dependency>
+            <groupId>com.raven</groupId>
+            <artifactId>win11scroll</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${}/libs/windows11-scrollbar.jar</systemPath>
         <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>windows11-scrollbar</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.raven</groupId>
+            <artifactId>timingFramework</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>C:\Users\rover\Documents\GitHub\windows11-jscrollbar\TimingFramework-0.55.jar</systemPath>
+        </dependency>-->
     </dependencies>
 </project>

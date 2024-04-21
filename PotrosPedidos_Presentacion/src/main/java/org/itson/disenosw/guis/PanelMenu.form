@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.2" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
-  <NonVisualComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
-    </Container>
-  </NonVisualComponents>
   <Properties>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[400, 800]"/>
@@ -111,28 +105,24 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="scpProductos">
+    <Container class="javax.swing.JPanel" name="panelTop">
       <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
-        </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPaneWin11()"/>
-      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="190" width="370" height="556"/>
+          <AbsoluteConstraints x="15" y="178" width="370" height="570"/>
         </Constraint>
       </Constraints>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
     </Container>
-    <Component class="javax.swing.JLabel" name="fondo">
+    <Component class="javax.swing.JLabel" name="lblFondo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/panelMenu.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
