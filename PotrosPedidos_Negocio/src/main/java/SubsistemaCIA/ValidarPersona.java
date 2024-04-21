@@ -4,8 +4,7 @@
  */
 package SubsistemaCIA;
 
-import mocks.Usuario;
-import java.util.List;
+
 import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
@@ -14,12 +13,11 @@ import org.itson.disenosw.dtos.UsuarioDTO;
  */
 public class ValidarPersona implements IValidarPersona {
 
-validarPersonaBO vp = new validarPersonaBO();
+    ControlCIA control = new ControlCIA();
 
-  
     @Override
-    public Boolean ValidarPersona(UsuarioDTO usuario) {
-       return vp.ValidarPersona(usuario.getIdCia(), usuario.getContra());
+    public Boolean ValidarPersona(UsuarioDTO usuario) throws Exception {
+        return control.ValidarPersona(usuario.getIdCia(), usuario.getContra());
     }
-    
+
 }

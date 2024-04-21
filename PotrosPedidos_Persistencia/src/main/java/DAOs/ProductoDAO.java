@@ -1,0 +1,69 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package DAOs;
+
+import cafeteria.ProductoCafeteria;
+import dominio.Producto;
+import excepciones.ExcepcionAT;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+/**
+ *
+ * @author USER
+ */
+public class ProductoDAO {
+    private EntityManager em;
+    private EntityManagerFactory emf;
+
+    public ProductoDAO() {
+        emf = Persistence.createEntityManagerFactory("conexionPU");
+    }
+    
+    public void actualizarProducto (ProductoCafeteria productoCafeteria) throws ExcepcionAT{
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            em.merge(productoCafeteria);
+
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            em.close();
+            System.out.println(e.getCause());
+            throw new ExcepcionAT("Error al actualizar producto");
+        }
+    }
+    
+    public Producto buscarProductoPorNombre (String nombreProducto) throws ExcepcionAT {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            String jpql3 = "SELECT p FROM Producto p WHERE p.nombre = :nombre";
+
+            TypedQuery<Producto> query = em.createQuery(jpql3, Producto.class);
+            query.setParameter("nombre", nombreProducto);
+            List<Producto> producto = query.getResultList();
+
+            em.getTransaction().commit();
+            em.close();
+            
+            if(!producto.isEmpty()){
+                return producto.get(0);
+            }else{
+                throw new ExcepcionAT("Producto no encontrado por su nombre");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            System.out.println(e.getLocalizedMessage());
+            return null;
+        }
+    }
+}

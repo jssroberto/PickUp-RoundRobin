@@ -12,5 +12,5 @@ import org.itson.disenosw.dtos.UsuarioDTO;
  */
 public interface IValidarPersona {
 
-    public Boolean ValidarPersona (UsuarioDTO usuario);
+    public Boolean ValidarPersona (UsuarioDTO usuario) throws Exception;
 }
