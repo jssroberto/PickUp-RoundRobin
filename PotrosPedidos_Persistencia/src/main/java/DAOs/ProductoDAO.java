@@ -25,12 +25,12 @@ public class ProductoDAO {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
     
-    public void actualizarProducto (ProductoCafeteria productoCafeteria) throws ExcepcionAT{
+    public void actualizarProducto (Producto producto) throws ExcepcionAT{
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            em.merge(productoCafeteria);
+            em.merge(producto);
 
             em.getTransaction().commit();
             em.close();

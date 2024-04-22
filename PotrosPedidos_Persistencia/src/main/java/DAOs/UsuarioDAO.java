@@ -63,7 +63,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            String jpql3 = "SELECT u FROM Usuario u WHERE u.id_usuario_cia = :idCia";
+            String jpql3 = "SELECT u FROM Usuario u WHERE u.idUsuarioCia= :idCia";
 
             TypedQuery<Usuario> query = em.createQuery(jpql3, Usuario.class);
             query.setParameter("idCia", idUsuarioCia);

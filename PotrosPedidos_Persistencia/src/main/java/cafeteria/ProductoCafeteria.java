@@ -1,15 +1,19 @@
 package cafeteria;
 
 import dominio.Carrito;
+import dominio.DetalleCarrito;
+import dominio.DetallePedido;
 import dominio.Pedido;
 import java.util.List;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -39,7 +43,7 @@ public class ProductoCafeteria implements Serializable {
     
     @Column(name = "direccion_imagen", nullable = true)
     private String direccionImagen;
-
+    
     public ProductoCafeteria() {
     }
 

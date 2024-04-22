@@ -2,6 +2,7 @@ package banco;
 
 import java.io.Serializable;
 import java.time.YearMonth;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -26,9 +27,8 @@ public class Tarjeta implements Serializable {
     @Column(name = "numero_tarjeta", length = 19, nullable = false, unique = true)
     private String numeroTarjeta;
     
-    @Convert(converter = ConvertidorMesAnio.class)
     @Column(name = "fecha_vencimiento", nullable = false)
-    private YearMonth fechaVencimiento;
+    private Calendar fechaVencimiento;
 
     @Column(name = "cvv", length = 4, nullable = false)
     private Integer cvv;
@@ -36,13 +36,13 @@ public class Tarjeta implements Serializable {
     public Tarjeta() {
     }
 
-    public Tarjeta(String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv) {
+    public Tarjeta(String numeroTarjeta, Calendar fechaVencimiento, Integer cvv) {
         this.numeroTarjeta = numeroTarjeta;
         this.fechaVencimiento = fechaVencimiento;
         this.cvv = cvv;
     }
 
-    public Tarjeta(Long id, String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv) {
+    public Tarjeta(Long id, String numeroTarjeta, Calendar fechaVencimiento, Integer cvv) {
         this.id = id;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaVencimiento = fechaVencimiento;
@@ -65,11 +65,11 @@ public class Tarjeta implements Serializable {
         this.numeroTarjeta = numeroTarjeta;
     }
 
-    public YearMonth getFechaVencimiento() {
+    public Calendar getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(YearMonth fechaVencimiento) {
+    public void setFechaVencimiento(Calendar fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

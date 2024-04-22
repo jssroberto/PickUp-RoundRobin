@@ -4,11 +4,12 @@
  */
 package DAOs;
 
-import cafeteria.ProductoCafeteria;
 import dominio.Carrito;
+import dominio.DetalleCarrito;
 import dominio.Producto;
 import dominio.Usuario;
 import excepciones.ExcepcionAT;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,52 +18,52 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author USER
+ * @author galan
  */
-public class CarritoDAO {
+public class DetalleCarritoDAO {
     private EntityManager em;
     private EntityManagerFactory emf;
     private Carrito carito;
 
-    public CarritoDAO() {
+    public DetalleCarritoDAO() {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
     
     
-    public void actualizarCarrito (Carrito producto) throws ExcepcionAT{
+    public void insertarDetalleCarrito (DetalleCarrito detalleCarrito) throws ExcepcionAT{
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            em.merge(producto);
+            em.persist(detalleCarrito);
 
             em.getTransaction().commit();
             em.close();
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al actualizar carrito");
+            throw new ExcepcionAT("Error al insertar detalle carrito");
         }
     }
     
-    public Carrito buscarCarritoPorUsuario (Usuario usuario) throws ExcepcionAT {
+    public List<DetalleCarrito> buscarListaDetalleCarrito(Carrito carrito) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            String jpql3 = "SELECT c FROM Carrito c WHERE c.usuario = :idUsuario";
+            String jpql3 = "SELECT dc FROM DetalleCarrito dc WHERE dc.carrito = :idCarrito";
 
-            TypedQuery<Carrito> query = em.createQuery(jpql3, Carrito.class);
-            query.setParameter("idUsuario", usuario);
-            List<Carrito> carrito = query.getResultList();
+            TypedQuery<DetalleCarrito> query = em.createQuery(jpql3, DetalleCarrito.class);
+            query.setParameter("idCarrito", carrito);
+            List<DetalleCarrito> detallesCarrito = query.getResultList();
 
             em.getTransaction().commit();
             em.close();
             
-            if(!carrito.isEmpty()){
-                return carrito.get(0);
+            if(!detallesCarrito.isEmpty()){
+                return detallesCarrito;
             }else{
-                throw new ExcepcionAT("Carrito no encontrado por su usuario");
+                throw new ExcepcionAT("Lista de productos no encontrado por su carrito");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());

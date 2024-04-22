@@ -45,7 +45,7 @@ public class ProductoCafeteriaDAO {
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            String jpql3 = "SELECT p FROM Producto p WHERE p.nombre = :nombre";
+            String jpql3 = "SELECT p FROM ProductoCafeteria p WHERE p.nombre = :nombre";
 
             TypedQuery<ProductoCafeteria> query = em.createQuery(jpql3, ProductoCafeteria.class);
             query.setParameter("nombre", nombreProducto);

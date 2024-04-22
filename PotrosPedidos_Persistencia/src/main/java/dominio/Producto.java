@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,60 +31,53 @@ public class Producto implements Serializable {
     @Column(name = "precio", nullable = false)
     private Float precio;
     
-    @Column(name = "nombre", length = 50, nullable = false)
+    @Column(name = "nombre", length = 50, nullable = false, unique=true)
     private String nombre;
     
     @Column(name = "descripcion", length = 200, nullable = true)
     private String descripcion;
     
-    @Column(name = "cantidad", nullable = false)
-    private Integer cantidad;
-    
-    @Column(name = "id_producto_cafeteria")
+    @Column(name = "id_producto_cafeteria", nullable=false)
     private Long idProductoCafeteria;
     
     @Column(name = "direccion_imagen", nullable = true)
     private String direccionImagen;
     
-    @ManyToMany(mappedBy = "productos" , cascade = CascadeType.ALL)
-    private List<Carrito> carritos;
+    @OneToMany(mappedBy = "producto" , cascade = CascadeType.ALL)
+    private List<DetalleCarrito> detallesCarrito;
     
-    @ManyToMany(mappedBy = "productos", cascade = CascadeType.ALL)
-    private List<Pedido> pedidos;
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<DetallePedido> detallesPedido;
 
     public Producto() {
     }
 
-    public Producto(Float precio, String nombre, Integer cantidad, Long idProductoCafeteria) {
+    public Producto(Float precio, String nombre, Long idProductoCafeteria) {
         this.precio = precio;
         this.nombre = nombre;
-        this.cantidad = cantidad;
         this.idProductoCafeteria= idProductoCafeteria;
     }
 
-    public Producto(Float precio, String nombre, String descripcion, Integer cantidad, Long idProductoCafeteria) {
+    public Producto(Float precio, String nombre, String descripcion, Long idProductoCafeteria) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.cantidad = cantidad;
         this.idProductoCafeteria= idProductoCafeteria;
     }
 
-    public Producto(Float precio, String nombre, String descripcion, Integer cantidad, String direccionImagen, Long idProductoCafeteria) {
+    public Producto(Float precio, String nombre, String descripcion, String direccionImagen, Long idProductoCafeteria) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.cantidad = cantidad;
         this.direccionImagen = direccionImagen;
         this.idProductoCafeteria= idProductoCafeteria;
     }
 
-    public Producto(Float precio, String nombre, Integer cantidad, String direccionImagen) {
+
+    public Producto(Float precio, String nombre, String descripcion) {
         this.precio = precio;
         this.nombre = nombre;
-        this.cantidad = cantidad;
-        this.direccionImagen = direccionImagen;
-        this.idProductoCafeteria= idProductoCafeteria;
+        this.descripcion = descripcion;
     }
     
     
@@ -129,10 +123,6 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
     public String getDireccionImagen() {
         return direccionImagen;
     }
@@ -141,28 +131,20 @@ public class Producto implements Serializable {
         this.direccionImagen = direccionImagen;
     }
     
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public List<DetalleCarrito> getDetallesCarrito() {
+        return detallesCarrito;
     }
 
-    public List<Carrito> getCarritos() {
-        return carritos;
+    public void setDetallesCarrito(List<DetalleCarrito> detallesCarrito) {
+        this.detallesCarrito = detallesCarrito;
     }
 
-    public void setCarritos(List<Carrito> carritos) {
-        this.carritos = carritos;
+    public List<DetallePedido> getDetallesPedido() {
+        return detallesPedido;
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-    
-    public boolean estaDisponible(){
-        return getCantidad() > 0;
+    public void setDetallesPedido(List<DetallePedido> detallesPedido) {
+        this.detallesPedido = detallesPedido;
     }
 
     @Override
@@ -173,9 +155,6 @@ public class Producto implements Serializable {
         sb.append(", precio=").append(precio);
         sb.append(", nombre=").append(nombre);
         sb.append(", descripcion=").append(descripcion);
-        sb.append(", cantidad=").append(cantidad);
-        sb.append(", carritos=").append(carritos);
-        sb.append(", pedidos=").append(pedidos);
         sb.append('}');
         return sb.toString();
     }

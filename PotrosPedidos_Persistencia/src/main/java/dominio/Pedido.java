@@ -3,6 +3,7 @@ package dominio;
 import cafeteria.ProductoCafeteria;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -37,11 +39,9 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "id_usuario") //referenced column name
     private Usuario usuario;
     
-    @ManyToMany
-    @JoinTable(name = "pedidos_productos", 
-            joinColumns = @JoinColumn(name = "id_pedido"), 
-            inverseJoinColumns = @JoinColumn(name = "id_producto"))
-    private List<ProductoCafeteria> productos;
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetallePedido> detallePedido;
+    
 
     public Pedido() {
     }
@@ -75,13 +75,6 @@ public class Pedido implements Serializable {
         this.usuario = usuario;
     }
 
-    public List<ProductoCafeteria> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<ProductoCafeteria> productos) {
-        this.productos = productos;
-    }
 
     @Override
     public String toString() {
@@ -90,7 +83,6 @@ public class Pedido implements Serializable {
         sb.append("id=").append(id);
         sb.append(", estado=").append(estado);
         sb.append(", usuario=").append(usuario);
-        sb.append(", productos=").append(productos);
         sb.append('}');
         return sb.toString();
     }

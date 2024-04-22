@@ -31,7 +31,7 @@ public class DetallePedido implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_producto")
-    private ProductoCafeteria producto;
+    private Producto producto;
 
     @Column(name = "cantidad")
     private Integer cantidad;
@@ -39,7 +39,7 @@ public class DetallePedido implements Serializable {
     @Column(name = "total")
     private Float total;
 
-    public DetallePedido(Pedido pedido, ProductoCafeteria producto, Integer cantidad, Float total) {
+    public DetallePedido(Pedido pedido, Producto producto, Integer cantidad, Float total) {
         this.pedido = pedido;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -65,11 +65,11 @@ public class DetallePedido implements Serializable {
         this.pedido = pedido;
     }
 
-    public ProductoCafeteria getProducto() {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setProducto(ProductoCafeteria producto) {
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 

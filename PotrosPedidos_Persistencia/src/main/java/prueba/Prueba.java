@@ -11,7 +11,10 @@ import CIA.UsuarioCIA;
 import cafeteria.ProductoCafeteria;
 import dominio.Carrito;
 import dominio.DetalleCarrito;
+import dominio.Producto;
 import dominio.Usuario;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -24,11 +27,11 @@ public class Prueba {
      */
     public static void main(String[] args) {
         List<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("Juan", "Perez", "Garcia"));
-        usuarios.add(new Usuario("Maria", "Lopez", "Martinez"));
-        usuarios.add(new Usuario("Pedro", "Gonzalez", "Santos"));
-        usuarios.add(new Usuario("Ana", "Rodriguez", "Fernandez"));
-        usuarios.add(new Usuario("Luis", "Martinez", "Diaz"));
+        usuarios.add(new Usuario("Juan", "Perez", "Garcia", "00000011211"));
+        usuarios.add(new Usuario("Maria", "Lopez", "Martinez", "00000244454"));
+        usuarios.add(new Usuario("Pedro", "Gonzalez", "Santos", "00000046574"));
+        usuarios.add(new Usuario("Ana", "Rodriguez", "Fernandez","00000240157" ));
+        usuarios.add(new Usuario("Luis", "Martinez", "Diaz", "00000244978"));
         
 
         List<UsuarioCIA> usuariosCIA = new ArrayList<>();
@@ -40,34 +43,49 @@ public class Prueba {
         
 
         List<Tarjeta> tarjetas = new ArrayList<>();
-        tarjetas.add(new Tarjeta("4696-1641-7464-6464", YearMonth.of(2050, 3), 754));
-        tarjetas.add(new Tarjeta("4696-6542-7464-6464", YearMonth.of(2040, 1), 475));
-        tarjetas.add(new Tarjeta("4696-1641-6546-6464", YearMonth.of(2035, 10), 277));
-        tarjetas.add(new Tarjeta("4696-1641-7464-6541", YearMonth.of(2030, 12), 341));
-        tarjetas.add(new Tarjeta("1545-1641-7464-6464", YearMonth.of(2034, 9), 734));
+        tarjetas.add(new Tarjeta("4696-1641-7464-6464", new GregorianCalendar(2050, 3,31), 754));
+        tarjetas.add(new Tarjeta("4696-6542-7464-6464", new GregorianCalendar(2040, 3,31), 475));
+        tarjetas.add(new Tarjeta("4696-1641-6546-6464", new GregorianCalendar(2030, 3,31), 277));
+        tarjetas.add(new Tarjeta("4696-1641-7464-6541", new GregorianCalendar(2025, 3,31), 341));
+        tarjetas.add(new Tarjeta("1545-1641-7464-6464", new GregorianCalendar(2028, 3,31), 734));
         
+        List<ProductoCafeteria> productosCafeteria = new ArrayList<>();
+        productosCafeteria.add(new ProductoCafeteria(50.0F, "Torta cubana", "Deliciosa", 15));
+        productosCafeteria.add(new ProductoCafeteria(100.0F, "Pizza de pepperoni", "Italiana", 15));
+        productosCafeteria.add(new ProductoCafeteria(25.0F, "Tacos de discada", "Mexicano", 15));
+        productosCafeteria.add(new ProductoCafeteria(100.0F, "Hamburguesa clásica", 15));
         
-        List<ProductoCafeteria> productos = new ArrayList<>();
-        productos.add(new ProductoCafeteria(50.0F, "Torta cubana", "Deliciosa", 15));
-        productos.add(new ProductoCafeteria(100.0F, "Pizza de pepperoni", "Italiana", 15));
-        productos.add(new ProductoCafeteria(25.0F, "Tacos de discada", "Mexicano", 15));
-        productos.add(new ProductoCafeteria(100.0F, "Hamburguesa clásica", 15));
+        EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("cafeteriaPU");
+        EntityManager emCafeteria = emfCafeteria.createEntityManager();
+        
+        emCafeteria.getTransaction().begin();
+        for (ProductoCafeteria productoCafeteria : productosCafeteria) {
+            emCafeteria.persist(productoCafeteria);
+        }
+        emCafeteria.getTransaction().commit();
+        emCafeteria.close();
+        
+        List<Producto> productos = new ArrayList<>();
+        productos.add(new Producto(50.0F, "Torta cubana", "Deliciosa",productosCafeteria.get(0).getId()));
+        productos.add(new Producto(100.0F, "Pizza de pepperoni", "Italiana",productosCafeteria.get(1).getId()));
+        productos.add(new Producto(25.0F, "Tacos de discada", "Mexicano",productosCafeteria.get(2).getId()));
+        productos.add(new Producto(100.0F, "Hamburguesa clásica","Americano",productosCafeteria.get(3).getId()));
         
         Carrito carrito= new Carrito(0.0F, 0, usuarios.get(0));
         DetalleCarrito detalleCarrito= new DetalleCarrito(carrito, productos.get(0), 2, 100.0F);
         carrito.setCantidadProductos(2);
         carrito.setTotal(100.0F);
 
-
-        EntityManagerFactory emfConexion = Persistence.createEntityManagerFactory("conexionPU");
+        
+        EntityManagerFactory emfConexion = Persistence.createEntityManagerFactory("potrosPU");
         EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("ciaPU");
         EntityManagerFactory emfBanco = Persistence.createEntityManagerFactory("bancoPU");
-        EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("cafeteriaPU");
-
+        
+        
         EntityManager emConexion = emfConexion.createEntityManager();
         EntityManager emCIA = emfCIA.createEntityManager();
         EntityManager emBanco = emfBanco.createEntityManager();
-        EntityManager emCafeteria = emfCafeteria.createEntityManager();
+        
 
         emConexion.getTransaction().begin();
         for (Usuario usuario : usuarios) {
@@ -88,15 +106,17 @@ public class Prueba {
         emBanco.getTransaction().commit();
         emBanco.close();
         
-        emCafeteria.getTransaction().begin();
-        for (ProductoCafeteria producto : productos) {
-            emCafeteria.persist(producto);
+        for (Producto producto : productos) {
+            emConexion.persist(producto);
         }
-        emCafeteria.getTransaction().commit();
-        emCafeteria.close();
+        emConexion.getTransaction().commit();
 
+        
+        
+        emConexion.getTransaction().begin();
         emConexion.persist(carrito);
         emConexion.persist(detalleCarrito);
+        emConexion.getTransaction().commit();
 
     }
 

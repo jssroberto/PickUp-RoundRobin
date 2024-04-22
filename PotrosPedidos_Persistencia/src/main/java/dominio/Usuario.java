@@ -36,7 +36,7 @@ public class Usuario implements Serializable {
     
     //este a futuro debe ser nullable false
     @Column(name = "id_usuario_cia", nullable = false, unique = true)
-    private Long idUsuarioCia;
+    private String idUsuarioCia;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Carrito carrito;
@@ -52,6 +52,15 @@ public class Usuario implements Serializable {
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
+
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String idUsuarioCia) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.idUsuarioCia = idUsuarioCia;
+    }
+    
+    
 
     public Usuario(Long id, String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.id = id;
@@ -109,11 +118,11 @@ public class Usuario implements Serializable {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public Long getIdUsuarioCia() {
+    public String getIdUsuarioCia() {
         return idUsuarioCia;
     }
 
-    public void setIdUsuarioCia(Long idUsuarioCia) {
+    public void setIdUsuarioCia(String idUsuarioCia) {
         this.idUsuarioCia = idUsuarioCia;
     }
     
