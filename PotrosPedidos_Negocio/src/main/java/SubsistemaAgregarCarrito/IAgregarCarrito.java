@@ -4,9 +4,8 @@
  */
 package SubsistemaAgregarCarrito;
 
-import mocks.Carrito;
+import dominio.Usuario;
 import mocks.Productos;
-import org.itson.disenosw.dominio.Usuario;
 
 /**
  *

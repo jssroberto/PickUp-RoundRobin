@@ -4,7 +4,7 @@
  */
 package BOs;
 
-import DAOs.CiaDAO;
+//import DAOs.CiaDAO;
 import IDAOs.ICiaDAO;
 
 /**
@@ -12,10 +12,10 @@ import IDAOs.ICiaDAO;
  * @author yohan
  */
 public class VerificarPersonaBO {
-    ICiaDAO cia = new CiaDAO();
-    
+//    ICiaDAO cia = new CiaDAO();
+//    
     public Boolean buscarPersona(String id,String contra) throws Exception{
-    
-    return cia.BuscarPersona(id, contra);
+    return false;
+//    return cia.BuscarPersona(id, contra);
     }
 }

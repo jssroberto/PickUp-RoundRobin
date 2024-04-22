@@ -5,15 +5,15 @@
 package SubsistemaAgregarCarrito;
 
 import mocks.Productos;
-import org.itson.disenosw.dominio.Producto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 //import mocks.Usuario;
-import org.itson.disenosw.dominio.Carrito;
-import org.itson.disenosw.dominio.Usuario;
+import dominio.Carrito;
+import dominio.Producto;
+import dominio.Usuario;
 import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
@@ -35,10 +35,10 @@ public class AgregarCarrito implements IAgregarCarrito {
     }
 
     @Override
-    public boolean agregarCarrito(Productos producto, Integer cantidad, org.itson.disenosw.dominio.Usuario usuario) {
+    public boolean agregarCarrito(Productos producto, Integer cantidad, Usuario usuario) {
         List<Producto> productos = new ArrayList<>();
         System.out.println(producto.getCantidad());
-        Producto producto3 = new Producto(producto.getCosto(), producto.getNombre(), producto.getDescripcion(), cantidad);
+        Producto producto3 = new Producto();
         productos.add(producto3);
         if (producto != null) {
             float costo = producto.getCosto() * cantidad;
@@ -48,7 +48,7 @@ public class AgregarCarrito implements IAgregarCarrito {
             EntityManager entityManager = entity.createEntityManager();
             entityManager.getTransaction().begin();
             entityManager.persist(producto3);
-            Carrito carrito = new Carrito(costo, cantidad, productos, usuario);
+            Carrito carrito = new Carrito();
             entityManager.persist(carrito);
             entityManager.getTransaction().commit();
             //fin de persistencia

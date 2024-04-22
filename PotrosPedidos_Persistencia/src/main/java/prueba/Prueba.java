@@ -59,10 +59,10 @@ public class Prueba {
         carrito.setTotal(100.0F);
 
 
-        EntityManagerFactory emfConexion = Persistence.createEntityManagerFactory("conexionPU");
-        EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("ciaPU");
-        EntityManagerFactory emfBanco = Persistence.createEntityManagerFactory("bancoPU");
-        EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("cafeteriaPU");
+        EntityManagerFactory emfConexion = Persistence.createEntityManagerFactory("PickUp_PU");
+        EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("CIA_PU");
+        EntityManagerFactory emfBanco = Persistence.createEntityManagerFactory("Banco_PU");
+        EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("Cafeteria_PU");
 
         EntityManager emConexion = emfConexion.createEntityManager();
         EntityManager emCIA = emfCIA.createEntityManager();

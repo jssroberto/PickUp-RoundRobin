@@ -143,6 +143,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelActual = panelPagoExito;
     }
     
+    public void cambiarPanelBuscar(){
+        limpiarFrame();
+        PanelBuscar panelBuscar = new PanelBuscar(this);
+        ponerEnJFrame(panelBuscar);
+        panelActual = panelBuscar;
+    }
+    
 
     public void cambiarPanelMenu2(){
         limpiarFrame();
