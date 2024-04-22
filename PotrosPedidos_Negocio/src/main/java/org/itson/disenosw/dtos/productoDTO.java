@@ -10,39 +10,44 @@ package org.itson.disenosw.dtos;
  */
 public class productoDTO {
 
-    private Long id;
 
     private Float precio;
 
     private String nombre;
 
     private String descripcion;
-    
-    private Integer cantidad;
+
+    private Integer cantidadDisponible;
+    private String direccionImagen;
+    private Long idProductoCafeteria;
 
     public productoDTO() {
     }
 
-    public productoDTO(Long id) {
-        this.id = id;
+
+
+    public productoDTO(Long idProductoCafeteria) {
+        this.idProductoCafeteria = idProductoCafeteria;
     }
 
-    public productoDTO(Long id, Float precio, String nombre, String descripcion, Integer cantidad) {
-        this.id = id;
+    public productoDTO(Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen, Long idProductoCafeteria) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.cantidad = cantidad;
+        this.cantidadDisponible = cantidadDisponible;
+        this.direccionImagen = direccionImagen;
+        this.idProductoCafeteria = idProductoCafeteria;
     }
 
-    public Long getId() {
-        return id;
+    public productoDTO(Float precio, String nombre, String descripcion, String direccionImagen, Long idProductoCafeteria) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.direccionImagen = direccionImagen;
+        this.idProductoCafeteria = idProductoCafeteria;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+  
     public Float getPrecio() {
         return precio;
     }
@@ -67,12 +72,28 @@ public class productoDTO {
         this.descripcion = descripcion;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public Integer getCantidadDisponible() {
+        return cantidadDisponible;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadDisponible(Integer cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
     }
-    
+
+    public String getDireccionImagen() {
+        return direccionImagen;
+    }
+
+    public void setDireccionImagen(String direccionImagen) {
+        this.direccionImagen = direccionImagen;
+    }
+
+    public Long getIdProductoCafeteria() {
+        return idProductoCafeteria;
+    }
+
+    public void setIdProductoCafeteria(Long idProductoCafeteria) {
+        this.idProductoCafeteria = idProductoCafeteria;
+    }
+
 }

@@ -5,13 +5,14 @@
 package SubsistemaBanco;
 
 import SubsistemaCIA.*;
+import excepciones.ExcepcionAT;
 import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
  *
  * @author yohan
  */
-public interface IValidarBanco {
+public interface IValidarTarjeta {
 
-    public Boolean ValidarBanco(TarjetaDTO tarjeta);
+    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws ExcepcionAT;
 }

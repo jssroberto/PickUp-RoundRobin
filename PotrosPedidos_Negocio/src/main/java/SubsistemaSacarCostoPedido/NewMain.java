@@ -6,6 +6,7 @@ package SubsistemaSacarCostoPedido;
 
 import SubsistemaConsultarProducto.ConsultarProducto;
 import SubsistemaConsultarProducto.IConsultarProducto;
+import excepciones.ExcepcionAT;
 import java.util.List;
 import mocks.Productos;
 import org.itson.disenosw.dtos.productoDTO;
@@ -19,7 +20,7 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExcepcionAT {
         Productos producto = new Productos();
         producto.generarLista();
         List<Productos> productos = producto.getProductos();

@@ -4,29 +4,25 @@
  */
 package SubsistemaConsultarProducto;
 
-import mocks.Productos;
-import java.util.ArrayList;
-import java.util.List;
+import excepciones.ExcepcionAT;
 import org.itson.disenosw.dtos.productoDTO;
 
 /**
  *
  * @author jl4ma
  */
-public class ConsultarProducto implements IConsultarProducto{
+public class ConsultarProducto implements IConsultarProducto {
 
     controlProducto cp = new controlProducto();
-    
-    @Override
-    public Productos consultarProducto(productoDTO producto) {     
-    
-        return cp.consultarProducto(producto.getId());
-    }
 
     @Override
-    public Productos consultarProducto(Integer ID) {
-        return cp.consultarProducto(ID);
+    public productoDTO consultarProducto(productoDTO producto) throws ExcepcionAT {
+
+        try {
+            return cp.consultarProducto(producto.getNombre());
+        } catch (ExcepcionAT e) {
+            throw new ExcepcionAT(e.getMessage());
+        }
     }
-    
-    
+
 }

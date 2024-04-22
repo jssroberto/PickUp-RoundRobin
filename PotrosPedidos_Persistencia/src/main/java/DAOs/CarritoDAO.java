@@ -27,7 +27,39 @@ public class CarritoDAO {
     public CarritoDAO() {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
-    
+  
+    public void agregarCarrito(Carrito carrito) throws ExcepcionAT {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            em.persist(carrito);
+
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            em.close();
+            System.out.println(e.getCause());
+            throw new ExcepcionAT("Error al agregar carrito");
+        }
+    }
+
+    public void eliminarCarrito(Carrito carrito) throws ExcepcionAT {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            Carrito carrito1 = em.merge(carrito);
+            em.remove(carrito1);
+
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            em.close();
+            System.out.println(e.getCause());
+            throw new ExcepcionAT("Error al eliminar carrito");
+        }
+    }
     
     public void actualizarCarrito (Carrito producto) throws ExcepcionAT{
         try {

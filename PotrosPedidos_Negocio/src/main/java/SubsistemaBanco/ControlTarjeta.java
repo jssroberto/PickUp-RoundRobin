@@ -2,25 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BOs;
+package SubsistemaBanco;
 
-import DAOs.UsuarioCiaDAO;
-import IDAOs.ICiaDAO;
+import BOs.validarTarjetaBO;
 import excepciones.ExcepcionAT;
+import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
  *
  * @author yohan
  */
-public class VerificarPersonaBO {
+public class ControlTarjeta {
+     validarTarjetaBO vb = new validarTarjetaBO();
 
-    ICiaDAO cia = new UsuarioCiaDAO();
-//    
+    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws ExcepcionAT {
 
-    public Boolean buscarPersona(String id, String contra) throws ExcepcionAT {
         try {
-            return cia.BuscarPersona(id, contra);
-        } catch (Exception e) {
+            return vb.ValidarBanco(tarjeta);
+        } catch (ExcepcionAT e) {
             throw new ExcepcionAT(e.getMessage());
         }
     }

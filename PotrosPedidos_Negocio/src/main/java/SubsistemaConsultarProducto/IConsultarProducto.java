@@ -4,9 +4,8 @@
  */
 package SubsistemaConsultarProducto;
 
-import mocks.Productos;
-import java.util.ArrayList;
-import java.util.List;
+
+import excepciones.ExcepcionAT;
 import org.itson.disenosw.dtos.productoDTO;
 
 /**
@@ -15,8 +14,6 @@ import org.itson.disenosw.dtos.productoDTO;
  */
 public interface IConsultarProducto {
     
-    public Productos consultarProducto(productoDTO producto);
-    public Productos consultarProducto(Integer ID);
-    
-    
+    public productoDTO consultarProducto(productoDTO producto) throws ExcepcionAT;
+     
 }

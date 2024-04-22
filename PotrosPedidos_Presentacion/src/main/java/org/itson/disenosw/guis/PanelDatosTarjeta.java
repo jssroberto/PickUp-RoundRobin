@@ -2,12 +2,12 @@ package org.itson.disenosw.guis;
 
 import mocks.Banco;
 import mocks.Usuario;
-import SubsistemaBanco.IValidarBanco;
-import SubsistemaBanco.validarBanco;
+import SubsistemaBanco.validarTarjeta;
 import java.util.List;
 import javax.swing.JOptionPane;
 import mocks.Banco;
 import org.itson.disenosw.dtos.TarjetaDTO;
+import SubsistemaBanco.IValidarTarjeta;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -86,7 +86,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
         String fecha = txtfecha.getText();
         String cvv = txtcvv.getText();
         TarjetaDTO t = new TarjetaDTO(numero, nombre, fecha, Integer.parseInt(cvv));
-        IValidarBanco vb = new validarBanco();
+        IValidarTarjeta vb = new validarTarjeta();
         if (vb.ValidarBanco(t)) {
 //            ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
             ventana.cambiarPanelPagoExito();

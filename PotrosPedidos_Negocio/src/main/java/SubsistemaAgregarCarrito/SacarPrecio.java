@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package SubsistemaSacarPrecio;
+package SubsistemaAgregarCarrito;
 
 import mocks.Carrito;
 import java.util.List;
@@ -11,9 +11,8 @@ import java.util.List;
  *
  * @author jl4ma
  */
-public class SacarPrecio implements ISacarPrecio{
+public class SacarPrecio {
 
-    @Override
     public float sacarPrecio(List<Carrito> carrito) {
         float costo = 0;
         for(Carrito car: carrito){

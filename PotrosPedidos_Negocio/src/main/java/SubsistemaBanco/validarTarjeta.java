@@ -2,28 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package SubsistemaCIA;
+package SubsistemaBanco;
 
-import BOs.VerificarPersonaBO;
 import excepciones.ExcepcionAT;
+import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
  *
  * @author yohan
  */
-public class ControlCIA {
+public class validarTarjeta implements IValidarTarjeta {
 
-    public ControlCIA() {
-    }
+    ControlTarjeta control = new ControlTarjeta();
 
-    public Boolean ValidarPersona(String ID, String contra) throws ExcepcionAT {
+    @Override
+    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws ExcepcionAT {
 
-        VerificarPersonaBO vp = new VerificarPersonaBO();
         try {
-            return vp.buscarPersona(ID, contra);
+            return control.ValidarTarjeta(tarjeta);
         } catch (ExcepcionAT e) {
             throw new ExcepcionAT(e.getMessage());
         }
-
     }
 }
