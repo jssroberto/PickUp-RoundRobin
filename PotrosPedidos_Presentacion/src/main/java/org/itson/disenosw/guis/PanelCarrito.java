@@ -51,6 +51,12 @@ public class PanelCarrito extends javax.swing.JPanel {
     public PanelCarrito(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
+        try {
+            ayuda();
+            crearMenu();
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(PanelCarrito.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -63,9 +69,9 @@ public class PanelCarrito extends javax.swing.JPanel {
 
         btnPagar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
         panelTop = new javax.swing.JPanel();
         fondo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
@@ -80,7 +86,7 @@ public class PanelCarrito extends javax.swing.JPanel {
                 btnPagarActionPerformed(evt);
             }
         });
-        add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 680, 180, 70));
+        add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 680, 171, 64));
 
         btnRegresar.setBorder(null);
         btnRegresar.setContentAreaFilled(false);
@@ -90,16 +96,17 @@ public class PanelCarrito extends javax.swing.JPanel {
                 btnRegresarActionPerformed(evt);
             }
         });
-        add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 690, 50, 50));
+        add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 692, 40, 40));
+
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotal.setText("jLabel2");
+        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 634, 150, 31));
 
         panelTop.setOpaque(false);
         add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 178, 370, 416));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelCarrito.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jLabel1.setText("jLabel1");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 630, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
@@ -125,7 +132,7 @@ public class PanelCarrito extends javax.swing.JPanel {
 //    }
     public void ayuda() throws ExcepcionAT {
         try {
-            usuario = carritoDAO.buscarCarritoPorUsuarioId(framePrincipal.getIdProducto());
+            usuario = carritoDAO.buscarCarritoPorUsuarioId(5L);
         } catch (ExcepcionAT ex) {
             Logger.getLogger(PanelCarrito.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -394,7 +401,7 @@ public class PanelCarrito extends javax.swing.JPanel {
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 }
