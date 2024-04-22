@@ -5,13 +5,15 @@
 package SubsistemaAgregarCarrito;
 
 import dominio.Usuario;
+import excepciones.ExcepcionAT;
 import mocks.Productos;
+import org.itson.disenosw.dtos.productoDTO;
 
 /**
  *
  * @author jl4ma
  */
 public interface IAgregarCarrito {
-    
-    public boolean agregarCarrito(Productos producto, Integer cantidad, Usuario usuario);
+
+    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT;
 }

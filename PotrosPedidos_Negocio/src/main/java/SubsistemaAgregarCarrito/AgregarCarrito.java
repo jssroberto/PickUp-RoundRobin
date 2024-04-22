@@ -14,7 +14,9 @@ import javax.persistence.Persistence;
 import dominio.Carrito;
 import dominio.Producto;
 import dominio.Usuario;
+import excepciones.ExcepcionAT;
 import org.itson.disenosw.dtos.UsuarioDTO;
+import org.itson.disenosw.dtos.productoDTO;
 
 /**
  *
@@ -22,41 +24,16 @@ import org.itson.disenosw.dtos.UsuarioDTO;
  */
 public class AgregarCarrito implements IAgregarCarrito {
 
-    List<Carrito> carritos = new ArrayList<>();
-    Carrito carrito;
-
-    public AgregarCarrito(Carrito carrito) {
-        this.carrito = carrito;
-    }
-
-    public void inicializarCarrito(UsuarioDTO usuarioDTO) {
-        usuarioDTO.getId();
-//        Usuario usuario = buscarUsuario(usuarioDTO.getId());
-    }
+    controlCarrito c = new controlCarrito();
 
     @Override
-    public boolean agregarCarrito(Productos producto, Integer cantidad, Usuario usuario) {
-        List<Producto> productos = new ArrayList<>();
-        System.out.println(producto.getCantidad());
-        Producto producto3 = new Producto();
-        productos.add(producto3);
-        if (producto != null) {
-            float costo = producto.getCosto() * cantidad;
-            
-            //esto va en persistencia gracias
-            EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
-            EntityManager entityManager = entity.createEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.persist(producto3);
-            Carrito carrito = new Carrito();
-            entityManager.persist(carrito);
-            entityManager.getTransaction().commit();
-            //fin de persistencia
-            
-            return true;
-        } else {
-            return false;
+    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
+        try {
+            c.agregarCarrito(producto, idUsuarioCia, cantidad);
+        } catch (Exception e) {
+            throw new ExcepcionAT(e.getMessage());
         }
+
     }
 
 }
