@@ -21,6 +21,7 @@ import javax.persistence.TypedQuery;
  * @author galan
  */
 public class DetalleCarritoDAO {
+
     private EntityManager em;
     private EntityManagerFactory emf;
     private Carrito carito;
@@ -28,9 +29,8 @@ public class DetalleCarritoDAO {
     public DetalleCarritoDAO() {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
-    
-    
-    public void insertarDetalleCarrito (DetalleCarrito detalleCarrito) throws ExcepcionAT{
+
+    public void insertarDetalleCarrito(DetalleCarrito detalleCarrito) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -45,7 +45,30 @@ public class DetalleCarritoDAO {
             throw new ExcepcionAT("Error al insertar detalle carrito");
         }
     }
-    
+
+    public void eliminarDetalleCarrito(DetalleCarrito detalleCarrito) throws ExcepcionAT {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            // Antes de eliminar el detalle, asegurémonos de que esté gestionado por el EntityManager
+            DetalleCarrito detalleGestionado = em.merge(detalleCarrito);
+            Carrito carrito = detalleGestionado.getCarrito();
+            Float precioProducto = detalleGestionado.getProducto().getPrecio();
+            carrito.setCantidadProductos(carrito.getCantidadProductos() - 1);
+            // Restar al total del carrito el total del detalle
+            carrito.setTotal(carrito.getTotal() - precioProducto);
+            em.remove(detalleGestionado);
+
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            em.close();
+            System.out.println(e.getCause());
+            throw new ExcepcionAT("Error al eliminar detalle carrito");
+        }
+    }
+
     public List<DetalleCarrito> buscarListaDetalleCarrito(Carrito carrito) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
@@ -59,10 +82,10 @@ public class DetalleCarritoDAO {
 
             em.getTransaction().commit();
             em.close();
-            
-            if(!detallesCarrito.isEmpty()){
+
+            if (!detallesCarrito.isEmpty()) {
                 return detallesCarrito;
-            }else{
+            } else {
                 throw new ExcepcionAT("Lista de productos no encontrado por su carrito");
             }
         } catch (Exception e) {

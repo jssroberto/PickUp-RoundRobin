@@ -24,7 +24,7 @@ public class pruebasCarrito {
 
         Usuario usuario = usuarioDAO.buscarUsuarioPorIdCIA("00000244454");
 
-        Carrito carrito = new Carrito(usuario);
+        Carrito carrito = new Carrito(0.0f,0,usuario);
         
         c.agregarCarrito(carrito);
     }
