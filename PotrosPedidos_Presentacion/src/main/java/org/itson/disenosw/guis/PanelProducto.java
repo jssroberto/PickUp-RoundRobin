@@ -5,12 +5,12 @@ import SubsistemaAgregarCarrito.AgregarCarrito;
 import SubsistemaAgregarCarrito.IAgregarCarrito;
 import SubsistemaConsultarProducto.ConsultarProducto;
 import SubsistemaConsultarProducto.IConsultarProducto;
+import dominio.Carrito;
+import dominio.Usuario;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.itson.disenosw.dominio.Carrito;
-import org.itson.disenosw.dominio.Usuario;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
