@@ -2,20 +2,14 @@ package org.itson.disenosw.guis;
 
 import BOs.AgregarCarritoBO;
 import BOs.ConsultarProductoBO;
-import mocks.Productos;
-import SubsistemaAgregarCarrito.AgregarCarrito;
-import SubsistemaAgregarCarrito.IAgregarCarrito;
-import SubsistemaConsultarProducto.ConsultarProducto;
-import SubsistemaConsultarProducto.IConsultarProducto;
-import dominio.Carrito;
-import dominio.Usuario;
 import excepciones.ExcepcionAT;
-import java.util.List;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.itson.disenosw.dtos.productoDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -25,8 +19,10 @@ import javax.persistence.Persistence;
 public class PanelProducto extends javax.swing.JPanel {
 
     private final FramePrincipal framePrincipal;
-    AgregarCarritoBO carrito = new AgregarCarritoBO();
-    ConsultarProductoBO pro = new ConsultarProductoBO();
+    private static final Logger logger = Logger.getLogger(PanelProducto.class.getName());
+    AgregarCarritoBO agregarCarritoBO;
+    ConsultarProductoBO consultarProductoBO;
+    productoDTO productoDTO;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -35,7 +31,11 @@ public class PanelProducto extends javax.swing.JPanel {
      */
     public PanelProducto(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
+        this.agregarCarritoBO = new AgregarCarritoBO();
+        this.consultarProductoBO = new ConsultarProductoBO();
         initComponents();
+        setFuentes();
+        setDatos();
     }
 
     /**
@@ -97,11 +97,10 @@ public class PanelProducto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
         if (txtCantidad.getText().isBlank()) {
             framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
         } else {
-            
+
             try {
                 //            Productos producto = new Productos();
 //            producto.generarLista();
@@ -119,8 +118,8 @@ public class PanelProducto extends javax.swing.JPanel {
 ////            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
 //            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
 
-                carrito.agregarCarrito(pro.consultarProductoID(framePrincipal.getIdProducto()), framePrincipal.getNumID(), Integer.decode(txtCantidad.getText()), framePrincipal.getIdProducto());
-                
+                agregarCarritoBO.agregarCarrito(consultarProductoBO.consultarProductoID(framePrincipal.getIdProducto()), framePrincipal.getNumID(), Integer.decode(txtCantidad.getText()), framePrincipal.getIdProducto());
+
             } catch (ExcepcionAT ex) {
                 Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -134,8 +133,67 @@ public class PanelProducto extends javax.swing.JPanel {
         framePrincipal.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    
+    private void setDatos(){
+        try {
+            consultarProducto();
+        } catch (ExcepcionAT ex) {
+            logger.log(Level.SEVERE,"Producto no encontrado");
+        }
+        lblNombre.setText(productoDTO.getNombre());
+        try {
+            lblDescripcion.setText(productoDTO.getDescripcion());
+        } catch (NullPointerException e) {
+            logger.log(Level.INFO, "El producto no tiene descrpición");
+        }
+        lblPrecio.setText(String.valueOf(productoDTO.getPrecio()));
 
+    }
+
+    private void consultarProducto() throws ExcepcionAT {
+        Long idProducto = framePrincipal.getIdProducto();
+        productoDTO = consultarProductoBO.consultarProductoID(idProducto);
+    }
+
+    private void setFuentes() {
+        Font sizedFontMedium = cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F);
+        Font sizedFontLight = cargarFuente("/fonts/futura/FuturaPTLight.otf", 24F);
+        Font sizedFontBook = cargarFuente("/fonts/futura/FuturaPTBook.otf", 24F);
+        
+        lblNombre.setFont(sizedFontMedium);
+        lblDescripcion.setFont(sizedFontLight);
+        lblPrecio.setFont(sizedFontBook);
+
+    }
+
+    /**
+     * Carga una fuente desde un archivo de fuente TrueType (TTF) y la devuelve
+     * con el tamaño especificado.
+     *
+     * @param rutaFuente La ruta del archivo de fuente TrueType (TTF).
+     * @param size El tamaño de la fuente a cargar.
+     * @return La fuente cargada con el tamaño especificado.
+     * @throws IllegalArgumentException Si el archivo de fuente no se encuentra
+     * en la ruta especificada.
+     */
+    private static Font cargarFuente(String rutaFuente, float size) {
+        InputStream is = PanelMenu.class.getResourceAsStream(rutaFuente);
+        if (is == null) {
+            throw new IllegalArgumentException("Archivo no encontrado: " + rutaFuente);
+        }
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            return font.deriveFont(size);
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, "Error al cargar la fuente: " + rutaFuente, ex);
+            return null;
+        } finally {
+            try {
+                is.close();
+            } catch (IOException ex) {
+                Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, "Error al cerrar InputStream", ex);
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegresar;
