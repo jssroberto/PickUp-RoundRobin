@@ -156,7 +156,7 @@ public class PanelCarrito extends javax.swing.JPanel {
 
                 }
             });
-            idProducto++;
+//            idProducto++;
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
             c.gridy = i * 2;
