@@ -8,6 +8,7 @@ import BOs.VerificarPersonaBO;
 import BOs.insercionMasivaBanco;
 import SubsistemaCIA.IValidarPersona;
 import SubsistemaCIA.ValidarPersona;
+import excepciones.ExcepcionAT;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -111,8 +112,8 @@ public class PanelInicioSesion extends javax.swing.JPanel {
                 } else {
                     framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex);
+            } catch (ExcepcionAT ex) {
+                framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed

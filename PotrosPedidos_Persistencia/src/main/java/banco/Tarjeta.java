@@ -27,6 +27,7 @@ public class Tarjeta implements Serializable {
     @Column(name = "numero_tarjeta", length = 19, nullable = false, unique = true)
     private String numeroTarjeta;
     
+//    @Convert()
     @Column(name = "fecha_vencimiento", nullable = false)
     private Calendar fechaVencimiento;
 

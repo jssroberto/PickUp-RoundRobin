@@ -8,7 +8,7 @@ package org.itson.disenosw.dtos;
  *
  * @author yohan
  */
-public class productoDTO {
+ public class productoDTO {
 
 
     private Float precio;

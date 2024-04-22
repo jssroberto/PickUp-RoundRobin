@@ -7,6 +7,8 @@ package BOs;
 import DAOs.ProductoCafeteriaDAO;
 import cafeteria.ProductoCafeteria;
 import excepciones.ExcepcionAT;
+import java.util.ArrayList;
+import java.util.List;
 import org.itson.disenosw.dtos.productoDTO;
 
 /**
@@ -57,4 +59,21 @@ public class ConsultarProductoBO {
         }
     }
 
+    public List<productoDTO> consultarTodosLosProductos() throws ExcepcionAT {
+        try {
+            List<productoDTO> productosDTO = new ArrayList<>();
+            
+            // Aquí deberías llamar a tu DAO para obtener todos los productos
+            List<ProductoCafeteria> productosCafeteria = producto.obtenerTodosLosProductos();
+            
+            // Convertir cada ProductoCafeteria en un productoDTO y agregarlo a la lista
+            for (ProductoCafeteria productoCafeteria : productosCafeteria) {
+                productosDTO.add(convertirDAOenDTO(productoCafeteria));
+            }
+            
+            return productosDTO;
+        } catch (ExcepcionAT e) {
+            throw new ExcepcionAT(e.getMessage());
+        }
+    }
 }

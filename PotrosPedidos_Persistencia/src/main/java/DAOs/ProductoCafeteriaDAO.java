@@ -17,14 +17,15 @@ import javax.persistence.TypedQuery;
  * @author USER
  */
 public class ProductoCafeteriaDAO {
+
     private EntityManager em;
     private EntityManagerFactory emf;
 
     public ProductoCafeteriaDAO() {
         emf = Persistence.createEntityManagerFactory("cafeteriaPU");
     }
-    
-    public void actualizarProducto (ProductoCafeteria productoCafeteria) throws ExcepcionAT{
+
+    public void actualizarProducto(ProductoCafeteria productoCafeteria) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -39,8 +40,8 @@ public class ProductoCafeteriaDAO {
             throw new ExcepcionAT("Error al actualizar producto de cafeteria");
         }
     }
-    
-    public ProductoCafeteria buscarProductoCafeteriaPorNombre (String nombreProducto) throws ExcepcionAT {
+
+    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -53,10 +54,10 @@ public class ProductoCafeteriaDAO {
 
             em.getTransaction().commit();
             em.close();
-            
-            if(!usuario.isEmpty()){
+
+            if (!usuario.isEmpty()) {
                 return usuario.get(0);
-            }else{
+            } else {
                 throw new ExcepcionAT("Producto no encontrado por su nombre");
             }
         } catch (Exception e) {
@@ -65,7 +66,8 @@ public class ProductoCafeteriaDAO {
             return null;
         }
     }
-    public ProductoCafeteria buscarProductoCafeteriaPorID (Long id) throws ExcepcionAT {
+
+    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -78,16 +80,39 @@ public class ProductoCafeteriaDAO {
 
             em.getTransaction().commit();
             em.close();
-            
-            if(!usuario.isEmpty()){
+
+            if (!usuario.isEmpty()) {
                 return usuario.get(0);
-            }else{
+            } else {
                 throw new ExcepcionAT("Producto no encontrado por su id");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
             System.out.println(e.getLocalizedMessage());
             return null;
+        }
+    }
+
+    public List<ProductoCafeteria> obtenerTodosLosProductos() throws ExcepcionAT {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            String jpql = "SELECT p FROM ProductoCafeteria p";
+
+            TypedQuery<ProductoCafeteria> query = em.createQuery(jpql, ProductoCafeteria.class);
+            List<ProductoCafeteria> productos = query.getResultList();
+
+            em.getTransaction().commit();
+            em.close();
+
+            return productos;
+        } catch (Exception e) {
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            em.close();
+            throw new ExcepcionAT("Error al obtener todos los productos de cafetería");
         }
     }
 }

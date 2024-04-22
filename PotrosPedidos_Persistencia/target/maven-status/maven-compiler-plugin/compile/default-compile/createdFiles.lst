@@ -18,6 +18,7 @@ dominio\Pedido.class
 prueba\Prueba.class
 DAOs\DetalleCarritoDAO.class
 dominio\DetalleCarrito.class
+banco\ConvertidorMesAnio.class
 prueba\JframePruebaImagen$1.class
 CIA\UsuarioCIA.class
 dominio\DetallePedido.class

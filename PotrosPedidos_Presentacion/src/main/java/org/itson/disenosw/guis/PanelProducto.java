@@ -50,6 +50,9 @@ public class PanelProducto extends javax.swing.JPanel {
         btnIngresar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         txtCantidad = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -79,6 +82,15 @@ public class PanelProducto extends javax.swing.JPanel {
 
         txtCantidad.setText("1");
         add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 70, 50));
+
+        lblNombre.setText("jLabel2");
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 296, 370, 30));
+
+        lblDescripcion.setText("jLabel2");
+        add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 340, 370, 66));
+
+        lblPrecio.setText("jLabel2");
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 425, 90, 31));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelProducto.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -122,11 +134,15 @@ public class PanelProducto extends javax.swing.JPanel {
         framePrincipal.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrecio;
     private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,15 +1,18 @@
 package org.itson.disenosw.guis;
 
-import java.awt.BorderLayout;
+import BOs.ConsultarProductoBO;
+import excepciones.ExcepcionAT;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import org.itson.disenosw.dtos.productoDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -30,6 +34,7 @@ import javax.swing.SwingConstants;
 public class PanelMenu extends javax.swing.JPanel {
 
     private final FramePrincipal framePrincipal;
+    private Integer idProducto = 0;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -39,14 +44,16 @@ public class PanelMenu extends javax.swing.JPanel {
     public PanelMenu(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
-        crearMenu();
+        try {
+            crearMenu();
 //        fondo.setLocation(0, 0);
 //        mostrarProductos(new ArrayList<>());
 
 // Suponiendo que "fondo" es tu JLabel de fondo y "menuPanel" es tu JPanel de menú
 // Obtén el contenedor principal del fondo
-        
-
+        } catch (ExcepcionAT ex) {
+            framePrincipal.mostrarAviso("No se pudieron cosultar los prosuctos", "Error al consultar menú");
+        }
     }
 
     /**
@@ -118,9 +125,8 @@ public class PanelMenu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-       
+
         framePrincipal.setIdProducto(1l);
-       
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
@@ -129,7 +135,7 @@ public class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
@@ -140,57 +146,77 @@ public class PanelMenu extends javax.swing.JPanel {
 
     }
 
-//    public void mostrarProductos(ArrayList<> productos) {
-//
-//        JPanel productosPanel = new JPanel(new GridLayout(0, 1));
-//
-//        for (Producto producto : productos) {
-//            PanelProductos
-//                    panelProducto = new PanelProductos(producto);
-//            productosPanel.add(panelProducto);
-//        }
-//
-//        JScrollPane scrollPane = new JScrollPane(productosPanel);
-//        add(scrollPane);
-//    }
-    public void crearMenu() {
+    public void crearMenu() throws ExcepcionAT {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
         mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
         mainPanel.setSize(new Dimension(370, 550));
 
-        List<String[]> productos = new ArrayList<>();
-        productos.add(new String[]{"Hamburguesa clásica", "$120", "/productos/120x100/hamburguesa-clasica.jpg"});
-        productos.add(new String[]{"Jamaica", "$25", "/productos/120x100/jamaica.jpg"});
-        productos.add(new String[]{"Hamburguesa de pollo", "$150", "/productos/120x100/hamburguesa-pollo.jpg"});
-        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
+        ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
+        List<productoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
 
+//        List<String[]> productos = new ArrayList<>();
+//        productos.add(new String[]{"Hamburguesa clásica", "$120", "/productos/120x100/hamburguesa-clasica.jpg"});
+//        productos.add(new String[]{"Jamaica", "$25", "/productos/120x100/jamaica.jpg"});
+//        productos.add(new String[]{"Hamburguesa de pollo", "$150", "/productos/120x100/hamburguesa-pollo.jpg"});
+//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
+//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
+//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
+//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
+//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
         GridBagConstraints c = new GridBagConstraints();
 
         //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
         c.anchor = GridBagConstraints.NORTH;
 
+//        ActionListener productoListener = new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                // Obtener el ID del producto clickeado
+//                String idProducto = e.getActionCommand();
+//                // Realizar la acción deseada con el ID del producto
+//                // Por ejemplo, abrir una nueva ventana con más detalles del producto
+//                System.out.println("Producto clickeado: " + idProducto);
+//            }
+//        };
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < productos.size(); i++) {
-            String[] producto = productos.get(i);
-            JPanel productoPanel = createProductoPanel(producto[0], producto[1], producto[2]);
+        for (int i = 0; i < productosDTO.size(); i++) {
+//            String[] producto = productosDTO.get(i);
+            JPanel productoPanel = createProductoPanel(productosDTO.get(i).getNombre(), productosDTO.get(i).getPrecio(), productosDTO.get(i).getDireccionImagen());
 
+//            String identificador = "producto_" + i;
+            Long identificador = productosDTO.get(i).getIdProductoCafeteria();
+            productoPanel.putClientProperty(identificador, productoPanel);
+//            String identificadorString = String.valueOf(identificador);
+//            productoPanel.putClientProperty(i, idProducto);
+            // Añade un ActionListener al panel de producto
+            productoPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // Acción a realizar al hacer clic en el panel de producto
+                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
+                    System.out.println("Clic en el panel de producto: " + identificador);
+                    framePrincipal.setIdProducto(identificador);
+                    framePrincipal.cambiarVistaProducto();
+
+                }
+            });
+            idProducto++;
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
             c.gridy = i * 2;
             mainPanel.add(productoPanel, c);
 
             // Añade un separador después de cada producto, excepto el último
-            if (i < productos.size() - 1) {
+            if (i < productosDTO.size() - 1) {
                 JPanel separatorPanel = createSeparatorPanel();
                 c.gridx = 0;
                 c.gridy = i * 2 + 1;
                 mainPanel.add(separatorPanel, c);
             }
+            
+            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
 
         }
 
@@ -214,16 +240,14 @@ public class PanelMenu extends javax.swing.JPanel {
         cont.add(scrollPane);
         cont.setOpaque(false);
 
-//        this.setLayout(new BorderLayout());
         panelTop.add(cont);
 //        
+//        this.setLayout(new BorderLayout());
 //        JLabel fondo = new javax.swing.JLabel();fondo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 //        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMenu.png"))); // NOI18N
 //        fondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 //        add(fondo,BorderLayout.CENTER);
-        
-        
-        
+
 //        Container contenedor = fondo.getParent();
 // Asegúrate de que el contenedor utiliza un layout que soporte z-order, como JPanel
 //        if (contenedor instanceof JPanel) {
@@ -235,7 +259,6 @@ public class PanelMenu extends javax.swing.JPanel {
 //            panelContenedor.revalidate();
 //            panelContenedor.repaint();
 //        }
-
     }
 
     /**
@@ -247,7 +270,7 @@ public class PanelMenu extends javax.swing.JPanel {
      * @param rutaImagen La ruta de la imagen del producto.
      * @return El panel del producto creado.
      */
-    private static JPanel createProductoPanel(String nombre, String precio, String rutaImagen) {
+    private JPanel createProductoPanel(String nombre, Float precio, String rutaImagen) {
         // Crear un nuevo panel para el producto con GridBagLayout
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false); // Hacer que el fondo del panel sea transparente
@@ -255,8 +278,14 @@ public class PanelMenu extends javax.swing.JPanel {
         // Configuración de GridBagConstraints para organizar los componentes dentro del panel
         GridBagConstraints c = new GridBagConstraints();
 
+        String rutaFolder = "/productos/120x100/";
+        StringBuilder rutaRelativa = new StringBuilder();
+        rutaRelativa.append(rutaFolder);
+        rutaRelativa.append(rutaImagen);
+
+        
         // Cargar la imagen del producto
-        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(rutaImagen));
+        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
         JLabel imagenLabel = new JLabel(icon);
 
         Font sizedFontMedium = cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F);
@@ -269,8 +298,9 @@ public class PanelMenu extends javax.swing.JPanel {
         nombreLabel.setPreferredSize(new Dimension(240, 31));
         nombreLabel.setVerticalAlignment(SwingConstants.CENTER);
 
+        String precioString = String.valueOf(precio);
         // Configurar la etiqueta del precio
-        JLabel precioLabel = new JLabel(precio);
+        JLabel precioLabel = new JLabel(precioString);
         precioLabel.setFont((sizedFontBook));
         precioLabel.setForeground(Color.BLACK);
         precioLabel.setPreferredSize(new Dimension(110, 31));
@@ -293,7 +323,21 @@ public class PanelMenu extends javax.swing.JPanel {
         c.gridx = 0;
         c.gridy = 1;
         panel.add(precioLabel, c);
+        
 
+        // Agregar un ActionListener al panel del producto
+//        panel.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                // Llamar a un método cuando se haga clic en el panel del producto
+//                // Puedes pasar el idProducto como parámetro
+////                productoClicked(idProducto);
+////                listener.actionPerformed(new ActionEvent(panel, ActionEvent.ACTION_PERFORMED));
+//                framePrincipal.cambiarVistaProducto();
+//                productoClicked(idProducto);
+//                idProducto++;
+//            }
+//        });
         return panel; // Devuelve el panel del producto creado
     }
 
