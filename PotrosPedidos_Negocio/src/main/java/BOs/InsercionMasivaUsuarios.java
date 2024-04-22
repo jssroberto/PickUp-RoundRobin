@@ -37,7 +37,13 @@ public class InsercionMasivaUsuarios {
         emUsuario.getTransaction().begin();
         for (Usuario usuarioCIA : usuarios) {
             emUsuario.persist(usuarioCIA);
+            
         }
+        emUsuario.persist(new Carrito(0.0f, 0, usuarios.get(0)));
+        emUsuario.persist(new Carrito(0.0f, 0, usuarios.get(1)));
+        emUsuario.persist(new Carrito(0.0f, 0, usuarios.get(2)));
+        emUsuario.persist(new Carrito(0.0f, 0, usuarios.get(3)));
+        emUsuario.persist(new Carrito(0.0f, 0, usuarios.get(4)));
         emUsuario.getTransaction().commit();
         emUsuario.close();
     }

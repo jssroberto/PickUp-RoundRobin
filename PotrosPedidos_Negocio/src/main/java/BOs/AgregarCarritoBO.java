@@ -42,7 +42,7 @@ public class AgregarCarritoBO {
         try {
             float total = cantidad * producto.getPrecio();
             Carrito carrito = new Carrito(total, cantidad, u.buscarUsuarioPorIdCIA(idUsuarioCia));
-            c.agregarCarrito(carrito);
+            c.actualizarCarrito(carrito);
             Producto p = this.DTOaEntity(producto);
             p.setId(id);
             DetalleCarrito dc = new DetalleCarrito(carrito, p, cantidad, total);
