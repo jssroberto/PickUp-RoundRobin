@@ -89,7 +89,7 @@ public class PanelProducto extends javax.swing.JPanel {
         if (txtCantidad.getText().isBlank()) {
             framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
         } else {
-            System.out.println(framePrincipal.getNumID());
+            
             try {
                 //            Productos producto = new Productos();
 //            producto.generarLista();

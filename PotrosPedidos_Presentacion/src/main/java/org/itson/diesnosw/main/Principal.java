@@ -14,6 +14,7 @@ public class Principal {
     static final Logger logger = Logger.getLogger(Principal.class.getName());
 
     public static void main(String[] args) {
+        
         FramePrincipal framePrincipal = new FramePrincipal();
         framePrincipal.cambiarVistaInicio();
         framePrincipal.setVisible(true);
