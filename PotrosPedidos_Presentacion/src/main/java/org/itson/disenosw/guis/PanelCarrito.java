@@ -1,6 +1,11 @@
 package org.itson.disenosw.guis;
 
 import BOs.ConsultarProductoBO;
+import DAOs.CarritoDAO;
+import DAOs.DetalleCarritoDAO;
+import DAOs.UsuarioDAO;
+import dominio.Carrito;
+import dominio.DetalleCarrito;
 import excepciones.ExcepcionAT;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -26,17 +31,22 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import org.itson.disenosw.dtos.productoDTO;
 
-
 /**
- * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
- * Permite a los usuarios iniciar sesión proporcionando su nombre de usuario y contraseña.
+ * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
+ * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
+ * usuario y contraseña.
  */
 public class PanelCarrito extends javax.swing.JPanel {
+
     private FramePrincipal framePrincipal;
+    Carrito usuario;
+    CarritoDAO carritoDAO = new CarritoDAO();
+    DetalleCarritoDAO detalleCarritoDAO = new DetalleCarritoDAO();
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     /**
      * Constructor de la clase VistaInicioSesion.
-     * 
+     *
      */
     public PanelCarrito(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
@@ -100,7 +110,28 @@ public class PanelCarrito extends javax.swing.JPanel {
         framePrincipal.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    
+//    Usuario usuario = usuarioDAO.buscarUsuarioPorIdCIA("00000011211");
+//
+//        Carrito carrito = carritoDAO.buscarCarritoPorUsuario(usuario);
+//
+//
+//        for (DetalleCarrito detalleCarrito : detallesCarrito) {
+//
+//            System.out.println(detalleCarrito.getProducto().getNombre());
+//            System.out.println(detalleCarrito.getCantidad());
+//            d.eliminarDetalleCarrito(detalleCarrito);
+//
+//        }
+//    }
+    public void ayuda() throws ExcepcionAT {
+        try {
+            usuario = carritoDAO.buscarCarritoPorUsuarioId(framePrincipal.getIdProducto());
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(PanelCarrito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        DetalleCarritoDAO d = new DetalleCarritoDAO();
+    }
+
     public void crearMenu() throws ExcepcionAT {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
@@ -108,7 +139,8 @@ public class PanelCarrito extends javax.swing.JPanel {
         mainPanel.setSize(new Dimension(370, 550));
 
         ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
-        List<productoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
+
+        List<DetalleCarrito> detallesCarrito = detalleCarritoDAO.buscarListaDetalleCarrito(usuario);
 
 //        List<String[]> productos = new ArrayList<>();
 //        productos.add(new String[]{"Hamburguesa clásica", "$120", "/productos/120x100/hamburguesa-clasica.jpg"});
@@ -135,27 +167,27 @@ public class PanelCarrito extends javax.swing.JPanel {
 //            }
 //        };
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < productosDTO.size(); i++) {
-//            String[] producto = productosDTO.get(i);
-            JPanel productoPanel = createProductoPanel(productosDTO.get(i).getNombre(), productosDTO.get(i).getPrecio(), productosDTO.get(i).getDireccionImagen());
+        for (int i = 0; i < detallesCarrito.size(); i++) {
+//            String[] producto = detallesCarrito.get(i);
+            JPanel productoPanel = createProductoPanel(detallesCarrito.get(i).getProducto().getNombre(), detallesCarrito.get(i).getProducto().getPrecio(), detallesCarrito.get(i).getProducto().getDireccionImagen());
 
 //            String identificador = "producto_" + i;
-            Long identificador = productosDTO.get(i).getIdProductoCafeteria();
-            productoPanel.putClientProperty(identificador, productoPanel);
+//            Long identificador = detallesCarrito.get(i).getIdProductoCafeteria();
+//            productoPanel.putClientProperty(identificador, productoPanel);
 //            String identificadorString = String.valueOf(identificador);
 //            productoPanel.putClientProperty(i, idProducto);
             // Añade un ActionListener al panel de producto
-            productoPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    // Acción a realizar al hacer clic en el panel de producto
-                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
-                    System.out.println("Clic en el panel de producto: " + identificador);
-                    framePrincipal.setIdProducto(identificador);
-                    framePrincipal.cambiarVistaProducto();
-
-                }
-            });
+//            productoPanel.addMouseListener(new MouseAdapter() {
+//                @Override
+//                public void mouseClicked(MouseEvent e) {
+//                    // Acción a realizar al hacer clic en el panel de producto
+//                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
+//                    System.out.println("Clic en el panel de producto: " + identificador);
+//                    framePrincipal.setIdProducto(identificador);
+//                    framePrincipal.cambiarVistaProducto();
+//
+//                }
+//            });
 //            idProducto++;
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
@@ -163,15 +195,14 @@ public class PanelCarrito extends javax.swing.JPanel {
             mainPanel.add(productoPanel, c);
 
             // Añade un separador después de cada producto, excepto el último
-            if (i < productosDTO.size() - 1) {
+            if (i < detallesCarrito.size() - 1) {
                 JPanel separatorPanel = createSeparatorPanel();
                 c.gridx = 0;
                 c.gridy = i * 2 + 1;
                 mainPanel.add(separatorPanel, c);
             }
-            
-            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
+            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         }
 
@@ -238,7 +269,6 @@ public class PanelCarrito extends javax.swing.JPanel {
         rutaRelativa.append(rutaFolder);
         rutaRelativa.append(rutaImagen);
 
-        
         // Cargar la imagen del producto
         ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
         JLabel imagenLabel = new JLabel(icon);
@@ -278,7 +308,6 @@ public class PanelCarrito extends javax.swing.JPanel {
         c.gridx = 0;
         c.gridy = 1;
         panel.add(precioLabel, c);
-        
 
         // Agregar un ActionListener al panel del producto
 //        panel.addMouseListener(new MouseAdapter() {

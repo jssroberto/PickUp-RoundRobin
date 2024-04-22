@@ -33,22 +33,22 @@ public class PruebaDAOS {
 
         ProductoCafeteria productoCafeteria = productoCafeteriaDAO.buscarProductoCafeteriaPorID(1L);
         System.out.println(productoCafeteria);
-//        productoCafeteria.setCantidadDisponible(13);
-//        productoCafeteriaDAO.actualizarProducto(productoCafeteria);
-//
-//        Usuario usuario = usuarioDAO.buscarUsuarioPorIdCIA("00000011211");
-//
-//        Carrito carrito = carritoDAO.buscarCarritoPorUsuario(usuario);
-//
-//        List<DetalleCarrito> detallesCarrito = detalleCarritoDAO.buscarListaDetalleCarrito(carrito);
-//        DetalleCarritoDAO d = new DetalleCarritoDAO();
-//
-//        for (DetalleCarrito detalleCarrito : detallesCarrito) {
-//
-//            System.out.println(detalleCarrito.getProducto().getNombre());
-//            System.out.println(detalleCarrito.getCantidad());
-//            d.eliminarDetalleCarrito(detalleCarrito);
-//
-//        }
+        productoCafeteria.setCantidadDisponible(13);
+        productoCafeteriaDAO.actualizarProducto(productoCafeteria);
+
+        Usuario usuario = usuarioDAO.buscarUsuarioPorIdCIA("00000011211");
+
+        Carrito carrito = carritoDAO.buscarCarritoPorUsuario(usuario);
+
+        List<DetalleCarrito> detallesCarrito = detalleCarritoDAO.buscarListaDetalleCarrito(carrito);
+        DetalleCarritoDAO d = new DetalleCarritoDAO();
+
+        for (DetalleCarrito detalleCarrito : detallesCarrito) {
+
+            System.out.println(detalleCarrito.getProducto().getNombre());
+            System.out.println(detalleCarrito.getCantidad());
+            d.eliminarDetalleCarrito(detalleCarrito);
+
+        }
     }
 }

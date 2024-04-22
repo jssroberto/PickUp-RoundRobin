@@ -108,7 +108,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             try {
                 if (vp.buscarPersona(txtID.getText(), txtContraseña.getText())) {
                     framePrincipal.setNumID(txtID.getText());
-                    framePrincipal.cambiarPanelMenu2();
+                    framePrincipal.cambiarVistaMenu();
                 } else {
                     framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
                 }
