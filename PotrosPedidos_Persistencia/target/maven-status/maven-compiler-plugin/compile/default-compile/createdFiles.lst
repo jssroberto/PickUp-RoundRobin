@@ -24,3 +24,4 @@ dominio\DetallePedido.class
 DAOs\UsuarioCiaDAO.class
 prueba\PruebaDAOS.class
 DAOs\CarritoDAO.class
+IDAOs\ICiaDAO.class

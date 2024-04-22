@@ -4,6 +4,11 @@
  */
 package SubsistemaSacarCostoPedido;
 
+import BOs.InsercionMasivaProductos;
+import BOs.InsercionMasivaProductosCafeteriaBO;
+import BOs.InsercionMasivaUsuarios;
+import BOs.InsercionMasivaUsuariosCIA;
+import BOs.insercionMasivaBanco;
 import SubsistemaConsultarProducto.ConsultarProducto;
 import SubsistemaConsultarProducto.IConsultarProducto;
 import excepciones.ExcepcionAT;
@@ -21,12 +26,15 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ExcepcionAT {
-        Productos producto = new Productos();
-        producto.generarLista();
-        List<Productos> productos = producto.getProductos();
-        IConsultarProducto pro = new ConsultarProducto();
-        productoDTO p =new productoDTO(1l);
-        System.out.println(pro.consultarProducto(p));
+        InsercionMasivaProductos pro = new InsercionMasivaProductos();
+        InsercionMasivaProductosCafeteriaBO cafe = new InsercionMasivaProductosCafeteriaBO();
+        InsercionMasivaUsuarios usu = new InsercionMasivaUsuarios();
+        InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
+        insercionMasivaBanco banco = new insercionMasivaBanco();
+        
+        cia.insercion();
+        
+        
     }
     
 }

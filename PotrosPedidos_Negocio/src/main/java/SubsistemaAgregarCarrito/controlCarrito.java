@@ -16,11 +16,11 @@ public class controlCarrito {
 
     AgregarCarritoBO a = new AgregarCarritoBO();
 
-    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
-        try {
-            a.agregarCarrito(producto, idUsuarioCia, cantidad);
-        } catch (ExcepcionAT e) {
-            throw new ExcepcionAT(e.getMessage());
-        }
-    }
+//    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
+//        try {
+//            a.agregarCarrito(producto, idUsuarioCia, cantidad);
+//        } catch (ExcepcionAT e) {
+//            throw new ExcepcionAT(e.getMessage());
+//        }
+//    }
 }

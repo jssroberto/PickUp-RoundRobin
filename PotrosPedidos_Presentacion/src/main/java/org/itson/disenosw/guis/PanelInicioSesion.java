@@ -1,5 +1,11 @@
 package org.itson.disenosw.guis;
 
+import BOs.InsercionMasivaProductos;
+import BOs.InsercionMasivaProductosCafeteriaBO;
+import BOs.InsercionMasivaUsuarios;
+import BOs.InsercionMasivaUsuariosCIA;
+import BOs.VerificarPersonaBO;
+import BOs.insercionMasivaBanco;
 import SubsistemaCIA.IValidarPersona;
 import SubsistemaCIA.ValidarPersona;
 import java.awt.Font;
@@ -83,16 +89,25 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
         } else {
 
-            framePrincipal.cambiarVistaMenu();
-
-            IValidarPersona vp = new ValidarPersona();
+            InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
+            cia.insercion();
+            InsercionMasivaProductosCafeteriaBO cafe = new InsercionMasivaProductosCafeteriaBO();
+            cafe.insercion();
+            InsercionMasivaUsuarios usu = new InsercionMasivaUsuarios();
+            usu.insercion();
+            InsercionMasivaProductos pro = new InsercionMasivaProductos();
+            pro.Insercion();
+            insercionMasivaBanco banco = new insercionMasivaBanco();
+            banco.insercion();
+            VerificarPersonaBO vp = new VerificarPersonaBO();
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí
             UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtID.getText());
             try {
-                if (vp.ValidarPersona(u)) {
-                    framePrincipal.cambiarVistaMenu();
+                if (vp.buscarPersona(txtID.getText(), txtContraseña.getText())) {
+                    framePrincipal.setNumID(txtID.getText());
+                    framePrincipal.cambiarPanelMenu2();
                 } else {
                     framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
                 }

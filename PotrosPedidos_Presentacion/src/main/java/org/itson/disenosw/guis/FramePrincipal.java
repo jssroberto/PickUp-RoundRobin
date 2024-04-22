@@ -16,7 +16,8 @@ import javax.swing.JPanel;
 public class FramePrincipal extends javax.swing.JFrame {
 
     private JPanel panelActual;
-    private Integer idProducto;
+    private Long idProducto;
+    private String numID;
 
     /**
      * Constructor de la clase Ventana.
@@ -205,13 +206,21 @@ public class FramePrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public Integer getIdProducto() {
+    public Long getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(Integer idProducto) {
+    public void setIdProducto(Long idProducto) {
         this.idProducto = idProducto;
     }
 
+    public String getNumID() {
+        return numID;
+    }
+
+    public void setNumID(String numID) {
+        this.numID = numID;
+    }
+    
     
 }

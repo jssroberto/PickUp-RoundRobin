@@ -1,5 +1,6 @@
 package org.itson.disenosw.guis;
 
+import BOs.validarTarjetaBO;
 import mocks.Banco;
 import mocks.Usuario;
 import SubsistemaBanco.validarTarjeta;
@@ -8,6 +9,9 @@ import javax.swing.JOptionPane;
 import mocks.Banco;
 import org.itson.disenosw.dtos.TarjetaDTO;
 import SubsistemaBanco.IValidarTarjeta;
+import excepciones.ExcepcionAT;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -86,12 +90,16 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
         String fecha = txtfecha.getText();
         String cvv = txtcvv.getText();
         TarjetaDTO t = new TarjetaDTO(numero, nombre, fecha, Integer.parseInt(cvv));
-        IValidarTarjeta vb = new validarTarjeta();
-        if (vb.ValidarBanco(t)) {
+        validarTarjetaBO vb = new validarTarjetaBO();
+        try {
+            if (vb.ValidarBanco(t)) {
 //            ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
-            ventana.cambiarPanelPagoExito();
-        } else {
-            JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
+                ventana.cambiarPanelPagoExito();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
+            }
+        } catch (ExcepcionAT ex) {
+            Logger.getLogger(PanelDatosTarjeta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPagarActionPerformed
 

@@ -28,7 +28,7 @@ public class AgregarCarritoBO {
         return new Producto(dto.getPrecio(), dto.getNombre(), dto.getDescripcion(), dto.getDireccionImagen(), dto.getIdProductoCafeteria());
     }
 
-    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
+    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad, Long id) throws ExcepcionAT {
         if (producto == null) {
             throw new ExcepcionAT("producto vacio");
         }
@@ -40,12 +40,11 @@ public class AgregarCarritoBO {
         }
 
         try {
-            float total = 0;
-            for (int i = 0; i < cantidad; i++) {
-                total = total + producto.getPrecio();
-            }
-            Carrito carrito = new Carrito(0.0f, 0, u.buscarUsuarioPorIdCIA(idUsuarioCia));
+            float total = cantidad * producto.getPrecio();
+            Carrito carrito = new Carrito(total, cantidad, u.buscarUsuarioPorIdCIA(idUsuarioCia));
+            c.agregarCarrito(carrito);
             Producto p = this.DTOaEntity(producto);
+            p.setId(id);
             DetalleCarrito dc = new DetalleCarrito(carrito, p, cantidad, total);
             d.insertarDetalleCarrito(dc);
         } catch (ExcepcionAT e) {

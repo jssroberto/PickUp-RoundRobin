@@ -7,7 +7,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cia?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="12341"/>
+      <property name="javax.persistence.jdbc.password" value="2608jlml"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="eclipselink.metamodel-generation" value="none"/>
     </properties>
@@ -19,7 +19,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/banco?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="12341"/>
+      <property name="javax.persistence.jdbc.password" value="2608jlml"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="eclipselink.metamodel-generation" value="none"/>
     </properties>
@@ -31,7 +31,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cafeteria?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="12341"/>
+      <property name="javax.persistence.jdbc.password" value="2608jlml"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
@@ -47,7 +47,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/potros_pedidos?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="12341"/>
+      <property name="javax.persistence.jdbc.password" value="2608jlml"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
@@ -64,7 +64,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/potros_pedidos?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="12341"/>
+      <property name="javax.persistence.jdbc.password" value="2608jlml"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>

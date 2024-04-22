@@ -90,22 +90,22 @@ public class PanelMenu2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-        framePrincipal.setIdProducto(1);
+        framePrincipal.setIdProducto(1l);
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto1ActionPerformed
-        framePrincipal.setIdProducto(1);
+        framePrincipal.setIdProducto(1l);
         framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto1ActionPerformed
 
     private void btnProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto2ActionPerformed
-        framePrincipal.setIdProducto(2);
+        framePrincipal.setIdProducto(2l);
         framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto2ActionPerformed
 
     private void btnProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProducto3ActionPerformed
-        framePrincipal.setIdProducto(3);
+        framePrincipal.setIdProducto(3l);
         framePrincipal.cambiarVistaProducto();
     }//GEN-LAST:event_btnProducto3ActionPerformed
 

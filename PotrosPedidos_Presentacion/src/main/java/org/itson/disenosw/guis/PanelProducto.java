@@ -1,5 +1,7 @@
 package org.itson.disenosw.guis;
 
+import BOs.AgregarCarritoBO;
+import BOs.ConsultarProductoBO;
 import mocks.Productos;
 import SubsistemaAgregarCarrito.AgregarCarrito;
 import SubsistemaAgregarCarrito.IAgregarCarrito;
@@ -7,7 +9,10 @@ import SubsistemaConsultarProducto.ConsultarProducto;
 import SubsistemaConsultarProducto.IConsultarProducto;
 import dominio.Carrito;
 import dominio.Usuario;
+import excepciones.ExcepcionAT;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,6 +25,8 @@ import javax.persistence.Persistence;
 public class PanelProducto extends javax.swing.JPanel {
 
     private final FramePrincipal framePrincipal;
+    AgregarCarritoBO carrito = new AgregarCarritoBO();
+    ConsultarProductoBO pro = new ConsultarProductoBO();
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -82,21 +89,29 @@ public class PanelProducto extends javax.swing.JPanel {
         if (txtCantidad.getText().isBlank()) {
             framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
         } else {
-            Productos producto = new Productos();
-            producto.generarLista();
-            Usuario usuario = new Usuario();
-            System.out.println(framePrincipal.getIdProducto());
-            EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
-            EntityManager entityManager = entity.createEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.persist(usuario);
-            entityManager.getTransaction().commit();
-            List<Productos> productos = producto.getProductos();
-            IConsultarProducto pro = new ConsultarProducto();
-            Carrito carrito = new Carrito();
-            IAgregarCarrito cart = new AgregarCarrito(carrito);
+            System.out.println(framePrincipal.getNumID());
+            try {
+                //            Productos producto = new Productos();
+//            producto.generarLista();
+//            Usuario usuario = new Usuario();
+//            System.out.println(framePrincipal.getIdProducto());
+//            EntityManagerFactory entity = Persistence.createEntityManagerFactory("conexionPU");
+//            EntityManager entityManager = entity.createEntityManager();
+//            entityManager.getTransaction().begin();
+//            entityManager.persist(usuario);
+//            entityManager.getTransaction().commit();
+//            List<Productos> productos = producto.getProductos();
+//            IConsultarProducto pro = new ConsultarProducto();
+//            Carrito carrito = new Carrito();
+//            IAgregarCarrito cart = new AgregarCarrito(carrito);
+////            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
 //            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
-            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
+
+                carrito.agregarCarrito(pro.consultarProductoID(framePrincipal.getIdProducto()), framePrincipal.getNumID(), Integer.decode(txtCantidad.getText()), framePrincipal.getIdProducto());
+                
+            } catch (ExcepcionAT ex) {
+                Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
             framePrincipal.setIdProducto(null);
             framePrincipal.cambiarVistaCarrito();
         }

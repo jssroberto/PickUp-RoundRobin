@@ -18,7 +18,7 @@ import java.util.GregorianCalendar;
 
 /**
  *
- * @author Roberto García
+ * @author Roberto Garcï¿½a
  */
 public class Prueba {
 
@@ -53,7 +53,7 @@ public class Prueba {
         productosCafeteria.add(new ProductoCafeteria(50.0F, "Torta cubana", "Deliciosa", 15));
         productosCafeteria.add(new ProductoCafeteria(100.0F, "Pizza de pepperoni", "Italiana", 15));
         productosCafeteria.add(new ProductoCafeteria(25.0F, "Tacos de discada", "Mexicano", 15));
-        productosCafeteria.add(new ProductoCafeteria(100.0F, "Hamburguesa clásica", 15));
+        productosCafeteria.add(new ProductoCafeteria(100.0F, "Hamburguesa clï¿½sica", 15));
         
         EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("cafeteriaPU");
         EntityManager emCafeteria = emfCafeteria.createEntityManager();
@@ -69,7 +69,7 @@ public class Prueba {
         productos.add(new Producto(50.0F, "Torta cubana", "Deliciosa",productosCafeteria.get(0).getId()));
         productos.add(new Producto(100.0F, "Pizza de pepperoni", "Italiana",productosCafeteria.get(1).getId()));
         productos.add(new Producto(25.0F, "Tacos de discada", "Mexicano",productosCafeteria.get(2).getId()));
-        productos.add(new Producto(100.0F, "Hamburguesa clásica","Americano",productosCafeteria.get(3).getId()));
+        productos.add(new Producto(100.0F, "Hamburguesa clï¿½sica","Americano",productosCafeteria.get(3).getId()));
         
         Carrito carrito= new Carrito(0.0F, 0, usuarios.get(0));
         DetalleCarrito detalleCarrito= new DetalleCarrito(carrito, productos.get(0), 2, 100.0F);

@@ -36,7 +36,7 @@ public class Carrito implements Serializable {
     @JoinColumn(name = "id_usuario") //referecedColumnName
     private Usuario usuario;
     
-    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL)
     private List<DetalleCarrito> detalleCarrito;
 
     public Carrito() {

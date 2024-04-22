@@ -65,4 +65,29 @@ public class ProductoCafeteriaDAO {
             return null;
         }
     }
+    public ProductoCafeteria buscarProductoCafeteriaPorID (Long id) throws ExcepcionAT {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            String jpql3 = "SELECT p FROM ProductoCafeteria p WHERE p.id = :id";
+
+            TypedQuery<ProductoCafeteria> query = em.createQuery(jpql3, ProductoCafeteria.class);
+            query.setParameter("id", id);
+            List<ProductoCafeteria> usuario = query.getResultList();
+
+            em.getTransaction().commit();
+            em.close();
+            
+            if(!usuario.isEmpty()){
+                return usuario.get(0);
+            }else{
+                throw new ExcepcionAT("Producto no encontrado por su id");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            System.out.println(e.getLocalizedMessage());
+            return null;
+        }
+    }
 }

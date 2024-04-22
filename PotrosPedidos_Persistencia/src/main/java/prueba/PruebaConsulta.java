@@ -31,38 +31,39 @@ public class PruebaConsulta {
 
         EntityManager em = emf.createEntityManager();
 
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-
-        CriteriaQuery<ProductoCafeteria> cq = cb.createQuery(ProductoCafeteria.class);
-
-        Root<ProductoCafeteria> root = cq.from(ProductoCafeteria.class);
-
-        cq.select(root).where(cb.equal(root.get("id"), 1));
-
-        TypedQuery<ProductoCafeteria> query = em.createQuery(cq);
-
-        ProductoCafeteria producto = query.getSingleResult();
-
-        em.close();
-        System.out.println(producto.getDireccionImagen());
-
-        
-        File file = new File(producto.getDireccionImagen());
-        
-        System.out.println(file.getAbsolutePath());
-        
-        try {
-//            BufferedImage bufferedImage = ImageIO.read(new File(producto.getDireccionImagen()));
-
-//            Image image = 
-            
-            ImageInfo imageInfo = Imaging.getImageInfo(new File(producto.getDireccionImagen()));
-//            System.out.println("Formato: " + imageInfo.getFormatName());
-//            System.out.println("Ancho: " + imageInfo.getWidth());
-//            System.out.println("Alto: " + imageInfo.getHeight());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        CriteriaBuilder cb = em.getCriteriaBuilder();
+//
+//        CriteriaQuery<ProductoCafeteria> cq = cb.createQuery(ProductoCafeteria.class);
+//
+//        Root<ProductoCafeteria> root = cq.from(ProductoCafeteria.class);
+//
+//        cq.select(root).where(cb.equal(root.get("id"), 1));
+//
+//        TypedQuery<ProductoCafeteria> query = em.createQuery(cq);
+//
+//        ProductoCafeteria producto = query.getSingleResult();
+//
+//        em.close();
+//        System.out.println(producto.getDireccionImagen());
+//
+//        
+//        File file = new File(producto.getDireccionImagen());
+//        
+//        System.out.println(file.getAbsolutePath());
+//        
+//        try {
+////            BufferedImage bufferedImage = ImageIO.read(new File(producto.getDireccionImagen()));
+//
+////            Image image = 
+//            
+//            ImageInfo imageInfo = Imaging.getImageInfo(new File(producto.getDireccionImagen()));
+////            System.out.println("Formato: " + imageInfo.getFormatName());
+////            System.out.println("Ancho: " + imageInfo.getWidth());
+////            System.out.println("Alto: " + imageInfo.getHeight());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+          
         
 
     }

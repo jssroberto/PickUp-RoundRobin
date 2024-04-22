@@ -78,8 +78,8 @@
     </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>org.itson.diesnosw.main.Principal</exec.mainClass>
     </properties>
     <dependencies>
@@ -116,5 +116,10 @@
             <scope>system</scope>
             <systemPath>C:\Users\rover\Documents\GitHub\windows11-jscrollbar\TimingFramework-0.55.jar</systemPath>
         </dependency>-->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>
     </dependencies>
 </project>

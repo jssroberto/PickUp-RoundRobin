@@ -43,5 +43,18 @@ public class ConsultarProductoBO {
             throw new  ExcepcionAT(e.getMessage());
         }
     }
+    
+    public productoDTO consultarProductoID(Long id) throws ExcepcionAT {
+        if (id <= 0) {
+            return null;
+        }
+        try {
+            productoDTO p = this.convertirDAOenDTO(producto.buscarProductoCafeteriaPorID(id));
+            return p;
+
+        } catch (ExcepcionAT e) {
+            throw new  ExcepcionAT(e.getMessage());
+        }
+    }
 
 }

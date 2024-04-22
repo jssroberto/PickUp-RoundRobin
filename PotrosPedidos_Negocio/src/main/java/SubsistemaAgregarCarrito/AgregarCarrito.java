@@ -24,16 +24,21 @@ import org.itson.disenosw.dtos.productoDTO;
  */
 public class AgregarCarrito implements IAgregarCarrito {
 
-    controlCarrito c = new controlCarrito();
-
     @Override
     public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
-        try {
-            c.agregarCarrito(producto, idUsuarioCia, cantidad);
-        } catch (Exception e) {
-            throw new ExcepcionAT(e.getMessage());
-        }
-
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+//    controlCarrito c = new controlCarrito();
+//
+//    @Override
+//    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
+//        try {
+//            c.agregarCarrito(producto, idUsuarioCia, cantidad);
+//        } catch (Exception e) {
+//            throw new ExcepcionAT(e.getMessage());
+//        }
+//
+//    }
 
 }

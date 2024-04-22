@@ -38,6 +38,7 @@ public class Usuario implements Serializable {
     @Column(name = "id_usuario_cia", nullable = false, unique = true)
     private String idUsuarioCia;
 
+//    @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Carrito carrito;
 
