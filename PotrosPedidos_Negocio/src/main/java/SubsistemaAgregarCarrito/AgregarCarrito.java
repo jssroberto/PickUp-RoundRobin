@@ -16,7 +16,7 @@ import dominio.Producto;
 import dominio.Usuario;
 import excepciones.ExcepcionAT;
 import org.itson.disenosw.dtos.UsuarioDTO;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -25,14 +25,14 @@ import org.itson.disenosw.dtos.productoDTO;
 public class AgregarCarrito implements IAgregarCarrito {
 
     @Override
-    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
+    public void agregarCarrito(ProductoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 //    controlCarrito c = new controlCarrito();
 //
 //    @Override
-//    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
+//    public void agregarCarrito(ProductoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
 //        try {
 //            c.agregarCarrito(producto, idUsuarioCia, cantidad);
 //        } catch (Exception e) {

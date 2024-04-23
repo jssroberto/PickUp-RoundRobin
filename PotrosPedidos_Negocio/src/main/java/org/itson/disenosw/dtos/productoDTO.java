@@ -8,7 +8,7 @@ package org.itson.disenosw.dtos;
  *
  * @author yohan
  */
- public class productoDTO {
+ public class ProductoDTO {
 
 
     private Float precio;
@@ -21,16 +21,16 @@ package org.itson.disenosw.dtos;
     private String direccionImagen;
     private Long idProductoCafeteria;
 
-    public productoDTO() {
+    public ProductoDTO() {
     }
 
 
 
-    public productoDTO(Long idProductoCafeteria) {
+    public ProductoDTO(Long idProductoCafeteria) {
         this.idProductoCafeteria = idProductoCafeteria;
     }
 
-    public productoDTO(Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen, Long idProductoCafeteria) {
+    public ProductoDTO(Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen, Long idProductoCafeteria) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -39,7 +39,7 @@ package org.itson.disenosw.dtos;
         this.idProductoCafeteria = idProductoCafeteria;
     }
 
-    public productoDTO(Float precio, String nombre, String descripcion, String direccionImagen, Long idProductoCafeteria) {
+    public ProductoDTO(Float precio, String nombre, String descripcion, String direccionImagen, Long idProductoCafeteria) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;

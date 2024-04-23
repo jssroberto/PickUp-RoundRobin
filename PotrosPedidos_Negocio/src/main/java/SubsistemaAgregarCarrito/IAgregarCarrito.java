@@ -7,7 +7,7 @@ package SubsistemaAgregarCarrito;
 import dominio.Usuario;
 import excepciones.ExcepcionAT;
 import mocks.Productos;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -15,5 +15,5 @@ import org.itson.disenosw.dtos.productoDTO;
  */
 public interface IAgregarCarrito {
 
-    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT;
+    public void agregarCarrito(ProductoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT;
 }

@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del

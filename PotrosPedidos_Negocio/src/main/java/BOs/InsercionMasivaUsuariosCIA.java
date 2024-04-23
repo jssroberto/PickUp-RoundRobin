@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 public class InsercionMasivaUsuariosCIA {
     
     List<UsuarioCIA> usuariosCIA = new ArrayList<>();
-    public void insercion(){
+    public void insercion() throws Exception{
          EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("ciaPU");
             EntityManager emCIA = emfCIA.createEntityManager();
          usuariosCIA.add(new UsuarioCIA("00000011211", "ABC12345", "Juan", "Perez", "Garcia"));

@@ -5,7 +5,7 @@
 package SubsistemaConsultarProducto;
 
 import excepciones.ExcepcionAT;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -16,7 +16,7 @@ public class ConsultarProducto implements IConsultarProducto {
     controlProducto cp = new controlProducto();
 
     @Override
-    public productoDTO consultarProducto(productoDTO producto) throws ExcepcionAT {
+    public ProductoDTO consultarProducto(ProductoDTO producto) throws ExcepcionAT {
 
         try {
             return cp.consultarProducto(producto.getNombre());

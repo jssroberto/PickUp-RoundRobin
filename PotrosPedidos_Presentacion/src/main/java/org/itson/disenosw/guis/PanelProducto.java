@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -24,7 +24,7 @@ public class PanelProducto extends javax.swing.JPanel {
     private static final Logger logger = Logger.getLogger(PanelProducto.class.getName());
     AgregarCarritoBO agregarCarritoBO;
     ConsultarProductoBO consultarProductoBO;
-    productoDTO productoDTO;
+    ProductoDTO productoDTO;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -103,7 +103,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 btnRegresarActionPerformed(evt);
             }
         });
-        add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 50, 50));
+        add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 533, 40, 40));
 
         txtCantidad.setBackground(new java.awt.Color(250, 250, 250));
         txtCantidad.setForeground(new java.awt.Color(0, 0, 0));

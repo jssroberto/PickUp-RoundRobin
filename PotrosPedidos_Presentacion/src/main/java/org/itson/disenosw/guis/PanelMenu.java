@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -153,7 +153,7 @@ public class PanelMenu extends javax.swing.JPanel {
         mainPanel.setSize(new Dimension(370, 550));
 
         ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
-        List<productoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
+        List<ProductoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
 
 //        List<String[]> productos = new ArrayList<>();
 //        productos.add(new String[]{"Hamburguesa clásica", "$120", "/productos/120x100/hamburguesa-clasica.jpg"});

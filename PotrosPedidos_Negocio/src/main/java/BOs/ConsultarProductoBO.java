@@ -9,7 +9,7 @@ import cafeteria.ProductoCafeteria;
 import excepciones.ExcepcionAT;
 import java.util.ArrayList;
 import java.util.List;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -22,8 +22,8 @@ public class ConsultarProductoBO {
     public ConsultarProductoBO() {
     }
 
-    private productoDTO convertirDAOenDTO(ProductoCafeteria productoCafeteria) {
-        productoDTO productoDTO = new productoDTO();
+    private ProductoDTO convertirDAOenDTO(ProductoCafeteria productoCafeteria) {
+        ProductoDTO productoDTO = new ProductoDTO();
         productoDTO.setPrecio(productoCafeteria.getPrecio());
         productoDTO.setNombre(productoCafeteria.getNombre());
         productoDTO.setDescripcion(productoCafeteria.getDescripcion());
@@ -33,12 +33,12 @@ public class ConsultarProductoBO {
         return productoDTO;
     }
 
-    public productoDTO consultarProducto(String nombre) throws ExcepcionAT {
+    public ProductoDTO consultarProducto(String nombre) throws ExcepcionAT {
         if (nombre == null) {
             return null;
         }
         try {
-            productoDTO p = this.convertirDAOenDTO(producto.buscarProductoCafeteriaPorNombre(nombre));
+            ProductoDTO p = this.convertirDAOenDTO(producto.buscarProductoCafeteriaPorNombre(nombre));
             return p;
 
         } catch (ExcepcionAT e) {
@@ -46,12 +46,12 @@ public class ConsultarProductoBO {
         }
     }
     
-    public productoDTO consultarProductoID(Long id) throws ExcepcionAT {
+    public ProductoDTO consultarProductoID(Long id) throws ExcepcionAT {
         if (id <= 0) {
             return null;
         }
         try {
-            productoDTO p = this.convertirDAOenDTO(producto.buscarProductoCafeteriaPorID(id));
+            ProductoDTO p = this.convertirDAOenDTO(producto.buscarProductoCafeteriaPorID(id));
             return p;
 
         } catch (ExcepcionAT e) {
@@ -59,14 +59,14 @@ public class ConsultarProductoBO {
         }
     }
 
-    public List<productoDTO> consultarTodosLosProductos() throws ExcepcionAT {
+    public List<ProductoDTO> consultarTodosLosProductos() throws ExcepcionAT {
         try {
-            List<productoDTO> productosDTO = new ArrayList<>();
+            List<ProductoDTO> productosDTO = new ArrayList<>();
             
             // Aquí deberías llamar a tu DAO para obtener todos los productos
             List<ProductoCafeteria> productosCafeteria = producto.obtenerTodosLosProductos();
             
-            // Convertir cada ProductoCafeteria en un productoDTO y agregarlo a la lista
+            // Convertir cada ProductoCafeteria en un ProductoDTO y agregarlo a la lista
             for (ProductoCafeteria productoCafeteria : productosCafeteria) {
                 productosDTO.add(convertirDAOenDTO(productoCafeteria));
             }

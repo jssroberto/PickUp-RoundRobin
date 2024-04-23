@@ -6,7 +6,7 @@ package SubsistemaAgregarCarrito;
 
 import BOs.AgregarCarritoBO;
 import excepciones.ExcepcionAT;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -16,7 +16,7 @@ public class controlCarrito {
 
     AgregarCarritoBO a = new AgregarCarritoBO();
 
-//    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
+//    public void agregarCarrito(ProductoDTO producto, String idUsuarioCia, Integer cantidad) throws ExcepcionAT {
 //        try {
 //            a.agregarCarrito(producto, idUsuarioCia, cantidad);
 //        } catch (ExcepcionAT e) {

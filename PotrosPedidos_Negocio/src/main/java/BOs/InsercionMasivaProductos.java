@@ -20,7 +20,7 @@ public class InsercionMasivaProductos {
 
     List<Producto> productos = new ArrayList<>();
 
-    public void Insercion() {
+    public void Insercion() throws Exception{
          EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("potrosPU");
         EntityManager emCafeteria = emfCafeteria.createEntityManager();
         productos.add(new Producto(50.0F, "Torta cubana", "Deliciosa", 1L));

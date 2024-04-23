@@ -12,7 +12,7 @@ import dominio.DetalleCarrito;
 import dominio.Producto;
 import excepciones.ExcepcionAT;
 import java.util.List;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -24,11 +24,11 @@ public class AgregarCarritoBO {
     DetalleCarritoDAO d = new DetalleCarritoDAO();
     UsuarioDAO u = new UsuarioDAO();
 
-    public static Producto DTOaEntity(productoDTO dto) {
+    public static Producto DTOaEntity(ProductoDTO dto) {
         return new Producto(dto.getPrecio(), dto.getNombre(), dto.getDescripcion(), dto.getDireccionImagen(), dto.getIdProductoCafeteria());
     }
 
-    public void agregarCarrito(productoDTO producto, String idUsuarioCia, Integer cantidad, Long id) throws ExcepcionAT {
+    public void agregarCarrito(ProductoDTO producto, String idUsuarioCia, Integer cantidad, Long id) throws ExcepcionAT {
         if (producto == null) {
             throw new ExcepcionAT("producto vacio");
         }

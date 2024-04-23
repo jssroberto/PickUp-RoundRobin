@@ -6,19 +6,13 @@ import BOs.InsercionMasivaUsuarios;
 import BOs.InsercionMasivaUsuariosCIA;
 import BOs.VerificarPersonaBO;
 import BOs.insercionMasivaBanco;
-import SubsistemaCIA.IValidarPersona;
-import SubsistemaCIA.ValidarPersona;
 import excepciones.ExcepcionAT;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import mocks.Usuario;
 import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
@@ -28,6 +22,7 @@ import org.itson.disenosw.dtos.UsuarioDTO;
  */
 public class PanelInicioSesion extends javax.swing.JPanel {
 
+    private static final Logger logger = Logger.getLogger(PanelInicioSesion.class.getName());
     private FramePrincipal framePrincipal;
 
     /**
@@ -89,18 +84,21 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
             framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
         } else {
-
             InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
-            cia.insercion();
             InsercionMasivaProductosCafeteriaBO cafe = new InsercionMasivaProductosCafeteriaBO();
-            cafe.insercion();
             InsercionMasivaUsuarios usu = new InsercionMasivaUsuarios();
-            usu.insercion();
             InsercionMasivaProductos pro = new InsercionMasivaProductos();
-            pro.Insercion();
             insercionMasivaBanco banco = new insercionMasivaBanco();
-            banco.insercion();
             VerificarPersonaBO vp = new VerificarPersonaBO();
+            try {
+                cia.insercion();
+                cafe.insercion();
+                usu.insercion();
+                pro.Insercion();
+                banco.insercion();
+            } catch (Exception e) {
+                logger.log(Level.INFO, "Registros aregados anteriormente");
+            }
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí

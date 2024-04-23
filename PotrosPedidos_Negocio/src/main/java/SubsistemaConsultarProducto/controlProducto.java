@@ -11,7 +11,7 @@ import excepciones.ExcepcionAT;
 import java.util.ArrayList;
 import java.util.List;
 import mocks.Productos;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -36,7 +36,7 @@ public class controlProducto {
 //    public void setProductos(List<Productos> productos) {
 //        this.productos = productos;
 //    }
-    public productoDTO consultarProducto(String nombre) throws ExcepcionAT {
+    public ProductoDTO consultarProducto(String nombre) throws ExcepcionAT {
         try {
             return producto.consultarProducto(nombre);
 

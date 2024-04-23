@@ -14,7 +14,7 @@ import SubsistemaConsultarProducto.IConsultarProducto;
 import excepciones.ExcepcionAT;
 import java.util.List;
 import mocks.Productos;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -32,7 +32,7 @@ public class NewMain {
         InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
         insercionMasivaBanco banco = new insercionMasivaBanco();
         
-        cia.insercion();
+//        cia.insercion();
         
         
     }

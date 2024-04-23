@@ -6,7 +6,7 @@ package SubsistemaConsultarProducto;
 
 
 import excepciones.ExcepcionAT;
-import org.itson.disenosw.dtos.productoDTO;
+import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  *
@@ -14,6 +14,6 @@ import org.itson.disenosw.dtos.productoDTO;
  */
 public interface IConsultarProducto {
     
-    public productoDTO consultarProducto(productoDTO producto) throws ExcepcionAT;
+    public ProductoDTO consultarProducto(ProductoDTO producto) throws ExcepcionAT;
      
 }
