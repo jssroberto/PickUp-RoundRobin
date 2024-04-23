@@ -110,12 +110,12 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         InsercionMasivaUsuarios insercionUsuarios = new InsercionMasivaUsuarios();
         InsercionMasivaProductos insercionProductos = new InsercionMasivaProductos();
         InsercionMasivaBanco insercionBanco = new InsercionMasivaBanco();
-        insercionBanco.insertarRegistros();
         try {
             insercionUsuariosCIA.insertarRegistros();
             insercionCafeteria.insertarRegistros();
             insercionUsuarios.insertarRegistros();
             insercionProductos.insertarRegistros();
+            insercionBanco.insertarRegistros();
         } catch (Exception e) {
             logger.log(Level.INFO, "Registros aregados anteriormente");
         }
