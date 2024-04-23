@@ -5,7 +5,7 @@ import BOs.InsercionMasivaProductosCafeteriaBO;
 import BOs.InsercionMasivaUsuarios;
 import BOs.InsercionMasivaUsuariosCIA;
 import BOs.VerificarPersonaBO;
-import BOs.insercionMasivaBanco;
+import BOs.InsercionMasivaBanco;
 import excepciones.ExcepcionAT;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -33,8 +33,8 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     public PanelInicioSesion(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
-//        usuario.generarLista();
         setFonts();
+        setRegistros();
     }
 
     /**
@@ -84,25 +84,13 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
             framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
         } else {
-            InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
-            InsercionMasivaProductosCafeteriaBO cafe = new InsercionMasivaProductosCafeteriaBO();
-            InsercionMasivaUsuarios usu = new InsercionMasivaUsuarios();
-            InsercionMasivaProductos pro = new InsercionMasivaProductos();
-            insercionMasivaBanco banco = new insercionMasivaBanco();
-            VerificarPersonaBO vp = new VerificarPersonaBO();
-            try {
-                cia.insercion();
-                cafe.insercion();
-                usu.insercion();
-                pro.Insercion();
-                banco.insercion();
-            } catch (Exception e) {
-                logger.log(Level.INFO, "Registros aregados anteriormente");
-            }
+
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí
             UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtID.getText());
+            VerificarPersonaBO vp = new VerificarPersonaBO();
+
             try {
                 if (vp.buscarPersona(txtID.getText(), txtContraseña.getText())) {
                     framePrincipal.setNumID(txtID.getText());
@@ -115,6 +103,23 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    public void setRegistros() {
+        InsercionMasivaUsuariosCIA insercionUsuariosCIA = new InsercionMasivaUsuariosCIA();
+        InsercionMasivaProductosCafeteriaBO insercionCafeteria = new InsercionMasivaProductosCafeteriaBO();
+        InsercionMasivaUsuarios insercionUsuarios = new InsercionMasivaUsuarios();
+        InsercionMasivaProductos insercionProductos = new InsercionMasivaProductos();
+        InsercionMasivaBanco insercionBanco = new InsercionMasivaBanco();
+        insercionBanco.insertarRegistros();
+        try {
+            insercionUsuariosCIA.insertarRegistros();
+            insercionCafeteria.insertarRegistros();
+            insercionUsuarios.insertarRegistros();
+            insercionProductos.insertarRegistros();
+        } catch (Exception e) {
+            logger.log(Level.INFO, "Registros aregados anteriormente");
+        }
+    }
 
     private void setFonts() {
         try {

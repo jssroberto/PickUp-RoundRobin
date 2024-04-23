@@ -43,11 +43,11 @@ public class Prueba {
         
 
         List<Tarjeta> tarjetas = new ArrayList<>();
-        tarjetas.add(new Tarjeta("4696-1641-7464-6464", new GregorianCalendar(2050, 3,31), 754));
-        tarjetas.add(new Tarjeta("4696-6542-7464-6464", new GregorianCalendar(2040, 3,31), 475));
-        tarjetas.add(new Tarjeta("4696-1641-6546-6464", new GregorianCalendar(2030, 3,31), 277));
-        tarjetas.add(new Tarjeta("4696-1641-7464-6541", new GregorianCalendar(2025, 3,31), 341));
-        tarjetas.add(new Tarjeta("1545-1641-7464-6464", new GregorianCalendar(2028, 3,31), 734));
+        tarjetas.add(new Tarjeta("4696-1641-7464-6464", YearMonth.of(31,8), 754));
+        tarjetas.add(new Tarjeta("4696-6542-7464-6464", YearMonth.of(31,8), 475));
+        tarjetas.add(new Tarjeta("4696-1641-6546-6464", YearMonth.of(31,8), 277));
+        tarjetas.add(new Tarjeta("4696-1641-7464-6541", YearMonth.of(31,8), 341));
+        tarjetas.add(new Tarjeta("1545-1641-7464-6464", YearMonth.of(31,8), 734));
         
         List<ProductoCafeteria> productosCafeteria = new ArrayList<>();
         productosCafeteria.add(new ProductoCafeteria(50.0F, "Torta cubana", "Deliciosa", 15));

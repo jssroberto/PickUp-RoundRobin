@@ -117,19 +117,6 @@ public class PanelCarrito extends javax.swing.JPanel {
         framePrincipal.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-//    Usuario usuario = usuarioDAO.buscarUsuarioPorIdCIA("00000011211");
-//
-//        Carrito carrito = carritoDAO.buscarCarritoPorUsuario(usuario);
-//
-//
-//        for (DetalleCarrito detalleCarrito : detallesCarrito) {
-//
-//            System.out.println(detalleCarrito.getProducto().getNombre());
-//            System.out.println(detalleCarrito.getCantidad());
-//            d.eliminarDetalleCarrito(detalleCarrito);
-//
-//        }
-//    }
     public void ayuda() throws ExcepcionAT {
         try {
             usuario = carritoDAO.buscarCarritoPorUsuarioId(5L);
@@ -234,24 +221,7 @@ public class PanelCarrito extends javax.swing.JPanel {
         cont.setOpaque(false);
 
         panelTop.add(cont);
-//        
-//        this.setLayout(new BorderLayout());
-//        JLabel fondo = new javax.swing.JLabel();fondo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-//        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMenu.png"))); // NOI18N
-//        fondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-//        add(fondo,BorderLayout.CENTER);
-
-//        Container contenedor = fondo.getParent();
-// Asegúrate de que el contenedor utiliza un layout que soporte z-order, como JPanel
-//        if (contenedor instanceof JPanel) {
-//            JPanel panelContenedor = (JPanel) contenedor;
-//            // Cambia el orden de los componentes para poner el menú encima del fondo
-//            panelContenedor.setComponentZOrder(mainPanel, 0);
-//            panelContenedor.setComponentZOrder(fondo, 1);
-//            // Repinta el contenedor para reflejar los cambios
-//            panelContenedor.revalidate();
-//            panelContenedor.repaint();
-//        }
+        
     }
 
     /**

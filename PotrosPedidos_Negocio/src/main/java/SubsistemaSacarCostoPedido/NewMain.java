@@ -8,7 +8,7 @@ import BOs.InsercionMasivaProductos;
 import BOs.InsercionMasivaProductosCafeteriaBO;
 import BOs.InsercionMasivaUsuarios;
 import BOs.InsercionMasivaUsuariosCIA;
-import BOs.insercionMasivaBanco;
+import BOs.InsercionMasivaBanco;
 import SubsistemaConsultarProducto.ConsultarProducto;
 import SubsistemaConsultarProducto.IConsultarProducto;
 import excepciones.ExcepcionAT;
@@ -30,7 +30,7 @@ public class NewMain {
         InsercionMasivaProductosCafeteriaBO cafe = new InsercionMasivaProductosCafeteriaBO();
         InsercionMasivaUsuarios usu = new InsercionMasivaUsuarios();
         InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
-        insercionMasivaBanco banco = new insercionMasivaBanco();
+        InsercionMasivaBanco banco = new InsercionMasivaBanco();
         
 //        cia.insercion();
         

@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
  */
 public class InsercionMasivaProductosCafeteriaBO {
     
-    public void insercion() throws Exception{
+    public void insertarRegistros() throws Exception{
          EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("cafeteriaPU");
         EntityManager emCafeteria = emfCafeteria.createEntityManager();
         List<ProductoCafeteria> productosCafeteria = new ArrayList<>();

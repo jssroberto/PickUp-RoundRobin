@@ -21,7 +21,7 @@ public class InsercionMasivaUsuarios {
     
     List<Usuario> usuarios = new ArrayList<>();
     
-    public void insercion() throws Exception{
+    public void insertarRegistros() throws Exception{
          EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("potrosPU");
         EntityManager emUsuario = emfCafeteria.createEntityManager();
         Carrito carrito= new Carrito();

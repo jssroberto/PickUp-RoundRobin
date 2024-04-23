@@ -1,3 +1,4 @@
+org\itson\disenosw\main\Principal.class
 org\itson\disenosw\guis\PanelInicioSesion.class
 org\itson\disenosw\guis\PanelPagoExito.class
 org\itson\disenosw\guis\FramePrincipal.class
@@ -17,7 +18,6 @@ org\itson\disenosw\guis\PanelBuscar.class
 org\itson\disenosw\guis\PanelCarrito$1.class
 org\itson\disenosw\guis\PanelBuscar$2.class
 org\itson\disenosw\guis\PanelMetodoPago$1.class
-org\itson\diesnosw\main\Principal.class
 org\itson\disenosw\guis\PanelMenu2$1.class
 org\itson\disenosw\guis\PanelMenu2$4.class
 org\itson\disenosw\guis\PanelMetodoPago.class
