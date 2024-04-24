@@ -10,9 +10,11 @@ import DAOs.UsuarioDAO;
 import dominio.Carrito;
 import dominio.DetalleCarrito;
 import dominio.Producto;
+import dominio.Usuario;
 import excepciones.ExcepcionAT;
 import java.util.List;
 import org.itson.disenosw.dtos.ProductoDTO;
+
 
 /**
  *
@@ -28,7 +30,7 @@ public class AgregarCarritoBO {
         return new Producto(dto.getPrecio(), dto.getNombre(), dto.getDescripcion(), dto.getDireccionImagen(), dto.getIdProductoCafeteria());
     }
 
-    public void agregarCarrito(ProductoDTO producto, String idUsuarioCia, Integer cantidad, Long id) throws ExcepcionAT {
+    public void agregarCarrito(ProductoDTO producto, String idUsuarioCia, Integer cantidad, Long idProducto) throws ExcepcionAT {
         if (producto == null) {
             throw new ExcepcionAT("producto vacio");
         }
@@ -41,10 +43,10 @@ public class AgregarCarritoBO {
 
         try {
             float total = cantidad * producto.getPrecio();
-            Carrito carrito = new Carrito(total, cantidad, u.buscarUsuarioPorIdCIA(idUsuarioCia));
-            c.agregarCarrito(carrito);
+            Usuario usuario= u.buscarUsuarioPorIdCIA(idUsuarioCia);
+            Carrito carrito = c.buscarCarritoPorUsuario(usuario);
             Producto p = this.DTOaEntity(producto);
-            p.setId(id);
+            p.setId(idProducto);
             DetalleCarrito dc = new DetalleCarrito(carrito, p, cantidad, total);
             d.insertarDetalleCarrito(dc);
         } catch (ExcepcionAT e) {

@@ -17,7 +17,6 @@ public class validarTarjeta implements IValidarTarjeta {
 
     @Override
     public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws ExcepcionAT {
-
         try {
             return control.ValidarTarjeta(tarjeta);
         } catch (ExcepcionAT e) {
