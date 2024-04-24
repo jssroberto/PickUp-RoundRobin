@@ -54,6 +54,15 @@ public class Usuario implements Serializable {
         this.apellidoMaterno = apellidoMaterno;
     }
 
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String idUsuarioCia, Carrito carrito) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.idUsuarioCia = idUsuarioCia;
+        this.carrito = carrito;
+    }
+
+
     public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String idUsuarioCia) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;

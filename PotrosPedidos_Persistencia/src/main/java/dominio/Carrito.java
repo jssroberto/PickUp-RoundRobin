@@ -46,6 +46,11 @@ public class Carrito implements Serializable {
         this.usuario = usuario;
     }
     
+    public Carrito(Float total, Integer cantidadProductos) {
+        this.total = total;
+        this.cantidadProductos = cantidadProductos;
+    }
+    
     public Carrito(Float total, Integer cantidadProductos, Usuario usuario, List<DetalleCarrito> detalleCarrito) {
         this.total = total;
         this.cantidadProductos = cantidadProductos;

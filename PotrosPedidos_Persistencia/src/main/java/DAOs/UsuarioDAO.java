@@ -17,7 +17,8 @@ import javax.persistence.TypedQuery;
  *
  * @author USER
  */
-public class UsuarioDAO implements IUsuarioDAO{
+public class UsuarioDAO implements IUsuarioDAO {
+
     private EntityManager em;
     private EntityManagerFactory emf;
     private Usuario usuario;
@@ -25,8 +26,8 @@ public class UsuarioDAO implements IUsuarioDAO{
     public UsuarioDAO() {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
-    
-    public void registrarUsuario (Usuario usuario) throws ExcepcionAT{
+
+    public void registrarUsuario(Usuario usuario) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -41,8 +42,8 @@ public class UsuarioDAO implements IUsuarioDAO{
             throw new ExcepcionAT("Error al registrar usuario");
         }
     }
-    
-    public void actualizarUsuario (Usuario usuario) throws ExcepcionAT{
+
+    public void actualizarUsuario(Usuario usuario) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -57,7 +58,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             throw new ExcepcionAT("Error al actualizar persona");
         }
     }
-    
+
     public Usuario buscarUsuarioPorIdCIA(String idUsuarioCia) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
@@ -71,10 +72,10 @@ public class UsuarioDAO implements IUsuarioDAO{
 
             em.getTransaction().commit();
             em.close();
-            
-            if(!usuario.isEmpty()){
+
+            if (!usuario.isEmpty()) {
                 return usuario.get(0);
-            }else{
+            } else {
                 throw new ExcepcionAT("Usuario no encontrado por su ID");
             }
         } catch (Exception e) {
@@ -83,4 +84,27 @@ public class UsuarioDAO implements IUsuarioDAO{
             return null;
         }
     }
+
+    public List<Usuario> obtenerListaUsuarios() throws ExcepcionAT {
+        try {
+            em = emf.createEntityManager();
+            em.getTransaction().begin();
+
+            String jpql3 = "SELECT u FROM Usuario u";
+
+            TypedQuery<Usuario> query = em.createQuery(jpql3, Usuario.class);
+            List<Usuario> usuarios = query.getResultList();
+
+            em.getTransaction().commit();
+            em.close();
+
+            return usuarios;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ExcepcionAT("Error al obtener la lista de usuarios: " + e.getMessage());
+        }
+    }
+    
+    
+
 }

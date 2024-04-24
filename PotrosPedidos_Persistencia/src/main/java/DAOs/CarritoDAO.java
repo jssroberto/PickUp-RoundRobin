@@ -83,11 +83,12 @@ public class CarritoDAO {
         } catch (Exception e) {
             System.out.println(e.getCause());
             System.out.println(e.getLocalizedMessage());
+            System.out.println(("Carrito no encontrado por su usuario"));
             return null;
         }
     }
 
-    public Carrito buscarCarritoPorUsuarioId(long idUsuario) throws ExcepcionAT {
+    public Carrito buscarCarritoPorUsuarioId(Long idUsuario) throws ExcepcionAT {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -95,7 +96,7 @@ public class CarritoDAO {
             String jpql = "SELECT c FROM Carrito c WHERE c.usuario.id = :idUsuario";
 
             TypedQuery<Carrito> query = em.createQuery(jpql, Carrito.class);
-            query.setParameter("idUsuario", idUsuario);
+           
             List<Carrito> carritos = query.getResultList();
 
             em.getTransaction().commit();
@@ -109,6 +110,7 @@ public class CarritoDAO {
         } catch (Exception e) {
             System.out.println(e.getCause());
             System.out.println(e.getLocalizedMessage());
+            System.out.println("Carrito no encontrado para el usuario con ID: " + idUsuario);
             return null;
         }
     }
