@@ -119,7 +119,7 @@ public class PanelCarrito extends javax.swing.JPanel {
 
     public void ayuda() throws ExcepcionAT {
         try {
-            usuario = carritoDAO.buscarCarritoPorUsuarioId(5L);
+            usuario = carritoDAO.buscarCarritoPorUsuarioId(Long.parseLong(framePrincipal.getNumID()));
         } catch (ExcepcionAT ex) {
             Logger.getLogger(PanelCarrito.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,6 +134,7 @@ public class PanelCarrito extends javax.swing.JPanel {
 
         ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
 
+        usuario = carritoDAO.buscarCarritoPorUsuario(usuarioDAO.buscarUsuarioPorIdCIA(framePrincipal.getNumID()));
         List<DetalleCarrito> detallesCarrito = detalleCarritoDAO.buscarListaDetalleCarrito(usuario);
 
 //        List<String[]> productos = new ArrayList<>();

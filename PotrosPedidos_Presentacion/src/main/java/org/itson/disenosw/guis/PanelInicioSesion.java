@@ -1,11 +1,7 @@
 package org.itson.disenosw.guis;
 
-import BOs.InsercionMasivaProductos;
-import BOs.InsercionMasivaProductosCafeteriaBO;
-import BOs.InsercionMasivaUsuarios;
-import BOs.InsercionMasivaUsuariosCIA;
+import BOs.InsercionMasiva;
 import BOs.VerificarPersonaBO;
-import BOs.InsercionMasivaBanco;
 import excepciones.ExcepcionAT;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -105,17 +101,13 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     public void setRegistros() {
-        InsercionMasivaUsuariosCIA insercionUsuariosCIA = new InsercionMasivaUsuariosCIA();
-        InsercionMasivaProductosCafeteriaBO insercionCafeteria = new InsercionMasivaProductosCafeteriaBO();
-        InsercionMasivaUsuarios insercionUsuarios = new InsercionMasivaUsuarios();
-        InsercionMasivaProductos insercionProductos = new InsercionMasivaProductos();
-        InsercionMasivaBanco insercionBanco = new InsercionMasivaBanco();
+        InsercionMasiva insercionMasiva= new InsercionMasiva();
         try {
-            insercionUsuariosCIA.insertarRegistros();
-            insercionCafeteria.insertarRegistros();
-            insercionUsuarios.insertarRegistros();
-            insercionProductos.insertarRegistros();
-            insercionBanco.insertarRegistros();
+            insercionMasiva.insercionUsuariosCIA();
+            insercionMasiva.insercionesUsuario();
+            insercionMasiva.insercionesBanco();
+            insercionMasiva.insercionesCafeteria(); 
+            insercionMasiva.insercionesProductos();
         } catch (Exception e) {
             logger.log(Level.INFO, "Registros aregados anteriormente");
         }
