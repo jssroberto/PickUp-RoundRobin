@@ -5,7 +5,7 @@
 package SubsistemaBanco;
 
 import BOs.validarTarjetaBO;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
@@ -15,12 +15,12 @@ import org.itson.disenosw.dtos.TarjetaDTO;
 public class ControlTarjeta {
      validarTarjetaBO vb = new validarTarjetaBO();
 
-    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws ExcepcionAT {
+    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException {
 
         try {
             return vb.ValidarBanco(tarjeta);
-        } catch (ExcepcionAT e) {
-            throw new ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
         }
     }
 }

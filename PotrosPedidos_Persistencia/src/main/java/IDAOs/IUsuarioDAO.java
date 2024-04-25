@@ -5,16 +5,16 @@
 package IDAOs;
 
 import dominio.Usuario;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 
 /**
  *
  * @author USER
  */
 public interface IUsuarioDAO {
-    public void registrarUsuario (Usuario usuario) throws ExcepcionAT;
+    public void registrarUsuario (Usuario usuario) throws PersistenciaException;
     
-    public void actualizarUsuario (Usuario usuario) throws ExcepcionAT;
+    public void actualizarUsuario (Usuario usuario) throws PersistenciaException;
     
-    public Usuario buscarUsuarioPorIdCIA(String idUsuarioCia) throws ExcepcionAT;
+    public Usuario buscarUsuarioPorIdCIA(String idUsuarioCia) throws PersistenciaException;
 }

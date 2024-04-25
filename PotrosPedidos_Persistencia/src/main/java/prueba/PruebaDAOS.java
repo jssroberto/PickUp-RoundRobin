@@ -13,7 +13,7 @@ import cafeteria.ProductoCafeteria;
 import dominio.Carrito;
 import dominio.DetalleCarrito;
 import dominio.Usuario;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class PruebaDAOS {
 
-    public static void main(String[] args) throws ExcepcionAT {
+    public static void main(String[] args) throws PersistenciaException {
         ProductoDAO productoDAO = new ProductoDAO();
         ProductoCafeteriaDAO productoCafeteriaDAO = new ProductoCafeteriaDAO();
         DetalleCarritoDAO detalleCarritoDAO = new DetalleCarritoDAO();

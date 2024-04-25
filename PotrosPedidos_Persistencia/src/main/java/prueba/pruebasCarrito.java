@@ -8,7 +8,7 @@ import DAOs.CarritoDAO;
 import DAOs.UsuarioDAO;
 import dominio.Carrito;
 import dominio.Usuario;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.io.IOException;
 
 /**
@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class pruebasCarrito {
 
-    public static void main(String[] args) throws ExcepcionAT {
+    public static void main(String[] args) throws PersistenciaException {
 
         CarritoDAO c = new CarritoDAO();
         UsuarioDAO usuarioDAO = new UsuarioDAO();

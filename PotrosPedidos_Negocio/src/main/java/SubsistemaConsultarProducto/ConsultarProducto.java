@@ -4,7 +4,7 @@
  */
 package SubsistemaConsultarProducto;
 
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
@@ -16,12 +16,12 @@ public class ConsultarProducto implements IConsultarProducto {
     controlProducto cp = new controlProducto();
 
     @Override
-    public ProductoDTO consultarProducto(ProductoDTO producto) throws ExcepcionAT {
+    public ProductoDTO consultarProducto(ProductoDTO producto) throws PersistenciaException {
 
         try {
             return cp.consultarProducto(producto.getNombre());
-        } catch (ExcepcionAT e) {
-            throw new ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
         }
     }
 

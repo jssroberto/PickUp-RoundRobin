@@ -6,7 +6,7 @@ package DAOs;
 
 import CIA.UsuarioCIA;
 import banco.Tarjeta;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -28,7 +28,7 @@ public class TarjetaDAO {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
 
-    public Boolean BuscarTarjeta(String numeroTarjeta) throws ExcepcionAT {
+    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersistenciaException {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tarjeta> cq = cb.createQuery(Tarjeta.class);
         Root<Tarjeta> root = cq.from(Tarjeta.class);

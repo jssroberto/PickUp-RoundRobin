@@ -6,7 +6,7 @@ package BOs;
 
 import DAOs.ProductoCafeteriaDAO;
 import cafeteria.ProductoCafeteria;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;
 import org.itson.disenosw.dtos.ProductoDTO;
@@ -33,7 +33,7 @@ public class ConsultarProductoBO {
         return productoDTO;
     }
 
-    public ProductoDTO consultarProducto(String nombre) throws ExcepcionAT {
+    public ProductoDTO consultarProducto(String nombre) throws PersistenciaException {
         if (nombre == null) {
             return null;
         }
@@ -41,12 +41,12 @@ public class ConsultarProductoBO {
             ProductoDTO p = this.convertirDAOenDTO(producto.buscarProductoCafeteriaPorNombre(nombre));
             return p;
 
-        } catch (ExcepcionAT e) {
-            throw new  ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new  PersistenciaException(e.getMessage());
         }
     }
     
-    public ProductoDTO consultarProductoID(Long id) throws ExcepcionAT {
+    public ProductoDTO consultarProductoID(Long id) throws PersistenciaException {
         if (id <= 0) {
             return null;
         }
@@ -54,12 +54,12 @@ public class ConsultarProductoBO {
             ProductoDTO p = this.convertirDAOenDTO(producto.buscarProductoCafeteriaPorID(id));
             return p;
 
-        } catch (ExcepcionAT e) {
-            throw new  ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new  PersistenciaException(e.getMessage());
         }
     }
 
-    public List<ProductoDTO> consultarTodosLosProductos() throws ExcepcionAT {
+    public List<ProductoDTO> consultarTodosLosProductos() throws PersistenciaException {
         try {
             List<ProductoDTO> productosDTO = new ArrayList<>();
             
@@ -72,8 +72,8 @@ public class ConsultarProductoBO {
             }
             
             return productosDTO;
-        } catch (ExcepcionAT e) {
-            throw new ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
         }
     }
 }

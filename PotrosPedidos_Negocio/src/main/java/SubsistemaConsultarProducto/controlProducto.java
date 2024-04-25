@@ -7,7 +7,7 @@ package SubsistemaConsultarProducto;
 import BOs.ConsultarProductoBO;
 import DAOs.ProductoCafeteriaDAO;
 import cafeteria.ProductoCafeteria;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;
 import mocks.Productos;
@@ -36,12 +36,12 @@ public class controlProducto {
 //    public void setProductos(List<Productos> productos) {
 //        this.productos = productos;
 //    }
-    public ProductoDTO consultarProducto(String nombre) throws ExcepcionAT {
+    public ProductoDTO consultarProducto(String nombre) throws PersistenciaException {
         try {
             return producto.consultarProducto(nombre);
 
-        } catch (ExcepcionAT e) {
-            throw new ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
 
         }
     }

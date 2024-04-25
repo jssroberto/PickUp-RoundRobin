@@ -8,7 +8,7 @@ import dominio.Carrito;
 import dominio.DetalleCarrito;
 import dominio.Producto;
 import dominio.Usuario;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -30,7 +30,7 @@ public class DetalleCarritoDAO {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
 
-    public void insertarDetalleCarrito(DetalleCarrito detalleCarrito) throws ExcepcionAT {
+    public void insertarDetalleCarrito(DetalleCarrito detalleCarrito) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -42,11 +42,11 @@ public class DetalleCarritoDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al insertar detalle carrito");
+            throw new PersistenciaException("Error al insertar detalle carrito");
         }
     }
 
-    public void eliminarDetalleCarrito(DetalleCarrito detalleCarrito) throws ExcepcionAT {
+    public void eliminarDetalleCarrito(DetalleCarrito detalleCarrito) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -65,11 +65,11 @@ public class DetalleCarritoDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al eliminar detalle carrito");
+            throw new PersistenciaException("Error al eliminar detalle carrito");
         }
     }
 
-    public List<DetalleCarrito> buscarListaDetalleCarrito(Carrito carrito) throws ExcepcionAT {
+    public List<DetalleCarrito> buscarListaDetalleCarrito(Carrito carrito) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -86,7 +86,7 @@ public class DetalleCarritoDAO {
             if (!detallesCarrito.isEmpty()) {
                 return detallesCarrito;
             } else {
-                throw new ExcepcionAT("Lista de productos no encontrado por su carrito");
+                throw new PersistenciaException("Lista de productos no encontrado por su carrito");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());

@@ -5,7 +5,7 @@
 package SubsistemaConsultarProducto;
 
 
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
@@ -14,6 +14,6 @@ import org.itson.disenosw.dtos.ProductoDTO;
  */
 public interface IConsultarProducto {
     
-    public ProductoDTO consultarProducto(ProductoDTO producto) throws ExcepcionAT;
+    public ProductoDTO consultarProducto(ProductoDTO producto) throws PersistenciaException;
      
 }

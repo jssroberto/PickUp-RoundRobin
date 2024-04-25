@@ -2,7 +2,7 @@ package org.itson.disenosw.guis;
 
 import BOs.InsercionMasiva;
 import BOs.VerificarPersonaBO;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -41,9 +41,10 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtID = new javax.swing.JTextField();
-        btnIngresar = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
+        btnIngresar = new javax.swing.JButton();
+        btnAcercaDe = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -52,10 +53,13 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(400, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtID.setBackground(new java.awt.Color(250, 250, 250));
-        txtID.setForeground(new java.awt.Color(0, 0, 0));
-        txtID.setBorder(null);
-        add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 261, 342, 31));
+        txtId.setBackground(new java.awt.Color(250, 250, 250));
+        txtId.setBorder(null);
+        add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 343, 352, 31));
+
+        txtContraseña.setBackground(new java.awt.Color(250, 250, 250));
+        txtContraseña.setBorder(null);
+        add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 436, 352, 31));
 
         btnIngresar.setBorder(null);
         btnIngresar.setContentAreaFilled(false);
@@ -65,40 +69,49 @@ public class PanelInicioSesion extends javax.swing.JPanel {
                 btnIngresarActionPerformed(evt);
             }
         });
-        add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 422, 159, 50));
+        add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 504, 159, 50));
 
-        txtContraseña.setBackground(new java.awt.Color(250, 250, 250));
-        txtContraseña.setForeground(new java.awt.Color(0, 0, 0));
-        txtContraseña.setBorder(null);
-        add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 354, 340, 30));
+        btnAcercaDe.setBorder(null);
+        btnAcercaDe.setContentAreaFilled(false);
+        btnAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcercaDeActionPerformed(evt);
+            }
+        });
+        add(btnAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 10, 66, 38));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelInicioSesion.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        if (txtID.getText().isBlank() || txtContraseña.getPassword().length == 0) {
+        if (txtId.getText().isBlank() || txtContraseña.getPassword().length == 0) {
             framePrincipal.mostrarAviso("Es necesario llenar todos los campos", "Campos inválidos");
         } else {
 
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí
-            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtID.getText());
+            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtId.getText());
             VerificarPersonaBO vp = new VerificarPersonaBO();
 
             try {
-                if (vp.buscarPersona(txtID.getText(), txtContraseña.getText())) {
-                    framePrincipal.setNumID(txtID.getText());
+                if (vp.buscarPersona(txtId.getText(), txtContraseña.getText())) {
+                    framePrincipal.setNumID(txtId.getText());
                     framePrincipal.cambiarVistaMenu();
                 } else {
                     framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
                 }
-            } catch (ExcepcionAT ex) {
+            } catch (PersistenciaException ex) {
                 framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed
+        framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
+    }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     public void setRegistros() {
         InsercionMasiva insercionMasiva= new InsercionMasiva();
@@ -118,7 +131,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             Font sizedFont = font.deriveFont(24F);
-            txtID.setFont(sizedFont);
+            txtId.setFont(sizedFont);
             txtContraseña.setFont(sizedFont);
         } catch (FontFormatException | IOException e) {
             framePrincipal.mostrarAviso(e.getMessage(), "Aviso");
@@ -127,9 +140,10 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcercaDe;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel fondo;
     private javax.swing.JPasswordField txtContraseña;
-    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

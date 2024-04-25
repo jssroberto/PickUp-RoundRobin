@@ -4,7 +4,7 @@
  */
 package SubsistemaCIA;
 
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
@@ -13,5 +13,5 @@ import org.itson.disenosw.dtos.UsuarioDTO;
  */
 public interface IValidarPersona {
 
-    public Boolean ValidarPersona (UsuarioDTO usuario) throws ExcepcionAT;
+    public Boolean ValidarPersona (UsuarioDTO usuario) throws PersistenciaException;
 }

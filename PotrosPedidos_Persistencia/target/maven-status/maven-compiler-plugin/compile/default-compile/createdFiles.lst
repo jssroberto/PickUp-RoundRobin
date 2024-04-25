@@ -5,8 +5,8 @@ cafeteria\ProductoCafeteria.class
 DAOs\UsuarioDAO.class
 DAOs\PedidoDAO.class
 prueba\PruebaConsulta.class
+excepciones\PersistenciaException.class
 dominio\EstadoPedido.class
-excepciones\ExcepcionAT.class
 insercionesMasivas\InsercionMasivaProductosCafeteriaBO.class
 DAOs\ProductoDAO.class
 dominio\Carrito.class

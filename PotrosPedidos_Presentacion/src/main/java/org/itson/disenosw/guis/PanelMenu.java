@@ -1,10 +1,11 @@
 package org.itson.disenosw.guis;
 
 import BOs.ConsultarProductoBO;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
@@ -33,7 +34,8 @@ import org.itson.disenosw.dtos.ProductoDTO;
  */
 public class PanelMenu extends javax.swing.JPanel {
 
-    private final FramePrincipal framePrincipal;
+    private static final Logger logger = Logger.getLogger(PanelMenu.class.getName());
+    private FramePrincipal framePrincipal;
     private Integer idProducto = 0;
 
     /**
@@ -46,14 +48,10 @@ public class PanelMenu extends javax.swing.JPanel {
         initComponents();
         try {
             crearMenu();
-//        fondo.setLocation(0, 0);
-//        mostrarProductos(new ArrayList<>());
-
-// Suponiendo que "fondo" es tu JLabel de fondo y "menuPanel" es tu JPanel de menú
-// Obtén el contenedor principal del fondo
-        } catch (ExcepcionAT ex) {
-            framePrincipal.mostrarAviso("No se pudieron cosultar los prosuctos", "Error al consultar menú");
+        } catch (PersistenciaException ex) {
+            logger.log(Level.SEVERE, "Error al consutlar el menú");
         }
+        setFuentes();
     }
 
     /**
@@ -69,6 +67,7 @@ public class PanelMenu extends javax.swing.JPanel {
         btnBuscar = new javax.swing.JButton();
         btnOrdenar = new javax.swing.JButton();
         panelTop = new javax.swing.JPanel();
+        lblCantidadCarrito = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -84,7 +83,7 @@ public class PanelMenu extends javax.swing.JPanel {
                 btnCarritoActionPerformed(evt);
             }
         });
-        add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 15, 50, 50));
+        add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 18, 50, 50));
 
         btnUsuario.setBorder(null);
         btnUsuario.setContentAreaFilled(false);
@@ -94,7 +93,7 @@ public class PanelMenu extends javax.swing.JPanel {
                 btnUsuarioActionPerformed(evt);
             }
         });
-        add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 15, 50, 50));
+        add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 18, 50, 50));
 
         btnBuscar.setBorder(null);
         btnBuscar.setContentAreaFilled(false);
@@ -104,7 +103,7 @@ public class PanelMenu extends javax.swing.JPanel {
                 btnBuscarActionPerformed(evt);
             }
         });
-        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 117, 50, 50));
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 92, 50, 50));
 
         btnOrdenar.setBorder(null);
         btnOrdenar.setContentAreaFilled(false);
@@ -114,10 +113,15 @@ public class PanelMenu extends javax.swing.JPanel {
                 btnOrdenarActionPerformed(evt);
             }
         });
-        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 122, 50, 39));
+        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 97, 50, 39));
 
         panelTop.setOpaque(false);
-        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 178, 370, 570));
+        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 157, 380, 600));
+
+        lblCantidadCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        lblCantidadCarrito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidadCarrito.setText("0");
+        add(lblCantidadCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 20, 16, 16));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMenu.png"))); // NOI18N
         lblFondo.setToolTipText("");
@@ -126,7 +130,7 @@ public class PanelMenu extends javax.swing.JPanel {
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
 
-        framePrincipal.setIdProducto(1l);
+//        framePrincipal.setIdProducto(1l);
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
@@ -135,7 +139,7 @@ public class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
+//        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
@@ -146,39 +150,21 @@ public class PanelMenu extends javax.swing.JPanel {
 
     }
 
-    public void crearMenu() throws ExcepcionAT {
+    public void crearMenu() throws PersistenciaException {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
-        mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
-        mainPanel.setSize(new Dimension(370, 550));
+        mainPanel.setMaximumSize(new Dimension(380,600));
+        mainPanel.setSize(new Dimension(380,600));
 
         ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
         List<ProductoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
 
-//        List<String[]> productos = new ArrayList<>();
-//        productos.add(new String[]{"Hamburguesa clásica", "$120", "/productos/120x100/hamburguesa-clasica.jpg"});
-//        productos.add(new String[]{"Jamaica", "$25", "/productos/120x100/jamaica.jpg"});
-//        productos.add(new String[]{"Hamburguesa de pollo", "$150", "/productos/120x100/hamburguesa-pollo.jpg"});
-//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
-//        productos.add(new String[]{"Torta cubana", "$100", "/productos/120x100/torta-cubana.jpg"});
         GridBagConstraints c = new GridBagConstraints();
 
         //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
         c.anchor = GridBagConstraints.NORTH;
+        c.fill = GridBagConstraints.BOTH;
 
-//        ActionListener productoListener = new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                // Obtener el ID del producto clickeado
-//                String idProducto = e.getActionCommand();
-//                // Realizar la acción deseada con el ID del producto
-//                // Por ejemplo, abrir una nueva ventana con más detalles del producto
-//                System.out.println("Producto clickeado: " + idProducto);
-//            }
-//        };
         // Iterar sobre la lista de productos y crear los paneles correspondientes
         for (int i = 0; i < productosDTO.size(); i++) {
 //            String[] producto = productosDTO.get(i);
@@ -223,12 +209,14 @@ public class PanelMenu extends javax.swing.JPanel {
         //TODO hacer el scrollPane un ScrollPaneWin11
         // Configurar el JScrollPane para desplazamiento vertical
         JScrollPane scrollPane = new JScrollPane(mainPanel);
+//        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
+//        scrollPane.add(mainPanel);
 
-        scrollPane.setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado
-        scrollPane.setMaximumSize(new Dimension(370, 550)); // Establece un tamaño máximo
-        scrollPane.getViewport().setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado para el viewport
-        scrollPane.getViewport().setMaximumSize(new Dimension(370, 550)); // Establece un tamaño mínimo para el viewport
-        scrollPane.getViewport().setSize(370, 550);
+        scrollPane.setPreferredSize(new Dimension(380,600)); // Establece un tamaño predeterminado
+        scrollPane.setMaximumSize(new Dimension(380,600)); // Establece un tamaño máximo
+        scrollPane.getViewport().setPreferredSize(new Dimension(380,600)); // Establece un tamaño predeterminado para el viewport
+        scrollPane.getViewport().setMaximumSize(new Dimension(380,600)); // Establece un tamaño mínimo para el viewport
+        scrollPane.getViewport().setSize(380,600);
 
         scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
         scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
@@ -236,10 +224,11 @@ public class PanelMenu extends javax.swing.JPanel {
         scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Ajustar la velocidad del scroll vertical
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // Ocultar la barra de desplazamiento horizontal
 
-        JPanel cont = new JPanel();
+        JPanel cont = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
         cont.add(scrollPane);
         cont.setOpaque(false);
 
+        panelTop.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
         panelTop.add(cont);
 //        
 //        this.setLayout(new BorderLayout());
@@ -295,7 +284,7 @@ public class PanelMenu extends javax.swing.JPanel {
         JLabel nombreLabel = new JLabel(nombre);
         nombreLabel.setFont(sizedFontMedium);
         nombreLabel.setForeground(Color.BLACK);
-        nombreLabel.setPreferredSize(new Dimension(240, 31));
+        nombreLabel.setPreferredSize(new Dimension(250, 31));
         nombreLabel.setVerticalAlignment(SwingConstants.CENTER);
 
         String precioString = String.valueOf(precio);
@@ -324,20 +313,6 @@ public class PanelMenu extends javax.swing.JPanel {
         c.gridy = 1;
         panel.add(precioLabel, c);
         
-
-        // Agregar un ActionListener al panel del producto
-//        panel.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                // Llamar a un método cuando se haga clic en el panel del producto
-//                // Puedes pasar el idProducto como parámetro
-////                productoClicked(idProducto);
-////                listener.actionPerformed(new ActionEvent(panel, ActionEvent.ACTION_PERFORMED));
-//                framePrincipal.cambiarVistaProducto();
-//                productoClicked(idProducto);
-//                idProducto++;
-//            }
-//        });
         return panel; // Devuelve el panel del producto creado
     }
 
@@ -395,15 +370,20 @@ public class PanelMenu extends javax.swing.JPanel {
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             return font.deriveFont(size);
         } catch (FontFormatException | IOException ex) {
-            Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, "Error al cargar la fuente: " + rutaFuente, ex);
+            logger.log(Level.SEVERE, "Error al cargar la fuente: " + rutaFuente, ex);
             return null;
         } finally {
             try {
                 is.close();
             } catch (IOException ex) {
-                Logger.getLogger(PanelMenu.class.getName()).log(Level.SEVERE, "Error al cerrar InputStream", ex);
+                logger.log(Level.SEVERE, "Error al cerrar InputStream", ex);
             }
         }
+    }
+    
+    public void setFuentes(){
+        Font sizedFontHeavy12 = cargarFuente("/fonts/futura/FuturaPTHeavy.otf", 12F);
+        lblCantidadCarrito.setFont(sizedFontHeavy12);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -411,6 +391,7 @@ public class PanelMenu extends javax.swing.JPanel {
     private javax.swing.JButton btnCarrito;
     private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnUsuario;
+    private javax.swing.JLabel lblCantidadCarrito;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables

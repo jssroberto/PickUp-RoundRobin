@@ -5,7 +5,7 @@
 package SubsistemaCIA;
 
 
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 
 import org.itson.disenosw.dtos.UsuarioDTO;
 
@@ -18,12 +18,12 @@ public class ValidarPersona implements IValidarPersona {
     ControlCIA control = new ControlCIA();
 
     @Override
-    public Boolean ValidarPersona(UsuarioDTO usuario) throws ExcepcionAT {
+    public Boolean ValidarPersona(UsuarioDTO usuario) throws PersistenciaException {
         
         try {
             return control.ValidarPersona(usuario.getIdCia(), usuario.getContra());
-        } catch (ExcepcionAT e) {
-            throw new  ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new  PersistenciaException(e.getMessage());
         }
     }
 

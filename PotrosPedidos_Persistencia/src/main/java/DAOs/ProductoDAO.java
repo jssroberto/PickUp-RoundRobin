@@ -6,7 +6,7 @@ package DAOs;
 
 import cafeteria.ProductoCafeteria;
 import dominio.Producto;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,7 +25,7 @@ public class ProductoDAO {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
     
-    public void actualizarProducto (Producto producto) throws ExcepcionAT{
+    public void actualizarProducto (Producto producto) throws PersistenciaException{
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -37,11 +37,11 @@ public class ProductoDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al actualizar producto");
+            throw new PersistenciaException("Error al actualizar producto");
         }
     }
     
-    public Producto buscarProductoPorNombre (String nombreProducto) throws ExcepcionAT {
+    public Producto buscarProductoPorNombre (String nombreProducto) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -58,9 +58,9 @@ public class ProductoDAO {
             if(!producto.isEmpty()){
                 return producto.get(0);
             }else{
-                throw new ExcepcionAT("Producto no encontrado por su nombre");
+                throw new PersistenciaException("Producto no encontrado por su nombre");
             }
-        } catch (Exception e) {
+        } catch (PersistenciaException e) {
             System.out.println(e.getCause());
             System.out.println(e.getLocalizedMessage());
             return null;

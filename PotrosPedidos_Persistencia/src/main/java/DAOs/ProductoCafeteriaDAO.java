@@ -5,7 +5,7 @@
 package DAOs;
 
 import cafeteria.ProductoCafeteria;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,7 +25,7 @@ public class ProductoCafeteriaDAO {
         emf = Persistence.createEntityManagerFactory("cafeteriaPU");
     }
 
-    public void actualizarProducto(ProductoCafeteria productoCafeteria) throws ExcepcionAT {
+    public void actualizarProducto(ProductoCafeteria productoCafeteria) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -37,11 +37,11 @@ public class ProductoCafeteriaDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al actualizar producto de cafeteria");
+            throw new PersistenciaException("Error al actualizar producto de cafeteria");
         }
     }
 
-    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws ExcepcionAT {
+    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -58,7 +58,7 @@ public class ProductoCafeteriaDAO {
             if (!usuario.isEmpty()) {
                 return usuario.get(0);
             } else {
-                throw new ExcepcionAT("Producto no encontrado por su nombre");
+                throw new PersistenciaException("Producto no encontrado por su nombre");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
@@ -67,7 +67,7 @@ public class ProductoCafeteriaDAO {
         }
     }
 
-    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws ExcepcionAT {
+    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -84,7 +84,7 @@ public class ProductoCafeteriaDAO {
             if (!usuario.isEmpty()) {
                 return usuario.get(0);
             } else {
-                throw new ExcepcionAT("Producto no encontrado por su id");
+                throw new PersistenciaException("Producto no encontrado por su id");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
@@ -93,7 +93,7 @@ public class ProductoCafeteriaDAO {
         }
     }
 
-    public List<ProductoCafeteria> obtenerTodosLosProductos() throws ExcepcionAT {
+    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -112,7 +112,7 @@ public class ProductoCafeteriaDAO {
                 em.getTransaction().rollback();
             }
             em.close();
-            throw new ExcepcionAT("Error al obtener todos los productos de cafetería");
+            throw new PersistenciaException("Error al obtener todos los productos de cafetería");
         }
     }
 }

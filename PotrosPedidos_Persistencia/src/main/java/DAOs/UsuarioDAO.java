@@ -6,7 +6,7 @@ package DAOs;
 
 import IDAOs.IUsuarioDAO;
 import dominio.Usuario;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +27,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
 
-    public void registrarUsuario(Usuario usuario) throws ExcepcionAT {
+    public void registrarUsuario(Usuario usuario) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -39,11 +39,11 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al registrar usuario");
+            throw new PersistenciaException("Error al registrar usuario");
         }
     }
 
-    public void actualizarUsuario(Usuario usuario) throws ExcepcionAT {
+    public void actualizarUsuario(Usuario usuario) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -55,11 +55,11 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al actualizar persona");
+            throw new PersistenciaException("Error al actualizar persona");
         }
     }
 
-    public Usuario buscarUsuarioPorIdCIA(String idUsuarioCia) throws ExcepcionAT {
+    public Usuario buscarUsuarioPorIdCIA(String idUsuarioCia) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -76,7 +76,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             if (!usuario.isEmpty()) {
                 return usuario.get(0);
             } else {
-                throw new ExcepcionAT("Usuario no encontrado por su ID");
+                throw new PersistenciaException("Usuario no encontrado por su ID");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
@@ -85,7 +85,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
-    public List<Usuario> obtenerListaUsuarios() throws ExcepcionAT {
+    public List<Usuario> obtenerListaUsuarios() throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -101,7 +101,7 @@ public class UsuarioDAO implements IUsuarioDAO {
             return usuarios;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ExcepcionAT("Error al obtener la lista de usuarios: " + e.getMessage());
+            throw new PersistenciaException("Error al obtener la lista de usuarios: " + e.getMessage());
         }
     }
     

@@ -2,7 +2,7 @@ package org.itson.disenosw.guis;
 
 import BOs.AgregarCarritoBO;
 import BOs.ConsultarProductoBO;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -154,7 +154,7 @@ public class PanelProducto extends javax.swing.JPanel {
 
                 agregarCarritoBO.agregarCarrito(consultarProductoBO.consultarProductoID(framePrincipal.getIdProducto()), framePrincipal.getNumID(), Integer.decode(txtCantidad.getText()), framePrincipal.getIdProducto());
 
-            } catch (ExcepcionAT ex) {
+            } catch (PersistenciaException ex) {
                 Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
             }
             framePrincipal.setIdProducto(null);
@@ -184,7 +184,7 @@ public class PanelProducto extends javax.swing.JPanel {
     private void setDatos() {
         try {
             consultarProducto();
-        } catch (ExcepcionAT ex) {
+        } catch (PersistenciaException ex) {
             logger.log(Level.SEVERE, "Producto no encontrado");
         }
         lblNombre.setText(productoDTO.getNombre().toUpperCase());
@@ -206,7 +206,7 @@ public class PanelProducto extends javax.swing.JPanel {
 
     }
 
-    private void consultarProducto() throws ExcepcionAT {
+    private void consultarProducto() throws PersistenciaException {
         Long idProducto = framePrincipal.getIdProducto();
         productoDTO = consultarProductoBO.consultarProductoID(idProducto);
     }

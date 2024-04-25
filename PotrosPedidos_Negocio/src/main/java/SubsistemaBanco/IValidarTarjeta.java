@@ -5,7 +5,7 @@
 package SubsistemaBanco;
 
 import SubsistemaCIA.*;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
@@ -14,5 +14,5 @@ import org.itson.disenosw.dtos.TarjetaDTO;
  */
 public interface IValidarTarjeta {
 
-    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws ExcepcionAT;
+    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException;
 }

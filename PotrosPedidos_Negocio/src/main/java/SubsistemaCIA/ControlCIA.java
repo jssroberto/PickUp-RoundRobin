@@ -5,7 +5,7 @@
 package SubsistemaCIA;
 
 import BOs.VerificarPersonaBO;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 
 /**
  *
@@ -16,13 +16,13 @@ public class ControlCIA {
     public ControlCIA() {
     }
 
-    public Boolean ValidarPersona(String ID, String contra) throws ExcepcionAT {
+    public Boolean ValidarPersona(String ID, String contra) throws PersistenciaException {
 
         VerificarPersonaBO vp = new VerificarPersonaBO();
         try {
             return vp.buscarPersona(ID, contra);
-        } catch (ExcepcionAT e) {
-            throw new ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
         }
 
     }

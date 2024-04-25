@@ -1,15 +1,13 @@
 package org.itson.disenosw.guis;
 
 import BOs.validarTarjetaBO;
-import mocks.Banco;
-import mocks.Usuario;
 import SubsistemaBanco.validarTarjeta;
 import java.util.List;
 import javax.swing.JOptionPane;
-import mocks.Banco;
+//import mocks.Banco;
 import org.itson.disenosw.dtos.TarjetaDTO;
 import SubsistemaBanco.IValidarTarjeta;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +19,7 @@ import java.util.logging.Logger;
 public class PanelDatosTarjeta extends javax.swing.JPanel {
 
     private FramePrincipal ventana;
-    private Banco b = new Banco();
+//    private Banco b = new Banco();
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -31,7 +29,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
     public PanelDatosTarjeta(FramePrincipal ventana) {
         this.ventana = ventana;
         initComponents();
-        b.generarLista();
+//        b.generarLista();
     }
 
     /**
@@ -84,23 +82,23 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        List<Banco> banco = b.getListaBanco();
-        String nombre = txtNombre.getText();
-        String numero = txtNumero.getText();
-        String fecha = txtfecha.getText();
-        String cvv = txtcvv.getText();
-        TarjetaDTO t = new TarjetaDTO(numero, nombre, fecha, Integer.parseInt(cvv));
-        validarTarjetaBO vb = new validarTarjetaBO();
-        try {
-            if (vb.ValidarBanco(t)) {
-//            ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
-                ventana.cambiarPanelPagoExito();
-            } else {
-                JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
-            }
-        } catch (ExcepcionAT ex) {
-            Logger.getLogger(PanelDatosTarjeta.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        List<Banco> banco = b.getListaBanco();
+//        String nombre = txtNombre.getText();
+//        String numero = txtNumero.getText();
+//        String fecha = txtfecha.getText();
+//        String cvv = txtcvv.getText();
+//        TarjetaDTO t = new TarjetaDTO(numero, nombre, fecha, Integer.parseInt(cvv));
+//        validarTarjetaBO vb = new validarTarjetaBO();
+//        try {
+//            if (vb.ValidarBanco(t)) {
+////            ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
+//                ventana.cambiarPanelPagoExito();
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
+//            }
+//        } catch (PersistenciaException ex) {
+//            Logger.getLogger(PanelDatosTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

@@ -8,7 +8,7 @@ import cafeteria.ProductoCafeteria;
 import dominio.Carrito;
 import dominio.Producto;
 import dominio.Usuario;
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +29,7 @@ public class CarritoDAO {
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
 
-    public void agregarCarrito(Carrito carrito) throws ExcepcionAT {
+    public void agregarCarrito(Carrito carrito) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -41,11 +41,11 @@ public class CarritoDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al agregar carrito");
+            throw new PersistenciaException("Error al agregar carrito");
         }
     }
 
-    public void actualizarCarrito(Carrito producto) throws ExcepcionAT {
+    public void actualizarCarrito(Carrito producto) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -57,11 +57,11 @@ public class CarritoDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new ExcepcionAT("Error al actualizar carrito");
+            throw new PersistenciaException("Error al actualizar carrito");
         }
     }
 
-    public Carrito buscarCarritoPorUsuario(Usuario usuario) throws ExcepcionAT {
+    public Carrito buscarCarritoPorUsuario(Usuario usuario) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -78,7 +78,7 @@ public class CarritoDAO {
             if (!carrito.isEmpty()) {
                 return carrito.get(0);
             } else {
-                throw new ExcepcionAT("Carrito no encontrado por su usuario");
+                throw new PersistenciaException("Carrito no encontrado por su usuario");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
@@ -88,7 +88,7 @@ public class CarritoDAO {
         }
     }
 
-    public Carrito buscarCarritoPorUsuarioId(Long idUsuario) throws ExcepcionAT {
+    public Carrito buscarCarritoPorUsuarioId(Long idUsuario) throws PersistenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -105,7 +105,7 @@ public class CarritoDAO {
             if (!carritos.isEmpty()) {
                 return carritos.get(0);
             } else {
-                throw new ExcepcionAT("Carrito no encontrado para el usuario con ID: " + idUsuario);
+                throw new PersistenciaException("Carrito no encontrado para el usuario con ID: " + idUsuario);
             }
         } catch (Exception e) {
             System.out.println(e.getCause());

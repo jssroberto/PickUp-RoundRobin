@@ -4,7 +4,7 @@
  */
 package SubsistemaBanco;
 
-import excepciones.ExcepcionAT;
+import excepciones.PersistenciaException;
 import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
@@ -16,11 +16,11 @@ public class validarTarjeta implements IValidarTarjeta {
     ControlTarjeta control = new ControlTarjeta();
 
     @Override
-    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws ExcepcionAT {
+    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException {
         try {
             return control.ValidarTarjeta(tarjeta);
-        } catch (ExcepcionAT e) {
-            throw new ExcepcionAT(e.getMessage());
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException(e.getMessage());
         }
     }
 }
