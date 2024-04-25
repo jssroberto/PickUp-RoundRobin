@@ -56,8 +56,8 @@ public class PanelProducto extends javax.swing.JPanel {
         txtCantidad = new javax.swing.JTextField();
         lblImagen = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -73,7 +73,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 btnAgregarActionPerformed(evt);
             }
         });
-        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 521, 171, 64));
+        add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 653, 171, 64));
 
         btnMenos.setBorder(null);
         btnMenos.setContentAreaFilled(false);
@@ -83,7 +83,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 btnMenosActionPerformed(evt);
             }
         });
-        add(btnMenos, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 473, 22, 22));
+        add(btnMenos, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 596, 40, 40));
 
         btnMas.setBorder(null);
         btnMas.setContentAreaFilled(false);
@@ -93,7 +93,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 btnMasActionPerformed(evt);
             }
         });
-        add(btnMas, new org.netbeans.lib.awtextra.AbsoluteConstraints(281, 473, 22, 22));
+        add(btnMas, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 596, 40, 40));
 
         btnRegresar.setBorder(null);
         btnRegresar.setContentAreaFilled(false);
@@ -103,7 +103,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 btnRegresarActionPerformed(evt);
             }
         });
-        add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 533, 40, 40));
+        add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 665, 40, 40));
 
         txtCantidad.setBackground(new java.awt.Color(250, 250, 250));
         txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
@@ -112,19 +112,20 @@ public class PanelProducto extends javax.swing.JPanel {
         txtCantidad.setBorder(null);
         txtCantidad.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtCantidad.setEnabled(false);
-        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 468, 40, 31));
+        add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 600, 40, 31));
 
         lblImagen.setText("jLabel1");
-        add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 121, 370, 150));
+        add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 95, 400, 200));
 
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
-        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 296, 370, 30));
-
-        lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
-        add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 340, 370, 66));
+        add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 380, 30));
 
         lblPrecio.setForeground(new java.awt.Color(0, 0, 0));
-        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 425, 90, 31));
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 345, 90, 31));
+
+        lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 379, 380, 66));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelProducto.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -188,13 +189,17 @@ public class PanelProducto extends javax.swing.JPanel {
             logger.log(Level.SEVERE, "Producto no encontrado");
         }
         lblNombre.setText(productoDTO.getNombre().toUpperCase());
+        String precioFormateado = String.valueOf(productoDTO.getPrecio());
+        if (precioFormateado.endsWith(".0")) {
+            precioFormateado = precioFormateado.substring(0, precioFormateado.length() - 2);
+        }
+        lblPrecio.setText("$" + precioFormateado);
         try {
             lblDescripcion.setText(productoDTO.getDescripcion());
         } catch (NullPointerException e) {
             logger.log(Level.INFO, "El producto no tiene descrpición");
         }
-        lblPrecio.setText(String.valueOf(productoDTO.getPrecio()));
-        String rutaFolder = "/productos/370x150/";
+        String rutaFolder = "/productos/400x200/";
         StringBuilder rutaRelativa = new StringBuilder();
         rutaRelativa.append(rutaFolder);
         rutaRelativa.append(productoDTO.getDireccionImagen());

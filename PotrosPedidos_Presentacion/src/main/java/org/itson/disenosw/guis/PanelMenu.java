@@ -153,8 +153,8 @@ public class PanelMenu extends javax.swing.JPanel {
     public void crearMenu() throws PersistenciaException {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
-        mainPanel.setMaximumSize(new Dimension(380,600));
-        mainPanel.setSize(new Dimension(380,600));
+        mainPanel.setMaximumSize(new Dimension(380, 600));
+        mainPanel.setSize(new Dimension(380, 600));
 
         ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
         List<ProductoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
@@ -200,9 +200,8 @@ public class PanelMenu extends javax.swing.JPanel {
                 c.gridy = i * 2 + 1;
                 mainPanel.add(separatorPanel, c);
             }
-            
-            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
+            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         }
 
@@ -212,11 +211,11 @@ public class PanelMenu extends javax.swing.JPanel {
 //        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 //        scrollPane.add(mainPanel);
 
-        scrollPane.setPreferredSize(new Dimension(380,600)); // Establece un tamaño predeterminado
-        scrollPane.setMaximumSize(new Dimension(380,600)); // Establece un tamaño máximo
-        scrollPane.getViewport().setPreferredSize(new Dimension(380,600)); // Establece un tamaño predeterminado para el viewport
-        scrollPane.getViewport().setMaximumSize(new Dimension(380,600)); // Establece un tamaño mínimo para el viewport
-        scrollPane.getViewport().setSize(380,600);
+        scrollPane.setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado
+        scrollPane.setMaximumSize(new Dimension(380, 600)); // Establece un tamaño máximo
+        scrollPane.getViewport().setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado para el viewport
+        scrollPane.getViewport().setMaximumSize(new Dimension(380, 600)); // Establece un tamaño mínimo para el viewport
+        scrollPane.getViewport().setSize(380, 600);
 
         scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
         scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
@@ -272,7 +271,6 @@ public class PanelMenu extends javax.swing.JPanel {
         rutaRelativa.append(rutaFolder);
         rutaRelativa.append(rutaImagen);
 
-        
         // Cargar la imagen del producto
         ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
         JLabel imagenLabel = new JLabel(icon);
@@ -285,11 +283,14 @@ public class PanelMenu extends javax.swing.JPanel {
         nombreLabel.setFont(sizedFontMedium);
         nombreLabel.setForeground(Color.BLACK);
         nombreLabel.setPreferredSize(new Dimension(250, 31));
-        nombreLabel.setVerticalAlignment(SwingConstants.CENTER);
+        nombreLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 
-        String precioString = String.valueOf(precio);
+        String precioFormateado = String.valueOf(precio);
+        if (precioFormateado.endsWith(".0")) {
+            precioFormateado = precioFormateado.substring(0, precioFormateado.length() - 2);
+        }
         // Configurar la etiqueta del precio
-        JLabel precioLabel = new JLabel(precioString);
+        JLabel precioLabel = new JLabel("$" + precioFormateado);
         precioLabel.setFont((sizedFontBook));
         precioLabel.setForeground(Color.BLACK);
         precioLabel.setPreferredSize(new Dimension(110, 31));
@@ -306,13 +307,14 @@ public class PanelMenu extends javax.swing.JPanel {
         c.gridx = 0;
         c.gridy = 0;
         c.gridheight = 1;
+//        c.anchor = GridBagConstraints.CENTER; // Añadir esta línea para centrar horizontalmente
         panel.add(nombreLabel, c);
 
         // Añadir la etiqueta del precio en la segunda fila y primera columna
         c.gridx = 0;
         c.gridy = 1;
         panel.add(precioLabel, c);
-        
+
         return panel; // Devuelve el panel del producto creado
     }
 
@@ -380,8 +382,8 @@ public class PanelMenu extends javax.swing.JPanel {
             }
         }
     }
-    
-    public void setFuentes(){
+
+    public void setFuentes() {
         Font sizedFontHeavy12 = cargarFuente("/fonts/futura/FuturaPTHeavy.otf", 12F);
         lblCantidadCarrito.setFont(sizedFontHeavy12);
     }
