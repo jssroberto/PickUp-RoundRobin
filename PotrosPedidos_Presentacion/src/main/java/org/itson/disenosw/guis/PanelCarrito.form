@@ -70,11 +70,11 @@
     <Component class="javax.swing.JLabel" name="lblTotal">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
+        <Property name="text" type="java.lang.String" value="Total:"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="240" y="644" width="150" height="31"/>
+          <AbsoluteConstraints x="240" y="642" width="150" height="36"/>
         </Constraint>
       </Constraints>
     </Component>

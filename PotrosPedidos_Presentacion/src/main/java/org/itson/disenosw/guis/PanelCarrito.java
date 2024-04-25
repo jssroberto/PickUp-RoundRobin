@@ -101,8 +101,8 @@ public class PanelCarrito extends javax.swing.JPanel {
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 702, 40, 40));
 
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotal.setText("jLabel2");
-        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 644, 150, 31));
+        lblTotal.setText("Total:");
+        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 642, 150, 36));
 
         lblCarritoVacío.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCarritoVacío.setEnabled(false);
@@ -132,6 +132,11 @@ public class PanelCarrito extends javax.swing.JPanel {
 //        DetalleCarritoDAO d = new DetalleCarritoDAO();
 //    }
     public void crearMenu() throws PersistenciaException {
+        Font sizedFontBook = cargarFuente("/fonts/futura/FuturaPTBook.otf", 28F);
+        lblTotal.setFont(sizedFontBook);
+        lblTotal.setForeground(Color.BLACK);
+        
+        
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
         mainPanel.setMaximumSize(new Dimension(380, 477));// Elimina esta línea
@@ -150,7 +155,7 @@ public class PanelCarrito extends javax.swing.JPanel {
             JPanel panelVacio = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 90));
             panelVacio.add(lblCarritoVacío);
             panelVacio.setOpaque(false);
-            
+
             panelTop.add(panelVacio);
             return;
         }
@@ -163,7 +168,11 @@ public class PanelCarrito extends javax.swing.JPanel {
         // Iterar sobre la lista de productos y crear los paneles correspondientes
         for (int i = 0; i < detallesCarritos.size(); i++) {
 //            String[] producto = detallesCarrito.get(i);
-            JPanel productoPanel = createProductoPanel(detallesCarritos.get(i).getProducto().getNombre(), detallesCarritos.get(i).getProducto().getPrecio(), detallesCarritos.get(i).getProducto().getDireccionImagen());
+            JPanel productoPanel = createProductoPanel(
+                    detallesCarritos.get(i).getProducto().getNombre(),
+                    detallesCarritos.get(i).getProducto().getPrecio(),
+                    detallesCarritos.get(i).getCantidad(),
+                    detallesCarritos.get(i).getProducto().getDireccionImagen());
 
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
@@ -203,6 +212,7 @@ public class PanelCarrito extends javax.swing.JPanel {
         cont.setOpaque(false);
 
         panelTop.add(cont);
+        
 
     }
 
@@ -215,7 +225,7 @@ public class PanelCarrito extends javax.swing.JPanel {
      * @param rutaImagen La ruta de la imagen del producto.
      * @return El panel del producto creado.
      */
-    private JPanel createProductoPanel(String nombre, Float precio, String rutaImagen) {
+    private JPanel createProductoPanel(String nombre, Float precio, Integer cantidad, String rutaImagen) {
         // Crear un nuevo panel para el producto con GridBagLayout
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setOpaque(false); // Hacer que el fondo del panel sea transparente
@@ -242,18 +252,28 @@ public class PanelCarrito extends javax.swing.JPanel {
         nombreLabel.setPreferredSize(new Dimension(240, 31));
         nombreLabel.setVerticalAlignment(SwingConstants.CENTER);
 
-        String precioString = String.valueOf(precio);
+
+        String precioFormateado = String.valueOf(precio);
+        if (precioFormateado.endsWith(".0")) {
+            precioFormateado = precioFormateado.substring(0, precioFormateado.length() - 2);
+        }
         // Configurar la etiqueta del precio
-        JLabel precioLabel = new JLabel(precioString);
-        precioLabel.setFont((sizedFontBook));
+        JLabel precioLabel = new JLabel("$" + precioFormateado);
+        precioLabel.setFont(sizedFontBook);
         precioLabel.setForeground(Color.BLACK);
         precioLabel.setPreferredSize(new Dimension(110, 31));
         precioLabel.setVerticalAlignment(SwingConstants.TOP);
+        
+        JLabel cantidadLabel = new JLabel("Cantidad: " + String.valueOf(cantidad));
+        cantidadLabel.setFont(sizedFontBook);
+        cantidadLabel.setForeground(Color.BLACK);
+        cantidadLabel.setPreferredSize(new Dimension(240, 31));
+        cantidadLabel.setVerticalAlignment(SwingConstants.TOP);
 
         // Añadir la imagen a la parte derecha del panel
         c.gridx = 1;
         c.gridy = 0;
-        c.gridheight = 2;
+        c.gridheight = 3;
         c.fill = GridBagConstraints.BOTH;
         panel.add(imagenLabel, c);
 
@@ -267,6 +287,11 @@ public class PanelCarrito extends javax.swing.JPanel {
         c.gridx = 0;
         c.gridy = 1;
         panel.add(precioLabel, c);
+        
+        // Añadir la etiqueta de cantidad en la tercerr fila
+        c.gridx = 0;
+        c.gridy = 2;
+        panel.add(cantidadLabel, c);
 
         return panel; // Devuelve el panel del producto creado
     }
