@@ -5,6 +5,8 @@
 package SubsistemaBanco;
 
 import excepciones.PersistenciaException;
+import java.util.List;
+import mocks.Banco;
 import org.itson.disenosw.dtos.TarjetaDTO;
 
 /**
@@ -13,14 +15,29 @@ import org.itson.disenosw.dtos.TarjetaDTO;
  */
 public class validarTarjeta implements IValidarTarjeta {
 
-    ControlTarjeta control = new ControlTarjeta();
-
-    @Override
-    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException {
-        try {
-            return control.ValidarTarjeta(tarjeta);
-        } catch (PersistenciaException e) {
-            throw new PersistenciaException(e.getMessage());
+//    ControlTarjeta control = new ControlTarjeta();
+//
+//    @Override
+//    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException {
+//        try {
+//            return control.ValidarTarjeta(tarjeta);
+//        } catch (PersistenciaException e) {
+//            throw new PersistenciaException(e.getMessage());
+//        }
+//    }
+    
+    public boolean validarDatos(TarjetaDTO tarjeta){
+        Banco subsistemaBanco = new Banco();
+        
+        List<Banco> listaTarjetas = subsistemaBanco.getListaBanco();
+        
+        for(Banco b: listaTarjetas){
+        if((b.getNombre().equalsIgnoreCase(tarjeta.getNombre())) && (b.getNumero().equalsIgnoreCase(tarjeta.getNumeroTarjeta())) && (b.getCvv().equalsIgnoreCase(String.valueOf(tarjeta.getCvv())))){
+            return true;
         }
+        }
+        
+        return false;
+        
     }
 }

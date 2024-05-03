@@ -14,13 +14,23 @@ import org.itson.disenosw.dtos.TarjetaDTO;
  */
 public class ControlTarjeta {
      validarTarjetaBO vb = new validarTarjetaBO();
-
-    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException {
-
-        try {
-            return vb.ValidarBanco(tarjeta);
-        } catch (PersistenciaException e) {
-            throw new PersistenciaException(e.getMessage());
+//
+//    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException {
+//
+//        try {
+//            return vb.ValidarBanco(tarjeta);
+//        } catch (PersistenciaException e) {
+//            throw new PersistenciaException(e.getMessage());
+//        }
+//    }
+    
+    public boolean validar(TarjetaDTO tarjeta) throws PersistenciaException{
+        
+        if (vb.ValidarBanco(tarjeta)) {
+            return true;
+        }else{
+            return false;
         }
+        
     }
 }

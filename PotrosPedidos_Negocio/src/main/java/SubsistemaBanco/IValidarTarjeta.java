@@ -14,5 +14,5 @@ import org.itson.disenosw.dtos.TarjetaDTO;
  */
 public interface IValidarTarjeta {
 
-    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException;
+//    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException;
 }
