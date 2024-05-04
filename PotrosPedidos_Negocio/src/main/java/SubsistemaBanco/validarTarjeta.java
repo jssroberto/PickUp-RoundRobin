@@ -28,7 +28,7 @@ public class validarTarjeta implements IValidarTarjeta {
     
     public boolean validarDatos(TarjetaDTO tarjeta){
         Banco subsistemaBanco = new Banco();
-        
+        subsistemaBanco.generarLista();
         List<Banco> listaTarjetas = subsistemaBanco.getListaBanco();
         
         for(Banco b: listaTarjetas){

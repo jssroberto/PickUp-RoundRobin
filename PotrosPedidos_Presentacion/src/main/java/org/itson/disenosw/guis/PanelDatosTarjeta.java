@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import org.itson.disenosw.dtos.TarjetaDTO;
 import SubsistemaBanco.IValidarTarjeta;
 import excepciones.PersistenciaException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import mocks.Banco;
@@ -31,6 +32,10 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
         this.ventana = ventana;
         initComponents();
 //        b.generarLista();
+    }
+    public  int generarAleatorio() {
+        Random random = new Random();
+        return random.nextInt(2); // Genera un número aleatorio entre 0 y 1
     }
 
     /**
@@ -66,7 +71,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
                 btnPagarActionPerformed(evt);
             }
         });
-        add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 120, 50));
+        add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 120, 50));
 
         btnRegresar.setBorder(null);
         btnRegresar.setContentAreaFilled(false);
@@ -92,8 +97,14 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
         validarTarjetaBO vb = new validarTarjetaBO();
         try {
             if (vb.ValidarBanco(t)) {
-            ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
-                ventana.cambiarPanelPagoExito();
+                ventana.mostrarConfirmacion("Esperando solicitud", "....");
+                if (generarAleatorio() == 1) {
+                    ventana.mostrarConfirmacion("Pago Exitoso", "Exitoso");
+                    ventana.cambiarPanelPagoExito();
+                }else{
+                    ventana.mostrarConfirmacion("Pago Rechazado", "Rechazado");
+                    ventana.cambiarVistaMetodoPago();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
             }

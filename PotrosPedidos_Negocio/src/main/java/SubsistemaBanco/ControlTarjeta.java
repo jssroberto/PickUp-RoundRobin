@@ -13,7 +13,7 @@ import org.itson.disenosw.dtos.TarjetaDTO;
  * @author yohan
  */
 public class ControlTarjeta {
-     validarTarjetaBO vb = new validarTarjetaBO();
+     validarTarjeta vb = new validarTarjeta();
 //
 //    public Boolean ValidarTarjeta(TarjetaDTO tarjeta) throws PersistenciaException {
 //
@@ -26,7 +26,7 @@ public class ControlTarjeta {
     
     public boolean validar(TarjetaDTO tarjeta) throws PersistenciaException{
         
-        if (vb.ValidarBanco(tarjeta)) {
+        if (vb.validarDatos(tarjeta)) {
             return true;
         }else{
             return false;

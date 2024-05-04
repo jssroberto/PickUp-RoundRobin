@@ -5,6 +5,7 @@
 package BOs;
 
 import DAOs.TarjetaDAO;
+import SubsistemaBanco.ControlTarjeta;
 import excepciones.PersistenciaException;
 import java.util.List;
 import mocks.Banco;
@@ -16,14 +17,14 @@ import org.itson.disenosw.dtos.TarjetaDTO;
  */
 public class validarTarjetaBO {
 
-    private TarjetaDAO tarjeta = new TarjetaDAO();
+    private ControlTarjeta tarjeta = new ControlTarjeta();
 
     public validarTarjetaBO() {
     }
 
     public Boolean ValidarBanco(TarjetaDTO t) throws PersistenciaException {
         try {
-            return tarjeta.BuscarTarjeta(t.getNumeroTarjeta());
+            return tarjeta.validar(t);
 
         } catch (PersistenciaException e) {
             throw new PersistenciaException(e.getMessage());
