@@ -10,7 +10,6 @@ import javax.swing.JPanel;
  * emergentes. También mantiene instancias de DTOs y una conexión a la base de
  * datos.
  *
- * @author José Karim Franco Valencia - 245138
  * @author Jesús Roberto García Armenta - 244913
  */
 public class FramePrincipal extends javax.swing.JFrame {
@@ -157,6 +156,20 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelMenu2 panelPagoExito = new PanelMenu2(this);
         ponerEnJFrame(panelPagoExito);
         panelActual = panelPagoExito;
+        
+    }
+    public void cambiarPanelHistorial(){
+        limpiarFrame();
+        PanelHistorial panelHistorial = new PanelHistorial(this);
+        ponerEnJFrame(panelHistorial);
+        panelActual = panelHistorial;
+        
+    }
+    public void cambiarPanelHistorialPedido(){
+        limpiarFrame();
+        PanelHistorialPedido panelHistorialPedido = new PanelHistorialPedido(this);
+        ponerEnJFrame(panelHistorialPedido);
+        panelActual = panelHistorialPedido;
         
     }
 
