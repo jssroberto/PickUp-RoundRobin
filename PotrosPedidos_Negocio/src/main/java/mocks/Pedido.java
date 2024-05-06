@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package mocks;
 
+import dominio.DetallePedido;
 import dominio.Producto;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,81 +11,143 @@ import java.util.List;
  * @author jl4ma
  */
 public class Pedido {
-    
-    Usuario usuario;
-    List<Producto> productos;
-    List<Pedido> pedidos;
-    float precio;
 
-    public Pedido(Usuario usuario, List<Producto> productos, float precio) {
-        this.usuario = usuario;
+    private Integer idPedido;
+    private Float total;
+    private String numeroPedido;
+    private String claveRecoleccion;
+    private String estado;
+    private LocalDate fecha;
+    private Integer numeroProductos;
+    private List<DetalleProducto> productos;
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    public Pedido(Integer idPedido, Float total, String numeroPedido, String claveRecoleccion, String estado, LocalDate fecha, Integer numeroProductos, List<DetalleProducto> productos) {
+        this.idPedido = idPedido;
+        this.total = total;
+        this.numeroPedido = numeroPedido;
+        this.claveRecoleccion = claveRecoleccion;
+        this.estado = estado;
+        this.fecha = fecha;
+        this.numeroProductos = numeroProductos;
         this.productos = productos;
-        this.precio = precio;
-        productos = new ArrayList<>();
-        pedidos = new ArrayList<>();
     }
 
     public Pedido() {
-        productos = new ArrayList<>();
-        pedidos = new ArrayList<>();
+        
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Float getTotal() {
+        return total;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTotal(Float total) {
+        this.total = total;
     }
 
-    public List<Producto> getProductos() {
+    public String getNumeroPedido() {
+        return numeroPedido;
+    }
+
+    public void setNumeroPedido(String numeroPedido) {
+        this.numeroPedido = numeroPedido;
+    }
+
+    public String getClaveRecoleccion() {
+        return claveRecoleccion;
+    }
+
+    public void setClaveRecoleccion(String claveRecoleccion) {
+        this.claveRecoleccion = claveRecoleccion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public Integer getNumeroProductos() {
+        return numeroProductos;
+    }
+
+    public void setNumeroProductos(Integer numeroProductos) {
+        this.numeroProductos = numeroProductos;
+    }
+
+    public List<DetalleProducto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(List<DetalleProducto> productos) {
         this.productos = productos;
     }
 
-    public float getPrecio() {
-        return precio;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    public void setPrecio(float precio) {
-        this.precio = precio;
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
-    
-    public void generarLista(){
-        List<Producto> pro1 = new ArrayList<>();
-        pro1.add(new Producto(20.0f, "papas", 1l));
-        pro1.add(new Producto(111.0f, "torta", 1l));
-        pro1.add(new Producto(222.0f, "pizza", 1l));
-        pedidos.add(new Pedido(new Usuario("00000244903", "madero"), pro1, 290.0F));
-        List<Producto> pro2 = new ArrayList<>();
-        pro2.add(new Producto(211.0f, "emparedado", 2l));
-        pro2.add(new Producto(331.0f, "quesadilla", 2l));
-        pro2.add(new Producto(121.0f, "doritos", 2l));
-        pedidos.add(new Pedido(new Usuario("00000244904", "madero"), pro2, 100.0F));
-        List<Producto> pro3 = new ArrayList<>();
-        pro3.add(new Producto(3234.0f, "papas", 3l));
-        pro3.add(new Producto(24.0f, "doritos", 3l));
-        pro3.add(new Producto(13.0f, "coca", 3l));
-        pedidos.add(new Pedido(new Usuario("00000244905", "madero"), pro3, 233.0F));
-        List<Producto> pro4 = new ArrayList<>();
-        pro4.add(new Producto(2.0f, "pepsi", 4l));
-        pro4.add(new Producto(233.0f, "lasagna", 4l));
-        pro4.add(new Producto(22.0f, "papas", 4l));
-        pedidos.add(new Pedido(new Usuario("00000244906", "madero"), pro4, 1222.0F));
-        List<Producto> pro5 = new ArrayList<>();
-        pro5.add(new Producto(44.0f, "papas", 5l));
-        pro5.add(new Producto(2130.0f, "rufles", 5l));
-        pro5.add(new Producto(133.0f, "coca", 5l));
-        pedidos.add(new Pedido(new Usuario("00000244907", "madero"), pro5, 430.0F));
-        List<Producto> pro6 = new ArrayList<>();
-        pro6.add(new Producto(323.0f, "torta", 6l));
-        pro6.add(new Producto(22.0f, "quesadilla", 6l));
-        pro6.add(new Producto(33.0f, "papas", 6l));
-        pedidos.add(new Pedido(new Usuario("00000244908", "madero"), pro6, 111.0F));
+
+    public Integer getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(Integer idPedido) {
+        this.idPedido = idPedido;
     }
     
     
+
+    public void generarLista() {
+        List<DetalleProducto> pro1 = new ArrayList<>();
+        pro1.add(new DetalleProducto(1, 100.0f, "Hamburguesa clásica", "", "hamburguesa-clasica.png", 1l));
+        pro1.add(new DetalleProducto(2, 120.0f, "Sushi", "", "sushi.png", 1l));
+        pro1.add(new DetalleProducto(3, 25.0f, "Jamaica", "", "jamaica.png", 1l));
+        pedidos.add(new Pedido(1, 415.0F, "0124", "154", "Por recoger", LocalDate.now(), 3, pro1));
+
+        List<DetalleProducto> pro2 = new ArrayList<>();
+        pro2.add(new DetalleProducto(2, 75.0f, "Sandwich", "", "sandwich.png", 2l));
+        pro2.add(new DetalleProducto(1, 75.0f, "Torta de milanesa", "", "torta-milanesa.png", 2l));
+        pro2.add(new DetalleProducto(1, 20.0f, "Coca-cola", "", "coca-cola-regular.png", 2l));
+        pedidos.add(new Pedido(2, 245.0F, "0067", "504", "Completado", LocalDate.now(), 3, pro2));
+
+        List<DetalleProducto> pro3 = new ArrayList<>();
+        pro3.add(new DetalleProducto(1, 80.0f, "Torta cubana", "", "torta-cubana.png", 3l));
+        pro3.add(new DetalleProducto(2, 100.0f, "Hamburguesa clásica", "", "hamburguesa-clasica.png", 3l));
+        pro3.add(new DetalleProducto(1, 25.0f, "Jamaica", "", "jamaica.png", 3l));
+        pedidos.add(new Pedido(3, 405.0F, "0124", "879", "Completado", LocalDate.now(), 3, pro3));
+
+        List<DetalleProducto> pro4 = new ArrayList<>();
+        pro4.add(new DetalleProducto(1, 120.0f, "Hamburguesa de pollo", "", "hamburguesa-pollo.png", 4l));
+        pro4.add(new DetalleProducto(1, 80.0f, "Sandwich", "", "sandwich.png", 4l));
+        pro4.add(new DetalleProducto(1, 20.0f, "Coca-cola light", "", "coca-cola-light.png", 4l));
+        pedidos.add(new Pedido(4, 220.0F, "0198", "065", "Pagado", LocalDate.now(), 3, pro4));
+
+        List<DetalleProducto> pro5 = new ArrayList<>();
+        pro5.add(new DetalleProducto(1, 80.0f, "Torta cubana", "", "torta-cubana.png", 5l));
+        pro5.add(new DetalleProducto(1, 75.0f, "Torta de milanesa", "", "torta-milanesa.png", 5l));
+        pro5.add(new DetalleProducto(1, 20.0f, "Coca-cola zero", "", "coca-cola-zero.png", 5l));
+        pedidos.add(new Pedido(5, 175.0F, "0004", "598", "Por recoger", LocalDate.now(), 3, pro5));
+
+        List<DetalleProducto> pro6 = new ArrayList<>();
+        pro6.add(new DetalleProducto(2, 120.0f, "Sushi", "", "sushi.png", 6l));
+        pro6.add(new DetalleProducto(2, 75.0f, "Torta de milanesa", "", "torta-milanesa.png", 6l));
+        pro6.add(new DetalleProducto(2, 20.0f, "Coca-cola", "", "coca-cola-regular.png", 6l));
+        pedidos.add(new Pedido(6, 430.0F, "0054", "304", "Pagado", LocalDate.now(), 3, pro6));
+
+    }
+
 }

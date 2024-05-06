@@ -1,7 +1,16 @@
 package org.itson.disenosw.guis;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * La clase Ventana representa la ventana principal de la aplicación bancaria.
@@ -17,12 +26,29 @@ public class FramePrincipal extends javax.swing.JFrame {
     private JPanel panelActual;
     private Long idProducto;
     private String numID;
+    private Integer idPedido;
 
     /**
      * Constructor de la clase Ventana.
      */
     public FramePrincipal() {
+
+        try {
+            // Establecer el Look and Feel Nimbus
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        List<Image> iconImages = new ArrayList<>();
+        
+        iconImages.add(new ImageIcon(FramePrincipal.class.getResource("/icons/icon16.png")).getImage());
+        iconImages.add(new ImageIcon(FramePrincipal.class.getResource("/icons/icon32.png")).getImage());
+        iconImages.add(new ImageIcon(FramePrincipal.class.getResource("/icons/icon64.png")).getImage());
+        iconImages.add(new ImageIcon(FramePrincipal.class.getResource("/icons/icon128.png")).getImage());
         initComponents();
+        
+        this.setIconImages(iconImages);
     }
 
     /**
@@ -37,6 +63,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Potro Pedidos");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
         setResizable(false);
 
@@ -234,6 +261,15 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void setNumID(String numID) {
         this.numID = numID;
     }
+
+    public Integer getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(Integer idPedido) {
+        this.idPedido = idPedido;
+    }
+    
     
     
 }
