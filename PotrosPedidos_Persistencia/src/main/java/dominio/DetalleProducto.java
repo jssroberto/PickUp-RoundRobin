@@ -29,6 +29,9 @@ public class DetalleProducto {
         this.subtotal = subtotal;
         this.producto = producto;
     }
+
+    public DetalleProducto() {
+    }
     
     
 

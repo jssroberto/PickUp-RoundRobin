@@ -4,6 +4,7 @@
  */
 package dominio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -23,6 +24,7 @@ public class Usuario {
     private List<ObjectId> pedidos;
 
     public Usuario() {
+        pedidos = new ArrayList<>();
     }
 
     public Usuario(ObjectId id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {

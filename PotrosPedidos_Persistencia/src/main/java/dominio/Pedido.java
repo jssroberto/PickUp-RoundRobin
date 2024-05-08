@@ -5,6 +5,7 @@
 package dominio;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -34,6 +35,11 @@ public class Pedido {
         this.metodoPago = metodoPago;
         this.detalleProductos = detalleProductos;
     }
+
+    public Pedido() {
+        detalleProductos = new ArrayList<>();
+    }
+    
 
     public ObjectId getIdPedido() {
         return idPedido;

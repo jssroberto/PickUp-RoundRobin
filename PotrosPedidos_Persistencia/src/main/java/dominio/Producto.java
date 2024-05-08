@@ -49,6 +49,9 @@ public class Producto {
         this.direccionImagen = direccionImagen;
     }
 
+    public Producto() {
+    }
+    
 
     public ObjectId getId() {
         return id;

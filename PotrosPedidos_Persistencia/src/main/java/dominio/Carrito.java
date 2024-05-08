@@ -31,6 +31,11 @@ public class Carrito {
         productos = new ArrayList<>();
     }
 
+    public Carrito() {
+        productos = new ArrayList<>();
+    }
+    
+
     public ObjectId getId() {
         return id;
     }

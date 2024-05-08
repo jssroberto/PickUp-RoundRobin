@@ -74,9 +74,14 @@ public class PruebaConsulta {
         productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdasd", 50.0f, "afasfa", "afasfaf")));
         
         
+        
         Usuario usuario = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
-        user.persistir(usuario);
-
+        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdfasasdadfaf", 100.0f, "fafafsafasdasdadasf", "asdasdasd")));
+        Usuario usuario2 = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
+//        user.persistir(usuario);
+        
+        user.agregarDetalleProductoAlCarrito(user.consultarUsuario("0000000").getId(), new DetalleProducto(2, 100.0f, new Producto("aSasaSasA", 1111.0f, "adDA", "asdasddad")));
+            
     
 
 }

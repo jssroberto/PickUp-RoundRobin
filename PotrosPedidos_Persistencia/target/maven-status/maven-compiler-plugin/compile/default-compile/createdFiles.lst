@@ -1,10 +1,12 @@
 IDAOs\IUsuarioDAO.class
 prueba\JframePruebaImagen.class
 DAOs\UsuarioDAO.class
+DAOs\PedidoDAO.class
 prueba\PruebaConsulta.class
 excepciones\PersistenciaException.class
 dominioVIEJO\EstadoPedido.class
 insercionesMasivas\InsercionMasivaProductosCafeteriaBO.class
+DAOs\ProductoDAO.class
 dominio\Carrito.class
 dominioVIEJO\DetallePedido.class
 DAOs\TarjetaDAO.class
