@@ -23,7 +23,7 @@ public class ProductoDAO {
     public void persistir(Producto producto){
         coleccionProductos.insertOne(producto);
     }
-    public Producto consultarUsuario(ObjectId id){
-        return coleccionProductos.find(Filters.eq("_id", id)).first();
+    public Producto consultarProducto(String nombre){
+        return coleccionProductos.find(Filters.eq("nombre", nombre)).first();
     }
 }

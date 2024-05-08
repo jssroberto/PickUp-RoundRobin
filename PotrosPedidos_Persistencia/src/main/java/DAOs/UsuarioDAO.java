@@ -7,7 +7,10 @@ package DAOs;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.Conexion;
+import dominio.Carrito;
+import dominio.Producto;
 import dominio.Usuario;
+import dominioVIEJO.Pedido;
 import org.bson.types.ObjectId;
 
 /**
@@ -25,7 +28,21 @@ public class UsuarioDAO {
         coleccionCursos.insertOne(usuario);
     }
     
-    public Usuario consultarUsuario(ObjectId id){
-        return coleccionCursos.find(Filters.eq("_id", id)).first();
+    public Usuario consultarUsuario(String id){
+        return coleccionCursos.find(Filters.eq("idCia", id)).first();
     }
+    
+    public void actualizarCarrito(Usuario usuario, Carrito carrito){
+        
+    }
+    public void eliminarProductoCarrito(Usuario usuario, Carrito carrito, Producto producto){
+        
+    }
+    public void vaciarCarrito(Usuario usuario, Carrito carrito){
+        
+    }
+    public void referenciarPedido(Usuario usuario, Pedido pedido){
+        
+    }
+            
 }

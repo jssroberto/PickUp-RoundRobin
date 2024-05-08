@@ -23,7 +23,7 @@ public class PedidoDAO {
     public void persistir(Pedido pedido){
         coleccionPedido.insertOne(pedido);
     }
-    public Pedido consultarUsuario(ObjectId id){
-        return coleccionPedido.find(Filters.eq("_id", id)).first();
+    public Pedido consultarPedido(String numeroPedido){
+        return coleccionPedido.find(Filters.eq("numeroPedido", numeroPedido)).first();
     }
 }
