@@ -9,6 +9,7 @@ import static com.mongodb.client.model.Accumulators.push;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.addToSet;
+import static com.mongodb.client.model.Updates.pull;
 import conexion.Conexion;
 import dominio.Carrito;
 import dominio.DetalleProducto;
@@ -48,8 +49,16 @@ public class UsuarioDAO {
         // Agregar el nuevo detalle de producto al carrito del usuario
         coleccionCursos.updateOne(eq("_id", usuarioId), addToSet("carrito.productos", nuevoDetalleDoc));
     }
-    public void eliminarProductoCarrito(Usuario usuario, Carrito carrito, Producto producto){
-        
+    
+    
+    public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto) {
+        // Convertir el nuevo detalle de producto a un Document
+        Document nuevoDetalleDoc = new Document("cantidad", nuevoDetalleProducto.getCantidad())
+                .append("subtotal", nuevoDetalleProducto.getSubtotal())
+                .append("producto", nuevoDetalleProducto.getProducto());
+
+        // Agregar el nuevo detalle de producto al carrito del usuario
+        coleccionCursos.updateOne(eq("_id", usuarioId), pull("carrito.productos", nuevoDetalleDoc));
     }
     public void vaciarCarrito(Usuario usuario, Carrito carrito){
         
