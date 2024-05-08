@@ -4,17 +4,27 @@
  */
 package dominio;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author jl4ma
  */
 public class DetalleProducto {
     
+    private ObjectId id;
     private Integer cantidad;
     private Float subtotal;
     private Producto producto;
 
     public DetalleProducto(Integer cantidad, Float subtotal, Producto producto) {
+        this.cantidad = cantidad;
+        this.subtotal = subtotal;
+        this.producto = producto;
+    }
+
+    public DetalleProducto(ObjectId id, Integer cantidad, Float subtotal, Producto producto) {
+        this.id = id;
         this.cantidad = cantidad;
         this.subtotal = subtotal;
         this.producto = producto;
@@ -46,10 +56,20 @@ public class DetalleProducto {
         this.producto = producto;
     }
 
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "DetalleProducto{" + "cantidad=" + cantidad + ", subtotal=" + subtotal + ", producto=" + producto + '}';
+        return "DetalleProducto{" + "id=" + id + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", producto=" + producto + '}';
     }
+
+    
     
     
 }
