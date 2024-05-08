@@ -16,6 +16,7 @@ public class Producto {
     private ObjectId id;
     private String nombre;
     private Float precio;
+    private Float puntosCuesta, puntosGenera;
     private String descripcion;
     private String direccionImagen;
 
@@ -23,6 +24,16 @@ public class Producto {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
+        this.descripcion = descripcion;
+        this.direccionImagen = direccionImagen;
+    }
+
+    public Producto(ObjectId id, String nombre, Float precio, Float puntosCuesta, Float puntosGenera, String descripcion, String direccionImagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.puntosCuesta = puntosCuesta;
+        this.puntosGenera = puntosGenera;
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
     }
@@ -79,10 +90,28 @@ public class Producto {
         this.direccionImagen = direccionImagen;
     }
 
+    public Float getPuntosCuesta() {
+        return puntosCuesta;
+    }
+
+    public void setPuntosCuesta(Float puntosCuesta) {
+        this.puntosCuesta = puntosCuesta;
+    }
+
+    public Float getPuntosGenera() {
+        return puntosGenera;
+    }
+
+    public void setPuntosGenera(Float puntosGenera) {
+        this.puntosGenera = puntosGenera;
+    }
+
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", puntosCuesta=" + puntosCuesta + ", puntosGenera=" + puntosGenera + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
     }
+
+    
     
     
 }
