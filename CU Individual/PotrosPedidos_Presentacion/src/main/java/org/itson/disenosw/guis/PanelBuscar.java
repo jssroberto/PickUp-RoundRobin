@@ -145,7 +145,7 @@ public class PanelBuscar extends javax.swing.JPanel {
         add(btnRegresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 700, 50, 50));
 
         panelTop.setOpaque(false);
-        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 178, 370, 510));
+        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 370, 510));
 
         btnCarrito.setBorder(null);
         btnCarrito.setContentAreaFilled(false);
@@ -438,9 +438,6 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarrito;
-    private javax.swing.JButton btnRegresar;
-    private javax.swing.JButton btnRegresar1;
-    private javax.swing.JButton btnRegresar2;
     private javax.swing.JButton btnRegresar3;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JTextField buscador;
