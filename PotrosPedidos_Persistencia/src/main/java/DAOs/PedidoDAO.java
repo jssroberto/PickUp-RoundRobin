@@ -5,8 +5,10 @@
 package DAOs;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import conexion.Conexion;
 import dominio.Pedido;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -20,5 +22,8 @@ public class PedidoDAO {
     }
     public void persistir(Pedido pedido){
         coleccionPedido.insertOne(pedido);
+    }
+    public Pedido consultarUsuario(ObjectId id){
+        return coleccionPedido.find(Filters.eq("_id", id)).first();
     }
 }

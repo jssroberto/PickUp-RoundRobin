@@ -5,8 +5,10 @@
 package DAOs;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import conexion.Conexion;
 import dominio.Producto;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -20,5 +22,8 @@ public class ProductoDAO {
     }
     public void persistir(Producto producto){
         coleccionProductos.insertOne(producto);
+    }
+    public Producto consultarUsuario(ObjectId id){
+        return coleccionProductos.find(Filters.eq("_id", id)).first();
     }
 }
