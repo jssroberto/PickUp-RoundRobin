@@ -4,7 +4,6 @@
  */
 package busquedaDinamica;
 
-import BOs.BusquedaBO;
 import excepciones.ExcepcionAT;
 import java.util.List;
 import org.itson.disenosw.dtos.ProductoDTO;
@@ -13,14 +12,17 @@ import org.itson.disenosw.dtos.ProductoDTO;
  *
  * @author yohan
  */
-public class ControlBusqueda  {
-    private  BusquedaBO  b = new BusquedaBO();
+public class Busqueda implements IBusqueda {
 
-     public List<ProductoDTO> consultarProductos(String palabra) throws ExcepcionAT {
+    ControlBusqueda c = new ControlBusqueda();
+
+    @Override
+    public List<ProductoDTO> consultarProductos(String palabra) throws ExcepcionAT {
         try {
-            return  b.consultarProductos(palabra);
+            return c.consultarProductos(palabra);
         } catch (ExcepcionAT e) {
             throw new ExcepcionAT(e.getMessage());
         }
     }
+
 }
