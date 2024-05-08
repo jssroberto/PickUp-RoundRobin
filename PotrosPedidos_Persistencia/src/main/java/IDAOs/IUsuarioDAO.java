@@ -4,7 +4,7 @@
  */
 package IDAOs;
 
-import dominio.Usuario;
+import dominioVIEJO.Usuario;
 import excepciones.PersistenciaException;
 
 /**

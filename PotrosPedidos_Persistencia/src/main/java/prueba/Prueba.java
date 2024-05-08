@@ -10,10 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import dominio.Carrito;
-import dominio.DetalleCarrito;
-import dominio.Producto;
-import dominio.Usuario;
+import dominioVIEJO.Carrito;
+import dominioVIEJO.DetalleCarrito;
+import dominioVIEJO.Producto;
+import dominioVIEJO.Usuario;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
