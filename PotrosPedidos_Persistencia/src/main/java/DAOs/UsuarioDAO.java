@@ -42,7 +42,7 @@ public class UsuarioDAO {
     
     public void agregarDetalleProductoAlCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto) {
         // Convertir el nuevo detalle de producto a un Document
-        Document nuevoDetalleDoc = new Document("cantidad", nuevoDetalleProducto.getCantidad())
+        Document nuevoDetalleDoc = new Document("_id",nuevoDetalleProducto.getId()).append("cantidad", nuevoDetalleProducto.getCantidad())
                 .append("subtotal", nuevoDetalleProducto.getSubtotal())
                 .append("producto", nuevoDetalleProducto.getProducto());
 
@@ -53,7 +53,7 @@ public class UsuarioDAO {
     
     public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto) {
         // Convertir el nuevo detalle de producto a un Document
-        Document nuevoDetalleDoc = new Document("cantidad", nuevoDetalleProducto.getCantidad())
+        Document nuevoDetalleDoc = new Document("_id",nuevoDetalleProducto.getId()).append("cantidad", nuevoDetalleProducto.getCantidad())
                 .append("subtotal", nuevoDetalleProducto.getSubtotal())
                 .append("producto", nuevoDetalleProducto.getProducto());
 
