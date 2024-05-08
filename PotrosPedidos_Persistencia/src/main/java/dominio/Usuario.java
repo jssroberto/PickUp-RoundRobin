@@ -15,22 +15,40 @@ import org.bson.types.ObjectId;
 public class Usuario {
 
     private ObjectId id;
+    private String idCia;
     private String Nombre, apellidoPaterno, apellidoMaterno;
     private Date Fechanacimiento;
     private Carrito carrito;
+    private Integer saldoPuntos;
     private List<ObjectId> pedidos;
 
     public Usuario() {
     }
 
-    public Usuario(String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, Carrito carrito, List<ObjectId> pedidos) {
+    public Usuario(ObjectId id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
+        this.id = id;
+        this.idCia = idCia;
         this.Nombre = Nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.Fechanacimiento = Fechanacimiento;
         this.carrito = carrito;
+        this.saldoPuntos = saldoPuntos;
         this.pedidos = pedidos;
     }
+
+    public Usuario(String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
+        this.idCia = idCia;
+        this.Nombre = Nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.Fechanacimiento = Fechanacimiento;
+        this.carrito = carrito;
+        this.saldoPuntos = saldoPuntos;
+        this.pedidos = pedidos;
+    }
+
+    
 
     public ObjectId getId() {
         return id;
@@ -88,9 +106,27 @@ public class Usuario {
         this.pedidos = pedidos;
     }
 
+    public String getIdCia() {
+        return idCia;
+    }
+
+    public void setIdCia(String idCia) {
+        this.idCia = idCia;
+    }
+
+    public Integer getSaldoPuntos() {
+        return saldoPuntos;
+    }
+
+    public void setSaldoPuntos(Integer saldoPuntos) {
+        this.saldoPuntos = saldoPuntos;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", Nombre=" + Nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", Fechanacimiento=" + Fechanacimiento + ", carrito=" + carrito + ", pedidos=" + pedidos + '}';
+        return "Usuario{" + "id=" + id + ", idCia=" + idCia + ", Nombre=" + Nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", Fechanacimiento=" + Fechanacimiento + ", carrito=" + carrito + ", saldoPuntos=" + saldoPuntos + ", pedidos=" + pedidos + '}';
     }
+
+    
     
 }

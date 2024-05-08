@@ -1,19 +1,19 @@
 package prueba;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import DAOs.UsuarioDAO;
+import dominio.Carrito;
+import dominio.DetalleProducto;
+import dominio.Producto;
+import dominio.Usuario;
 import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import org.apache.commons.imaging.ImageInfo;
-import org.apache.commons.imaging.Imaging;
+import org.bson.types.ObjectId;
+
 
 /**
  *
@@ -63,8 +63,21 @@ public class PruebaConsulta {
 //            e.printStackTrace();
 //        }
           
+        UsuarioDAO user = new UsuarioDAO();
         
+        
+        
+        List<ObjectId> pedidos = new ArrayList<>();
+        pedidos.add(new ObjectId());
+        pedidos.add(new ObjectId());
+        List<DetalleProducto> productos = new ArrayList<>();
+        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdasd", 50.0f, "afasfa", "afasfaf")));
+        
+        
+        Usuario usuario = new Usuario( "a", "s", "", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos), pedidos);
+        user.persistir(usuario);
 
-    }
+    
 
+}
 }

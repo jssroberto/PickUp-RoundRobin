@@ -1,5 +1,6 @@
 IDAOs\IUsuarioDAO.class
 prueba\JframePruebaImagen.class
+DAOs\UsuarioDAO.class
 prueba\PruebaConsulta.class
 excepciones\PersistenciaException.class
 dominioVIEJO\EstadoPedido.class
@@ -19,6 +20,7 @@ dominio\Pedido.class
 dominio\DetalleProducto.class
 prueba\Prueba.class
 insercionesMasivas\InsercionMasivaBanco.class
+dominio\MetodoPago.class
 insercionesMasivas\InsercionMasivaProductos.class
 prueba\JframePruebaImagen$1.class
 DAOs\UsuarioCiaDAO.class
