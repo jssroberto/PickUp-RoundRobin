@@ -27,6 +27,7 @@ public class ControlTarjeta {
     public boolean validar(TarjetaDTO tarjeta) throws PersistenciaException{
         
         if (vb.validarDatos(tarjeta)) {
+            
             return true;
         }else{
             return false;
