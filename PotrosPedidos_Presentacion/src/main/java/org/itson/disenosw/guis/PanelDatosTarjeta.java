@@ -71,7 +71,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
                 btnPagarActionPerformed(evt);
             }
         });
-        add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 120, 50));
+        add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 120, 50));
 
         btnRegresar.setBorder(null);
         btnRegresar.setContentAreaFilled(false);

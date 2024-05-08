@@ -36,6 +36,9 @@ public class Tarjeta implements Serializable {
 
     @Column(name = "cvv", length = 4, nullable = false)
     private Integer cvv;
+    
+    @Column(name = "saldo", nullable = false)
+    private Float saldo;
 
     public Tarjeta() {
     }
@@ -52,6 +55,23 @@ public class Tarjeta implements Serializable {
         this.fechaVencimiento = fechaVencimiento;
         this.cvv = cvv;
     }
+
+    public Tarjeta(String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv, Float saldo) {
+        this.numeroTarjeta = numeroTarjeta;
+        this.fechaVencimiento = fechaVencimiento;
+        this.cvv = cvv;
+        this.saldo = saldo;
+    }
+    
+
+    public Float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(Float saldo) {
+        this.saldo = saldo;
+    }
+    
 
     public Long getId() {
         return id;

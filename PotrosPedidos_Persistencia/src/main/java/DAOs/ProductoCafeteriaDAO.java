@@ -22,7 +22,7 @@ public class ProductoCafeteriaDAO {
     private EntityManagerFactory emf;
 
     public ProductoCafeteriaDAO() {
-        emf = Persistence.createEntityManagerFactory("cafeteriaPU");
+        emf = Persistence.createEntityManagerFactory("conexionPU");
     }
 
     public void actualizarProducto(ProductoCafeteria productoCafeteria) throws PersistenciaException {
