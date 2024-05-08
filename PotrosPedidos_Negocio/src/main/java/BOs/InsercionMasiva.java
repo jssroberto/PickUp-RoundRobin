@@ -7,7 +7,6 @@ package BOs;
 import insercionesMasivas.InsercionMasivaBanco;
 import insercionesMasivas.InsercionMasivaProductos;
 import insercionesMasivas.InsercionMasivaProductosCafeteriaBO;
-import insercionesMasivas.InsercionMasivaUsuarios;
 import insercionesMasivas.InsercionMasivaUsuariosCIA;
 
 /**
@@ -17,7 +16,6 @@ import insercionesMasivas.InsercionMasivaUsuariosCIA;
 public class InsercionMasiva {
     InsercionMasivaUsuariosCIA insercionUsuariosCIA = new InsercionMasivaUsuariosCIA();
     InsercionMasivaProductosCafeteriaBO insercionCafeteria = new InsercionMasivaProductosCafeteriaBO();
-    InsercionMasivaUsuarios insercionUsuarios = new InsercionMasivaUsuarios();
     InsercionMasivaProductos insercionProductos = new InsercionMasivaProductos();
     InsercionMasivaBanco insercionBanco = new InsercionMasivaBanco();
     
@@ -29,10 +27,7 @@ public class InsercionMasiva {
         insercionCafeteria.insertarRegistros();
     }
     
-    public void insercionesUsuario() throws Exception{
-        insercionUsuarios.insertarRegistros();
-    }
-    
+ 
     public void insercionesProductos() throws Exception{
         insercionProductos.insertarRegistros();
     }
