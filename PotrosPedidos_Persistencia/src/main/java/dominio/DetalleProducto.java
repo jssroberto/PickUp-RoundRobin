@@ -12,7 +12,6 @@ import org.bson.types.ObjectId;
  */
 public class DetalleProducto {
     
-    private ObjectId id;
     private Integer cantidad;
     private Float subtotal;
     private Producto producto;
@@ -23,15 +22,7 @@ public class DetalleProducto {
         this.producto = producto;
     }
 
-    public DetalleProducto(ObjectId id, Integer cantidad, Float subtotal, Producto producto) {
-        this.id = id;
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
-        this.producto = producto;
-    }
-    
-    
-
+  
     public Integer getCantidad() {
         return cantidad;
     }
@@ -56,18 +47,12 @@ public class DetalleProducto {
         this.producto = producto;
     }
 
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
-        return "DetalleProducto{" + "id=" + id + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", producto=" + producto + '}';
+        return "DetalleProducto{" + "cantidad=" + cantidad + ", subtotal=" + subtotal + ", producto=" + producto + '}';
     }
+
+    
 
     
     
