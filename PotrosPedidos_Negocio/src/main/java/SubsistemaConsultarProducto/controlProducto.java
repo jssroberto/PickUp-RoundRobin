@@ -6,7 +6,6 @@ package SubsistemaConsultarProducto;
 
 import BOs.ConsultarProductoBO;
 import DAOs.ProductoCafeteriaDAO;
-import cafeteria.ProductoCafeteria;
 import excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;

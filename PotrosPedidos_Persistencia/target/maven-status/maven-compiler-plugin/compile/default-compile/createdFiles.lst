@@ -1,7 +1,6 @@
 IDAOs\IUsuarioDAO.class
 insercionesMasivas\InsercionMasivaUsuarios.class
 prueba\JframePruebaImagen.class
-cafeteria\ProductoCafeteria.class
 DAOs\UsuarioDAO.class
 DAOs\PedidoDAO.class
 prueba\PruebaConsulta.class
@@ -15,7 +14,6 @@ DAOs\ProductoCafeteriaDAO.class
 prueba\pruebasCarrito.class
 insercionesMasivas\InsercionMasivaUsuariosCIA.class
 dominio\Usuario.class
-banco\Tarjeta.class
 dominio\Producto.class
 dominio\Pedido.class
 prueba\Prueba.class
@@ -23,9 +21,7 @@ insercionesMasivas\InsercionMasivaBanco.class
 DAOs\DetalleCarritoDAO.class
 dominio\DetalleCarrito.class
 insercionesMasivas\InsercionMasivaProductos.class
-banco\ConvertidorMesAnio.class
 prueba\JframePruebaImagen$1.class
-CIA\UsuarioCIA.class
 dominio\DetallePedido.class
 DAOs\UsuarioCiaDAO.class
 prueba\PruebaDAOS.class

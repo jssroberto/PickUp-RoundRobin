@@ -1,5 +1,6 @@
 package prueba;
 
+import com.mycompany.cafeteria.ProductoCafeteria;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +13,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.swing.JPanel;
-import cafeteria.ProductoCafeteria;
 
 /**
  *

@@ -4,7 +4,6 @@
  */
 package DAOs;
 
-import cafeteria.ProductoCafeteria;
 import dominio.Producto;
 import excepciones.PersistenciaException;
 import java.util.List;

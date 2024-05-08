@@ -9,7 +9,7 @@ import DAOs.DetalleCarritoDAO;
 import DAOs.ProductoCafeteriaDAO;
 import DAOs.ProductoDAO;
 import DAOs.UsuarioDAO;
-import cafeteria.ProductoCafeteria;
+import com.mycompany.cafeteria.ProductoCafeteria;
 import dominio.Carrito;
 import dominio.DetalleCarrito;
 import dominio.Usuario;

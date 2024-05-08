@@ -5,7 +5,7 @@
 package BOs;
 
 import DAOs.ProductoCafeteriaDAO;
-import cafeteria.ProductoCafeteria;
+import com.mycompany.cafeteria.ProductoCafeteria;
 import excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;

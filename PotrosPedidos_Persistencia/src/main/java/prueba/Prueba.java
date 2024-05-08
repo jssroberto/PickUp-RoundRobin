@@ -1,14 +1,15 @@
 package prueba;
 
+import com.mycompany.banco.Tarjeta;
+import com.mycompany.cafeteria.ProductoCafeteria;
+import com.mycompany.cia.UsuarioCIA;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import banco.Tarjeta;
-import CIA.UsuarioCIA;
-import cafeteria.ProductoCafeteria;
+
 import dominio.Carrito;
 import dominio.DetalleCarrito;
 import dominio.Producto;

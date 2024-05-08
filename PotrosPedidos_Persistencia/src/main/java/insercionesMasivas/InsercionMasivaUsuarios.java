@@ -4,7 +4,6 @@
  */
 package insercionesMasivas;
 
-import CIA.UsuarioCIA;
 import DAOs.UsuarioDAO;
 import dominio.Carrito;
 import dominio.Usuario;

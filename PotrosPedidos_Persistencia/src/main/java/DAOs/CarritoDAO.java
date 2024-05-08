@@ -4,7 +4,6 @@
  */
 package DAOs;
 
-import cafeteria.ProductoCafeteria;
 import dominio.Carrito;
 import dominio.Producto;
 import dominio.Usuario;

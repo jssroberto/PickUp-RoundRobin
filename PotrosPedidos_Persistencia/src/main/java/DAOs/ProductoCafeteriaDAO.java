@@ -4,7 +4,7 @@
  */
 package DAOs;
 
-import cafeteria.ProductoCafeteria;
+import com.mycompany.cafeteria.ProductoCafeteria;
 import excepciones.PersistenciaException;
 import java.util.List;
 import javax.persistence.EntityManager;

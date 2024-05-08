@@ -4,7 +4,6 @@
  */
 package IDAOs;
 
-import CIA.UsuarioCIA;
 
 /**
  *

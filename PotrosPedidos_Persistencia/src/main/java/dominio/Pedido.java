@@ -1,6 +1,5 @@
 package dominio;
 
-import cafeteria.ProductoCafeteria;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;

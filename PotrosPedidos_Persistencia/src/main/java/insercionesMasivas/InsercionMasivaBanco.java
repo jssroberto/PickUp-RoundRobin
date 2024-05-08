@@ -4,7 +4,7 @@
  */
 package insercionesMasivas;
 
-import banco.Tarjeta;
+import com.mycompany.banco.Tarjeta;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,7 @@
  */
 package insercionesMasivas;
 
-import CIA.UsuarioCIA;
+import com.mycompany.cia.UsuarioCIA;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
