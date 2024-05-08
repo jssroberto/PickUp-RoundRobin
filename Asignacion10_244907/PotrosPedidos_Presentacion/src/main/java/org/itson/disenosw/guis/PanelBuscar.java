@@ -31,6 +31,7 @@ import javax.swing.event.DocumentListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.JMenuItem;
 import mocks.Producto;
 import org.itson.disenosw.dtos.ProductoDTO;
 
@@ -52,6 +53,7 @@ public class PanelBuscar extends javax.swing.JPanel {
     public PanelBuscar(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
+        iniciarMenu();
         producto.generarLista();
         productos = producto.getProductos();
         try {
@@ -89,31 +91,41 @@ public class PanelBuscar extends javax.swing.JPanel {
         });
     }
 
-  private void buscarProductosSimilares(String textoBusqueda) throws ExcepcionAT {
-    if (textoBusqueda.isEmpty()) {
-        // Si el texto de búsqueda está vacío, mostrar todos los productos
-        productos = producto.getProductos();
-    } else {
-        // Aplicar filtro de búsqueda
-        List<Producto> productosSimilares = new ArrayList<>();
-        ProductoDAO b = new ProductoDAO();
-        productosSimilares = b.BuscarProductos(textoBusqueda);
+    private void buscarProductosSimilares(String textoBusqueda) throws ExcepcionAT {
+        if (textoBusqueda.isEmpty()) {
+            // Si el texto de búsqueda está vacío, mostrar todos los productos
+            productos = producto.getProductos();
+        } else {
+            // Aplicar filtro de búsqueda
+            List<Producto> productosSimilares = new ArrayList<>();
+            ProductoDAO b = new ProductoDAO();
+            productosSimilares = b.BuscarProductos(textoBusqueda);
 
-        // Actualizar la lista de productos con los encontrados
-        productos = productosSimilares;
+            // Actualizar la lista de productos con los encontrados
+            productos = productosSimilares;
+        }
+
+        panelTop.removeAll();
+        panelTop.revalidate();
+        panelTop.repaint();
+
+        // Volver a crear el menú con los productos encontrados
+        try {
+            crearMenu();
+        } catch (ExcepcionAT excepcionAT) {
+            excepcionAT.printStackTrace();
+        }
     }
 
-    panelTop.removeAll();
-    panelTop.revalidate();
-    panelTop.repaint();
-
-    // Volver a crear el menú con los productos encontrados
-    try {
-        crearMenu();
-    } catch (ExcepcionAT excepcionAT) {
-        excepcionAT.printStackTrace();
+    public void iniciarMenu() {
+        JMenuItem OrdenarDesdeA = new JMenuItem("Ordenar desde la A");
+        JMenuItem OrdenarDesdeZ= new JMenuItem("Ordenar desde la Z");
+        JMenuItem OrdenaerPorprecio = new JMenuItem("Ordenar por precio");
+        jPopupMenu1.add(OrdenarDesdeA);
+        jPopupMenu1.add(OrdenarDesdeZ);
+        jPopupMenu1.add(OrdenaerPorprecio);
+        btnOrdenar.setComponentPopupMenu(jPopupMenu1);
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,12 +136,24 @@ public class PanelBuscar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         btnRegresar3 = new javax.swing.JButton();
         panelTop = new javax.swing.JPanel();
         btnCarrito = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
         buscador = new javax.swing.JTextField();
+        btnOrdenar = new javax.swing.JButton();
         lblBuscar = new javax.swing.JLabel();
+
+        jPopupMenu1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                jPopupMenu1PopupMenuWillBecomeVisible(evt);
+            }
+        });
 
         setPreferredSize(new java.awt.Dimension(400, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,6 +212,16 @@ public class PanelBuscar extends javax.swing.JPanel {
         });
         add(buscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 123, 276, 31));
 
+        btnOrdenar.setBorder(null);
+        btnOrdenar.setContentAreaFilled(false);
+        btnOrdenar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenarActionPerformed(evt);
+            }
+        });
+        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 60, 60));
+
         lblBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pa.png"))); // NOI18N
         add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -229,79 +263,87 @@ public class PanelBuscar extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_buscadorKeyReleased
+
+    private void jPopupMenu1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jPopupMenu1PopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPopupMenu1PopupMenuWillBecomeVisible
+
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrdenarActionPerformed
     /**
      * Método para crear el menú de productos similares.
      *
      * @throws ExcepcionAT Si ocurre un error al crear el menú.
      */
- public void crearMenu() throws ExcepcionAT {
-    JPanel mainPanel = new JPanel(new GridBagLayout());
-    mainPanel.setOpaque(false);
-    mainPanel.setMaximumSize(new Dimension(370, 510));
+    public void crearMenu() throws ExcepcionAT {
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setOpaque(false);
+        mainPanel.setMaximumSize(new Dimension(370, 510));
 
-    GridBagConstraints c = new GridBagConstraints();
-    c.anchor = GridBagConstraints.NORTH; // Alineación superior
+        GridBagConstraints c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.NORTH; // Alineación superior
 
-    int currentGridY = 0; // Variable para controlar la posición vertical de los elementos
+        int currentGridY = 0; // Variable para controlar la posición vertical de los elementos
 
-    for (Producto producto : productos) {
-        if (!producto.getNombre().toLowerCase().contains(buscador.getText().toLowerCase())) {
-            continue; // Ignorar productos que no coincidan con la búsqueda
-        }
-
-        JPanel productoPanel = createProductoPanel(producto.getNombre(),
-                producto.getCosto(), producto.getRutaImagen());
-
-        Long identificador = producto.getId();
-        productoPanel.putClientProperty(identificador, productoPanel);
-
-        productoPanel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                try {
-                    verificarProductoEnCarrito(identificador);
-                    framePrincipal.setIdProducto(identificador);
-                    framePrincipal.cambiarVistaProducto();
-                } catch (Exception ex) {
-                    framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
-                }
+        for (Producto producto : productos) {
+            if (!producto.getNombre().toLowerCase().contains(buscador.getText().toLowerCase())) {
+                continue; // Ignorar productos que no coincidan con la búsqueda
             }
-        });
 
-        c.gridx = 0;
-        c.gridy = currentGridY++; // Incrementar la posición vertical al agregar un producto
-        c.gridheight = 1;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(productoPanel, c);
+            JPanel productoPanel = createProductoPanel(producto.getNombre(),
+                    producto.getCosto(), producto.getRutaImagen());
 
-        // Agregar separador si no es el último producto
-        if (currentGridY < productos.size()) {
-            JPanel separatorPanel = createSeparatorPanel();
+            Long identificador = producto.getId();
+            productoPanel.putClientProperty(identificador, productoPanel);
+
+            productoPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    try {
+                        verificarProductoEnCarrito(identificador);
+                        framePrincipal.setIdProducto(identificador);
+                        framePrincipal.cambiarVistaProducto();
+                    } catch (Exception ex) {
+                        framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                    }
+                }
+            });
+
             c.gridx = 0;
-            c.gridy = currentGridY++; // Incrementar la posición vertical para el separador
-            mainPanel.add(separatorPanel, c);
+            c.gridy = currentGridY++; // Incrementar la posición vertical al agregar un producto
+            c.gridheight = 1;
+            c.fill = GridBagConstraints.HORIZONTAL;
+            mainPanel.add(productoPanel, c);
+
+            // Agregar separador si no es el último producto
+            if (currentGridY < productos.size()) {
+                JPanel separatorPanel = createSeparatorPanel();
+                c.gridx = 0;
+                c.gridy = currentGridY++; // Incrementar la posición vertical para el separador
+                mainPanel.add(separatorPanel, c);
+            }
+
+            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }
 
-        productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        scrollPane.setPreferredSize(new Dimension(370, 510));
+        scrollPane.setMaximumSize(new Dimension(370, 510));
+        scrollPane.getViewport().setPreferredSize(new Dimension(370, 510));
+        scrollPane.getViewport().setMaximumSize(new Dimension(370, 510));
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JPanel cont = new JPanel();
+        cont.add(scrollPane);
+        cont.setOpaque(false);
+
+        panelTop.add(cont);
     }
-
-    JScrollPane scrollPane = new JScrollPane(mainPanel);
-    scrollPane.setPreferredSize(new Dimension(370, 510));
-    scrollPane.setMaximumSize(new Dimension(370, 510));
-    scrollPane.getViewport().setPreferredSize(new Dimension(370, 510));
-    scrollPane.getViewport().setMaximumSize(new Dimension(370, 510));
-    scrollPane.setOpaque(false);
-    scrollPane.getViewport().setOpaque(false);
-    scrollPane.setBorder(null);
-    scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-    scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-    JPanel cont = new JPanel();
-    cont.add(scrollPane);
-    cont.setOpaque(false);
-
-    panelTop.add(cont);
-}
 
     /**
      * Crea un panel que muestra la información de un producto.
@@ -438,12 +480,11 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarrito;
-    private javax.swing.JButton btnRegresar;
-    private javax.swing.JButton btnRegresar1;
-    private javax.swing.JButton btnRegresar2;
+    private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnRegresar3;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JTextField buscador;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
