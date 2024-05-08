@@ -18,7 +18,7 @@ import org.itson.disenosw.dtos.ProductoDTO;
  */
 public class BusquedaBO {
 
-    IProductoDAO p = new ProductoDAO();
+   private  IProductoDAO p = new ProductoDAO();
 
     private ProductoDTO convertirDAOenDTO(Producto producto) {
         ProductoDTO productoDTO = new ProductoDTO();
