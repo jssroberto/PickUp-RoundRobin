@@ -4,6 +4,7 @@
  */
 package dtos;
 
+import java.time.YearMonth;
 import java.util.Date;
 
 
@@ -15,11 +16,11 @@ public class TarjetaDTO {
  
     private Long id;
     private String numeroTarjeta;
-    private Date fechaVencimiento;
+    private YearMonth fechaVencimiento;
     private Integer cvv;
     private Float saldo;
 
-    public TarjetaDTO(Long id, String numeroTarjeta, Date fechaVencimiento, Integer cvv, Float saldo) {
+    public TarjetaDTO(Long id, String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv, Float saldo) {
         this.id = id;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaVencimiento = fechaVencimiento;
@@ -27,7 +28,7 @@ public class TarjetaDTO {
         this.saldo = saldo;
     }
 
-    public TarjetaDTO(String numeroTarjeta, Date fechaVencimiento, Integer cvv, Float saldo) {
+    public TarjetaDTO(String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv, Float saldo) {
         this.numeroTarjeta = numeroTarjeta;
         this.fechaVencimiento = fechaVencimiento;
         this.cvv = cvv;
@@ -53,11 +54,11 @@ public class TarjetaDTO {
         this.numeroTarjeta = numeroTarjeta;
     }
 
-    public Date getFechaVencimiento() {
+    public YearMonth getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(Date fechaVencimiento) {
+    public void setFechaVencimiento(YearMonth fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

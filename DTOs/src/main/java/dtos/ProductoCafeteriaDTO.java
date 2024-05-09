@@ -10,6 +10,7 @@ package dtos;
  */
 public class ProductoCafeteriaDTO {
 
+    private Long id;
     private Float precio;
     private String nombre;
     private String descripcion;
@@ -40,6 +41,16 @@ public class ProductoCafeteriaDTO {
         this.direccionImagen = direccionImagen;
         this.idProductoCafeteria = idProductoCafeteria;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
 
     public Float getPrecio() {
         return precio;
