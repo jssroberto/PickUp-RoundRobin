@@ -4,26 +4,64 @@
  */
 package DAOs;
 
+import IDAOs.IProductoDAO;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.InsertOneResult;
 import conexion.Conexion;
 import dominio.Producto;
-import org.bson.types.ObjectId;
+import excepciones.PersistenciaException;
 
 /**
  *
  * @author jl4ma
  */
-public class ProductoDAO {
+public class ProductoDAO implements IProductoDAO {
+
     private final MongoCollection<Producto> coleccionProductos;
 
     public ProductoDAO() {
         this.coleccionProductos = Conexion.getDatabase().getCollection("prodcutos", Producto.class);
     }
-    public void persistir(Producto producto){
-        coleccionProductos.insertOne(producto);
+
+    @Override
+    public void persistir(Producto producto) throws PersistenciaException {
+        try {
+            InsertOneResult insertOneResult = coleccionProductos.insertOne(producto);
+            if (!insertOneResult.wasAcknowledged()) {
+                throw new PersistenciaException("Error al persisir el producto");
+            }
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al persistir el producto", e);
+        }
     }
-    public Producto consultarProducto(String nombre){
-        return coleccionProductos.find(Filters.eq("nombre", nombre)).first();
+
+    @Override
+    public Producto consultarProducto(String nombre) throws PersistenciaException {
+        try {
+            Producto producto = coleccionProductos.find(Filters.eq("nombre", nombre)).first();
+            if (producto == null) {
+                throw new PersistenciaException("Producto no encontrado");
+            }
+            return producto;
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al consultar el producto", e);
+        }
+    }
+
+    @Override
+    public Producto consultarProducto(Long idProducto) throws PersistenciaException {
+        try {
+            Producto producto = coleccionProductos.find(Filters.eq("idProducto", idProducto)).first();
+            if (producto == null) {
+                throw new PersistenciaException("Producto no encontrado");
+            }
+            return producto;
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al consultar el producto", e);
+
+        }
+
     }
 }

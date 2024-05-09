@@ -4,6 +4,7 @@
  */
 package DAOs;
 
+import IDAOs.IPedidoDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.Conexion;
@@ -14,15 +15,17 @@ import org.bson.types.ObjectId;
  *
  * @author jl4ma
  */
-public class PedidoDAO {
+public class PedidoDAO implements IPedidoDAO{
     private final MongoCollection<Pedido> coleccionPedido;
 
     public PedidoDAO() {
         this.coleccionPedido = Conexion.getDatabase().getCollection("pedidos", Pedido.class);
     }
+    @Override
     public void persistir(Pedido pedido){
         coleccionPedido.insertOne(pedido);
     }
+    @Override
     public Pedido consultarPedido(String numeroPedido){
         return coleccionPedido.find(Filters.eq("numeroPedido", numeroPedido)).first();
     }
