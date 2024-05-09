@@ -14,7 +14,7 @@ import excepciones.PersistenciaException;
  *
  * @author yohan
  */
-public class VerificarUsuarioBO {
+public class UsuarioBO {
 
     ICiaDAO cia = new UsuarioCiaDAO();
 //    
