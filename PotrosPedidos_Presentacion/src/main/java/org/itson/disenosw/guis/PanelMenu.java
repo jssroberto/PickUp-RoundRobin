@@ -116,7 +116,7 @@ public class PanelMenu extends javax.swing.JPanel {
         add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 97, 50, 39));
 
         panelTop.setOpaque(false);
-        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 157, 380, 600));
+        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 380, 600));
 
         lblCantidadCarrito.setForeground(new java.awt.Color(255, 255, 255));
         lblCantidadCarrito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

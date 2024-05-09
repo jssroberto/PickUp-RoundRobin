@@ -1,6 +1,6 @@
 package prueba;
 
-import com.mycompany.cafeteria.ProductoCafeteria;
+import dominio.ProductoCafeteria;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

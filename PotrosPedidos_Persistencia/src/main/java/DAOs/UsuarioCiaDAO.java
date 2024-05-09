@@ -5,7 +5,7 @@
 package DAOs;
 
 import IDAOs.ICiaDAO;
-import com.mycompany.cia.UsuarioCIA;
+import dominio.UsuarioCIA;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

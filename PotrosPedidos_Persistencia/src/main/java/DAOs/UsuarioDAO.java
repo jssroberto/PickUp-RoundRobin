@@ -8,6 +8,7 @@ import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Accumulators.push;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Updates;
 import static com.mongodb.client.model.Updates.addToSet;
 import static com.mongodb.client.model.Updates.pull;
 import conexion.Conexion;
@@ -41,25 +42,16 @@ public class UsuarioDAO {
         
     
     public void agregarDetalleProductoAlCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto) {
-        // Convertir el nuevo detalle de producto a un Document
-        Document nuevoDetalleDoc = new Document("_id",nuevoDetalleProducto.getId()).append("cantidad", nuevoDetalleProducto.getCantidad())
-                .append("subtotal", nuevoDetalleProducto.getSubtotal())
-                .append("producto", nuevoDetalleProducto.getProducto());
-
-        // Agregar el nuevo detalle de producto al carrito del usuario
-        coleccionCursos.updateOne(eq("_id", usuarioId), addToSet("carrito.productos", nuevoDetalleDoc));
+ 
+        coleccionCursos.updateOne(Filters.eq("_id", usuarioId), Updates.push("carrito.productos", nuevoDetalleProducto));
     }
     
     
     public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto) {
-        // Convertir el nuevo detalle de producto a un Document
-        Document nuevoDetalleDoc = new Document("_id",nuevoDetalleProducto.getId()).append("cantidad", nuevoDetalleProducto.getCantidad())
-                .append("subtotal", nuevoDetalleProducto.getSubtotal())
-                .append("producto", nuevoDetalleProducto.getProducto());
-
-        // Agregar el nuevo detalle de producto al carrito del usuario
-        coleccionCursos.updateOne(eq("_id", usuarioId), pull("carrito.productos", nuevoDetalleDoc));
+       
+        coleccionCursos.updateOne(Filters.eq("_id", usuarioId), Updates.pull("carrito.productos", nuevoDetalleProducto));
     }
+    
     public void vaciarCarrito(Usuario usuario, Carrito carrito){
         
     }

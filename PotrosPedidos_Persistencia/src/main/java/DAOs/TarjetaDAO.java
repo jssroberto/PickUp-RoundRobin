@@ -4,7 +4,7 @@
  */
 package DAOs;
 
-import com.mycompany.banco.Tarjeta;
+import dominio.Tarjeta;
 import excepciones.PersistenciaException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -4,7 +4,7 @@
  */
 package insercionesMasivas;
 
-import com.mycompany.cafeteria.ProductoCafeteria;
+import dominio.ProductoCafeteria;
 import dominioVIEJO.Producto;
 import java.util.ArrayList;
 import java.util.LinkedList;

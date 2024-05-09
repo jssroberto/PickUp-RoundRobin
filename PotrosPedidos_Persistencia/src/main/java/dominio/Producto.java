@@ -14,21 +14,23 @@ public class Producto {
     
     
     private ObjectId id;
+    private Long idProducto;
     private String nombre;
     private Float precio;
     private Float puntosCuesta, puntosGenera;
     private String descripcion;
     private String direccionImagen;
 
-    public Producto(ObjectId id, String nombre, Float precio, String descripcion, String direccionImagen) {
+    public Producto(ObjectId id, String nombre, Float precio, String descripcion, String direccionImagen, Long idProducto) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
+        this.idProducto = idProducto;
     }
 
-    public Producto(ObjectId id, String nombre, Float precio, Float puntosCuesta, Float puntosGenera, String descripcion, String direccionImagen) {
+    public Producto(ObjectId id, String nombre, Float precio, Float puntosCuesta, Float puntosGenera, String descripcion, String direccionImagen, Long idProducto) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -36,12 +38,21 @@ public class Producto {
         this.puntosGenera = puntosGenera;
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
+        this.idProducto = idProducto;
     }
 
     public Producto(ObjectId id) {
         this.id = id;
     }
 
+    public Long getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
+    }
+    
     public Producto(String nombre, Float precio, String descripcion, String direccionImagen) {
         this.nombre = nombre;
         this.precio = precio;
@@ -111,8 +122,10 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", puntosCuesta=" + puntosCuesta + ", puntosGenera=" + puntosGenera + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
+        return "Producto{" + "id=" + id + ", idProducto=" + idProducto + ", nombre=" + nombre + ", precio=" + precio + ", puntosCuesta=" + puntosCuesta + ", puntosGenera=" + puntosGenera + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
     }
+
+    
 
     
     
