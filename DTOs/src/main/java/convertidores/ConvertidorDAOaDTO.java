@@ -35,7 +35,7 @@ public class ConvertidorDAOaDTO {
         usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
         usuarioDTO.setCarrito(convertirDAOenDTO(usuario.getCarrito()));
         usuarioDTO.setFechanacimiento(usuario.getFechanacimiento());
-        usuarioDTO.setId(usuario.getId().toString());
+        usuarioDTO.setId(usuario.getId());
         usuarioDTO.setIdCia(usuario.getIdCia());
         usuarioDTO.setSaldoPuntos(usuario.getSaldoPuntos());
         

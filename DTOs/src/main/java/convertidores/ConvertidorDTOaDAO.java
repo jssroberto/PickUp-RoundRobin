@@ -35,7 +35,7 @@ public class ConvertidorDTOaDAO {
         usuario.setApellidoPaterno(usuarioDTO.getApellidoPaterno());
         usuario.setCarrito(convertirDTOenDAO(usuarioDTO.getCarrito()));
         usuario.setFechanacimiento(usuarioDTO.getFechanacimiento());
-        usuario.setId(new ObjectId(usuarioDTO.getId()));
+        usuario.setId(usuarioDTO.getId());
         usuario.setIdCia(usuarioDTO.getIdCia());
         usuario.setSaldoPuntos(usuario.getSaldoPuntos());
 
@@ -56,7 +56,7 @@ public class ConvertidorDTOaDAO {
         producto.setId(new ObjectId(productoDTO.getId()));
         producto.setNombre(productoDTO.getNombre());
         producto.setPrecio(productoDTO.getPrecio());
-        producto.setPuntosGenera(productoDTO.getPuntosGenera());
+        producto.setPuntosCuesta(productoDTO.getPuntosCuesta());
         producto.setPuntosGenera(productoDTO.getPuntosGenera());
 
         return producto;

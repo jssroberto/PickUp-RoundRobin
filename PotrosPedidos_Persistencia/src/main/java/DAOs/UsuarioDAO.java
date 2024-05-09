@@ -36,8 +36,8 @@ public class UsuarioDAO {
         coleccionCursos.insertOne(usuario);
     }
     
-    public Usuario consultarUsuario(String id){
-        return coleccionCursos.find(Filters.eq("idCia", id)).first();
+    public Usuario consultarUsuario(Usuario usuario){
+        return coleccionCursos.find(Filters.eq("idCia", usuario.getId())).first();
     }
         
     

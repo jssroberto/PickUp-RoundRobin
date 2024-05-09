@@ -11,13 +11,12 @@ import org.bson.types.ObjectId;
  * @author jl4ma
  */
 public class Producto {
-    
-    
+
     private ObjectId id;
     private Long idProducto;
     private String nombre;
     private Float precio;
-    private Float puntosCuesta, puntosGenera;
+    private Integer puntosCuesta, puntosGenera;
     private String descripcion;
     private String direccionImagen;
 
@@ -25,12 +24,14 @@ public class Producto {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
+        this.puntosCuesta = Math.round(precio);
+        this.puntosGenera = (int) Math.round(precio * 0.05);
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
         this.idProducto = idProducto;
     }
 
-    public Producto(ObjectId id, String nombre, Float precio, Float puntosCuesta, Float puntosGenera, String descripcion, String direccionImagen, Long idProducto) {
+    public Producto(ObjectId id, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen, Long idProducto) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -52,7 +53,7 @@ public class Producto {
     public void setIdProducto(Long idProducto) {
         this.idProducto = idProducto;
     }
-    
+
     public Producto(String nombre, Float precio, String descripcion, String direccionImagen) {
         this.nombre = nombre;
         this.precio = precio;
@@ -62,7 +63,6 @@ public class Producto {
 
     public Producto() {
     }
-    
 
     public ObjectId getId() {
         return id;
@@ -104,19 +104,19 @@ public class Producto {
         this.direccionImagen = direccionImagen;
     }
 
-    public Float getPuntosCuesta() {
+    public Integer getPuntosCuesta() {
         return puntosCuesta;
     }
 
-    public void setPuntosCuesta(Float puntosCuesta) {
+    public void setPuntosCuesta(Integer puntosCuesta) {
         this.puntosCuesta = puntosCuesta;
     }
 
-    public Float getPuntosGenera() {
+    public Integer getPuntosGenera() {
         return puntosGenera;
     }
 
-    public void setPuntosGenera(Float puntosGenera) {
+    public void setPuntosGenera(Integer puntosGenera) {
         this.puntosGenera = puntosGenera;
     }
 
@@ -125,9 +125,4 @@ public class Producto {
         return "Producto{" + "id=" + id + ", idProducto=" + idProducto + ", nombre=" + nombre + ", precio=" + precio + ", puntosCuesta=" + puntosCuesta + ", puntosGenera=" + puntosGenera + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
     }
 
-    
-
-    
-    
-    
 }

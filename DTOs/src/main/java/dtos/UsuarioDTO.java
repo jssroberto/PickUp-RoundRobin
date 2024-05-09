@@ -2,13 +2,14 @@ package dtos;
 
 import java.util.Date;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Roberto García
  */
 public class UsuarioDTO {
-    private String id;
+    private ObjectId id;
     private String idCia;
     private String Nombre, apellidoPaterno, apellidoMaterno;
     private Date Fechanacimiento;
@@ -16,7 +17,7 @@ public class UsuarioDTO {
     private Integer saldoPuntos;
     private List<String> pedidos;
 
-    public UsuarioDTO(String id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
+    public UsuarioDTO(ObjectId id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
         this.id = id;
         this.idCia = idCia;
         this.Nombre = Nombre;
@@ -42,11 +43,11 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

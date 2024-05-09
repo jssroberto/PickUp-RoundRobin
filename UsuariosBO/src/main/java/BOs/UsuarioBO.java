@@ -23,25 +23,25 @@ import excepciones.PersitenciaException;
 public class UsuarioBO {
 
     UsuarioDAO usuarios = new UsuarioDAO();
-    ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
+    ConvertidorDAOaDTO convertir = new ConvertidorDAOaDTO();
     ConvertidorDTOaDAO c= new ConvertidorDTOaDAO();
     
-//    public void persistir(UsuarioDTO usuario) throws PersitenciaException {
-//        if (usuario == null) {
-//            throw new PersitenciaException("Usuario vacio");
-//        } else {
-//            usuarios.persistir(usuario);
-//        }
-//    }
+    public void persistir(UsuarioDTO usuario) throws PersitenciaException {
+        if (usuario == null) {
+            throw new PersitenciaException("Usuario vacio");
+        } else {
+            usuarios.persistir(c.convertirDTOenDAO(usuario));
+        }
+    }
 
-//    public UsuarioDTO consultarUsuario(UsuarioDTO usuario) throws PersitenciaException {
-//
-//        if (usuario == null) {
-//            throw new PersitenciaException("Usuario vacio");
-//        } else {
-//            return usuarios.consultarUsuario(usuario.getId());
-//        }
-//    }
+    public UsuarioDTO consultarUsuario(UsuarioDTO usuario) throws PersitenciaException {
+
+        if (usuario == null) {
+            throw new PersitenciaException("Usuario vacio");
+        } else {
+            return convertir.convertirDAOenDTO(usuarios.consultarUsuario(c.convertirDTOenDAO(usuario)));
+        }
+    }
 
 //    public void referenciarPedido(Usuario usuario, Pedido pedido) {
 //
