@@ -17,14 +17,14 @@ import org.itson.disenosw.dtos.TarjetaDTO;
  */
 public class validarTarjetaBO {
 
-    private ControlTarjeta tarjeta = new ControlTarjeta();
+    private TarjetaDAO tarjeta = new TarjetaDAO();
 
     public validarTarjetaBO() {
     }
 
     public Boolean ValidarBanco(TarjetaDTO t) throws PersistenciaException {
         try {
-            return tarjeta.validar(t);
+            return tarjeta.BuscarTarjeta(t.getNumeroTarjeta());
 
         } catch (PersistenciaException e) {
             throw new PersistenciaException(e.getMessage());
