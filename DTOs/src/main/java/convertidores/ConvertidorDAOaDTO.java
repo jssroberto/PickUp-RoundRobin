@@ -61,6 +61,7 @@ public class ConvertidorDAOaDTO {
         tarjetaDTO.setId(tarjeta.getId());
         tarjetaDTO.setNumeroTarjeta(tarjeta.getNumeroTarjeta());
         tarjetaDTO.setSaldo(tarjeta.getSaldo());
+        return tarjetaDTO;
     }
     
 }
