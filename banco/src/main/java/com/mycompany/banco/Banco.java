@@ -4,7 +4,9 @@
 
 package com.mycompany.banco;
 
+import DAOs.TarjetaDAO;
 import Incerciones.InsercionMasivaBanco;
+import excepciones.PersitenciaException;
 
 /**
  *
@@ -12,8 +14,14 @@ import Incerciones.InsercionMasivaBanco;
  */
 public class Banco {
 
-    public static void main(String[] args) {
-        InsercionMasivaBanco i = new InsercionMasivaBanco();
-        i.insertarRegistros();
+    public static void main(String[] args) throws PersitenciaException {
+//        InsercionMasivaBanco i = new InsercionMasivaBanco();
+//        i.insertarRegistros();
+        TarjetaDAO tar = new TarjetaDAO();
+        if (tar.BuscarTarjeta("4696-1641-7464-6464")) {
+            System.out.println("si");
+        }else{
+            System.out.println("no");
+        }
         }
 }

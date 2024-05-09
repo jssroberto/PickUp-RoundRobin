@@ -25,6 +25,7 @@ public class TarjetaDAO implements ITarejaDAO{
 
     public TarjetaDAO() {
         emf = Persistence.createEntityManagerFactory("conexionPU");
+        em = emf.createEntityManager();
     }
 
     @Override
