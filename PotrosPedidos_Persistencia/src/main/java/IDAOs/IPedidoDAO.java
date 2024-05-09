@@ -1,6 +1,8 @@
 package IDAOs;
 
 import dominio.Pedido;
+import excepciones.PersistenciaException;
+import java.util.List;
 
 /**
  *
@@ -8,7 +10,9 @@ import dominio.Pedido;
  */
 public interface IPedidoDAO {
 
-    public void persistir(Pedido pedido);
+    public void persistir(Pedido pedido) throws PersistenciaException;
 
-    public Pedido consultarPedido(String numeroPedido);
+    public Pedido consultar(String idPedido) throws PersistenciaException;
+    
+    public List<Pedido> consultar() throws PersistenciaException;
 }

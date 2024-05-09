@@ -1,6 +1,7 @@
-package Interfaz;
+package interfaces;
 
 import dtos.PedidoDTO;
+import excepciones.BOException;
 import excepciones.PersistenciaException;
 
 /*
@@ -13,7 +14,7 @@ import excepciones.PersistenciaException;
  */
 public interface IPedidoBO {
 
-    public void persistir(PedidoDTO pedido) throws PersistenciaException;
+    public void persistir(PedidoDTO pedido) throws BOException;
 
-    public PedidoDTO consultarPedido(String numeroPedido) throws PersistenciaException;
+    public PedidoDTO consultarPedido(String numeroPedido) throws BOException;
 }

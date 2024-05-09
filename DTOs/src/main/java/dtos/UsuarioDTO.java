@@ -12,29 +12,26 @@ public class UsuarioDTO {
     private ObjectId id;
     private String idCia;
     private String Nombre, apellidoPaterno, apellidoMaterno;
-    private Date Fechanacimiento;
     private CarritoDTO carrito;
     private Integer saldoPuntos;
     private List<String> pedidos;
 
-    public UsuarioDTO(ObjectId id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
+    public UsuarioDTO(ObjectId id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
         this.id = id;
         this.idCia = idCia;
         this.Nombre = Nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
-        this.Fechanacimiento = Fechanacimiento;
         this.carrito = carrito;
         this.saldoPuntos = saldoPuntos;
         this.pedidos = pedidos;
     }
 
-    public UsuarioDTO(String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
+    public UsuarioDTO(String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
         this.idCia = idCia;
         this.Nombre = Nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
-        this.Fechanacimiento = Fechanacimiento;
         this.carrito = carrito;
         this.saldoPuntos = saldoPuntos;
         this.pedidos = pedidos;
@@ -81,14 +78,6 @@ public class UsuarioDTO {
 
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
-    }
-
-    public Date getFechanacimiento() {
-        return Fechanacimiento;
-    }
-
-    public void setFechanacimiento(Date Fechanacimiento) {
-        this.Fechanacimiento = Fechanacimiento;
     }
 
     public CarritoDTO getCarrito() {
