@@ -4,10 +4,19 @@
  */
 package interfaces;
 
+import dominio.ProductoCafeteria;
+import dtos.ProductoCafeteriaDTO;
+import excepciones.PersitenciaException;
+import java.util.List;
+
 /**
  *
  * @author jl4ma
  */
 public interface IProductoCafeteriaBO {
     
+    public void actualizarProducto(ProductoCafeteriaDTO productoCafeteria) throws PersitenciaException;
+    public ProductoCafeteriaDTO buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException;
+    public ProductoCafeteriaDTO buscarProductoCafeteriaPorID(Long id) throws PersitenciaException;
+    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersitenciaException;
 }

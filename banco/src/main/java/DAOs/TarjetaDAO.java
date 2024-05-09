@@ -6,6 +6,7 @@ package DAOs;
 
 import dominio.Tarjeta;
 import excepciones.PersitenciaException;
+import interfaces.ITarejaDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,7 +19,7 @@ import javax.persistence.criteria.Root;
  *
  * @author jl4ma
  */
-public class TarjetaDAO {
+public class TarjetaDAO implements ITarejaDAO{
     private EntityManager em;
     private EntityManagerFactory emf;
 

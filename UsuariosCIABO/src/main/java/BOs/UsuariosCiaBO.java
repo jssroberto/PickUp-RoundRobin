@@ -4,10 +4,25 @@
  */
 package BOs;
 
+import DAOs.UsuarioCiaDAO;
+import interfaces.IUsuarioCiaBO;
+import interfaces.IUsuarioCiaDAO;
+
 /**
  *
  * @author jl4ma
  */
-public class UsuariosCiaBO {
+public class UsuariosCiaBO implements IUsuarioCiaBO{
+    
+    IUsuarioCiaDAO usuario = new UsuarioCiaDAO();
+    
+    public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
+        
+        if (usuario.BuscarPersona(idEstudiante, contra)) {
+            return true;
+        }else{
+            throw new Exception("Credenciales no válidas");
+        }
+    }
     
 }

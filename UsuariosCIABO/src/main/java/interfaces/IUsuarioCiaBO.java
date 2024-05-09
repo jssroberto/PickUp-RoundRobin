@@ -10,4 +10,5 @@ package interfaces;
  */
 public interface IUsuarioCiaBO {
     
+    public boolean validacionDatos(String idEstudiante, String contra) throws Exception;
 }

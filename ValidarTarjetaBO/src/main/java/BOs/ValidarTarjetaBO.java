@@ -4,10 +4,24 @@
  */
 package BOs;
 
+import DAOs.TarjetaDAO;
+import excepciones.PersitenciaException;
+import interfaces.ITarejaDAO;
+
 /**
  *
  * @author jl4ma
  */
 public class ValidarTarjetaBO {
     
+   ITarejaDAO tarjeta = new TarjetaDAO(); 
+   
+   public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
+       
+       if (tarjeta.BuscarTarjeta(numeroTarjeta)) {
+           return true;
+       }else{
+           throw new PersitenciaException("Tarjeta no encontrada");
+       }
+   }
 }
