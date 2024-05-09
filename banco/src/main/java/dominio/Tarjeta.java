@@ -4,6 +4,7 @@
  */
 package dominio;
 
+import dominio.ConvertidorMesAnio;
 import java.io.Serializable;
 import java.time.YearMonth;
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tarjetas")
 public class Tarjeta implements Serializable {
-
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tarjeta")

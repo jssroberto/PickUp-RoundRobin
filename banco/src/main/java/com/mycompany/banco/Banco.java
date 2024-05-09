@@ -4,6 +4,8 @@
 
 package com.mycompany.banco;
 
+import Incerciones.InsercionMasivaBanco;
+
 /**
  *
  * @author jl4ma
@@ -11,6 +13,7 @@ package com.mycompany.banco;
 public class Banco {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+        InsercionMasivaBanco i = new InsercionMasivaBanco();
+        i.insertarRegistros();
+        }
 }

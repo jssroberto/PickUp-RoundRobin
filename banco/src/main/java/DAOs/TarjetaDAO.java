@@ -27,6 +27,7 @@ public class TarjetaDAO implements ITarejaDAO{
         emf = Persistence.createEntityManagerFactory("conexionPU");
     }
 
+    @Override
     public Boolean BuscarTarjeta(String numeroTarjeta) throws PersitenciaException {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tarjeta> cq = cb.createQuery(Tarjeta.class);

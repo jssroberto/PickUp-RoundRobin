@@ -1,8 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.cia;
+
+import Incersiones.InsercionMasivaUsuariosCIA;
 
 /**
  *
@@ -10,7 +11,9 @@ package com.mycompany.cia;
  */
 public class Cia {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Hello World!");
+        InsercionMasivaUsuariosCIA i = new InsercionMasivaUsuariosCIA();
+        i.insertarRegistros();
     }
 }

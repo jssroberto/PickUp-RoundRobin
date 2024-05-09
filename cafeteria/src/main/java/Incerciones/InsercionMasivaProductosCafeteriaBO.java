@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 public class InsercionMasivaProductosCafeteriaBO {
     
     public void insertarRegistros() throws Exception{
-         EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("cafeteriaPU");
+         EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager emCafeteria = emfCafeteria.createEntityManager();
         List<ProductoCafeteria> productosCafeteria = new ArrayList<>();
         productosCafeteria.add(new ProductoCafeteria(80.0F, "Hamburguesa clásica", "Hamburguesa con carne, queso y verdura, acompañada de papas a la francesa", 15 , "hamburguesa-clasica.png"));

@@ -19,7 +19,7 @@ public class InsercionMasivaUsuariosCIA {
     
     List<UsuarioCIA> usuariosCIA = new ArrayList<>();
     public void insertarRegistros() throws Exception{
-         EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("ciaPU");
+         EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("conexionPU");
             EntityManager emCIA = emfCIA.createEntityManager();
          usuariosCIA.add(new UsuarioCIA("00000011211", "ABC12345", "Juan", "Perez", "Garcia"));
         usuariosCIA.add(new UsuarioCIA("00000244454", "DEF67890", "Maria", "Lopez", "Martinez"));
