@@ -81,7 +81,7 @@ public class PruebaConsulta {
 //        user.persistir(usuario);
         
 //        user.agregarDetalleProductoAlCarrito(user.consultarUsuario("0000000").getId(), new DetalleProducto(2, 100.0f, new Producto(new ObjectId(),"aSasaSasA", 1111.0f, "adDA", "asdasddad",1L)));
-        user.eliminarProductoCarrito(user.consultarUsuario("0000000").getId(), user.consultarUsuario("0000000").getCarrito().getProductos().get(0));
+        user.eliminarProductoCarrito(user.consultarUsuario(usuario).getId(), user.consultarUsuario(usuario).getCarrito().getProductos().get(0));
             
     
 
