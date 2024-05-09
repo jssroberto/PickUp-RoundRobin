@@ -106,8 +106,21 @@ public class UsuarioDTO {
 
     @Override
     public String toString() {
-        return "UsuarioDTO{" + "id=" + id + ", idCia=" + idCia + ", Nombre=" + Nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", Fechanacimiento=" + Fechanacimiento + ", carrito=" + carrito + ", saldoPuntos=" + saldoPuntos + ", pedidos=" + pedidos + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("UsuarioDTO{");
+        sb.append("id=").append(id);
+        sb.append(", idCia=").append(idCia);
+        sb.append(", Nombre=").append(Nombre);
+        sb.append(", apellidoPaterno=").append(apellidoPaterno);
+        sb.append(", apellidoMaterno=").append(apellidoMaterno);
+        sb.append(", carrito=").append(carrito);
+        sb.append(", saldoPuntos=").append(saldoPuntos);
+        sb.append(", pedidos=").append(pedidos);
+        sb.append('}');
+        return sb.toString();
     }
+
+    
     
    
     

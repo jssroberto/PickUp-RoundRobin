@@ -60,28 +60,28 @@ public class PruebaConsulta {
 ////            System.out.println("Alto: " + imageInfo.getHeight());
 //        } catch (IOException e) {
 //            e.printStackTrace();
-//        }
+////        }
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-          
-        UsuarioDAO user = new UsuarioDAO();
-        
-        
-        
-        List<ObjectId> pedidos = new ArrayList<>();
-        pedidos.add(new ObjectId());
-        pedidos.add(new ObjectId());
-        List<DetalleProducto> productos = new ArrayList<>();
-        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdasd", 50.0f, "afasfa", "afasfaf",1L)));
-        
-        
-        
-        Usuario usuario = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
-        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdfasasdadfaf", 100.0f, "fafafsafasdasdadasf", "asdasdasd", 2L)));
-        Usuario usuario2 = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
+//          
+//        UsuarioDAO user = new UsuarioDAO();
+//        
+//        
+//        
+//        List<ObjectId> pedidos = new ArrayList<>();
+//        pedidos.add(new ObjectId());
+//        pedidos.add(new ObjectId());
+//        List<DetalleProducto> productos = new ArrayList<>();
+//        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdasd", 50.0f, "afasfa", "afasfaf",1L)));
+//        
+//        
+//        
+//        Usuario usuario = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
+//        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdfasasdadfaf", 100.0f, "fafafsafasdasdadasf", "asdasdasd", 2L)));
+//        Usuario usuario2 = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
 //        user.persistir(usuario);
         
 //        user.agregarDetalleProductoAlCarrito(user.consultarUsuario("0000000").getId(), new DetalleProducto(2, 100.0f, new Producto(new ObjectId(),"aSasaSasA", 1111.0f, "adDA", "asdasddad",1L)));
-        user.eliminarProductoCarrito(user.consultarUsuario(usuario).getId(), user.consultarUsuario(usuario).getCarrito().getProductos().get(0));
+//        user.eliminarProductoCarrito(user.consultarUsuario(usuario).getId(), user.consultarUsuario(usuario).getCarrito().getProductos().get(0));
             
     
 
