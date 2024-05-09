@@ -5,11 +5,14 @@
 package BOs;
 
 import DAOs.UsuarioDAO;
+import convertidores.ConvertidorDTOaDAO;
 import dominio.DetalleProducto;
 import dominioVIEJO.Carrito;
 import dominioVIEJO.DetalleCarrito;
 import dominioVIEJO.Producto;
 import dominioVIEJO.Usuario;
+import dtos.DetalleProductoDTO;
+import dtos.UsuarioDTO;
 import excepciones.PersistenciaException;
 
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.List;
 public class CarritoBO {
 
     UsuarioDAO carrito = new UsuarioDAO();
+    ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
 
 //    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
 //        try {
@@ -41,10 +45,5 @@ public class CarritoBO {
 //    public void vaciarCarrito(UsuarioDTO usuario, CarritoDTO carrito) throws PersistenciaException {
 //
 //    }
-
-//
-//    public static Producto DTOaEntity(ProductoDTO dto) {
-//        return new Producto(dto.getPrecio(), dto.getNombre(), dto.getDescripcion(), dto.getDireccionImagen(), dto.getIdProductoCafeteria());
-//    }
-//
+    
 }
