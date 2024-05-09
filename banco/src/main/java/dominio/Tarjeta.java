@@ -4,7 +4,6 @@
  */
 package dominio;
 
-import dominio.ConvertidorMesAnio;
 import java.io.Serializable;
 import java.time.YearMonth;
 import javax.persistence.Column;

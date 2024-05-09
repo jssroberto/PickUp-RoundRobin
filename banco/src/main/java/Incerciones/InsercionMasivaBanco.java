@@ -21,11 +21,11 @@ public class InsercionMasivaBanco {
     public void insertarRegistros() {
         List<Tarjeta> tarjetas = new ArrayList<>();
         
-        tarjetas.add(new Tarjeta("4696-1641-7464-6464", YearMonth.of(2030, 9), 754));
-        tarjetas.add(new Tarjeta("4696-6542-7464-6464", YearMonth.of(2035, 2), 475));
-        tarjetas.add(new Tarjeta("4696-1641-6546-6464", YearMonth.of(2032, 1), 277));
-        tarjetas.add(new Tarjeta("4696-1641-7464-6541", YearMonth.of(2027, 11), 341));
-        tarjetas.add(new Tarjeta("1545-1641-7464-6464", YearMonth.of(2025, 9), 734));
+        tarjetas.add(new Tarjeta("4696-1641-7464-6464", YearMonth.of(2030, 9), 754, 1000.0f));
+        tarjetas.add(new Tarjeta("4696-6542-7464-6464", YearMonth.of(2035, 2), 475, 1000.0f));
+        tarjetas.add(new Tarjeta("4696-1641-6546-6464", YearMonth.of(2032, 1), 277, 1000.0f));
+        tarjetas.add(new Tarjeta("4696-1641-7464-6541", YearMonth.of(2027, 11), 341, 1000.0f));
+        tarjetas.add(new Tarjeta("1545-1641-7464-6464", YearMonth.of(2025, 9), 734, 1000.0f));
 
         EntityManagerFactory emfBanco = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager emBanco = emfBanco.createEntityManager();
