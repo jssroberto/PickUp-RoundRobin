@@ -5,6 +5,9 @@
 package BOs;
 
 import DAOs.PedidoDAO;
+import convertidores.ConvertidorDAOaDTO;
+import convertidores.ConvertidorDTOaDAO;
+import dtos.PedidoDTO;
 import excepciones.PersistenciaException;
 
 /**
@@ -14,9 +17,12 @@ import excepciones.PersistenciaException;
 public class PedidosBO {
 
     PedidoDAO pedidos = new PedidoDAO();
-// Convertidor de DTO a Entity
+    ConvertidorDTOaDAO p = new ConvertidorDTOaDAO();
+    ConvertidorDAOaDTO convertir = new ConvertidorDAOaDTO();
 
+    
 //    public void persistir(PedidoDTO pedido) throws PersistenciaException {
+//        
 //        try {
 //            pedidos.consultarPedido(pedido);
 //        } catch (Exception e) {
@@ -26,7 +32,7 @@ public class PedidosBO {
 
 //    public PedidoDTO consultarPedido(String numeroPedido) throws PersistenciaException {
 //        try {
-//            pedidos.consultarPedido(numeroPedido);
+//           return  pedidos.consultarPedido(numeroPedido);
 //        } catch (Exception e) {
 //             throw new PersistenciaException(e.getMessage());
 //        }
