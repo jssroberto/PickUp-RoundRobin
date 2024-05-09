@@ -22,13 +22,11 @@ public class Carrito {
         this.id = id;
         this.total = total;
         this.productos = productos;
-        productos = new ArrayList<>();
     }
 
     public Carrito(Float total, List<DetalleProducto> productos) {
         this.total = total;
         this.productos = productos;
-        productos = new ArrayList<>();
     }
 
     public Carrito() {

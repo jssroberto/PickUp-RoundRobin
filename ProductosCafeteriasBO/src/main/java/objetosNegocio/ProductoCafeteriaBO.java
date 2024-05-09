@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BOs;
+package objetosNegocio;
 
 import DAOs.ProductoCafeteriaDAO;
 import convertidores.ConvertidorDAOaDTO;
 import convertidores.ConvertidorDTOaDAO;
 import dominio.ProductoCafeteria;
 import dtos.ProductoCafeteriaDTO;
-import excepciones.PersistenciaException;
 import excepciones.PersitenciaException;
 import interfaces.IProductoCafeteriaBO;
 import interfaces.IProductoCafeteriaDAO;

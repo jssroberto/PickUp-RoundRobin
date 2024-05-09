@@ -13,45 +13,59 @@ import org.bson.types.ObjectId;
 public class Producto {
 
     private ObjectId id;
-    private Long idProducto;
+    private Long idCafeteria;
+    private String codigoProducto;
     private String nombre;
     private Float precio;
     private Integer puntosCuesta, puntosGenera;
     private String descripcion;
     private String direccionImagen;
 
-    public Producto(ObjectId id, String nombre, Float precio, String descripcion, String direccionImagen, Long idProducto) {
+    public Producto(ObjectId id, Long idCafeteria, String codigoProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
         this.id = id;
+        this.idCafeteria = idCafeteria;
+        this.codigoProducto = codigoProducto;
         this.nombre = nombre;
         this.precio = precio;
-        this.puntosCuesta = Math.round(precio);
-        this.puntosGenera = (int) Math.round(precio*0.05);
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
-        this.idProducto = idProducto;
-    }
-
-    public Producto(ObjectId id, Long idProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
-        this.id = id;
-        this.idProducto = idProducto;
-        this.nombre = nombre;
-        this.precio = precio;
         this.puntosCuesta = Math.round(precio);
         this.puntosGenera = (int) Math.round(precio * 0.05);
+    }
+
+    public Producto(Long idCafeteria, String codigoProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
+        this.idCafeteria = idCafeteria;
+        this.codigoProducto = codigoProducto;
+        this.nombre = nombre;
+        this.precio = precio;
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
+        this.puntosCuesta = Math.round(precio);
+        this.puntosGenera = (int) Math.round(precio * 0.05);
+    }
+
+    
+    
+    public Producto(String codigoProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
+        this.codigoProducto = codigoProducto;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.direccionImagen = direccionImagen;
+        this.puntosCuesta = Math.round(precio);
+        this.puntosGenera = (int) Math.round(precio * 0.05);
     }
 
     public Producto(ObjectId id) {
         this.id = id;
     }
 
-    public Long getIdProducto() {
-        return idProducto;
+    public Long getIdCafeteria() {
+        return idCafeteria;
     }
 
-    public void setIdProducto(Long idProducto) {
-        this.idProducto = idProducto;
+    public void setIdCafeteria(Long idCafeteria) {
+        this.idCafeteria = idCafeteria;
     }
 
     public Producto(String nombre, Float precio, String descripcion, String direccionImagen) {
@@ -120,11 +134,30 @@ public class Producto {
         this.puntosGenera = puntosGenera;
     }
 
-    
+    public String getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", idProducto=" + idProducto + ", nombre=" + nombre + ", precio=" + precio + ", puntosCuesta=" + puntosCuesta + ", puntosGenera=" + puntosGenera + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Producto{");
+        sb.append("id=").append(id);
+        sb.append(", idCafeteria=").append(idCafeteria);
+        sb.append(", codigoProducto=").append(codigoProducto);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", precio=").append(precio);
+        sb.append(", puntosCuesta=").append(puntosCuesta);
+        sb.append(", puntosGenera=").append(puntosGenera);
+        sb.append(", descripcion=").append(descripcion);
+        sb.append(", direccionImagen=").append(direccionImagen);
+        sb.append('}');
+        return sb.toString();
     }
 
+    
 }

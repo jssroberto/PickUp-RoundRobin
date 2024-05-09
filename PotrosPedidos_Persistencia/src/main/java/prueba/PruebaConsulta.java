@@ -14,7 +14,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.bson.types.ObjectId;
 
-
 /**
  *
  * @author Roberto García
@@ -62,28 +61,34 @@ public class PruebaConsulta {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-          
-        UsuarioDAO user = new UsuarioDAO();
-        
-        
-        
-        List<ObjectId> pedidos = new ArrayList<>();
-        pedidos.add(new ObjectId());
-        pedidos.add(new ObjectId());
-        List<DetalleProducto> productos = new ArrayList<>();
-        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdasd", 50.0f, "afasfa", "afasfaf",1L)));
-        
-        
-        
-        Usuario usuario = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
-        productos.add(new DetalleProducto(new ObjectId(), 2, 0.0f, new Producto(new ObjectId(), "asdfasasdadfaf", 100.0f, "fafafsafasdasdadasf", "asdasdasd", 2L)));
-        Usuario usuario2 = new Usuario("0000000","a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(),0.0f, productos),2, pedidos);
-//        user.persistir(usuario);
-        
-//        user.agregarDetalleProductoAlCarrito(user.consultarUsuario("0000000").getId(), new DetalleProducto(2, 100.0f, new Producto(new ObjectId(),"aSasaSasA", 1111.0f, "adDA", "asdasddad",1L)));
-        user.eliminarProductoCarrito(user.consultarUsuario("0000000").getId(), user.consultarUsuario("0000000").getCarrito().getProductos().get(0));
-            
-    
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-}
+        List<ObjectId> pedidos = new ArrayList<>();
+
+        List<DetalleProducto> productos = new ArrayList<>();
+
+        Usuario usuario = new Usuario(
+                "00000244913",
+                "Roberto",
+                "Garcia",
+                "Armenta",
+                new Carrito(new ObjectId(), 0.0f, productos),
+                0,
+                pedidos);
+        
+        usuarioDAO.persistir(usuario);
+
+        productos.add(new DetalleProducto(
+                new ObjectId(),
+                2,
+                200.0f,
+                new Producto(new ObjectId(), 6L, "CAN100","Cangreburger", 100.0f, "Deli", "cangreburger.png")));
+
+        usuarioDAO.agregarDetalleProductoAlCarrito(usuarioDAO.consultarUsuario(usuario).getId(),
+                productos.get(0));
+//        
+//        Usuario usuario2 = new Usuario("0000000", "a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(), 0.0f, productos), 2, pedidos);
+//        usuarioDAO.persistir(usuario);
+//        user.eliminarProductoCarrito(user.consultarUsuario("0000000").getId(), user.consultarUsuario("0000000").getCarrito().getProductos().get(0));
+    }
 }

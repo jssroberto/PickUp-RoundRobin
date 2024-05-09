@@ -47,7 +47,7 @@ public class ProductoBO implements IProductoBO {
     public ProductoDTO consultarProducto(Long idProducto) throws BOException {
         IProductoDAO productoDAO = new ProductoDAO();
         try {
-            Producto producto = productoDAO.consultarProducto(idProducto);
+            Producto producto = productoDAO.consultarProducto(idProducto)x;
             ConvertidorDAOaDTO convertidorDAOaDTO = new ConvertidorDAOaDTO();
             ProductoDTO productoDTO = convertidorDAOaDTO.convertirDAOenDTO(producto);
             return productoDTO;

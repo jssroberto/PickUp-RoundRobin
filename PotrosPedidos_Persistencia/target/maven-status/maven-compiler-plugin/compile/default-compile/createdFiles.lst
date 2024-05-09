@@ -10,6 +10,8 @@ DAOs\ProductoDAO.class
 dominio\Carrito.class
 dominioVIEJO\DetallePedido.class
 DAOs\TarjetaDAO.class
+IDAOs\IPedidoDAO.class
+IDAOs\IProductoDAO.class
 dominioVIEJO\DetalleCarrito.class
 DAOs\ProductoCafeteriaDAO.class
 dominioVIEJO\Usuario.class

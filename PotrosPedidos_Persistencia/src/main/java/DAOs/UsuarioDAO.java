@@ -5,20 +5,13 @@
 package DAOs;
 
 import com.mongodb.client.MongoCollection;
-import static com.mongodb.client.model.Accumulators.push;
 import com.mongodb.client.model.Filters;
-import static com.mongodb.client.model.Filters.eq;
 import com.mongodb.client.model.Updates;
-import static com.mongodb.client.model.Updates.addToSet;
-import static com.mongodb.client.model.Updates.pull;
 import conexion.Conexion;
 import dominio.Carrito;
 import dominio.DetalleProducto;
-import dominio.Producto;
 import dominio.Usuario;
 import dominioVIEJO.Pedido;
-import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
@@ -37,7 +30,7 @@ public class UsuarioDAO {
     }
     
     public Usuario consultarUsuario(Usuario usuario){
-        return coleccionCursos.find(Filters.eq("idCia", usuario.getId())).first();
+        return coleccionCursos.find(Filters.eq("idCia", usuario.getIdCia())).first();
     }
         
     
