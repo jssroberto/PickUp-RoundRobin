@@ -27,6 +27,9 @@ public class CarritoDTO {
         this.productos = productos;
     }
 
+    public CarritoDTO() {
+    }
+
     public String getId() {
         return id;
     }

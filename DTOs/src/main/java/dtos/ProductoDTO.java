@@ -15,11 +15,11 @@ package dtos;
     private String id;
     private String nombre;
     private Float precio;
-    private Float puntosCuesta, puntosGenera;
+    private Integer puntosCuesta, puntosGenera;
     private String descripcion;
     private String direccionImagen;
 
-    public ProductoDTO(String id, String nombre, Float precio, Float puntosCuesta, Float puntosGenera, String descripcion, String direccionImagen) {
+    public ProductoDTO(String id, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -29,7 +29,7 @@ package dtos;
         this.direccionImagen = direccionImagen;
     }
 
-    public ProductoDTO(String nombre, Float precio, Float puntosCuesta, Float puntosGenera, String descripcion, String direccionImagen) {
+    public ProductoDTO(String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
         this.nombre = nombre;
         this.precio = precio;
         this.puntosCuesta = puntosCuesta;
@@ -67,19 +67,19 @@ package dtos;
         this.precio = precio;
     }
 
-    public Float getPuntosCuesta() {
+    public Integer getPuntosCuesta() {
         return puntosCuesta;
     }
 
-    public void setPuntosCuesta(Float puntosCuesta) {
+    public void setPuntosCuesta(Integer puntosCuesta) {
         this.puntosCuesta = puntosCuesta;
     }
 
-    public Float getPuntosGenera() {
+    public Integer getPuntosGenera() {
         return puntosGenera;
     }
 
-    public void setPuntosGenera(Float puntosGenera) {
+    public void setPuntosGenera(Integer puntosGenera) {
         this.puntosGenera = puntosGenera;
     }
 

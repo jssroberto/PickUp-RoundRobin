@@ -14,9 +14,9 @@ public class UsuarioDTO {
     private Date Fechanacimiento;
     private CarritoDTO carrito;
     private Integer saldoPuntos;
-    private List<PedidoDTO> pedidos;
+    private List<String> pedidos;
 
-    public UsuarioDTO(String id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<PedidoDTO> pedidos) {
+    public UsuarioDTO(String id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
         this.id = id;
         this.idCia = idCia;
         this.Nombre = Nombre;
@@ -28,7 +28,7 @@ public class UsuarioDTO {
         this.pedidos = pedidos;
     }
 
-    public UsuarioDTO(String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<PedidoDTO> pedidos) {
+    public UsuarioDTO(String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, Date Fechanacimiento, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
         this.idCia = idCia;
         this.Nombre = Nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -106,11 +106,11 @@ public class UsuarioDTO {
         this.saldoPuntos = saldoPuntos;
     }
 
-    public List<PedidoDTO> getPedidos() {
+    public List<String> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(List<PedidoDTO> pedidos) {
+    public void setPedidos(List<String> pedidos) {
         this.pedidos = pedidos;
     }
 
