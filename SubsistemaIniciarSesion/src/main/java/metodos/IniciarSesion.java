@@ -2,27 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BOs;
+package metodos;
 
-import DAOs.UsuarioCiaDAO;
+import BOs.UsuariosCiaBO;
 import interfaces.IUsuarioCiaBO;
-import interfaces.IUsuarioCiaDAO;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jl4ma
  */
-public class UsuariosCiaBO implements IUsuarioCiaBO{
+public class IniciarSesion {
     
-    IUsuarioCiaDAO usuario = new UsuarioCiaDAO();
+    IUsuarioCiaBO usuario = new UsuariosCiaBO();
     
     public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
-        
-        if (usuario.BuscarPersona(idEstudiante, contra)) {
+        if(usuario.validacionDatos(idEstudiante, contra)){
+            JOptionPane.showMessageDialog(null, "Bienvenido");
             return true;
         }else{
-            throw new Exception("Credenciales no válidas");
+            JOptionPane.showMessageDialog(null, "Credenciales no válidas");
+            return false;
         }
     }
-    
 }

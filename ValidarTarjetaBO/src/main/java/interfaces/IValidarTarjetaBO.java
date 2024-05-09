@@ -4,10 +4,13 @@
  */
 package interfaces;
 
+import excepciones.PersitenciaException;
+
 /**
  *
  * @author jl4ma
  */
 public interface IValidarTarjetaBO {
     
+    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException;
 }

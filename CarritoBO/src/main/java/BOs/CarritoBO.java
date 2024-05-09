@@ -27,23 +27,22 @@ public class CarritoBO {
     ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
 
 //    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
-//        try {
+//        if (usuario == null || nuevoDetalleProductoDTO == null) {
+//            throw new PersistenciaException("Usuario o DetalleProducto vacio");
+//        } else {
 //            carrito.agregarDetalleProductoAlCarrito(usuario.getId, nuevoDetalleProductoDTO);
-//        } catch (Exception e) {
-//            throw new PersistenciaException(e.getMessage());
 //        }
 //    }
 ////
-//    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO  nuevoDetalleProductoDTO)throws PersistenciaException {
-//    try {
-//        carrito.eliminarProductoCarrito(usuario.getId, nuevoDetalleProductoDTO);
-//        } catch (Exception e) {
-//            throw new PersistenciaException(e.getMessage());
+//    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
+//        if (usuario == null || nuevoDetalleProductoDTO == null) {
+//            throw new PersistenciaException("Usuario o DetalleProducto vacio");
+//        } else {
+//            carrito.eliminarProductoCarrito(usuario.getId, nuevoDetalleProductoDTO);
 //        }
 //    }
 //
 //    public void vaciarCarrito(UsuarioDTO usuario, CarritoDTO carrito) throws PersistenciaException {
 //
 //    }
-    
 }

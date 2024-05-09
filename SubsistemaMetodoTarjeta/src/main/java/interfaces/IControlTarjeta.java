@@ -10,7 +10,7 @@ import excepciones.PersitenciaException;
  *
  * @author jl4ma
  */
-public interface ITarejaDAO {
+public interface IControlTarjeta {
     
-    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersitenciaException;
+    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException;
 }

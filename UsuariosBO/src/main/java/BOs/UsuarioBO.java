@@ -4,11 +4,17 @@ package BOs;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-
 import DAOs.UsuarioCiaDAO;
+import DAOs.UsuarioDAO;
 import IDAOs.ICiaDAO;
+import IDAOs.IUsuarioDAO;
+import convertidores.ConvertidorDAOaDTO;
+import convertidores.ConvertidorDTOaDAO;
+import dominio.Usuario;
+import dominioVIEJO.Pedido;
+import dtos.UsuarioDTO;
 import excepciones.PersistenciaException;
+import excepciones.PersitenciaException;
 
 /**
  *
@@ -16,14 +22,28 @@ import excepciones.PersistenciaException;
  */
 public class UsuarioBO {
 
-    ICiaDAO cia = new UsuarioCiaDAO();
-//    
+    UsuarioDAO usuarios = new UsuarioDAO();
+    ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
+    ConvertidorDTOaDAO c= new ConvertidorDTOaDAO();
+    
+//    public void persistir(UsuarioDTO usuario) throws PersitenciaException {
+//        if (usuario == null) {
+//            throw new PersitenciaException("Usuario vacio");
+//        } else {
+//            usuarios.persistir(usuario);
+//        }
+//    }
 
-    public Boolean buscarPersona(String id, String contra) throws PersistenciaException {
-        try {
-            return cia.BuscarPersona(id, contra);
-        } catch (Exception e) {
-            throw new PersistenciaException(e.getMessage());
-        }
-    }
+//    public UsuarioDTO consultarUsuario(UsuarioDTO usuario) throws PersitenciaException {
+//
+//        if (usuario == null) {
+//            throw new PersitenciaException("Usuario vacio");
+//        } else {
+//            return usuarios.consultarUsuario(usuario.getId());
+//        }
+//    }
+
+//    public void referenciarPedido(Usuario usuario, Pedido pedido) {
+//
+//    }
 }

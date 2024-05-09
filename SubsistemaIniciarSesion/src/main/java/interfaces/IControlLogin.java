@@ -4,13 +4,11 @@
  */
 package interfaces;
 
-import excepciones.PersitenciaException;
-
 /**
  *
  * @author jl4ma
  */
-public interface ITarejaDAO {
+public interface IControlLogin {
     
-    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersitenciaException;
+    public boolean validacionDatos(String idEstudiante, String contra) throws Exception;
 }

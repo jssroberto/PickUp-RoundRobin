@@ -20,22 +20,18 @@ public class PedidosBO {
     ConvertidorDTOaDAO p = new ConvertidorDTOaDAO();
     ConvertidorDAOaDTO convertir = new ConvertidorDAOaDTO();
 
-    
 //    public void persistir(PedidoDTO pedido) throws PersistenciaException {
-//        
-//        try {
+//        if (pedido == null) {
+//            throw new PersistenciaException("Pedido Vacio");
+//        } else {
 //            pedidos.consultarPedido(pedido);
-//        } catch (Exception e) {
-//            throw new PersistenciaException(e.getMessage());
 //        }
 //    }
-
 //    public PedidoDTO consultarPedido(String numeroPedido) throws PersistenciaException {
-//        try {
-//           return  pedidos.consultarPedido(numeroPedido);
-//        } catch (Exception e) {
-//             throw new PersistenciaException(e.getMessage());
+//        if (numeroPedido == null) {
+//            throw new PersistenciaException("Pedido Vacio");
+//        } else {
+//            return pedidos.consultarPedido(numeroPedido);
 //        }
-//        return null;
 //    }
 }
