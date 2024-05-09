@@ -11,6 +11,7 @@ import dominioVIEJO.Carrito;
 import dominioVIEJO.DetalleCarrito;
 import dominioVIEJO.Producto;
 import dominioVIEJO.Usuario;
+import dtos.CarritoDTO;
 import dtos.DetalleProductoDTO;
 import dtos.UsuarioDTO;
 import excepciones.PersistenciaException;
@@ -26,23 +27,23 @@ public class CarritoBO {
     UsuarioDAO carrito = new UsuarioDAO();
     ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
 
-//    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
-//        if (usuario == null || nuevoDetalleProductoDTO == null) {
-//            throw new PersistenciaException("Usuario o DetalleProducto vacio");
-//        } else {
-//            carrito.agregarDetalleProductoAlCarrito(usuario.getId, nuevoDetalleProductoDTO);
-//        }
-//    }
-////
-//    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
-//        if (usuario == null || nuevoDetalleProductoDTO == null) {
-//            throw new PersistenciaException("Usuario o DetalleProducto vacio");
-//        } else {
-//            carrito.eliminarProductoCarrito(usuario.getId, nuevoDetalleProductoDTO);
-//        }
-//    }
+    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
+        if (usuario == null || nuevoDetalleProductoDTO == null) {
+            throw new PersistenciaException("Usuario o DetalleProducto vacio");
+        } else {
+            carrito.agregarDetalleProductoAlCarrito(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+        }
+    }
 //
-//    public void vaciarCarrito(UsuarioDTO usuario, CarritoDTO carrito) throws PersistenciaException {
-//
-//    }
+    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
+        if (usuario == null || nuevoDetalleProductoDTO == null) {
+            throw new PersistenciaException("Usuario o DetalleProducto vacio");
+        } else {
+            carrito.eliminarProductoCarrito(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+        }
+    }
+
+    public void vaciarCarrito(UsuarioDTO usuario, CarritoDTO carrito) throws PersistenciaException {
+
+    }
 }
