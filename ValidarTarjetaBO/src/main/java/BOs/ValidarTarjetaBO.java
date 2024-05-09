@@ -7,12 +7,13 @@ package BOs;
 import DAOs.TarjetaDAO;
 import excepciones.PersitenciaException;
 import interfaces.ITarejaDAO;
+import interfaces.IValidarTarjetaBO;
 
 /**
  *
  * @author jl4ma
  */
-public class ValidarTarjetaBO {
+public class ValidarTarjetaBO implements IValidarTarjetaBO{
     
    ITarejaDAO tarjeta = new TarjetaDAO(); 
    
