@@ -5,10 +5,10 @@
 package BOs;
 
 
-import dominioVIEJO.Carrito;
-import dominioVIEJO.DetalleCarrito;
-import dominioVIEJO.Producto;
-import dominioVIEJO.Usuario;
+import zDeprecatedDominio.Carrito;
+import zDeprecatedDominio.DetalleCarrito;
+import zDeprecatedDominio.Producto;
+import zDeprecatedDominio.Usuario;
 import excepciones.PersistenciaException;
 
 import java.util.List;

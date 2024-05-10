@@ -1,7 +1,7 @@
 package org.itson.disenosw.guis;
 
 
-import DAOs.UsuarioDAO;
+import daos.UsuarioDAO;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;

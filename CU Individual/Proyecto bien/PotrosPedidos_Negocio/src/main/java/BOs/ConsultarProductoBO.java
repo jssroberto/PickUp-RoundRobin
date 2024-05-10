@@ -4,7 +4,7 @@
  */
 package BOs;
 
-import DAOs.ProductoCafeteriaDAO;
+import daos.ProductoCafeteriaDAO;
 import dominio.ProductoCafeteria;
 import excepciones.PersistenciaException;
 import java.util.ArrayList;

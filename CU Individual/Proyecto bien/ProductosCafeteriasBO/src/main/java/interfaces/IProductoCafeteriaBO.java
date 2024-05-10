@@ -4,8 +4,8 @@
  */
 package interfaces;
 
-import dominio.ProductoCafeteria;
-import excepciones.PersitenciaException;
+import dtos.ProductoCafeteriaDTO;
+import excepciones.BOException;
 import java.util.List;
 
 /**
@@ -15,5 +15,5 @@ import java.util.List;
 public interface IProductoCafeteriaBO {
     
    
-    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException;
+    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws BOException;
 }

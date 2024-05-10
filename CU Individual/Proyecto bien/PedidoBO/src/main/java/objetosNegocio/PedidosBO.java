@@ -4,9 +4,9 @@
  */
 package objetosNegocio;
 
-import DAOs.PedidoDAO;
 import convertidores.ConvertidorDAOaDTO;
 import convertidores.ConvertidorDTOaDAO;
+import daos.PedidoDAO;
 import dominio.Pedido;
 import dtos.PedidoDTO;
 import excepciones.BOException;

@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAOs;
+package daos;
 
 import dominio.ProductoCafeteria;
-import excepciones.PersitenciaException;
+import excepciones.CafeteriaException;
 import interfaces.IProductoCafeteriaDAO;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,8 +17,7 @@ import javax.persistence.TypedQuery;
  *
  * @author jl4ma
  */
-public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
-
+public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
     private EntityManager em;
     private EntityManagerFactory emf;
 
@@ -27,9 +25,8 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
         emf = Persistence.createEntityManagerFactory("conexionPU");
         em = emf.createEntityManager();
     }
-
     @Override
-    public void actualizarProducto(ProductoCafeteria productoCafeteria) throws PersitenciaException {
+    public void actualizarProducto(ProductoCafeteria productoCafeteria) throws CafeteriaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -41,12 +38,12 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
         } catch (Exception e) {
             em.close();
             System.out.println(e.getCause());
-            throw new PersitenciaException("Error al actualizar producto de cafeteria");
+            throw new CafeteriaException("Error al actualizar producto de cafeteria");
         }
     }
 
     @Override
-    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
+    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws CafeteriaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -63,7 +60,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
             if (!usuario.isEmpty()) {
                 return usuario.get(0);
             } else {
-                throw new PersitenciaException("Producto no encontrado por su nombre");
+                throw new CafeteriaException("Producto no encontrado por su nombre");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
@@ -73,7 +70,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     }
 
     @Override
-    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException {
+    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws CafeteriaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -90,7 +87,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
             if (!usuario.isEmpty()) {
                 return usuario.get(0);
             } else {
-                throw new PersitenciaException("Producto no encontrado por su id");
+                throw new CafeteriaException("Producto no encontrado por su id");
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
@@ -100,7 +97,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     }
 
     @Override
-    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException {
+    public List<ProductoCafeteria> obtenerTodosLosProductos() throws CafeteriaException {
         try {
             em.getTransaction().begin();
 
@@ -118,23 +115,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
                 em.getTransaction().rollback();
             }
             em.close();
-            throw new PersitenciaException("Error al obtener todos los productos de cafetería");
-        }
-    }
-
-    public List<ProductoCafeteria> consultarProductos(String palabra) throws PersitenciaException {
-        try {
-            List<ProductoCafeteria> productos = new ArrayList<>();
-            List<ProductoCafeteria> productosCafeteria = obtenerTodosLosProductos();
-
-            for (ProductoCafeteria producto : productosCafeteria) {
-                if (producto.getNombre().toLowerCase().contains(palabra.toLowerCase())) {
-                    productos.add(producto);
-                }
-            }
-            return productos;
-        } catch (PersitenciaException e) {
-            throw new PersitenciaException("Error al obtener  los productos de cafetería");
+            throw new CafeteriaException("Error al obtener todos los productos de cafetería");
         }
     }
 }

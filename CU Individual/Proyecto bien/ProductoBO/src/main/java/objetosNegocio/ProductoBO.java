@@ -1,9 +1,8 @@
 package objetosNegocio;
 
-import DAOs.ProductoDAO;
-import IDAOs.IProductoDAO;
-import com.mongodb.MongoException;
 import convertidores.ConvertidorDAOaDTO;
+import daos.ProductoDAO;
+import interfaces.IProductoDAO;
 import dominio.Producto;
 import dtos.ProductoDTO;
 import excepciones.BOException;

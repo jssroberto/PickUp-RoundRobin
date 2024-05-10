@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dominio;
 
 import java.io.Serializable;
@@ -21,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tarjetas")
 public class Tarjeta implements Serializable {
- 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tarjeta")
@@ -36,24 +32,11 @@ public class Tarjeta implements Serializable {
 
     @Column(name = "cvv", length = 4, nullable = false)
     private Integer cvv;
-    
+
     @Column(name = "saldo", nullable = false)
     private Float saldo;
 
     public Tarjeta() {
-    }
-
-    public Tarjeta(String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv) {
-        this.numeroTarjeta = numeroTarjeta;
-        this.fechaVencimiento = fechaVencimiento;
-        this.cvv = cvv;
-    }
-
-    public Tarjeta(Long id, String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv) {
-        this.id = id;
-        this.numeroTarjeta = numeroTarjeta;
-        this.fechaVencimiento = fechaVencimiento;
-        this.cvv = cvv;
     }
 
     public Tarjeta(String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv, Float saldo) {
@@ -62,7 +45,15 @@ public class Tarjeta implements Serializable {
         this.cvv = cvv;
         this.saldo = saldo;
     }
-    
+
+
+    public Tarjeta(Long id, String numeroTarjeta, YearMonth fechaVencimiento, Integer cvv, Float saldo) {
+        this.id = id;
+        this.numeroTarjeta = numeroTarjeta;
+        this.fechaVencimiento = fechaVencimiento;
+        this.cvv = cvv;
+        this.saldo = saldo;
+    }
 
     public Float getSaldo() {
         return saldo;
@@ -71,7 +62,6 @@ public class Tarjeta implements Serializable {
     public void setSaldo(Float saldo) {
         this.saldo = saldo;
     }
-    
 
     public Long getId() {
         return id;
@@ -104,5 +94,18 @@ public class Tarjeta implements Serializable {
     public void setCvv(Integer cvv) {
         this.cvv = cvv;
     }
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Tarjeta{");
+        sb.append("id=").append(id);
+        sb.append(", numeroTarjeta=").append(numeroTarjeta);
+        sb.append(", fechaVencimiento=").append(fechaVencimiento);
+        sb.append(", cvv=").append(cvv);
+        sb.append(", saldo=").append(saldo);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

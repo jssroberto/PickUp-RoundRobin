@@ -1,6 +1,6 @@
-package DAOs;
+package daos;
 
-import IDAOs.ICarritoDAO;
+import interfaces.ICarritoDAO;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;

@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAOs;
+package daos;
 
 import dominio.UsuarioCIA;
+import excepciones.CIAException;
 import interfaces.IUsuarioCiaDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +28,8 @@ public class UsuarioCiaDAO implements IUsuarioCiaDAO{
         em = emf.createEntityManager();
     }
 
-    public Boolean BuscarPersona(String idEstudiante, String contra) throws Exception {
+    @Override
+    public Boolean BuscarPersona(String idEstudiante, String contra) throws CIAException {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<UsuarioCIA> cq = cb.createQuery(UsuarioCIA.class);
         Root<UsuarioCIA> root = cq.from(UsuarioCIA.class);
@@ -37,9 +39,8 @@ public class UsuarioCiaDAO implements IUsuarioCiaDAO{
         Predicate predicado = cb.and(predicadoId, predicadoContra);
         cq.select(root).where(predicado);
 
-        UsuarioCIA usuario = null;
         try {
-            usuario = em.createQuery(cq).getSingleResult();
+            em.createQuery(cq).getSingleResult();
         } catch (Exception e) {
             return false;
         }

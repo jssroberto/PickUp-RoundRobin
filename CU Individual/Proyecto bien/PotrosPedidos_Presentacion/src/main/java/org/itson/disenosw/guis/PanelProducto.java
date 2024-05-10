@@ -161,7 +161,7 @@ public class PanelProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        framePrincipal.setIdProducto(null);
+        framePrincipal.setCodigoProducto(null);
         framePrincipal.cambiarVistaMenu();
     }//GEN-LAST:event_btnRegresarActionPerformed
 

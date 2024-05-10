@@ -1,50 +1,48 @@
 package dtos;
 
-import java.util.Date;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  *
  * @author Roberto García
  */
 public class UsuarioDTO {
-    private ObjectId id;
+    private String id;
     private String idCia;
-    private String Nombre, apellidoPaterno, apellidoMaterno;
+    private String nombre, apellidoPaterno, apellidoMaterno;
     private CarritoDTO carrito;
     private Integer saldoPuntos;
     private List<String> pedidos;
 
-    public UsuarioDTO(ObjectId id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
-        this.id = id;
-        this.idCia = idCia;
-        this.Nombre = Nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.carrito = carrito;
-        this.saldoPuntos = saldoPuntos;
-        this.pedidos = pedidos;
-    }
-
-    public UsuarioDTO(String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
-        this.idCia = idCia;
-        this.Nombre = Nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.carrito = carrito;
-        this.saldoPuntos = saldoPuntos;
-        this.pedidos = pedidos;
-    }
-
     public UsuarioDTO() {
     }
 
-    public ObjectId getId() {
+    public UsuarioDTO(String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
+        this.idCia = idCia;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.carrito = carrito;
+        this.saldoPuntos = saldoPuntos;
+        this.pedidos = pedidos;
+    }
+
+    public UsuarioDTO(String id, String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
+        this.id = id;
+        this.idCia = idCia;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.carrito = carrito;
+        this.saldoPuntos = saldoPuntos;
+        this.pedidos = pedidos;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -57,11 +55,11 @@ public class UsuarioDTO {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellidoPaterno() {
@@ -110,7 +108,7 @@ public class UsuarioDTO {
         sb.append("UsuarioDTO{");
         sb.append("id=").append(id);
         sb.append(", idCia=").append(idCia);
-        sb.append(", Nombre=").append(Nombre);
+        sb.append(", nombre=").append(nombre);
         sb.append(", apellidoPaterno=").append(apellidoPaterno);
         sb.append(", apellidoMaterno=").append(apellidoMaterno);
         sb.append(", carrito=").append(carrito);

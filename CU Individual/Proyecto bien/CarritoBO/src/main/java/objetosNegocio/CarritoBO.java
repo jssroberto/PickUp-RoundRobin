@@ -1,43 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package objetosNegocio;
 
-import DAOs.CarritoDAO;
-import DAOs.UsuarioDAO;
-import IDAOs.ICarritoDAO;
 import convertidores.ConvertidorDTOaDAO;
-import dominio.DetalleProducto;
-import dominioVIEJO.Carrito;
-import dominioVIEJO.DetalleCarrito;
-import dominioVIEJO.Producto;
-import dominioVIEJO.Usuario;
+import daos.CarritoDAO;
+import interfaces.ICarritoDAO;
 import dtos.CarritoDTO;
 import dtos.DetalleProductoDTO;
 import dtos.UsuarioDTO;
 import excepciones.BOException;
 import excepciones.PersistenciaException;
-
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import interfaces.ICarritoBO;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author yohan
  */
-public class CarritoBO {
+public class CarritoBO implements ICarritoBO{
 
     ICarritoDAO carrito = new CarritoDAO();
     ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
 
+    @Override
     public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws BOException {
         if (usuario == null || nuevoDetalleProductoDTO == null) {
             throw new BOException("Usuario o DetalleProducto vacio");
         } else {
             try {
-                carrito.agregarDetalleProducto(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+                
+                //TODO no se si jale new ObjectId
+                carrito.agregarDetalleProducto(new ObjectId(usuario.getId()), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
             } catch (PersistenciaException ex) {
                 throw new BOException(ex.getMessage(), ex);
             }
@@ -45,12 +36,13 @@ public class CarritoBO {
     }
 //
 
-    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws BOException {
+    @Override
+    public void eliminarDetalleProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws BOException {
         if (usuario == null || nuevoDetalleProductoDTO == null) {
             throw new BOException("Usuario o DetalleProducto vacio");
         } else {
             try {
-                carrito.eliminarDetalleProducto(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+                carrito.eliminarDetalleProducto(new ObjectId(usuario.getId()), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
             } catch (PersistenciaException ex) {
                 throw new BOException(ex.getMessage(), ex);
             }

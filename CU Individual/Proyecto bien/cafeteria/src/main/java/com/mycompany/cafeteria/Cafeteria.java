@@ -4,8 +4,8 @@
 
 package com.mycompany.cafeteria;
 
-import DAOs.ProductoCafeteriaDAO;
-import Incerciones.InsercionMasivaProductosCafeteriaBO;
+import daos.ProductoCafeteriaDAO;
+import inserciones.InsercionMasivaProductosCafeteriaBO;
 import dominio.ProductoCafeteria;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Cafeteria {
 //        i.insertarRegistros();
         ProductoCafeteriaDAO pro = new ProductoCafeteriaDAO();
         
-        List<ProductoCafeteria> pa = pro.consultarProductos("h");
+        List<ProductoCafeteria> pa = pro.obtenerTodosLosProductos();
         
         for(ProductoCafeteria prrr: pa){
             System.out.println(prrr.getNombre());

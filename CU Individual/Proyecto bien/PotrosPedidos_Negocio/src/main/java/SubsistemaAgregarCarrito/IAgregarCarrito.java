@@ -4,7 +4,7 @@
  */
 package SubsistemaAgregarCarrito;
 
-import dominioVIEJO.Usuario;
+import zDeprecatedDominio.Usuario;
 import excepciones.PersistenciaException;
 import mocks.Productos;
 import org.itson.disenosw.dtos.ProductoDTO;

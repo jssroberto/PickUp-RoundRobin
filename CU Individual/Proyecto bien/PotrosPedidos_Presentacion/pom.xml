@@ -69,7 +69,7 @@
             </plugin>
         </plugins>
     </build>
-<!--    <repositories>
+    <!--    <repositories>
         <repository>
             <id>unknown-jars-temp-repo</id>
             <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
@@ -88,7 +88,7 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE150</version>
         </dependency>
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>com.raven</groupId>
             <artifactId>win11scroll</artifactId>
             <version>1.0</version>
@@ -121,6 +121,17 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>SubsistemaIniciarSesion</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>SubsistemaCarrito</groupId>
+            <artifactId>SubsistemaCarrito</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.4.1</version>
         </dependency>
     </dependencies>
 </project>

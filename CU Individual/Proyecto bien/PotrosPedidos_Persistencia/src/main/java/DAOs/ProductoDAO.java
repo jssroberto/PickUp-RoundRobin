@@ -2,21 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAOs;
+package daos;
 
-import IDAOs.IProductoDAO;
+import interfaces.IProductoDAO;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
 import conexion.Conexion;
 import dominio.Producto;
 import excepciones.PersistenciaException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
-import org.bson.conversions.Bson;
 
 /**
  *
@@ -67,7 +62,6 @@ public class ProductoDAO implements IProductoDAO {
             throw new PersistenciaException("Error al consultar el producto", e);
 
         }
-    }
 
- 
+    }
 }

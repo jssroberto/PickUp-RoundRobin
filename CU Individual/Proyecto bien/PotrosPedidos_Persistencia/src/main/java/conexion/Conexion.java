@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package conexion;
 
 import com.mongodb.MongoClientSettings;
@@ -21,7 +17,7 @@ public class Conexion {
     private static MongoClient mongoClient = null;
     //Si se conectaron por Atlas su URL es la que les proporciona la página
 //    private static final String URI = "mongodb+srv://josemadero244903:12345@cluster0.82cvjpv.mongodb.net/";//CAMBIEN PARA EL SUYO
-    private static final String URI = "mongodb://localhost:27017";
+    private static final String URI = "mongodb+srv://josemadero244903:12345@cluster0.82cvjpv.mongodb.net/";
 
     private static final String DATABASE_NAME = "potros_pedidos";
 

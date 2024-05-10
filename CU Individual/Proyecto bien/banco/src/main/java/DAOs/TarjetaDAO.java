@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAOs;
+package daos;
 
 import dominio.Tarjeta;
-import excepciones.PersitenciaException;
+import excepciones.BancoException;
 import interfaces.ITarejaDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +29,7 @@ public class TarjetaDAO implements ITarejaDAO{
     }
 
     @Override
-    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersitenciaException {
+    public Boolean BuscarTarjeta(String numeroTarjeta) throws BancoException {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tarjeta> cq = cb.createQuery(Tarjeta.class);
         Root<Tarjeta> root = cq.from(Tarjeta.class);
