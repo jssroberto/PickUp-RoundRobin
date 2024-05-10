@@ -93,8 +93,14 @@ public class ConvertidorDTOaDAO {
         DetalleProducto detalleProducto = new DetalleProducto();
 
         detalleProducto.setCantidad(detalleProductoDTO.getCantidad());
-        detalleProducto.setProducto(convertirDTOenDAO(detalleProductoDTO.getProducto()));
-        detalleProducto.setId(new ObjectId(detalleProductoDTO.getId()));
+        detalleProducto.setCodigoProducto(detalleProductoDTO.getCodigoProducto());
+        detalleProducto.setDireccionImagen(detalleProductoDTO.getDireccionImagen());
+        detalleProducto.setId(detalleProductoDTO.getId());
+        detalleProducto.setNombre(detalleProductoDTO.getNombre());
+        
+        detalleProducto.setPrecio(detalleProductoDTO.getPrecio());
+        detalleProducto.setPuntosCuesta(detalleProductoDTO.getPuntosCuesta());
+        detalleProducto.setPuntosGenera(detalleProductoDTO.getPuntosGenera());
         detalleProducto.setSubtotal(detalleProductoDTO.getSubtotal());
 
         return detalleProducto;

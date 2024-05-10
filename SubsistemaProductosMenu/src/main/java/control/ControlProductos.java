@@ -4,7 +4,7 @@
  */
 package control;
 
-import dtos.ProductoCafeteriaDTO;
+import dominio.ProductoCafeteria;
 import excepciones.PersitenciaException;
 import interfaces.IControlProductos;
 import java.util.List;
@@ -16,17 +16,15 @@ import metodos.ConsultarProductos;
  */
 public class ControlProductos implements IControlProductos{
     
-    ConsultarProductos consultar = new ConsultarProductos();
+    ConsultarProductos consultar;
     
-    public ProductoCafeteriaDTO buscarProductoCafeteriaPorID(Long id) throws PersitenciaException{
-        if(consultar.buscarProductoCafeteriaPorID(id)!=null){
-            return consultar.buscarProductoCafeteriaPorID(id);
-        }else{
-            return null;
-        }
+    public ControlProductos(){
+        consultar = new ConsultarProductos();
     }
     
-    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersitenciaException{
+    
+    
+    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException{
         
         return consultar.obtenerTodosLosProductos();
     }

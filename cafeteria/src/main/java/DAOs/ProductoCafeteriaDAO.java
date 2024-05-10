@@ -25,6 +25,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
         emf = Persistence.createEntityManagerFactory("conexionPU");
         em = emf.createEntityManager();
     }
+    @Override
     public void actualizarProducto(ProductoCafeteria productoCafeteria) throws PersitenciaException {
         try {
             em = emf.createEntityManager();
@@ -41,6 +42,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
         }
     }
 
+    @Override
     public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
         try {
             em = emf.createEntityManager();
@@ -67,6 +69,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
         }
     }
 
+    @Override
     public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException {
         try {
             em = emf.createEntityManager();
@@ -93,9 +96,9 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
         }
     }
 
+    @Override
     public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException {
         try {
-            em = emf.createEntityManager();
             em.getTransaction().begin();
 
             String jpql = "SELECT p FROM ProductoCafeteria p";

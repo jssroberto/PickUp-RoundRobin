@@ -13,7 +13,6 @@ import org.bson.types.ObjectId;
 public class Producto {
 
     private ObjectId id;
-    private Long idCafeteria;
     private String codigoProducto;
     private String nombre;
     private Float precio;
@@ -21,9 +20,8 @@ public class Producto {
     private String descripcion;
     private String direccionImagen;
 
-    public Producto(ObjectId id, Long idCafeteria, String codigoProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
+    public Producto(ObjectId id, String codigoProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
         this.id = id;
-        this.idCafeteria = idCafeteria;
         this.codigoProducto = codigoProducto;
         this.nombre = nombre;
         this.precio = precio;
@@ -33,19 +31,6 @@ public class Producto {
         this.puntosGenera = (int) Math.round(precio * 0.05);
     }
 
-    public Producto(Long idCafeteria, String codigoProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
-        this.idCafeteria = idCafeteria;
-        this.codigoProducto = codigoProducto;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.direccionImagen = direccionImagen;
-        this.puntosCuesta = Math.round(precio);
-        this.puntosGenera = (int) Math.round(precio * 0.05);
-    }
-
-    
-    
     public Producto(String codigoProducto, String nombre, Float precio, String descripcion, String direccionImagen) {
         this.codigoProducto = codigoProducto;
         this.nombre = nombre;
@@ -56,17 +41,12 @@ public class Producto {
         this.puntosGenera = (int) Math.round(precio * 0.05);
     }
 
+
     public Producto(ObjectId id) {
         this.id = id;
     }
 
-    public Long getIdCafeteria() {
-        return idCafeteria;
-    }
-
-    public void setIdCafeteria(Long idCafeteria) {
-        this.idCafeteria = idCafeteria;
-    }
+    
 
     public Producto(String nombre, Float precio, String descripcion, String direccionImagen) {
         this.nombre = nombre;
@@ -147,7 +127,6 @@ public class Producto {
         StringBuilder sb = new StringBuilder();
         sb.append("Producto{");
         sb.append("id=").append(id);
-        sb.append(", idCafeteria=").append(idCafeteria);
         sb.append(", codigoProducto=").append(codigoProducto);
         sb.append(", nombre=").append(nombre);
         sb.append(", precio=").append(precio);

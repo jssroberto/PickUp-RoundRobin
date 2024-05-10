@@ -8,11 +8,10 @@ dominioVIEJO\EstadoPedido.class
 DAOs\ProductoDAO.class
 dominio\Carrito.class
 dominioVIEJO\DetallePedido.class
-DAOs\TarjetaDAO.class
 IDAOs\IPedidoDAO.class
 IDAOs\IProductoDAO.class
 dominioVIEJO\DetalleCarrito.class
-DAOs\ProductoCafeteriaDAO.class
+DAOs\ProductoCafeteriaDAOVIEJO.class
 dominioVIEJO\Usuario.class
 conexion\Conexion.class
 dominio\Usuario.class
@@ -24,7 +23,8 @@ prueba\Prueba.class
 dominio\MetodoPago.class
 insercionesMasivas\InsercionMasivaProductos.class
 prueba\JframePruebaImagen$1.class
-DAOs\UsuarioCiaDAO.class
+DAOs\TarjetaDAOVIEJO.class
 dominioVIEJO\Carrito.class
 dominioVIEJO\Producto.class
+DAOs\UsuarioCiaDAOviejo.class
 IDAOs\ICiaDAO.class
