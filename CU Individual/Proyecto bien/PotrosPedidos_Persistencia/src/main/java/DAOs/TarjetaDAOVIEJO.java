@@ -4,8 +4,8 @@
  */
 package DAOs;
 
-import dominio.UsuarioCIA;
-import interfaces.IUsuarioCiaDAO;
+import dominio.Tarjeta;
+import excepciones.PersistenciaException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,30 +16,28 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author jl4ma
+ * @author USER
  */
-public class UsuarioCiaDAO implements IUsuarioCiaDAO{
+public class TarjetaDAOVIEJO {
+
     private EntityManager em;
     private EntityManagerFactory emf;
-    
-    public UsuarioCiaDAO() {
+
+    public TarjetaDAOVIEJO() {
         emf = Persistence.createEntityManagerFactory("conexionPU");
-        em = emf.createEntityManager();
     }
 
-    public Boolean BuscarPersona(String idEstudiante, String contra) throws Exception {
+    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersistenciaException {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<UsuarioCIA> cq = cb.createQuery(UsuarioCIA.class);
-        Root<UsuarioCIA> root = cq.from(UsuarioCIA.class);
+        CriteriaQuery<Tarjeta> cq = cb.createQuery(Tarjeta.class);
+        Root<Tarjeta> root = cq.from(Tarjeta.class);
 
-        Predicate predicadoId = cb.equal(root.get("idEstudiante"), idEstudiante);
-        Predicate predicadoContra = cb.equal(root.get("contrasena"), contra);
-        Predicate predicado = cb.and(predicadoId, predicadoContra);
+        Predicate predicado = cb.equal(root.get("numeroTarjeta"), numeroTarjeta);
         cq.select(root).where(predicado);
 
-        UsuarioCIA usuario = null;
+        Tarjeta tarjeta = null;
         try {
-            usuario = em.createQuery(cq).getSingleResult();
+            tarjeta = em.createQuery(cq).getSingleResult();
         } catch (Exception e) {
             return false;
         }

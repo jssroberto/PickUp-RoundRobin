@@ -111,16 +111,16 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.0.33</version>
         </dependency>
+        
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>PotrosPedidos_Negocio</artifactId>
+            <artifactId>SubsistemaProductosMenu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>PotrosPedidos_Persistencia</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SubsistemaIniciarSesion</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -4,8 +4,8 @@
  */
 package DAOs;
 
+import IDAOs.ICiaDAO;
 import dominio.UsuarioCIA;
-import interfaces.IUsuarioCiaDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,17 +16,18 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author jl4ma
+ * @author yohan
  */
-public class UsuarioCiaDAO implements IUsuarioCiaDAO{
+public class UsuarioCiaDAOviejo implements ICiaDAO {
+
     private EntityManager em;
-    private EntityManagerFactory emf;
-    
-    public UsuarioCiaDAO() {
-        emf = Persistence.createEntityManagerFactory("conexionPU");
+
+    public UsuarioCiaDAOviejo() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexionPU");
         em = emf.createEntityManager();
     }
 
+    @Override
     public Boolean BuscarPersona(String idEstudiante, String contra) throws Exception {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<UsuarioCIA> cq = cb.createQuery(UsuarioCIA.class);
@@ -45,4 +46,5 @@ public class UsuarioCiaDAO implements IUsuarioCiaDAO{
         }
         return true;
     }
+
 }

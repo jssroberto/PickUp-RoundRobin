@@ -14,7 +14,10 @@ import interfaces.IUsuarioCiaDAO;
  */
 public class UsuariosCiaBO implements IUsuarioCiaBO{
     
-    IUsuarioCiaDAO usuario = new UsuarioCiaDAO();
+    IUsuarioCiaDAO usuario;
+    public UsuariosCiaBO(){
+        usuario  = new UsuarioCiaDAO();
+    }
     
     public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
         

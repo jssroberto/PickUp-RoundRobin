@@ -1,17 +1,13 @@
 package org.itson.disenosw.guis;
 
-import BOs.validarTarjetaBO;
-import SubsistemaBanco.validarTarjeta;
+
 import java.util.List;
 import javax.swing.JOptionPane;
 //import mocks.Banco;
-import org.itson.disenosw.dtos.TarjetaDTO;
-import SubsistemaBanco.IValidarTarjeta;
-import excepciones.PersistenciaException;
+
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import mocks.Banco;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -21,7 +17,6 @@ import mocks.Banco;
 public class PanelDatosTarjeta extends javax.swing.JPanel {
 
     private FramePrincipal ventana;
-    private Banco b = new Banco();
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -88,29 +83,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        List<Banco> banco = b.getListaBanco();
-        String nombre = txtNombre.getText();
-        String numero = txtNumero.getText();
-        String fecha = txtfecha.getText();
-        String cvv = txtcvv.getText();
-        TarjetaDTO t = new TarjetaDTO(numero, nombre, fecha, Integer.parseInt(cvv));
-        validarTarjetaBO vb = new validarTarjetaBO();
-        try {
-            if (vb.ValidarBanco(t)) {
-                ventana.mostrarConfirmacion("Esperando solicitud", "....");
-                if (generarAleatorio() == 1) {
-                    ventana.mostrarConfirmacion("Pago Exitoso", "Exitoso");
-                    ventana.cambiarPanelPagoExito();
-                }else{
-                    ventana.mostrarConfirmacion("Pago Rechazado", "Rechazado");
-                    ventana.cambiarVistaMetodoPago();
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Ingrese datos correctos");
-            }
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(PanelDatosTarjeta.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

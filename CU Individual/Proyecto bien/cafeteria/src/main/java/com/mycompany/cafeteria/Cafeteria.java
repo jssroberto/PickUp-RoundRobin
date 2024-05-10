@@ -4,7 +4,10 @@
 
 package com.mycompany.cafeteria;
 
+import DAOs.ProductoCafeteriaDAO;
 import Incerciones.InsercionMasivaProductosCafeteriaBO;
+import dominio.ProductoCafeteria;
+import java.util.List;
 
 /**
  *
@@ -13,8 +16,15 @@ import Incerciones.InsercionMasivaProductosCafeteriaBO;
 public class Cafeteria {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello World!");
-        InsercionMasivaProductosCafeteriaBO i =  new InsercionMasivaProductosCafeteriaBO();
-        i.insertarRegistros();
+//        System.out.println("Hello World!");
+//        InsercionMasivaProductosCafeteriaBO i =  new InsercionMasivaProductosCafeteriaBO();
+//        i.insertarRegistros();
+        ProductoCafeteriaDAO pro = new ProductoCafeteriaDAO();
+        
+        List<ProductoCafeteria> pa = pro.consultarProductos("h");
+        
+        for(ProductoCafeteria prrr: pa){
+            System.out.println(prrr.getNombre());
+        }
     }
 }

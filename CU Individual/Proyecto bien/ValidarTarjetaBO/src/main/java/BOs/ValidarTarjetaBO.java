@@ -17,6 +17,7 @@ public class ValidarTarjetaBO implements IValidarTarjetaBO{
     
    ITarejaDAO tarjeta = new TarjetaDAO(); 
    
+   @Override
    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
        
        if (tarjeta.BuscarTarjeta(numeroTarjeta)) {
