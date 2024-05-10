@@ -4,7 +4,9 @@
  */
 package objetosNegocio;
 
+import DAOs.CarritoDAO;
 import DAOs.UsuarioDAO;
+import IDAOs.ICarritoDAO;
 import convertidores.ConvertidorDTOaDAO;
 import dominio.DetalleProducto;
 import dominioVIEJO.Carrito;
@@ -14,9 +16,12 @@ import dominioVIEJO.Usuario;
 import dtos.CarritoDTO;
 import dtos.DetalleProductoDTO;
 import dtos.UsuarioDTO;
+import excepciones.BOException;
 import excepciones.PersistenciaException;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,26 +29,35 @@ import java.util.List;
  */
 public class CarritoBO {
 
-    UsuarioDAO carrito = new UsuarioDAO();
+    ICarritoDAO carrito = new CarritoDAO();
     ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
 
-    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
+    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws BOException {
         if (usuario == null || nuevoDetalleProductoDTO == null) {
-            throw new PersistenciaException("Usuario o DetalleProducto vacio");
+            throw new BOException("Usuario o DetalleProducto vacio");
         } else {
-            carrito.agregarDetalleProductoAlCarrito(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+            try {
+                carrito.agregarDetalleProducto(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+            } catch (PersistenciaException ex) {
+                throw new BOException(ex.getMessage(), ex);
+            }
         }
     }
 //
-    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
+
+    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws BOException {
         if (usuario == null || nuevoDetalleProductoDTO == null) {
-            throw new PersistenciaException("Usuario o DetalleProducto vacio");
+            throw new BOException("Usuario o DetalleProducto vacio");
         } else {
-            carrito.eliminarProductoCarrito(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+            try {
+                carrito.eliminarDetalleProducto(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+            } catch (PersistenciaException ex) {
+                throw new BOException(ex.getMessage(), ex);
+            }
         }
     }
 
-    public void vaciarCarrito(UsuarioDTO usuario, CarritoDTO carrito) throws PersistenciaException {
+    public void vaciarCarrito(UsuarioDTO usuario, CarritoDTO carrito) throws BOException {
 
     }
 }
