@@ -113,10 +113,7 @@ public class PruebaConsulta {
 //        Usuario usuario2 = new Usuario("0000000", "a", "s", "aa", new Date(1544492400000L), new Carrito(new ObjectId(), 0.0f, productos), 2, pedidos);
 //        usuarioDAO.persistir(usuario);
 //        user.eliminarProductoCarrito(user.consultarUsuario("0000000").getId(), user.consultarUsuario("0000000").getCarrito().getProductos().get(0));
-    InsercionMasivaProductos pro = new InsercionMasivaProductos();
-    
-    
-    pro.insertarRegistros();
+   
     }
     
 }

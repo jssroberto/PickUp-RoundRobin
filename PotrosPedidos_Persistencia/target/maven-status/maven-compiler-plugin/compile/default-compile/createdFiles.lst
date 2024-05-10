@@ -1,4 +1,5 @@
 IDAOs\IUsuarioDAO.class
+insercionesMasivas\InsercionMasivaUsuarios.class
 prueba\JframePruebaImagen.class
 DAOs\UsuarioDAO.class
 DAOs\PedidoDAO.class
@@ -20,6 +21,7 @@ dominioVIEJO\Pedido.class
 dominio\Pedido.class
 dominio\DetalleProducto.class
 prueba\Prueba.class
+prueba\pruebaMongo.class
 dominio\MetodoPago.class
 insercionesMasivas\InsercionMasivaProductos.class
 prueba\JframePruebaImagen$1.class
