@@ -21,16 +21,16 @@ public class SubsistemaProductosMenu {
 
     public static void main(String[] args) throws BancoException {
         
-        try {
-            ControlProductos control = new  ControlProductos();
-            
-            List<ProductoCafeteriaDTO> pros= control.obtenerTodosLosProductos();
-            
-            for(ProductoCafeteriaDTO pro : pros){
-                System.out.println(pro.getNombre());
-            }
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(SubsistemaProductosMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            ControlProductos control = new  ControlProductos();
+//            
+//            List<ProductoCafeteriaDTO> pros= control.obtenerTodosLosProductos();
+//            
+//            for(ProductoCafeteriaDTO pro : pros){
+//                System.out.println(pro.getNombre());
+//            }
+//        } catch (PersistenciaException ex) {
+//            Logger.getLogger(SubsistemaProductosMenu.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 }

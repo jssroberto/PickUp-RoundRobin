@@ -4,6 +4,7 @@ import control.ControlProductos;
 import dtos.ProductoCafeteriaDTO;
 import excepciones.PersistenciaException;
 import excepciones.BancoException;
+import excepciones.SubsistemaException;
 import fachada.CarritoFacade;
 import interfaces.ICarritoFacade;
 import interfaces.IControlProductos;
@@ -41,7 +42,7 @@ public class PanelMenu extends javax.swing.JPanel {
 
     private static final Logger logger = Logger.getLogger(PanelMenu.class.getName());
     private FramePrincipal framePrincipal;
-    private Integer idProducto = 0;
+    private String codigoProducto = null;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -53,7 +54,7 @@ public class PanelMenu extends javax.swing.JPanel {
         initComponents();
         try {
             crearMenu();
-        } catch (PersistenciaException ex) {
+        } catch (SubsistemaException | PersistenciaException ex) {
             logger.log(Level.SEVERE, "Error al consultar el menú");
         }
         setFuentes();
@@ -155,7 +156,7 @@ public class PanelMenu extends javax.swing.JPanel {
 
     }
 
-    public void crearMenu() throws PersistenciaException {
+    public void crearMenu() throws PersistenciaException, SubsistemaException {
         IControlProductos productosSubsistema = new ControlProductos();
         List<ProductoCafeteriaDTO> productosCafeteriaDTO = new LinkedList<>();
 
@@ -178,23 +179,22 @@ public class PanelMenu extends javax.swing.JPanel {
             JPanel productoPanel = createProductoPanel(productosCafeteriaDTO.get(i).getNombre(), productosCafeteriaDTO.get(i).getPrecio(), productosCafeteriaDTO.get(i).getDireccionImagen());
 
 //            String identificador = "producto_" + i;
-            Long identificador = productosCafeteriaDTO.get(i).getIdProductoCafeteria();
-            productoPanel.putClientProperty(identificador, productoPanel);
-//            String identificadorString = String.valueOf(identificador);
-//            productoPanel.putClientProperty(i, idProducto);
+            String codigoProducto = productosCafeteriaDTO.get(i).getCodigoProducto();
+            productoPanel.putClientProperty(codigoProducto, productoPanel);
+//            String codigoProductoString = String.valueOf(codigoProducto);
+//            productoPanel.putClientProperty(i, codigoProducto);
             // Añade un ActionListener al panel de producto
             productoPanel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     // Acción a realizar al hacer clic en el panel de producto
-                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
-                    System.out.println("Clic en el panel de producto: " + identificador);
-                    framePrincipal.setIdProducto(identificador);
+                    // Aquí puedes acceder al codigoProducto del panel haciendo uso de la variable 'codigoProducto'
+                    System.out.println("Clic en el panel de producto: " + codigoProducto);
+                    framePrincipal.setCodigoProducto(codigoProducto);
                     framePrincipal.cambiarVistaProducto();
 
                 }
             });
-            idProducto++;
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
             c.gridy = i * 2;

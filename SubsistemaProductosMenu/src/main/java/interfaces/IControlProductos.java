@@ -5,7 +5,7 @@
 package interfaces;
 
 import dtos.ProductoCafeteriaDTO;
-import excepciones.PersistenciaException;
+import excepciones.SubsistemaException;
 import java.util.List;
 
 /**
@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface IControlProductos {
     
-    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersistenciaException;
+    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws SubsistemaException;
 }

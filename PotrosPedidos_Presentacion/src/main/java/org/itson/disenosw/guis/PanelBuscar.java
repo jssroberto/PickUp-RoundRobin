@@ -61,7 +61,7 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
 
-        framePrincipal.setIdProducto(1L);
+//        framePrincipal.setIdProducto(1L);
 
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed

@@ -4,11 +4,13 @@
  */
 package interfaces;
 
+import excepciones.SubsistemaException;
+
 /**
  *
  * @author jl4ma
  */
 public interface IControlLogin {
     
-    public boolean validacionDatos(String idEstudiante, String contra) throws Exception;
+    public boolean validacionDatos(String idEstudiante, String contra) throws SubsistemaException;
 }

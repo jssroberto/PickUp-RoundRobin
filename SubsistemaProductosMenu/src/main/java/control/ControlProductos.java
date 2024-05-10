@@ -1,11 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 import dtos.ProductoCafeteriaDTO;
-import excepciones.PersistenciaException;
+import excepciones.SubsistemaException;
 import interfaces.IControlProductos;
 import java.util.List;
 import metodos.ConsultarProductos;
@@ -23,7 +19,7 @@ public class ControlProductos implements IControlProductos {
     }
 
     @Override
-    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersistenciaException {
+    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws SubsistemaException {
 
         return consultar.obtenerTodosLosProductos();
     }
