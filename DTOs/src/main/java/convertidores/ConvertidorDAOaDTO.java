@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
+
+
+
 /**
  *
  * @author galan
@@ -92,8 +95,14 @@ public class ConvertidorDAOaDTO {
         DetalleProductoDTO detalleProductoDTO= new DetalleProductoDTO();
         
         detalleProductoDTO.setCantidad(detalleProducto.getCantidad());
-        detalleProductoDTO.setProducto(convertirDAOenDTO(detalleProducto.getProducto()));
-        detalleProductoDTO.setId(detalleProducto.getId().toString());
+        detalleProductoDTO.setCodigoProducto(detalleProducto.getCodigoProducto());
+        detalleProductoDTO.setDireccionImagen(detalleProducto.getDireccionImagen());
+        detalleProductoDTO.setId(detalleProducto.getId());
+        detalleProductoDTO.setNombre(detalleProducto.getNombre());
+        
+        detalleProductoDTO.setPrecio(detalleProducto.getPrecio());
+        detalleProductoDTO.setPuntosCuesta(detalleProducto.getPuntosCuesta());
+        detalleProductoDTO.setPuntosGenera(detalleProducto.getPuntosGenera());
         detalleProductoDTO.setSubtotal(detalleProducto.getSubtotal());
         
         return detalleProductoDTO;

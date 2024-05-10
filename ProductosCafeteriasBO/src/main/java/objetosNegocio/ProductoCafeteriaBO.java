@@ -5,71 +5,38 @@
 package objetosNegocio;
 
 import DAOs.ProductoCafeteriaDAO;
-import convertidores.ConvertidorDAOaDTO;
-import convertidores.ConvertidorDTOaDAO;
 import dominio.ProductoCafeteria;
-import dtos.ProductoCafeteriaDTO;
 import excepciones.PersitenciaException;
 import interfaces.IProductoCafeteriaBO;
 import interfaces.IProductoCafeteriaDAO;
-import java.util.ArrayList;
 import java.util.List;
+
+
+
 
 /**
  *
  * @author jl4ma
  */
-public class ProductoCafeteriaBO implements IProductoCafeteriaBO{
-    
-    IProductoCafeteriaDAO cafeteria = new ProductoCafeteriaDAO();
-    ConvertidorDTOaDAO convertidor = new ConvertidorDTOaDAO();
-    ConvertidorDAOaDTO convertidor2 = new ConvertidorDAOaDTO();
-    
-    public void actualizarProducto(ProductoCafeteriaDTO productoCafeteria) throws PersitenciaException{
-        
-        if(productoCafeteria==null){
-            throw new PersitenciaException("producto vacio");
-        }else{
-            cafeteria.actualizarProducto(convertidor.convertirDTOenDAO(productoCafeteria));
-        }
+public class ProductoCafeteriaBO implements IProductoCafeteriaBO {
+
+    IProductoCafeteriaDAO cafeteria;
+  
+    public ProductoCafeteriaBO() {
+        cafeteria = new ProductoCafeteriaDAO();
+
     }
-    
-    public ProductoCafeteriaDTO buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
-        ProductoCafeteria producto;
-        
-        producto = cafeteria.buscarProductoCafeteriaPorNombre(nombreProducto);
-        
-        if (producto==null) {
-            throw new PersitenciaException("producto vacio");
-        }else{
-            return convertidor2.convertirDAOenDTO(producto);
-        }
-    }
-    
-    public ProductoCafeteriaDTO buscarProductoCafeteriaPorID(Long id) throws PersitenciaException{
-        ProductoCafeteria producto;
-        
-        producto = cafeteria.buscarProductoCafeteriaPorID(id);
-        if(producto==null){
-            throw new PersitenciaException("producto vacio");
-        }else{
-            return convertidor2.convertirDAOenDTO(producto);
-        }
-    }
-    
-    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersitenciaException{
+
+    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException {
         List<ProductoCafeteria> productos;
-        List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
-        
+
         productos = cafeteria.obtenerTodosLosProductos();
-        if(productos.isEmpty()){
+        if (productos.isEmpty()) {
             throw new PersitenciaException("lista vacia");
-        }else{
-            for(ProductoCafeteria pro: productos){
-                productosDTO.add(convertidor2.convertirDAOenDTO(pro));
-            }
-            return productosDTO;
+        } else {
+            return productos;
         }
         
+
     }
 }
