@@ -4,7 +4,7 @@
  */
 package mocks;
 
-import dominioVIEJO.Producto;
+import zDeprecatedDominio.Producto;
 import java.util.ArrayList;
 import java.util.List;
 

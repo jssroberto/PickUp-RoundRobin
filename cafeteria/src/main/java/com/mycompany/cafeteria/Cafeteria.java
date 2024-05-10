@@ -4,8 +4,8 @@
 
 package com.mycompany.cafeteria;
 
-import DAOs.ProductoCafeteriaDAO;
-import Incerciones.InsercionMasivaProductosCafeteriaBO;
+import daos.ProductoCafeteriaDAO;
+import inserciones.InsercionMasivaProductosCafeteriaBO;
 import dominio.ProductoCafeteria;
 import java.util.List;
 

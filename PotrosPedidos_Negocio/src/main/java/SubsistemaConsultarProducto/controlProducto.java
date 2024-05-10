@@ -5,7 +5,7 @@
 package SubsistemaConsultarProducto;
 
 import BOs.ConsultarProductoBO;
-import DAOs.ProductoCafeteriaDAO;
+import daos.ProductoCafeteriaDAO;
 import excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;

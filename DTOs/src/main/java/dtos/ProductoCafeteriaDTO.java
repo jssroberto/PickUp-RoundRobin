@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dtos;
 
 /**
@@ -11,35 +7,41 @@ package dtos;
 public class ProductoCafeteriaDTO {
 
     private Long id;
+    private String codigoProducto;
     private Float precio;
     private String nombre;
     private String descripcion;
     private Integer cantidadDisponible;
     private String direccionImagen;
-    private Long idProductoCafeteria;
 
     public ProductoCafeteriaDTO() {
     }
 
-    public ProductoCafeteriaDTO(Long idProductoCafeteria) {
-        this.idProductoCafeteria = idProductoCafeteria;
+    public ProductoCafeteriaDTO(String codigoProducto, Float precio, String nombre, Integer cantidadDisponible, String direccionImagen) {
+        this.codigoProducto = codigoProducto;
+        this.precio = precio;
+        this.nombre = nombre;
+        this.cantidadDisponible = cantidadDisponible;
+        this.direccionImagen = direccionImagen;
     }
 
-    public ProductoCafeteriaDTO(Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen, Long idProductoCafeteria) {
+    public ProductoCafeteriaDTO(String codigoProducto, Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen) {
+        this.codigoProducto = codigoProducto;
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidadDisponible = cantidadDisponible;
         this.direccionImagen = direccionImagen;
-        this.idProductoCafeteria = idProductoCafeteria;
     }
-
-    public ProductoCafeteriaDTO(Float precio, String nombre, String descripcion, String direccionImagen, Long idProductoCafeteria) {
+    
+    public ProductoCafeteriaDTO(Long id, String codigoProducto, Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen) {
+        this.id = id;
+        this.codigoProducto = codigoProducto;
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.cantidadDisponible = cantidadDisponible;
         this.direccionImagen = direccionImagen;
-        this.idProductoCafeteria = idProductoCafeteria;
     }
 
     public Long getId() {
@@ -49,8 +51,6 @@ public class ProductoCafeteriaDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
 
     public Float getPrecio() {
         return precio;
@@ -92,18 +92,26 @@ public class ProductoCafeteriaDTO {
         this.direccionImagen = direccionImagen;
     }
 
-    public Long getIdProductoCafeteria() {
-        return idProductoCafeteria;
+    public String getCodigoProducto() {
+        return codigoProducto;
     }
 
-    public void setIdProductoCafeteria(Long idProductoCafeteria) {
-        this.idProductoCafeteria = idProductoCafeteria;
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
     }
 
     @Override
     public String toString() {
-        return "ProductoCafeteriaDTO{" + "precio=" + precio + ", nombre=" + nombre + ", descripcion=" + descripcion + ", cantidadDisponible=" + cantidadDisponible + ", direccionImagen=" + direccionImagen + ", idProductoCafeteria=" + idProductoCafeteria + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("ProductoCafeteriaDTO{");
+        sb.append("id=").append(id);
+        sb.append(", codigoProducto=").append(codigoProducto);
+        sb.append(", precio=").append(precio);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", descripcion=").append(descripcion);
+        sb.append(", cantidadDisponible=").append(cantidadDisponible);
+        sb.append(", direccionImagen=").append(direccionImagen);
+        sb.append('}');
+        return sb.toString();
     }
-
-    
 }

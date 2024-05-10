@@ -1,47 +1,51 @@
 package dtos;
 
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-
-
 /**
  *
  * @author yohan
  */
- public class ProductoDTO {
+public class ProductoDTO {
 
     private String id;
+    private String codigoProducto;
     private String nombre;
     private Float precio;
     private Integer puntosCuesta, puntosGenera;
     private String descripcion;
     private String direccionImagen;
 
-    public ProductoDTO(String id, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.puntosCuesta = puntosCuesta;
-        this.puntosGenera = puntosGenera;
-        this.descripcion = descripcion;
-        this.direccionImagen = direccionImagen;
-    }
-
-    public ProductoDTO(String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.puntosCuesta = puntosCuesta;
-        this.puntosGenera = puntosGenera;
-        this.descripcion = descripcion;
-        this.direccionImagen = direccionImagen;
-    }
-
     public ProductoDTO() {
     }
+
+    public ProductoDTO(String codigoProducto, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen) {
+        this.codigoProducto = codigoProducto;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.puntosCuesta = puntosCuesta;
+        this.puntosGenera = puntosGenera;
+        this.direccionImagen = direccionImagen;
+    }
     
-    
+    public ProductoDTO(String codigoProducto, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
+        this.codigoProducto = codigoProducto;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.puntosCuesta = puntosCuesta;
+        this.puntosGenera = puntosGenera;
+        this.descripcion = descripcion;
+        this.direccionImagen = direccionImagen;
+    }
+
+    public ProductoDTO(String id, String codigoProducto, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
+        this.id = id;
+        this.codigoProducto = codigoProducto;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.puntosCuesta = puntosCuesta;
+        this.puntosGenera = puntosGenera;
+        this.descripcion = descripcion;
+        this.direccionImagen = direccionImagen;
+    }
 
     public String getId() {
         return id;
@@ -101,9 +105,19 @@ package dtos;
 
     @Override
     public String toString() {
-        return "ProductoDTO{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", puntosCuesta=" + puntosCuesta + ", puntosGenera=" + puntosGenera + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("ProductoDTO{");
+        sb.append("id=").append(id);
+        sb.append(", codigoProducto=").append(codigoProducto);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", precio=").append(precio);
+        sb.append(", puntosCuesta=").append(puntosCuesta);
+        sb.append(", puntosGenera=").append(puntosGenera);
+        sb.append(", descripcion=").append(descripcion);
+        sb.append(", direccionImagen=").append(direccionImagen);
+        sb.append('}');
+        return sb.toString();
     }
 
     
-
 }

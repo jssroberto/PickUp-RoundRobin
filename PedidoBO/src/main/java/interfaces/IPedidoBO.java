@@ -14,7 +14,7 @@ import excepciones.PersistenciaException;
  */
 public interface IPedidoBO {
 
-    public void persistir(PedidoDTO pedido) throws BOException;
-
-    public PedidoDTO consultarPedido(String numeroPedido) throws BOException;
+//    public void persistir(PedidoDTO pedido) throws BOException;
+//
+//    public PedidoDTO consultarPedido(String numeroPedido) throws BOException;
 }

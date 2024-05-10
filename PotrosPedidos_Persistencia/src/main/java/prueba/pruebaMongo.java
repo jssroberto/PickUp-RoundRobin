@@ -4,8 +4,8 @@
  */
 package prueba;
 
-import insercionesMasivas.InsercionMasivaProductos;
-import insercionesMasivas.InsercionMasivaUsuarios;
+import inserciones.InsercionMasivaProductos;
+import inserciones.InsercionMasivaUsuarios;
 import java.io.IOException;
 
 /**

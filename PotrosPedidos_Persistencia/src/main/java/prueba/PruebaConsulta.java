@@ -1,11 +1,11 @@
 package prueba;
 
-import DAOs.UsuarioDAO;
+import daos.UsuarioDAO;
 import dominio.Carrito;
 import dominio.DetalleProducto;
 import dominio.Producto;
 import dominio.Usuario;
-import insercionesMasivas.InsercionMasivaProductos;
+import inserciones.InsercionMasivaProductos;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;

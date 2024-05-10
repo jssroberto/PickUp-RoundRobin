@@ -4,8 +4,8 @@
  */
 package metodos;
 
-import dominio.ProductoCafeteria;
-import excepciones.PersitenciaException;
+import dtos.ProductoCafeteriaDTO;
+import excepciones.PersistenciaException;
 import interfaces.IProductoCafeteriaBO;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -24,8 +24,8 @@ public class ConsultarProductos {
     }
     
     
-    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException{
-        List<ProductoCafeteria> productos;
+    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersistenciaException{
+        List<ProductoCafeteriaDTO> productos;
         
         productos = this.producto.obtenerTodosLosProductos();
         if(productos.isEmpty()){

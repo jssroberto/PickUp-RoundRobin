@@ -4,8 +4,8 @@
  */
 package control;
 
-import dominio.ProductoCafeteria;
-import excepciones.PersitenciaException;
+import dtos.ProductoCafeteriaDTO;
+import excepciones.PersistenciaException;
 import interfaces.IControlProductos;
 import java.util.List;
 import metodos.ConsultarProductos;
@@ -14,18 +14,17 @@ import metodos.ConsultarProductos;
  *
  * @author jl4ma
  */
-public class ControlProductos implements IControlProductos{
-    
+public class ControlProductos implements IControlProductos {
+
     ConsultarProductos consultar;
-    
-    public ControlProductos(){
+
+    public ControlProductos() {
         consultar = new ConsultarProductos();
     }
-    
-    
-    
-    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException{
-        
+
+    @Override
+    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersistenciaException {
+
         return consultar.obtenerTodosLosProductos();
     }
 }

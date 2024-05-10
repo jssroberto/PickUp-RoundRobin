@@ -1,5 +1,12 @@
 package org.itson.disenosw.guis;
 
+import control.ControlProductos;
+import dtos.ProductoCafeteriaDTO;
+import excepciones.PersistenciaException;
+import excepciones.BancoException;
+import fachada.CarritoFacade;
+import interfaces.ICarritoFacade;
+import interfaces.IControlProductos;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -12,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,12 +51,12 @@ public class PanelMenu extends javax.swing.JPanel {
     public PanelMenu(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
-//        try {
-//            crearMenu();
-//        } catch (PersistenciaException ex) {
-//            logger.log(Level.SEVERE, "Error al consutlar el menú");
-//        }
-//        setFuentes();
+        try {
+            crearMenu();
+        } catch (PersistenciaException ex) {
+            logger.log(Level.SEVERE, "Error al consultar el menú");
+        }
+        setFuentes();
     }
 
     /**
@@ -147,92 +155,94 @@ public class PanelMenu extends javax.swing.JPanel {
 
     }
 
-    public void crearMenu() {
-//        JPanel mainPanel = new JPanel(new GridBagLayout());
-//        mainPanel.setOpaque(false);
-//        mainPanel.setMaximumSize(new Dimension(380, 600));
-//        mainPanel.setSize(new Dimension(380, 600));
-//
-//        ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
-//        List<ProductoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
-//
-//        GridBagConstraints c = new GridBagConstraints();
-//
-//        //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
-//        c.anchor = GridBagConstraints.NORTH;
-//        c.fill = GridBagConstraints.BOTH;
-//
-//        // Iterar sobre la lista de productos y crear los paneles correspondientes
-//        for (int i = 0; i < productosDTO.size(); i++) {
-////            String[] producto = productosDTO.get(i);
-//            JPanel productoPanel = createProductoPanel(productosDTO.get(i).getNombre(), productosDTO.get(i).getPrecio(), productosDTO.get(i).getDireccionImagen());
-//
-////            String identificador = "producto_" + i;
-//            Long identificador = productosDTO.get(i).getIdProductoCafeteria();
-//            productoPanel.putClientProperty(identificador, productoPanel);
-////            String identificadorString = String.valueOf(identificador);
-////            productoPanel.putClientProperty(i, idProducto);
-//            // Añade un ActionListener al panel de producto
-//            productoPanel.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    // Acción a realizar al hacer clic en el panel de producto
-//                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
-//                    System.out.println("Clic en el panel de producto: " + identificador);
-//                    framePrincipal.setIdProducto(identificador);
-//                    framePrincipal.cambiarVistaProducto();
-//
-//                }
-//            });
-//            idProducto++;
-//            // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
-//            c.gridx = 0;
-//            c.gridy = i * 2;
-//            mainPanel.add(productoPanel, c);
-//
-//            // Añade un separador después de cada producto, excepto el último
-//            if (i < productosDTO.size() - 1) {
-//                JPanel separatorPanel = createSeparatorPanel();
-//                c.gridx = 0;
-//                c.gridy = i * 2 + 1;
-//                mainPanel.add(separatorPanel, c);
-//            }
-//
-//            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//
-//        }
-//
-//        //TODO hacer el scrollPane un ScrollPaneWin11
-//        // Configurar el JScrollPane para desplazamiento vertical
-//        JScrollPane scrollPane = new JScrollPane(mainPanel);
-////        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
-////        scrollPane.add(mainPanel);
-//
-//        scrollPane.setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado
-//        scrollPane.setMaximumSize(new Dimension(380, 600)); // Establece un tamaño máximo
-//        scrollPane.getViewport().setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado para el viewport
-//        scrollPane.getViewport().setMaximumSize(new Dimension(380, 600)); // Establece un tamaño mínimo para el viewport
-//        scrollPane.getViewport().setSize(380, 600);
-//
-//        scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
-//        scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
-//        scrollPane.setBorder(null); // Eliminar el borde del JScrollPane
-//        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Ajustar la velocidad del scroll vertical
-//        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // Ocultar la barra de desplazamiento horizontal
-//
-//        JPanel cont = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
-//        cont.add(scrollPane);
-//        cont.setOpaque(false);
-//
-//        panelTop.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
-//        panelTop.add(cont);
-//        
+    public void crearMenu() throws PersistenciaException {
+        IControlProductos productosSubsistema = new ControlProductos();
+        List<ProductoCafeteriaDTO> productosCafeteriaDTO = new LinkedList<>();
+
+        productosCafeteriaDTO = productosSubsistema.obtenerTodosLosProductos();
+
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setOpaque(false);
+        mainPanel.setMaximumSize(new Dimension(380, 600));
+        mainPanel.setSize(new Dimension(380, 600));
+
+        GridBagConstraints c = new GridBagConstraints();
+
+        //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
+        c.anchor = GridBagConstraints.NORTH;
+        c.fill = GridBagConstraints.BOTH;
+
+        // Iterar sobre la lista de productos y crear los paneles correspondientes
+        for (int i = 0; i < productosCafeteriaDTO.size(); i++) {
+//            String[] producto = productosDTO.get(i);
+            JPanel productoPanel = createProductoPanel(productosCafeteriaDTO.get(i).getNombre(), productosCafeteriaDTO.get(i).getPrecio(), productosCafeteriaDTO.get(i).getDireccionImagen());
+
+//            String identificador = "producto_" + i;
+            Long identificador = productosCafeteriaDTO.get(i).getIdProductoCafeteria();
+            productoPanel.putClientProperty(identificador, productoPanel);
+//            String identificadorString = String.valueOf(identificador);
+//            productoPanel.putClientProperty(i, idProducto);
+            // Añade un ActionListener al panel de producto
+            productoPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    // Acción a realizar al hacer clic en el panel de producto
+                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
+                    System.out.println("Clic en el panel de producto: " + identificador);
+                    framePrincipal.setIdProducto(identificador);
+                    framePrincipal.cambiarVistaProducto();
+
+                }
+            });
+            idProducto++;
+            // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
+            c.gridx = 0;
+            c.gridy = i * 2;
+            mainPanel.add(productoPanel, c);
+
+            // Añade un separador después de cada producto, excepto el último
+            if (i < productosCafeteriaDTO.size() - 1) {
+                JPanel separatorPanel = createSeparatorPanel();
+                c.gridx = 0;
+                c.gridy = i * 2 + 1;
+                mainPanel.add(separatorPanel, c);
+            }
+
+            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        }
+
+        //TODO hacer el scrollPane un ScrollPaneWin11
+        // Configurar el JScrollPane para desplazamiento vertical
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+//        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
+//        scrollPane.add(mainPanel);
+
+        scrollPane.setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado
+        scrollPane.setMaximumSize(new Dimension(380, 600)); // Establece un tamaño máximo
+        scrollPane.getViewport().setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado para el viewport
+        scrollPane.getViewport().setMaximumSize(new Dimension(380, 600)); // Establece un tamaño mínimo para el viewport
+        scrollPane.getViewport().setSize(380, 600);
+
+        scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
+        scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
+        scrollPane.setBorder(null); // Eliminar el borde del JScrollPane
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Ajustar la velocidad del scroll vertical
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // Ocultar la barra de desplazamiento horizontal
+
+        JPanel cont = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
+        cont.add(scrollPane);
+        cont.setOpaque(false);
+
+        panelTop.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
+        panelTop.add(cont);
+
 //        this.setLayout(new BorderLayout());
 //        JLabel fondo = new javax.swing.JLabel();fondo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 //        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMenu.png"))); // NOI18N
 //        fondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 //        add(fondo,BorderLayout.CENTER);
-
+//
 //        Container contenedor = fondo.getParent();
 // Asegúrate de que el contenedor utiliza un layout que soporte z-order, como JPanel
 //        if (contenedor instanceof JPanel) {

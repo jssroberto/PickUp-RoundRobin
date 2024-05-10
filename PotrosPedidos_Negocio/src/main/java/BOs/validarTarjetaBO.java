@@ -4,7 +4,7 @@
  */
 package BOs;
 
-import DAOs.TarjetaDAO;
+import daos.TarjetaDAO;
 import SubsistemaBanco.ControlTarjeta;
 import excepciones.PersistenciaException;
 import java.util.List;

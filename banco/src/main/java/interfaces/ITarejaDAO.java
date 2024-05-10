@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import excepciones.PersitenciaException;
+import excepciones.BancoException;
 
 /**
  *
@@ -12,5 +12,5 @@ import excepciones.PersitenciaException;
  */
 public interface ITarejaDAO {
     
-    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersitenciaException;
+    public Boolean BuscarTarjeta(String numeroTarjeta) throws BancoException;
 }

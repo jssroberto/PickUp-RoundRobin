@@ -1,7 +1,12 @@
 package org.itson.disenosw.guis;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * La clase Ventana representa la ventana principal de la aplicación bancaria.
@@ -23,6 +28,12 @@ public class FramePrincipal extends javax.swing.JFrame {
      * Constructor de la clase Ventana.
      */
     public FramePrincipal() {
+        try {
+            // Establecer el Look and Feel Nimbus
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
     }
 

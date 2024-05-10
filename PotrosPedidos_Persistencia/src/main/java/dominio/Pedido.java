@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dominio;
 
 import java.time.LocalDate;
@@ -24,8 +20,11 @@ public class Pedido {
     private MetodoPago metodoPago;
     private List<DetalleProducto> detalleProductos;
 
-    public Pedido(ObjectId idPedido, String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProducto> detalleProductos) {
-        this.idPedido = idPedido;
+    public Pedido() {
+        detalleProductos = new ArrayList<>();
+    }
+
+    public Pedido(String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProducto> detalleProductos) {
         this.etiquetaPedido = etiquetaPedido;
         this.numeroPedido = numeroPedido;
         this.claveRecoleccion = claveRecoleccion;
@@ -36,8 +35,16 @@ public class Pedido {
         this.detalleProductos = detalleProductos;
     }
 
-    public Pedido() {
-        detalleProductos = new ArrayList<>();
+    public Pedido(ObjectId idPedido, String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProducto> detalleProductos) {
+        this.idPedido = idPedido;
+        this.etiquetaPedido = etiquetaPedido;
+        this.numeroPedido = numeroPedido;
+        this.claveRecoleccion = claveRecoleccion;
+        this.fecha = fecha;
+        this.numeroProductos = numeroProductos;
+        this.total = total;
+        this.metodoPago = metodoPago;
+        this.detalleProductos = detalleProductos;
     }
     
 
