@@ -145,7 +145,7 @@ public class PanelBuscar extends javax.swing.JPanel {
         add(btnRegresar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 700, 50, 50));
 
         panelTop.setOpaque(false);
-        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 370, 510));
+        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 370, 510));
 
         btnCarrito.setBorder(null);
         btnCarrito.setContentAreaFilled(false);
