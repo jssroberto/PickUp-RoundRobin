@@ -14,7 +14,10 @@ import javax.swing.JOptionPane;
  */
 public class IniciarSesion {
     
-    IUsuarioCiaBO usuario = new UsuariosCiaBO();
+    IUsuarioCiaBO usuario;
+    public IniciarSesion(){
+        usuario = new UsuariosCiaBO();
+    }
     
     public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
         if(usuario.validacionDatos(idEstudiante, contra)){

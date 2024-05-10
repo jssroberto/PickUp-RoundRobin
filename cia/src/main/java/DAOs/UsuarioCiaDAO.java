@@ -20,9 +20,9 @@ import javax.persistence.criteria.Root;
  */
 public class UsuarioCiaDAO implements IUsuarioCiaDAO{
     private EntityManager em;
-
+    private EntityManagerFactory emf;
     public UsuarioCiaDAO() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexionPU");
+        emf = Persistence.createEntityManagerFactory("conexionPU");
         em = emf.createEntityManager();
     }
 

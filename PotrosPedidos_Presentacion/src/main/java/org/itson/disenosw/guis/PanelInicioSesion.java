@@ -1,15 +1,13 @@
 package org.itson.disenosw.guis;
 
-import BOs.InsercionMasiva;
-import BOs.VerificarPersonaBO;
-import excepciones.PersistenciaException;
+import control.ControlLogin;
+import interfaces.IControlLogin;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.itson.disenosw.dtos.UsuarioDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -30,7 +28,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
         initComponents();
         setFonts();
-        setRegistros();
+//        setRegistros();
     }
 
     /**
@@ -93,17 +91,16 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             //TODO
             //la contraseña no se debería mandar como string
             //el metodo validar persona debería lanzar excepcion y cacharse aquí
-            UsuarioDTO u = new UsuarioDTO(new String(txtContraseña.getPassword()), txtId.getText());
-            VerificarPersonaBO vp = new VerificarPersonaBO();
+            IControlLogin control = new ControlLogin();
 
             try {
-                if (vp.buscarPersona(txtId.getText(), txtContraseña.getText())) {
+                if (control.validacionDatos(txtId.getText(), txtContraseña.getText())) {
                     framePrincipal.setNumID(txtId.getText());
                     framePrincipal.cambiarVistaMenu();
-                } else {
-                    framePrincipal.mostrarAviso("No se encontró un usuario con\nlas credenciales proporcionadas", "Usuario inválido");
+                }else{
+                    framePrincipal.mostrarAviso("Credenciales no válidas", "Aviso");
                 }
-            } catch (PersistenciaException ex) {
+            } catch (Exception ex) {
                 framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
             }
         }
@@ -113,18 +110,18 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
-    public void setRegistros() {
-        InsercionMasiva insercionMasiva= new InsercionMasiva();
-        try {
-            insercionMasiva.insercionUsuariosCIA();
-            insercionMasiva.insercionesUsuario();
-            insercionMasiva.insercionesBanco();
-            insercionMasiva.insercionesCafeteria(); 
-            insercionMasiva.insercionesProductos();
-        } catch (Exception e) {
-            logger.log(Level.INFO, "Registros aregados anteriormente");
-        }
-    }
+//    public void setRegistros() {
+//        InsercionMasiva insercionMasiva= new InsercionMasiva();
+//        try {
+//            insercionMasiva.insercionUsuariosCIA();
+//            insercionMasiva.insercionesUsuario();
+//            insercionMasiva.insercionesBanco();
+//            insercionMasiva.insercionesCafeteria(); 
+//            insercionMasiva.insercionesProductos();
+//        } catch (Exception e) {
+//            logger.log(Level.INFO, "Registros aregados anteriormente");
+//        }
+//    }
 
     private void setFonts() {
         try {

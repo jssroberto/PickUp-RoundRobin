@@ -1,8 +1,6 @@
 package org.itson.disenosw.guis;
 
-import BOs.AgregarCarritoBO;
-import BOs.ConsultarProductoBO;
-import excepciones.PersistenciaException;
+
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -11,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import org.itson.disenosw.dtos.ProductoDTO;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -22,9 +19,9 @@ public class PanelProducto extends javax.swing.JPanel {
 
     private final FramePrincipal framePrincipal;
     private static final Logger logger = Logger.getLogger(PanelProducto.class.getName());
-    AgregarCarritoBO agregarCarritoBO;
-    ConsultarProductoBO consultarProductoBO;
-    ProductoDTO productoDTO;
+//    AgregarCarritoBO agregarCarritoBO;
+//    ConsultarProductoBO consultarProductoBO;
+//    ProductoDTO productoDTO;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -33,8 +30,8 @@ public class PanelProducto extends javax.swing.JPanel {
      */
     public PanelProducto(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
-        this.agregarCarritoBO = new AgregarCarritoBO();
-        this.consultarProductoBO = new ConsultarProductoBO();
+//        this.agregarCarritoBO = new AgregarCarritoBO();
+//        this.consultarProductoBO = new ConsultarProductoBO();
         initComponents();
         setFuentes();
         setDatos();
@@ -136,7 +133,7 @@ public class PanelProducto extends javax.swing.JPanel {
             framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
         } else {
 
-            try {
+//            try {
                 //            Productos producto = new Productos();
 //            producto.generarLista();
 //            Usuario usuario = new Usuario();
@@ -153,13 +150,13 @@ public class PanelProducto extends javax.swing.JPanel {
 ////            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
 //            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
 
-                agregarCarritoBO.agregarCarrito(consultarProductoBO.consultarProductoID(framePrincipal.getIdProducto()), framePrincipal.getNumID(), Integer.decode(txtCantidad.getText()), framePrincipal.getIdProducto());
-
-            } catch (PersistenciaException ex) {
-                Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            framePrincipal.setIdProducto(null);
-            framePrincipal.cambiarVistaCarrito();
+//                agregarCarritoBO.agregarCarrito(consultarProductoBO.consultarProductoID(framePrincipal.getIdProducto()), framePrincipal.getNumID(), Integer.decode(txtCantidad.getText()), framePrincipal.getIdProducto());
+//
+//            } catch (PersistenciaException ex) {
+//                Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            framePrincipal.setIdProducto(null);
+//            framePrincipal.cambiarVistaCarrito();
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -183,37 +180,37 @@ public class PanelProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMasActionPerformed
 
     private void setDatos() {
-        try {
-            consultarProducto();
-        } catch (PersistenciaException ex) {
-            logger.log(Level.SEVERE, "Producto no encontrado");
-        }
-        lblNombre.setText(productoDTO.getNombre().toUpperCase());
-        String precioFormateado = String.valueOf(productoDTO.getPrecio());
-        if (precioFormateado.endsWith(".0")) {
-            precioFormateado = precioFormateado.substring(0, precioFormateado.length() - 2);
-        }
-        lblPrecio.setText("$" + precioFormateado);
-        try {
-            lblDescripcion.setText(productoDTO.getDescripcion());
-        } catch (NullPointerException e) {
-            logger.log(Level.INFO, "El producto no tiene descrpición");
-        }
-        String rutaFolder = "/productos/400x200/";
-        StringBuilder rutaRelativa = new StringBuilder();
-        rutaRelativa.append(rutaFolder);
-        rutaRelativa.append(productoDTO.getDireccionImagen());
-
-        // Cargar la imagen del producto
-        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
-
-        lblImagen.setIcon(icon);
+//        try {
+//            consultarProducto();
+//        } catch (PersistenciaException ex) {
+//            logger.log(Level.SEVERE, "Producto no encontrado");
+//        }
+//        lblNombre.setText(productoDTO.getNombre().toUpperCase());
+//        String precioFormateado = String.valueOf(productoDTO.getPrecio());
+//        if (precioFormateado.endsWith(".0")) {
+//            precioFormateado = precioFormateado.substring(0, precioFormateado.length() - 2);
+//        }
+//        lblPrecio.setText("$" + precioFormateado);
+//        try {
+//            lblDescripcion.setText(productoDTO.getDescripcion());
+//        } catch (NullPointerException e) {
+//            logger.log(Level.INFO, "El producto no tiene descrpición");
+//        }
+//        String rutaFolder = "/productos/400x200/";
+//        StringBuilder rutaRelativa = new StringBuilder();
+//        rutaRelativa.append(rutaFolder);
+//        rutaRelativa.append(productoDTO.getDireccionImagen());
+//
+//        // Cargar la imagen del producto
+//        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
+//
+//        lblImagen.setIcon(icon);
 
     }
 
-    private void consultarProducto() throws PersistenciaException {
-        Long idProducto = framePrincipal.getIdProducto();
-        productoDTO = consultarProductoBO.consultarProductoID(idProducto);
+    private void consultarProducto() {
+//        Long idProducto = framePrincipal.getIdProducto();
+//        productoDTO = consultarProductoBO.consultarProductoID(idProducto);
     }
 
     private void setFuentes() {

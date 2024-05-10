@@ -5,7 +5,6 @@ DAOs\PedidoDAO.class
 prueba\PruebaConsulta.class
 excepciones\PersistenciaException.class
 dominioVIEJO\EstadoPedido.class
-insercionesMasivas\InsercionMasivaProductosCafeteriaBO.class
 DAOs\ProductoDAO.class
 dominio\Carrito.class
 dominioVIEJO\DetallePedido.class
@@ -16,14 +15,12 @@ dominioVIEJO\DetalleCarrito.class
 DAOs\ProductoCafeteriaDAO.class
 dominioVIEJO\Usuario.class
 conexion\Conexion.class
-insercionesMasivas\InsercionMasivaUsuariosCIA.class
 dominio\Usuario.class
 dominio\Producto.class
 dominioVIEJO\Pedido.class
 dominio\Pedido.class
 dominio\DetalleProducto.class
 prueba\Prueba.class
-insercionesMasivas\InsercionMasivaBanco.class
 dominio\MetodoPago.class
 insercionesMasivas\InsercionMasivaProductos.class
 prueba\JframePruebaImagen$1.class
