@@ -241,31 +241,57 @@ public class PanelProducto extends javax.swing.JPanel {
 //            logger.log(Level.SEVERE, "Producto no encontrado", ex);
 //        }
 //    }
+//    private void setDatos() {
+//
+//        try {
+//            consultarProducto();
+//        } catch (PersitenciaException ex) {
+//            logger.log(Level.SEVERE, "Producto no encontrado");
+//        }
+//        lblNombre.setText(productoDTO.getNombre().toUpperCase());
+//        try {
+//            lblDescripcion.setText(productoDTO.getDescripcion());
+//        } catch (NullPointerException e) {
+//            logger.log(Level.INFO, "El producto no tiene descrpición");
+//        }
+//        lblPrecio.setText(String.valueOf(productoDTO.getPrecio()));
+//        String rutaFolder = "/productos/370x150/";
+//        StringBuilder rutaRelativa = new StringBuilder();
+//        rutaRelativa.append(rutaFolder);
+//        rutaRelativa.append(productoDTO.getDireccionImagen());
+//
+//        // Cargar la imagen del producto
+//        // Cargar la imagen del producto
+//        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(rutaRelativa.toString()));
+//
+//        lblImagen.setIcon(icon);
+//
+//    }
+//
+//    private void consultarProducto() throws PersitenciaException {
+//        Long idProducto = framePrincipal.getIdProducto();
+//        productoDTO = control.buscarProductoCafeteriaPorID(idProducto);
+//    }
     private void setDatos() {
-
         try {
             consultarProducto();
         } catch (PersitenciaException ex) {
             logger.log(Level.SEVERE, "Producto no encontrado");
         }
         lblNombre.setText(productoDTO.getNombre().toUpperCase());
-        try {
-            lblDescripcion.setText(productoDTO.getDescripcion());
-        } catch (NullPointerException e) {
-            logger.log(Level.INFO, "El producto no tiene descrpición");
-        }
+        lblDescripcion.setText(productoDTO.getDescripcion());
         lblPrecio.setText(String.valueOf(productoDTO.getPrecio()));
-        String rutaFolder = "/productos/370x150/";
+
+        // Cargar la imagen del producto
+        String rutaFolder = "/productos/400x200/";
         StringBuilder rutaRelativa = new StringBuilder();
         rutaRelativa.append(rutaFolder);
         rutaRelativa.append(productoDTO.getDireccionImagen());
 
         // Cargar la imagen del producto
-        // Cargar la imagen del producto
-        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(rutaRelativa.toString()));
-
+        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
+        
         lblImagen.setIcon(icon);
-
     }
 
     private void consultarProducto() throws PersitenciaException {
