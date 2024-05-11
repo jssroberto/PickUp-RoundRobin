@@ -1,5 +1,6 @@
 package org.itson.disenosw.guis;
 
+import org.itson.disenosw.main.PanelBuscar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
