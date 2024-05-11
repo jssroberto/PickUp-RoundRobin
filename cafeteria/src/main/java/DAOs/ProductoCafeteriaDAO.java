@@ -7,6 +7,8 @@ package DAOs;
 import dominio.ProductoCafeteria;
 import excepciones.PersitenciaException;
 import interfaces.IProductoCafeteriaDAO;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -117,6 +119,60 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
             }
             em.close();
             throw new PersitenciaException("Error al obtener todos los productos de cafetería");
+        }
+    }
+        @Override
+    public List<ProductoCafeteria> consultarProductos(String palabra) throws PersitenciaException {
+        try {
+            List<ProductoCafeteria> productos = new ArrayList<>();
+            List<ProductoCafeteria> productosCafeteria = obtenerTodosLosProductos();
+
+            for (ProductoCafeteria producto : productosCafeteria) {
+                if (producto.getNombre().toLowerCase().contains(palabra.toLowerCase())) {
+                    productos.add(producto);
+                }
+            }
+            return productos;
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteria> ordenarProductosAZ() throws PersitenciaException {
+        try {
+            List<ProductoCafeteria> productos = obtenerTodosLosProductos();
+            em.getTransaction().begin();
+
+            productos.sort(Comparator.comparing(ProductoCafeteria::getNombre));
+            em.close();
+            return productos;
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException("Error al ordenar productos de forma ascendente", e);
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteria> ordenarProductosZA() throws PersitenciaException {
+        try {
+            List<ProductoCafeteria> productos = obtenerTodosLosProductos();
+            productos.sort(Comparator.comparing(ProductoCafeteria::getNombre).reversed());
+            em.close();
+            return productos;
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException("Error al ordenar productos de forma descendente", e);
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteria> ordenarProductosPorPrecio() throws PersitenciaException {
+        try {
+            List<ProductoCafeteria> productos = obtenerTodosLosProductos();
+            productos.sort(Comparator.comparingDouble(ProductoCafeteria::getPrecio));
+            em.close();
+            return productos;
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException("Error al ordenar productos por precio", e);
         }
     }
 }

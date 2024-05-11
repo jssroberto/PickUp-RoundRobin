@@ -121,5 +121,15 @@
             <artifactId>SubsistemaProductosMenu</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PedidoBO</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>UsuariosBO</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
