@@ -107,18 +107,8 @@
             <systemPath>C:\Users\rover\Documents\GitHub\windows11-jscrollbar\TimingFramework-0.55.jar</systemPath>
         </dependency>-->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.0.33</version>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaIniciarSesion</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaProductosMenu</artifactId>
+            <artifactId>subsistemaUsuario</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -128,17 +118,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>cia</artifactId>
+            <artifactId>SubsistemaProductosMenu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>PotrosPedidos_Persistencia</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>cafeteria</artifactId>
+            <artifactId>SubsistemaIniciarSesion</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

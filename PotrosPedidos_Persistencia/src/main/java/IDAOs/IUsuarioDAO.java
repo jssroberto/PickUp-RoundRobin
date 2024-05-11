@@ -4,17 +4,21 @@
  */
 package IDAOs;
 
+import dominio.DetalleProducto;
+import dominioVIEJO.Pedido;
 import dominioVIEJO.Usuario;
 import excepciones.PersistenciaException;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author USER
  */
 public interface IUsuarioDAO {
-    public void registrarUsuario (Usuario usuario) throws PersistenciaException;
-    
-    public void actualizarUsuario (Usuario usuario) throws PersistenciaException;
-    
-    public Usuario buscarUsuarioPorIdCIA(String idUsuarioCia) throws PersistenciaException;
+    public void persistir(dominio.Usuario usuario);
+    public dominio.Usuario consultarUsuario(dominio.Usuario usuario);
+    public void agregarDetalleProductoAlCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto);
+    public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto);
+    public void vaciarCarrito(dominio.Usuario usuario);
+    public void referenciarPedido(dominio.Usuario usuario, Pedido pedido);
 }

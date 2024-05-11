@@ -4,8 +4,8 @@
  */
 package Interfaz;
 
+import dominio.Usuario;
 import dtos.UsuarioDTO;
-import excepciones.PersitenciaException;
 
 /**
  *
@@ -13,7 +13,7 @@ import excepciones.PersitenciaException;
  */
 public interface IUsuarioBO {
 
-    public UsuarioDTO consultarUsuario(UsuarioDTO usuario) throws PersitenciaException;
+    public Usuario consultarUsuario(Usuario usuario);
 
-    public void persistir(UsuarioDTO usuario) throws PersitenciaException;
+    public void persistir(UsuarioDTO usuario);
 }
