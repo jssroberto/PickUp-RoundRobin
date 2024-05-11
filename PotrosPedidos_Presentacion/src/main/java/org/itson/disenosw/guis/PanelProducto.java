@@ -142,6 +142,28 @@ public class PanelProducto extends javax.swing.JPanel {
         if (txtCantidad.getText().isBlank()) {
             framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
         } else {
+            String CodigoProducto;
+            if (framePrincipal.getIdProducto() == 1) {
+                CodigoProducto = "CCN025";
+            } else if (framePrincipal.getIdProducto() == 2) {
+                CodigoProducto = "SJL060";
+            } else if (framePrincipal.getIdProducto() == 3) {
+                CodigoProducto = "CCL025";
+            } else if (framePrincipal.getIdProducto() == 4) {
+                CodigoProducto = "TML065";
+            } else if (framePrincipal.getIdProducto() == 5) {
+                CodigoProducto = "HCL080";
+            } else if (framePrincipal.getIdProducto() == 6) {
+                CodigoProducto = "SCL100";
+            } else if (framePrincipal.getIdProducto() == 7) {
+                CodigoProducto = "TCL070";
+            } else if (framePrincipal.getIdProducto() == 8) {
+                CodigoProducto = "HPL085";
+            } else if (framePrincipal.getIdProducto() == 9) {
+                CodigoProducto = "CCZ025";
+            } else if (framePrincipal.getIdProducto() == 10) {
+                CodigoProducto = "AJL020";
+            }
 
 //            try {
 //            Productos producto = new Productos();
@@ -290,7 +312,7 @@ public class PanelProducto extends javax.swing.JPanel {
 
         // Cargar la imagen del producto
         ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
-        
+
         lblImagen.setIcon(icon);
     }
 
