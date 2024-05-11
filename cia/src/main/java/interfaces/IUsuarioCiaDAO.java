@@ -4,7 +4,6 @@
  */
 package interfaces;
 
-import dominio.UsuarioCIA;
 import excepciones.PersitenciaException;
 
 /**

@@ -35,7 +35,7 @@ import javax.swing.SwingConstants;
  * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
  * usuario y contraseña.
  */
-public  class PanelMenu extends javax.swing.JPanel {
+public final  class PanelMenu extends javax.swing.JPanel {
 
     private static final Logger logger = Logger.getLogger(PanelMenu.class.getName());
     private FramePrincipal framePrincipal;
@@ -48,17 +48,17 @@ public  class PanelMenu extends javax.swing.JPanel {
      */
     public PanelMenu(FramePrincipal framePrincipal) {
         
-       
+       this.framePrincipal = framePrincipal;
         initComponents();
-        this.framePrincipal = framePrincipal;
+        
+        
         try {
             this.crearMenu();
         } catch (PersitenciaException ex) {
-            logger.log(Level.SEVERE, "Error al consultar el menú");
+            logger.log(Level.SEVERE, ex.getMessage());
             framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
         }
-        this.setFuentes();
-        
+        setFuentes();
     }
 
     /**

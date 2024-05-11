@@ -5,8 +5,7 @@
 package IDAOs;
 
 import dominio.DetalleProducto;
-import dominioVIEJO.Pedido;
-import dominioVIEJO.Usuario;
+import dominio.Pedido;
 import excepciones.PersistenciaException;
 import org.bson.types.ObjectId;
 

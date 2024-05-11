@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class PanelInicioSesion extends javax.swing.JPanel {
 
-    private FramePrincipal framePrincipal;
+    private final FramePrincipal framePrincipal;
 
     /**
      * Constructor de la clase VistaInicioSesion.

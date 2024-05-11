@@ -37,7 +37,7 @@ import javax.swing.SwingConstants;
  * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
  * usuario y contraseña.
  */
-public class PanelCarrito extends javax.swing.JPanel {
+public final class PanelCarrito extends javax.swing.JPanel {
 
     private FramePrincipal framePrincipal;
 //    Carrito usuario;
@@ -48,6 +48,7 @@ public class PanelCarrito extends javax.swing.JPanel {
     /**
      * Constructor de la clase VistaInicioSesion.
      *
+     * @param framePrincipal
      */
     public PanelCarrito(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;

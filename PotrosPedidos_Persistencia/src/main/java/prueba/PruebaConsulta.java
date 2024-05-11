@@ -1,19 +1,8 @@
 package prueba;
 
 import DAOs.UsuarioDAO;
-import dominio.Carrito;
-import dominio.DetalleProducto;
-import dominio.Producto;
-import dominio.Usuario;
-import insercionesMasivas.InsercionMasivaProductos;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import org.bson.types.ObjectId;
+
+
 
 /**
  *
@@ -25,10 +14,8 @@ public class PruebaConsulta {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String[] args) throws IOException, Exception {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexionPU");
-
-        EntityManager em = emf.createEntityManager();
+    public static void main(String[] args) {
+      
 
 //        CriteriaBuilder cb = em.getCriteriaBuilder();
 //

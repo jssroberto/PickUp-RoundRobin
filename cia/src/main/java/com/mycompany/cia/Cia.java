@@ -17,7 +17,7 @@ public class Cia {
 //        InsercionMasivaUsuariosCIA i = new InsercionMasivaUsuariosCIA();
 //        i.insertarRegistros();
         UsuarioCiaDAO user = new UsuarioCiaDAO();
-        if(user.BuscarPersona("00000244978", "2")){
+        if(user.BuscarPersona("00000244978", "MNO97531")){
             System.out.println("si");
         }else{
             System.out.println("no");}

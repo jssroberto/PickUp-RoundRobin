@@ -11,8 +11,8 @@ import com.mongodb.client.model.Updates;
 import conexion.Conexion;
 import dominio.Carrito;
 import dominio.DetalleProducto;
+import dominio.Pedido;
 import dominio.Usuario;
-import dominioVIEJO.Pedido;
 import org.bson.types.ObjectId;
 
 /**

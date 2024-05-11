@@ -34,7 +34,6 @@ public class PanelProducto extends javax.swing.JPanel {
 //    ConsultarProductoBO consultarProductoBO;
     IControlProductos control;
     ProductoCafeteria productoDTO;
-    List<ProductoCafeteria> productos;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -47,7 +46,6 @@ public class PanelProducto extends javax.swing.JPanel {
 //        this.consultarProductoBO = new ConsultarProductoBO();
         control = new ControlProductos();
         productoDTO = new ProductoCafeteria();
-        productos = new ArrayList<>();
         initComponents();
         setFuentes();
         setDatos();
@@ -148,7 +146,7 @@ public class PanelProducto extends javax.swing.JPanel {
         if (txtCantidad.getText().isBlank()) {
             framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
         } else {
-            IControlCarrito control = new ControlCarrito();
+            IControlCarrito controlC = new ControlCarrito();
             Usuario user = new Usuario();
             user.setIdCia(framePrincipal.getNumID());
             Producto pro = new Producto();
@@ -157,7 +155,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "CCN025";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,7 +165,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 try {
                     pro.setCodigoProducto(CodigoProducto);
                     
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -176,7 +174,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "CCL025";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -185,7 +183,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "TML065";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,7 +192,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "HCL080";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -203,7 +201,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "SCL100";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,7 +210,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "TCL070";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,7 +219,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "HPL085";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,7 +228,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "CCZ025";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,7 +237,7 @@ public class PanelProducto extends javax.swing.JPanel {
                 CodigoProducto = "AJL020";
                 try {
                     pro.setCodigoProducto(CodigoProducto);
-                    control.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
                     framePrincipal.cambiarVistaCarrito();
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,19 +1,7 @@
 package prueba;
 
 
-import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-import dominioVIEJO.Carrito;
-import dominioVIEJO.DetalleCarrito;
-import dominioVIEJO.Producto;
-import dominioVIEJO.Usuario;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  *

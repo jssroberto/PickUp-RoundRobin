@@ -20,11 +20,11 @@ public class Cafeteria {
 //        InsercionMasivaProductosCafeteriaBO i =  new InsercionMasivaProductosCafeteriaBO();
 //        i.insertarRegistros();
         ProductoCafeteriaDAO pro = new ProductoCafeteriaDAO();
-        
+//        
         List<ProductoCafeteria> pa = pro.obtenerTodosLosProductos();
         
         for(ProductoCafeteria prrr: pa){
-            System.out.println(prrr.getNombre());
+            System.out.println(prrr);
         }
     }
 }
