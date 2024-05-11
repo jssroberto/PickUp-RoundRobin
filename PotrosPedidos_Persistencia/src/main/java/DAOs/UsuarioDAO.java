@@ -45,8 +45,8 @@ public class UsuarioDAO {
         coleccionCursos.updateOne(Filters.eq("_id", usuarioId), Updates.pull("carrito.productos", nuevoDetalleProducto));
     }
     
-    public void vaciarCarrito(Usuario usuario, Carrito carrito){
-        
+    public void vaciarCarrito(Usuario usuario){
+        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.pull("carrito.productos", consultarUsuario(usuario).getCarrito().getProductos()));
     }
     public void referenciarPedido(Usuario usuario, Pedido pedido){
         

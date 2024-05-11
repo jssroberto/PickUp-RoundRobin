@@ -38,9 +38,9 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public Producto consultar(String nombre) throws PersistenciaException {
+    public Producto consultar(String codigoProducto) throws PersistenciaException {
         try {
-            Producto producto = coleccionProductos.find(Filters.eq("nombre", nombre)).first();
+            Producto producto = coleccionProductos.find(Filters.eq("codigoProducto", codigoProducto)).first();
             if (producto == null) {
                 throw new PersistenciaException("Producto no encontrado");
             }
