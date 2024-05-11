@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -37,5 +38,16 @@ public class InsercionMasivaBanco {
         emBanco.getTransaction().commit();
         emBanco.close();
 
+    }
+     public boolean datosExisten() {
+        EntityManagerFactory emfBanco = Persistence.createEntityManagerFactory("conexionPU");
+        EntityManager emBanco = emfBanco.createEntityManager();
+
+        TypedQuery<Long> query = emBanco.createQuery("SELECT COUNT(t) FROM Tarjeta t", Long.class);
+        Long count = query.getSingleResult();
+
+        emBanco.close();
+
+        return count > 0;
     }
 }

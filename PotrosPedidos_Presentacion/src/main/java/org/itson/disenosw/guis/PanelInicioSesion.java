@@ -1,5 +1,9 @@
 package org.itson.disenosw.guis;
 
+import Incerciones.InsercionMasivaBanco;
+import Incerciones.InsercionMasivaProductosCafeteriaBO;
+import Incersiones.InsercionMasivaUsuariosCIA;
+import static com.mysql.cj.conf.PropertyKey.logger;
 import control.ControlLogin;
 import interfaces.IControlLogin;
 import java.awt.Font;
@@ -27,7 +31,11 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
         initComponents();
         setFonts();
-//        setRegistros();
+        try {
+            setRegistros();
+        } catch (Exception ex) {
+            Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -96,7 +104,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
                 if (control.validacionDatos(txtId.getText(), txtContraseña.getText())) {
                     framePrincipal.setNumID(txtId.getText());
                     framePrincipal.cambiarVistaMenu();
-                }else{
+                } else {
                     framePrincipal.mostrarAviso("Credenciales no válidas", "Aviso");
                 }
             } catch (Exception ex) {
@@ -109,18 +117,24 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
-//    public void setRegistros() {
-//        InsercionMasiva insercionMasiva= new InsercionMasiva();
-//        try {
-//            insercionMasiva.insercionUsuariosCIA();
-//            insercionMasiva.insercionesUsuario();
-//            insercionMasiva.insercionesBanco();
-//            insercionMasiva.insercionesCafeteria(); 
-//            insercionMasiva.insercionesProductos();
-//        } catch (Exception e) {
-//            logger.log(Level.INFO, "Registros aregados anteriormente");
+   public void setRegistros() throws Exception {
+    InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
+    InsercionMasivaProductosCafeteriaBO cafeteria = new InsercionMasivaProductosCafeteriaBO();
+    InsercionMasivaBanco banco = new InsercionMasivaBanco();
+    try {
+        if (!cia.datosExisten()) {
+            cia.insertarRegistros();
+        }
+        if (!cafeteria.datosExisten()) {
+            cafeteria.insertarRegistros();
+        }
+//        if (!banco.datosExisten()) {
+//            banco.insertarRegistros();
 //        }
-//    }
+    } catch (Exception e) {
+        throw new Exception(e.getMessage());
+    }
+}
 
     private void setFonts() {
         try {

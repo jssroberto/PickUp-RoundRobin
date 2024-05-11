@@ -27,11 +27,12 @@ public class ProductoBO implements IProductoBO {
     }
 
     @Override
-    public ProductoDTO consultarProducto(String nombre) throws BOException {
+    public ProductoDTO consultarProducto(Producto pro) throws BOException {
         IProductoDAO productoDAO = new ProductoDAO();
 
         try {
-            Producto producto = productoDAO.consultar(nombre);
+            Producto producto =productoDAO.consultar(pro);
+
             ConvertidorDAOaDTO convertidorDAOaDTO = new ConvertidorDAOaDTO();
 
             ProductoDTO productoDTO = convertidorDAOaDTO.convertirDAOenDTO(producto);

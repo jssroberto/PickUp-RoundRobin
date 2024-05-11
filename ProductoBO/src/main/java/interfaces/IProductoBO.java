@@ -12,7 +12,7 @@ public interface IProductoBO {
     
     public void persistir(Producto producto) throws BOException;
     
-    public ProductoDTO consultarProducto(String nombre) throws BOException;
+    public ProductoDTO consultarProducto(Producto producto) throws BOException;
     
     public ProductoDTO consultarProducto(Long idProducto) throws BOException;
     

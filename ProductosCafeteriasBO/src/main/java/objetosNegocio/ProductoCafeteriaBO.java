@@ -11,11 +11,6 @@ import interfaces.IProductoCafeteriaBO;
 import interfaces.IProductoCafeteriaDAO;
 import java.util.List;
 
-
-
-
-
-
 /**
  *
  * @author jl4ma
@@ -39,9 +34,8 @@ public class ProductoCafeteriaBO implements IProductoCafeteriaBO {
         } else {
             return productos;
         }
-        
-
     }
+
     @Override
     public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException {
         ProductoCafeteria pro;
@@ -50,7 +44,7 @@ public class ProductoCafeteriaBO implements IProductoCafeteriaBO {
         
         if(pro == null){
             throw new PersitenciaException("producto no encontrado");
-        }else{
+        } else {
             return pro;
         }
     }

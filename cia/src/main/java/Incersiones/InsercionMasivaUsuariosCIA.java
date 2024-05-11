@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -19,7 +20,7 @@ public class InsercionMasivaUsuariosCIA {
     
     List<UsuarioCIA> usuariosCIA = new ArrayList<>();
     public void insertarRegistros() throws Exception{
-         EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("conexionPU");
+         EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("conexion");
             EntityManager emCIA = emfCIA.createEntityManager();
          usuariosCIA.add(new UsuarioCIA("00000011211", "ABC12345", "Juan", "Perez", "Garcia"));
         usuariosCIA.add(new UsuarioCIA("00000244454", "DEF67890", "Maria", "Lopez", "Martinez"));
@@ -33,5 +34,15 @@ public class InsercionMasivaUsuariosCIA {
         emCIA.getTransaction().commit();
         emCIA.close();
     }
-       
+        public boolean datosExisten() {
+        EntityManagerFactory emfCIA = Persistence.createEntityManagerFactory("conexion");
+        EntityManager emCIA = emfCIA.createEntityManager();
+
+        TypedQuery<Long> query = emCIA.createQuery("SELECT COUNT(u) FROM UsuarioCIA u", Long.class);
+        Long count = query.getSingleResult();
+
+        emCIA.close();
+
+        return count > 0;
+    }
 }

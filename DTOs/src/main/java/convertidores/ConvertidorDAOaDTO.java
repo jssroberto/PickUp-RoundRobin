@@ -18,12 +18,10 @@ import dtos.ProductoCafeteriaDTO;
 import dtos.ProductoDTO;
 import dtos.TarjetaDTO;
 import dtos.UsuarioDTO;
-import java.util.ArrayList;
-import java.util.List;
 import org.bson.types.ObjectId;
 
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -59,7 +57,6 @@ public class ConvertidorDAOaDTO {
         productoDTO.setNombre(producto.getNombre());
         productoDTO.setPrecio(producto.getPrecio());
         productoDTO.setPuntosGenera(producto.getPuntosGenera());
-        productoDTO.setPuntosGenera(producto.getPuntosGenera());
         
         return productoDTO;
     }
@@ -73,9 +70,10 @@ public class ConvertidorDAOaDTO {
         productoCafeteriaDTO.setCantidadDisponible(productoCafeteria.getCantidadDisponible());
         productoCafeteriaDTO.setDireccionImagen(productoCafeteria.getDireccionImagen());
         productoCafeteriaDTO.setIdProductoCafeteria(productoCafeteria.getId());
+        
         return productoCafeteriaDTO;
     }
-//    
+    
     public CarritoDTO convertirDAOenDTO(Carrito carrito) {
         CarritoDTO carritoDTO= new CarritoDTO();
         
@@ -99,7 +97,6 @@ public class ConvertidorDAOaDTO {
         detalleProductoDTO.setDireccionImagen(detalleProducto.getDireccionImagen());
         detalleProductoDTO.setId(detalleProducto.getId());
         detalleProductoDTO.setNombre(detalleProducto.getNombre());
-        
         detalleProductoDTO.setPrecio(detalleProducto.getPrecio());
         detalleProductoDTO.setPuntosCuesta(detalleProducto.getPuntosCuesta());
         detalleProductoDTO.setPuntosGenera(detalleProducto.getPuntosGenera());
@@ -116,6 +113,7 @@ public class ConvertidorDAOaDTO {
         tarjetaDTO.setId(tarjeta.getId());
         tarjetaDTO.setNumeroTarjeta(tarjeta.getNumeroTarjeta());
         tarjetaDTO.setSaldo(tarjeta.getSaldo());
+        
         return tarjetaDTO;
     }
     

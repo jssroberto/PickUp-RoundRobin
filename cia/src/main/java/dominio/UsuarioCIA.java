@@ -13,12 +13,12 @@ import javax.persistence.Id;
 
 /**
  *
- * @author jl4ma
+ * @author yohan
  */
 @Entity
 public class UsuarioCIA implements Serializable {
 
-    @Id
+ @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario_cia")
     private Long id;
@@ -107,3 +107,5 @@ public class UsuarioCIA implements Serializable {
     }
     
 }
+
+

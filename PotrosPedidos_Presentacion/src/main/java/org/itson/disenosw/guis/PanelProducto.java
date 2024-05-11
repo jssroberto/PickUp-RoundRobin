@@ -324,7 +324,7 @@ public class PanelProducto extends javax.swing.JPanel {
 //            Long idProducto = framePrincipal.getIdProducto();
 //            IControlProductos consultarProductoBO = new ControlProductos();
 //            productos = consultarProductoBO.obtenerTodosLosProductos();
-//            ProductoCafeteria pro = consultarProductoBO.buscarProductoCafeteriaPorID(idProducto);
+//            p pro = consultarProductoBO.buscarProductoCafeteriaPorID(idProducto);
 //            // Actualizar los componentes del panel con la información del producto
 //            lblNombre.setText(productoDTO.getNombre().toUpperCase());
 //            String precioFormateado = String.valueOf(productoDTO.getPrecio());

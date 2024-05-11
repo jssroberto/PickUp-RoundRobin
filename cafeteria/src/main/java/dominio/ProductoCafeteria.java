@@ -10,14 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
- * @author jl4ma
+ * @author yohan
  */
 @Entity
-@Table(name = "productos_cafeteria")
 public class ProductoCafeteria implements Serializable {
 
     @Id
@@ -39,9 +37,11 @@ public class ProductoCafeteria implements Serializable {
     
     @Column(name = "direccion_imagen", nullable = true)
     private String direccionImagen;
-    
+
     public ProductoCafeteria() {
     }
+    
+    
 
     public ProductoCafeteria(Float precio, String nombre, Integer cantidadDisponible) {
         this.precio = precio;

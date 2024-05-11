@@ -1,7 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.cafeteria;
 
 import DAOs.ProductoCafeteriaDAO;
@@ -16,14 +15,16 @@ import java.util.List;
 public class Cafeteria {
 
     public static void main(String[] args) throws Exception {
-//        System.out.println("Hello World!");
-//        InsercionMasivaProductosCafeteriaBO i =  new InsercionMasivaProductosCafeteriaBO();
-//        i.insertarRegistros();
+        System.out.println("Hello World!");
+        InsercionMasivaProductosCafeteriaBO i = new InsercionMasivaProductosCafeteriaBO();
+        if (!i.datosExisten()) {
+            i.insertarRegistros();
+        };
         ProductoCafeteriaDAO pro = new ProductoCafeteriaDAO();
 //        
         List<ProductoCafeteria> pa = pro.obtenerTodosLosProductos();
-        
-        for(ProductoCafeteria prrr: pa){
+
+        for (ProductoCafeteria prrr : pa) {
             System.out.println(prrr);
         }
     }

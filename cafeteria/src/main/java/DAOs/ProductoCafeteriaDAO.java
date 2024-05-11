@@ -19,8 +19,8 @@ import javax.persistence.TypedQuery;
  *
  * @author jl4ma
  */
-public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
-    
+public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
+
     private EntityManager em;
     private EntityManagerFactory emf;
 
@@ -28,6 +28,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
         emf = Persistence.createEntityManagerFactory("conexionPU");
         em = emf.createEntityManager();
     }
+
     @Override
     public void actualizarProducto(ProductoCafeteria productoCafeteria) throws PersitenciaException {
         try {
@@ -46,7 +47,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
     }
 
     @Override
-    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
+    public  ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -121,7 +122,8 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
             throw new PersitenciaException("Error al obtener todos los productos de cafetería");
         }
     }
-        @Override
+
+    @Override
     public List<ProductoCafeteria> consultarProductos(String palabra) throws PersitenciaException {
         try {
             List<ProductoCafeteria> productos = new ArrayList<>();

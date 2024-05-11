@@ -107,6 +107,11 @@
             <systemPath>C:\Users\rover\Documents\GitHub\windows11-jscrollbar\TimingFramework-0.55.jar</systemPath>
         </dependency>-->
         <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>subsistemaUsuario</artifactId>
             <version>${project.version}</version>
@@ -118,8 +123,14 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaProductosMenu</artifactId>
+            <artifactId>SubsistemaBusquedaDinamica</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>cafeteria</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -127,9 +138,14 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.3.0</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SubsistemaProductosMenu</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>cafeteria</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

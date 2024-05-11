@@ -14,7 +14,6 @@ import java.util.List;
  */
 public interface IProductoCafeteriaBO {
     
-   
     public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException;
     public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException;
 }

@@ -36,16 +36,17 @@ public class ConsultarProductos {
             return productos;
         }
     }
-     public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException{
-         ProductoCafeteria pro;
+    
+    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException{
+        ProductoCafeteria pro;
          
-         pro = producto.buscarProductoCafeteriaPorID(id);
-         if (pro==null) {
-             JOptionPane.showMessageDialog(null, "Producto null");
+        pro = producto.buscarProductoCafeteriaPorID(id);
+        if (pro == null) {
+            JOptionPane.showMessageDialog(null, "Producto null");
             return null;
-         }else{
-             JOptionPane.showMessageDialog(null, "Producto encontrado");
-             return pro;
-         }
-     }
+        } else {
+            JOptionPane.showMessageDialog(null, "Producto encontrado");
+            return pro;
+        }
+    }
 }

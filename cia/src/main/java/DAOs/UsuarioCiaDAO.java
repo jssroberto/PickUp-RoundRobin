@@ -23,7 +23,7 @@ public class UsuarioCiaDAO implements IUsuarioCiaDAO{
     private EntityManagerFactory emf;
     
     public UsuarioCiaDAO() {
-        emf = Persistence.createEntityManagerFactory("conexionPU");
+        emf = Persistence.createEntityManagerFactory("conexion");
         em = emf.createEntityManager();
     }
 

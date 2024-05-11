@@ -146,7 +146,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-//        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
+        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed

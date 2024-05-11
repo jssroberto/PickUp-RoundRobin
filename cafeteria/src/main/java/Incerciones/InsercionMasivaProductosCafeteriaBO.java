@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -38,5 +39,15 @@ public class InsercionMasivaProductosCafeteriaBO {
         emCafeteria.getTransaction().commit();
         emCafeteria.close();
     }
-    
+    public boolean datosExisten() {
+        EntityManagerFactory emfCafeteria = Persistence.createEntityManagerFactory("conexionPU");
+        EntityManager emCafeteria = emfCafeteria.createEntityManager();
+
+        TypedQuery<Long> query = emCafeteria.createQuery("SELECT COUNT(p) FROM ProductoCafeteria p", Long.class);
+        Long count = query.getSingleResult();
+
+        emCafeteria.close();
+
+        return count > 0;
+    }
 }
