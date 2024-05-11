@@ -15,5 +15,5 @@ import java.util.List;
 public interface IProductoCafeteriaBO {
     
    
-    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws BOException;
+//    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws BOException;
 }

@@ -9,7 +9,7 @@ import excepciones.BOException;
  */
 public interface IUsuarioBO {
 
-    public UsuarioDTO consultarUsuario(UsuarioDTO usuario) throws BOException;
-
-    public void persistir(UsuarioDTO usuario) throws BOException;
+//    public UsuarioDTO consultarUsuario(UsuarioDTO usuario) throws BOException;
+//
+//    public void persistir(UsuarioDTO usuario) throws BOException;
 }
