@@ -17,6 +17,7 @@ public class ControlLogin implements IControlLogin{
         inicio = new IniciarSesion();
     }
     
+    @Override
     public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
         if (inicio.validacionDatos(idEstudiante, contra)) {
             return true;

@@ -16,7 +16,6 @@ import java.util.logging.Logger;
  */
 public class PanelInicioSesion extends javax.swing.JPanel {
 
-    private static final Logger logger = Logger.getLogger(PanelInicioSesion.class.getName());
     private FramePrincipal framePrincipal;
 
     /**

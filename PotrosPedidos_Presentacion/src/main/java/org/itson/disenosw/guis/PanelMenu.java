@@ -1,6 +1,12 @@
 package org.itson.disenosw.guis;
 
+import control.ControlProductos;
+import dominio.ProductoCafeteria;
+import excepciones.PersitenciaException;
+import interfaces.IControlProductos;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -29,7 +35,7 @@ import javax.swing.SwingConstants;
  * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
  * usuario y contraseña.
  */
-public class PanelMenu extends javax.swing.JPanel {
+public  class PanelMenu extends javax.swing.JPanel {
 
     private static final Logger logger = Logger.getLogger(PanelMenu.class.getName());
     private FramePrincipal framePrincipal;
@@ -43,12 +49,12 @@ public class PanelMenu extends javax.swing.JPanel {
     public PanelMenu(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
-//        try {
-//            crearMenu();
-//        } catch (PersistenciaException ex) {
-//            logger.log(Level.SEVERE, "Error al consutlar el menú");
-//        }
-//        setFuentes();
+        try {
+            crearMenu();
+        } catch (PersitenciaException ex) {
+            logger.log(Level.SEVERE, "Error al consutlar el menú");
+        }
+        setFuentes();
     }
 
     /**
@@ -147,37 +153,37 @@ public class PanelMenu extends javax.swing.JPanel {
 
     }
 
-    public void crearMenu() {
+//    public void crearMenu() throws PersitenciaException {
 //        JPanel mainPanel = new JPanel(new GridBagLayout());
 //        mainPanel.setOpaque(false);
 //        mainPanel.setMaximumSize(new Dimension(380, 600));
 //        mainPanel.setSize(new Dimension(380, 600));
 //
-//        ConsultarProductoBO consultarProductoBO = new ConsultarProductoBO();
-//        List<ProductoDTO> productosDTO = consultarProductoBO.consultarTodosLosProductos();
+//        IControlProductos consultarProductoBO = new ControlProductos();
+//        List<ProductoCafeteria> productos = consultarProductoBO.obtenerTodosLosProductos();
 //
 //        GridBagConstraints c = new GridBagConstraints();
 //
-//        //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
+//        TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
 //        c.anchor = GridBagConstraints.NORTH;
 //        c.fill = GridBagConstraints.BOTH;
 //
-//        // Iterar sobre la lista de productos y crear los paneles correspondientes
-//        for (int i = 0; i < productosDTO.size(); i++) {
-////            String[] producto = productosDTO.get(i);
-//            JPanel productoPanel = createProductoPanel(productosDTO.get(i).getNombre(), productosDTO.get(i).getPrecio(), productosDTO.get(i).getDireccionImagen());
+//         Iterar sobre la lista de productos y crear los paneles correspondientes
+//        for (int i = 0; i < productos.size(); i++) {
+//            String[] producto = productosDTO.get(i);
+//            JPanel productoPanel = createProductoPanel(productos.get(i).getNombre(), productos.get(i).getPrecio(), productos.get(i).getDireccionImagen());
 //
-////            String identificador = "producto_" + i;
-//            Long identificador = productosDTO.get(i).getIdProductoCafeteria();
+//            String identificador = "producto_" + i;
+//            Long identificador = productos.get(i).getId();
 //            productoPanel.putClientProperty(identificador, productoPanel);
-////            String identificadorString = String.valueOf(identificador);
-////            productoPanel.putClientProperty(i, idProducto);
-//            // Añade un ActionListener al panel de producto
+//            String identificadorString = String.valueOf(identificador);
+//            productoPanel.putClientProperty(i, idProducto);
+//             Añade un ActionListener al panel de producto
 //            productoPanel.addMouseListener(new MouseAdapter() {
 //                @Override
 //                public void mouseClicked(MouseEvent e) {
-//                    // Acción a realizar al hacer clic en el panel de producto
-//                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
+//                     Acción a realizar al hacer clic en el panel de producto
+//                     Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
 //                    System.out.println("Clic en el panel de producto: " + identificador);
 //                    framePrincipal.setIdProducto(identificador);
 //                    framePrincipal.cambiarVistaProducto();
@@ -185,13 +191,13 @@ public class PanelMenu extends javax.swing.JPanel {
 //                }
 //            });
 //            idProducto++;
-//            // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
+//             Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
 //            c.gridx = 0;
 //            c.gridy = i * 2;
 //            mainPanel.add(productoPanel, c);
 //
-//            // Añade un separador después de cada producto, excepto el último
-//            if (i < productosDTO.size() - 1) {
+//             Añade un separador después de cada producto, excepto el último
+//            if (i < productos.size() - 1) {
 //                JPanel separatorPanel = createSeparatorPanel();
 //                c.gridx = 0;
 //                c.gridy = i * 2 + 1;
@@ -202,11 +208,11 @@ public class PanelMenu extends javax.swing.JPanel {
 //
 //        }
 //
-//        //TODO hacer el scrollPane un ScrollPaneWin11
-//        // Configurar el JScrollPane para desplazamiento vertical
+//        TODO hacer el scrollPane un ScrollPaneWin11
+//         Configurar el JScrollPane para desplazamiento vertical
 //        JScrollPane scrollPane = new JScrollPane(mainPanel);
-////        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
-////        scrollPane.add(mainPanel);
+//        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
+//        scrollPane.add(mainPanel);
 //
 //        scrollPane.setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado
 //        scrollPane.setMaximumSize(new Dimension(380, 600)); // Establece un tamaño máximo
@@ -232,19 +238,101 @@ public class PanelMenu extends javax.swing.JPanel {
 //        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMenu.png"))); // NOI18N
 //        fondo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 //        add(fondo,BorderLayout.CENTER);
-
+//
 //        Container contenedor = fondo.getParent();
 // Asegúrate de que el contenedor utiliza un layout que soporte z-order, como JPanel
 //        if (contenedor instanceof JPanel) {
 //            JPanel panelContenedor = (JPanel) contenedor;
-//            // Cambia el orden de los componentes para poner el menú encima del fondo
+//             Cambia el orden de los componentes para poner el menú encima del fondo
 //            panelContenedor.setComponentZOrder(mainPanel, 0);
 //            panelContenedor.setComponentZOrder(fondo, 1);
-//            // Repinta el contenedor para reflejar los cambios
+//             Repinta el contenedor para reflejar los cambios
 //            panelContenedor.revalidate();
 //            panelContenedor.repaint();
 //        }
+//    }
+    
+    public void crearMenu() throws PersitenciaException {
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setOpaque(false);
+        mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
+        mainPanel.setSize(new Dimension(370, 550));
+
+        GridBagConstraints c = new GridBagConstraints();
+
+        IControlProductos consultarProductoBO = new ControlProductos();
+        List<ProductoCafeteria> productos = consultarProductoBO.obtenerTodosLosProductos();
+        //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
+        c.anchor = GridBagConstraints.NORTH;
+
+        // Iterar sobre la lista de productos y crear los paneles correspondientes
+        for (int i = 0; i < productos.size(); i++) {
+//            String[] producto = productosDTO.get(i);
+            JPanel productoPanel = createProductoPanel(productos.get(i).getNombre(), productos.get(i).getPrecio(), productos.get(i).getDireccionImagen());
+
+//            String identificador = "producto_" + i;
+            Long identificador = productos.get(i).getId();
+            productoPanel.putClientProperty(identificador, productoPanel);
+//            String identificadorString = String.valueOf(identificador);
+//            productoPanel.putClientProperty(i, idProducto);
+            // Añade un ActionListener al panel de producto
+            productoPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    try {
+                        // Acción a realizar al hacer clic en el panel de producto
+                        // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
+
+                        framePrincipal.setIdProducto(identificador);
+                        System.out.println(framePrincipal.getIdProducto());
+                        framePrincipal.cambiarVistaProducto();
+                    } catch (Exception ex) {
+                         framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                    }
+
+                }
+            });
+            idProducto++;
+            // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
+            c.gridx = 0;
+            c.gridy = i * 2;
+            mainPanel.add(productoPanel, c);
+
+            // Añade un separador después de cada producto, excepto el último
+            if (i < productos.size() - 1) {
+                JPanel separatorPanel = createSeparatorPanel();
+                c.gridx = 0;
+                c.gridy = i * 2 + 1;
+                mainPanel.add(separatorPanel, c);
+            }
+
+            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+
+        //TODO hacer el scrollPane un ScrollPaneWin11
+        // Configurar el JScrollPane para desplazamiento vertical
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+
+        scrollPane.setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado
+        scrollPane.setMaximumSize(new Dimension(370, 550)); // Establece un tamaño máximo
+        scrollPane.getViewport().setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado para el viewport
+        scrollPane.getViewport().setMaximumSize(new Dimension(370, 550)); // Establece un tamaño mínimo para el viewport
+        scrollPane.getViewport().setSize(370, 550);
+
+        scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
+        scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
+        scrollPane.setBorder(null); // Eliminar el borde del JScrollPane
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Ajustar la velocidad del scroll vertical
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // Ocultar la barra de desplazamiento horizontal
+
+        JPanel cont = new JPanel();
+        cont.add(scrollPane);
+        cont.setOpaque(false);
+
+        panelTop.add(cont);
+
     }
+
 
     /**
      * Crea un panel que muestra la información de un producto, incluyendo

@@ -24,8 +24,15 @@ public class ControlProductos implements IControlProductos{
     
     
     
+    @Override
     public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException{
         
         return consultar.obtenerTodosLosProductos();
+    }
+    
+    @Override
+    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException{
+        
+        return consultar.buscarProductoCafeteriaPorID(id);
     }
 }

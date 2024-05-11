@@ -27,6 +27,7 @@ public class UsuarioCiaDAO implements IUsuarioCiaDAO{
         em = emf.createEntityManager();
     }
 
+    @Override
     public Boolean BuscarPersona(String idEstudiante, String contra) throws Exception {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<UsuarioCIA> cq = cb.createQuery(UsuarioCIA.class);

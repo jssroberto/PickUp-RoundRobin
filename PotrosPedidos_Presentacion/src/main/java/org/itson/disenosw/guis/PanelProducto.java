@@ -1,10 +1,15 @@
 package org.itson.disenosw.guis;
 
-
+import control.ControlProductos;
+import dominio.ProductoCafeteria;
+import excepciones.PersitenciaException;
+import interfaces.IControlProductos;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -21,7 +26,9 @@ public class PanelProducto extends javax.swing.JPanel {
     private static final Logger logger = Logger.getLogger(PanelProducto.class.getName());
 //    AgregarCarritoBO agregarCarritoBO;
 //    ConsultarProductoBO consultarProductoBO;
-//    ProductoDTO productoDTO;
+    IControlProductos control;
+    ProductoCafeteria productoDTO;
+    List<ProductoCafeteria> productos;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -32,6 +39,9 @@ public class PanelProducto extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
 //        this.agregarCarritoBO = new AgregarCarritoBO();
 //        this.consultarProductoBO = new ConsultarProductoBO();
+        control = new ControlProductos();
+        productoDTO = new ProductoCafeteria();
+        productos = new ArrayList<>();
         initComponents();
         setFuentes();
         setDatos();
@@ -134,7 +144,7 @@ public class PanelProducto extends javax.swing.JPanel {
         } else {
 
 //            try {
-                //            Productos producto = new Productos();
+//            Productos producto = new Productos();
 //            producto.generarLista();
 //            Usuario usuario = new Usuario();
 //            System.out.println(framePrincipal.getIdProducto());
@@ -149,10 +159,10 @@ public class PanelProducto extends javax.swing.JPanel {
 //            IAgregarCarrito cart = new AgregarCarrito(carrito);
 ////            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
 //            cart.agregarCarrito(pro.consultarProducto(framePrincipal.getIdProducto()), Integer.valueOf(txtCantidad.getText()), usuario);
-
+//
 //                agregarCarritoBO.agregarCarrito(consultarProductoBO.consultarProductoID(framePrincipal.getIdProducto()), framePrincipal.getNumID(), Integer.decode(txtCantidad.getText()), framePrincipal.getIdProducto());
 //
-//            } catch (PersistenciaException ex) {
+//            } catch (PersitenciaException ex) {
 //                Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //            framePrincipal.setIdProducto(null);
@@ -179,7 +189,7 @@ public class PanelProducto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnMasActionPerformed
 
-    private void setDatos() {
+//    private void setDatos() {
 //        try {
 //            consultarProducto();
 //        } catch (PersistenciaException ex) {
@@ -205,12 +215,62 @@ public class PanelProducto extends javax.swing.JPanel {
 //        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
 //
 //        lblImagen.setIcon(icon);
+//    }
+//    private void setDatos() {
+//        try {
+//            // Consultar la información del producto desde la base de datos
+//            
+//            Long idProducto = framePrincipal.getIdProducto();
+//            IControlProductos consultarProductoBO = new ControlProductos();
+//            productos = consultarProductoBO.obtenerTodosLosProductos();
+//            ProductoCafeteria pro = consultarProductoBO.buscarProductoCafeteriaPorID(idProducto);
+//            // Actualizar los componentes del panel con la información del producto
+//            lblNombre.setText(productoDTO.getNombre().toUpperCase());
+//            String precioFormateado = String.valueOf(productoDTO.getPrecio());
+//            if (precioFormateado.endsWith(".0")) {
+//                precioFormateado = precioFormateado.substring(0, precioFormateado.length() - 2);
+//            }
+//            lblPrecio.setText("$" + precioFormateado);
+//            lblDescripcion.setText(productoDTO.getDescripcion());
+//
+//            // Cargar la imagen del producto
+//            ImageIcon icon = new ImageIcon(PanelProducto.class.getResource(productoDTO.getDireccionImagen()));
+//            lblImagen.setIcon(icon);
+//
+//        } catch (PersitenciaException ex) {
+//            logger.log(Level.SEVERE, "Producto no encontrado", ex);
+//        }
+//    }
+    private void setDatos() {
+
+        try {
+            consultarProducto();
+        } catch (PersitenciaException ex) {
+            logger.log(Level.SEVERE, "Producto no encontrado");
+        }
+        lblNombre.setText(productoDTO.getNombre().toUpperCase());
+        try {
+            lblDescripcion.setText(productoDTO.getDescripcion());
+        } catch (NullPointerException e) {
+            logger.log(Level.INFO, "El producto no tiene descrpición");
+        }
+        lblPrecio.setText(String.valueOf(productoDTO.getPrecio()));
+        String rutaFolder = "/productos/370x150/";
+        StringBuilder rutaRelativa = new StringBuilder();
+        rutaRelativa.append(rutaFolder);
+        rutaRelativa.append(productoDTO.getDireccionImagen());
+
+        // Cargar la imagen del producto
+        // Cargar la imagen del producto
+        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(rutaRelativa.toString()));
+
+        lblImagen.setIcon(icon);
 
     }
 
-    private void consultarProducto() {
-//        Long idProducto = framePrincipal.getIdProducto();
-//        productoDTO = consultarProductoBO.consultarProductoID(idProducto);
+    private void consultarProducto() throws PersitenciaException {
+        Long idProducto = framePrincipal.getIdProducto();
+        productoDTO = control.buscarProductoCafeteriaPorID(idProducto);
     }
 
     private void setFuentes() {

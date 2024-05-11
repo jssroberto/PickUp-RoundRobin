@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
  * @author jl4ma
  */
 public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO{
+    
     private EntityManager em;
     private EntityManagerFactory emf;
 

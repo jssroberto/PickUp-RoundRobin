@@ -19,6 +19,7 @@ public class UsuariosCiaBO implements IUsuarioCiaBO{
         usuario  = new UsuarioCiaDAO();
     }
     
+    @Override
     public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
         
         if (usuario.BuscarPersona(idEstudiante, contra)) {

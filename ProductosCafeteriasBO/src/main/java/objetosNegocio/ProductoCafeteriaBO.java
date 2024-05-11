@@ -14,6 +14,8 @@ import java.util.List;
 
 
 
+
+
 /**
  *
  * @author jl4ma
@@ -23,10 +25,11 @@ public class ProductoCafeteriaBO implements IProductoCafeteriaBO {
     IProductoCafeteriaDAO cafeteria;
   
     public ProductoCafeteriaBO() {
-        cafeteria = new ProductoCafeteriaDAO();
+        this.cafeteria = new ProductoCafeteriaDAO();
 
     }
 
+    @Override
     public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException {
         List<ProductoCafeteria> productos;
 
@@ -38,5 +41,17 @@ public class ProductoCafeteriaBO implements IProductoCafeteriaBO {
         }
         
 
+    }
+    @Override
+    public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException {
+        ProductoCafeteria pro;
+        
+        pro = cafeteria.buscarProductoCafeteriaPorID(id);
+        
+        if(pro == null){
+            throw new PersitenciaException("producto no encontrado");
+        }else{
+            return pro;
+        }
     }
 }
