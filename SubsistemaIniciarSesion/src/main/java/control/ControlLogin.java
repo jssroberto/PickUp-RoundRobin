@@ -4,7 +4,6 @@
  */
 package control;
 
-import excepciones.SubsistemaException;
 import interfaces.IControlLogin;
 import metodos.IniciarSesion;
 
@@ -18,8 +17,11 @@ public class ControlLogin implements IControlLogin{
         inicio = new IniciarSesion();
     }
     
-    @Override
-    public boolean validacionDatos(String idEstudiante, String contra) throws SubsistemaException{
-        return inicio.validacionDatos(idEstudiante, contra);
+    public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
+        if (inicio.validacionDatos(idEstudiante, contra)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }

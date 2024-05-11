@@ -4,30 +4,28 @@
  */
 package metodos;
 
-import excepciones.BOException;
-import excepciones.SubsistemaException;
 import objetosNegocio.UsuariosCiaBO;
 import interfaces.IUsuarioCiaBO;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jl4ma
  */
 public class IniciarSesion {
-
+    
     IUsuarioCiaBO usuario;
-
-    public IniciarSesion() {
+    public IniciarSesion(){
         usuario = new UsuariosCiaBO();
     }
-
-    public boolean validacionDatos(String idEstudiante, String contra) throws SubsistemaException {
-        boolean usuarioValido = false;
-        try {
-            usuarioValido  = usuario.validacionDatos(idEstudiante, contra);
-        } catch (BOException ex) {
-            throw new SubsistemaException(ex.getMessage());
+    
+    public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
+        if(usuario.validacionDatos(idEstudiante, contra)){
+            JOptionPane.showMessageDialog(null, "Bienvenido");
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "Credenciales no válidas");
+            return false;
         }
-        return usuarioValido;
     }
 }
