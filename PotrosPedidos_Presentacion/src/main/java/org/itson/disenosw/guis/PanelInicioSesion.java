@@ -28,7 +28,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
         initComponents();
         setFonts();
-        setRegistros();
+//        setRegistros();
     }
 
     /**
@@ -101,7 +101,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
                     framePrincipal.mostrarAviso("Credenciales no válidas", "Aviso");
                 }
             } catch (Exception ex) {
-                logger.log(Level.SEVERE, ex.getMessage());
+                framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
@@ -110,18 +110,18 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
-    public void setRegistros() {
-        InsercionMasiva insercionMasiva= new InsercionMasiva();
-        try {
-            insercionMasiva.insercionUsuariosCIA();
-            insercionMasiva.insercionesUsuario();
-            insercionMasiva.insercionesBanco();
-            insercionMasiva.insercionesCafeteria(); 
-            insercionMasiva.insercionesProductos();
-        } catch (Exception e) {
-            logger.log(Level.INFO, "Registros aregados anteriormente");
-        }
-    }
+//    public void setRegistros() {
+//        InsercionMasiva insercionMasiva= new InsercionMasiva();
+//        try {
+//            insercionMasiva.insercionUsuariosCIA();
+//            insercionMasiva.insercionesUsuario();
+//            insercionMasiva.insercionesBanco();
+//            insercionMasiva.insercionesCafeteria(); 
+//            insercionMasiva.insercionesProductos();
+//        } catch (Exception e) {
+//            logger.log(Level.INFO, "Registros aregados anteriormente");
+//        }
+//    }
 
     private void setFonts() {
         try {

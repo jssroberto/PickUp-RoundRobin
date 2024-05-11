@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dominio;
 
 import java.io.Serializable;
@@ -20,38 +24,39 @@ public class ProductoCafeteria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private Long id;
-
-    @Column(name = "codigo_producto", nullable = false, length = 6, unique = true)
-    private String codigoProducto;
-
+    
     @Column(name = "precio", nullable = false)
     private Float precio;
-
+    
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
-
+    
     @Column(name = "descripcion", length = 200, nullable = true)
     private String descripcion;
-
+    
     @Column(name = "cantidad_disponible", nullable = false)
     private Integer cantidadDisponible;
-
-    @Column(name = "direccion_imagen", nullable = false)
+    
+    @Column(name = "direccion_imagen", nullable = true)
     private String direccionImagen;
-
+    
     public ProductoCafeteria() {
     }
 
-    public ProductoCafeteria(String codigoProducto, Float precio, String nombre, Integer cantidadDisponible, String direccionImagen) {
-        this.codigoProducto = codigoProducto;
+    public ProductoCafeteria(Float precio, String nombre, Integer cantidadDisponible) {
         this.precio = precio;
         this.nombre = nombre;
         this.cantidadDisponible = cantidadDisponible;
-        this.direccionImagen = direccionImagen;
     }
 
-    public ProductoCafeteria(String codigoProducto, Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen) {
-        this.codigoProducto = codigoProducto;
+    public ProductoCafeteria(Float precio, String nombre, String descripcion, Integer cantidadDisponible) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidadDisponible = cantidadDisponible;
+    }
+
+    public ProductoCafeteria(Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -59,15 +64,14 @@ public class ProductoCafeteria implements Serializable {
         this.direccionImagen = direccionImagen;
     }
 
-    public ProductoCafeteria(Long id, String codigoProducto, Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen) {
-        this.id = id;
-        this.codigoProducto = codigoProducto;
+    public ProductoCafeteria(Float precio, String nombre, Integer cantidadDisponible, String direccionImagen) {
         this.precio = precio;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.cantidadDisponible = cantidadDisponible;
         this.direccionImagen = direccionImagen;
     }
+    
+    
 
     public Long getId() {
         return id;
@@ -112,23 +116,16 @@ public class ProductoCafeteria implements Serializable {
     public void setDireccionImagen(String direccionImagen) {
         this.direccionImagen = direccionImagen;
     }
-
+    
     public void setCantidadDisponible(Integer cantidadDisponible) {
         this.cantidadDisponible = cantidadDisponible;
     }
 
-    public boolean estaDisponible() {
-        return getCantidadDisponible() > 0;
-    }
-
-    public String getCodigoProducto() {
-        return codigoProducto;
-    }
-
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
-    }
     
+    public boolean estaDisponible(){
+        return getCantidadDisponible()> 0;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -141,5 +138,5 @@ public class ProductoCafeteria implements Serializable {
         sb.append('}');
         return sb.toString();
     }
-
+    
 }

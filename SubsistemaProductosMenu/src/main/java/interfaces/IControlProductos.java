@@ -4,8 +4,8 @@
  */
 package interfaces;
 
-import dtos.ProductoCafeteriaDTO;
-import excepciones.PersistenciaException;
+import dominio.ProductoCafeteria;
+import excepciones.PersitenciaException;
 import java.util.List;
 
 /**
@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface IControlProductos {
     
-    public List<ProductoCafeteriaDTO> obtenerTodosLosProductos() throws PersistenciaException;
+    public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException;
 }

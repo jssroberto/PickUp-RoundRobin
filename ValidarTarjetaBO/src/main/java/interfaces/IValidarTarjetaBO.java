@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import excepciones.BOException;
+import excepciones.PersitenciaException;
 
 /**
  *
@@ -12,5 +12,5 @@ import excepciones.BOException;
  */
 public interface IValidarTarjetaBO {
     
-    public boolean validarDatos(String numeroTarjeta) throws BOException;
+    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException;
 }

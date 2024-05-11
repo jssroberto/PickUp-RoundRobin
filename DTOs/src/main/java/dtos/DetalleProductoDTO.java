@@ -1,41 +1,26 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dtos;
+
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author galan
  */
 public class DetalleProductoDTO {
-
-    private String id;
+    private ObjectId id;
     private Integer cantidad;
     private Float subtotal;
-    //desnormalización
     private String nombre;
     private Float precio;
     private Integer puntosCuesta, puntosGenera;
     private String direccionImagen;
     private String codigoProducto;
 
-    public DetalleProductoDTO() {
-    }
-
-    public DetalleProductoDTO(Integer cantidad, String codigoProducto) {
-        this.cantidad = cantidad;
-        this.codigoProducto = codigoProducto;
-    }
-
-    public DetalleProductoDTO(Integer cantidad, Float subtotal, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen, String codigoProducto) {
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.puntosCuesta = puntosCuesta;
-        this.puntosGenera = puntosGenera;
-        this.direccionImagen = direccionImagen;
-        this.codigoProducto = codigoProducto;
-    }
-
-    public DetalleProductoDTO(String id, Integer cantidad, Float subtotal, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen, String codigoProducto) {
+    public DetalleProductoDTO(ObjectId id, Integer cantidad, Float subtotal, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen, String codigoProducto) {
         this.id = id;
         this.cantidad = cantidad;
         this.subtotal = subtotal;
@@ -47,11 +32,14 @@ public class DetalleProductoDTO {
         this.codigoProducto = codigoProducto;
     }
 
-    public String getId() {
+    public DetalleProductoDTO() {
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -119,21 +107,7 @@ public class DetalleProductoDTO {
         this.codigoProducto = codigoProducto;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("DetalleProductoDTO{");
-        sb.append("id=").append(id);
-        sb.append(", cantidad=").append(cantidad);
-        sb.append(", subtotal=").append(subtotal);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", precio=").append(precio);
-        sb.append(", puntosCuesta=").append(puntosCuesta);
-        sb.append(", puntosGenera=").append(puntosGenera);
-        sb.append(", direccionImagen=").append(direccionImagen);
-        sb.append(", codigoProducto=").append(codigoProducto);
-        sb.append('}');
-        return sb.toString();
-    }
+    
 
+    
 }

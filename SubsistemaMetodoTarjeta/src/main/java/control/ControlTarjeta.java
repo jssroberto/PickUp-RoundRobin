@@ -4,7 +4,7 @@
  */
 package control;
 
-import excepciones.BancoException;
+import excepciones.PersitenciaException;
 import interfaces.IControlTarjeta;
 import metodos.ValidarCompraTarjeta;
 import metodos.ValidarDatosTarjetas;
@@ -18,7 +18,7 @@ public class ControlTarjeta implements IControlTarjeta{
     ValidarCompraTarjeta compra = new ValidarCompraTarjeta();
     ValidarDatosTarjetas datos = new ValidarDatosTarjetas();
     
-    public boolean validarDatos(String numeroTarjeta) throws BancoException{
+    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
         
         if (datos.validarDatos(numeroTarjeta)) {
             return true;

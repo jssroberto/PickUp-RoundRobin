@@ -5,7 +5,7 @@
 package interfaces;
 
 import dominio.UsuarioCIA;
-import excepciones.CIAException;
+import excepciones.PersitenciaException;
 
 /**
  *
@@ -13,5 +13,5 @@ import excepciones.CIAException;
  */
 public interface IUsuarioCiaDAO {
     
-    public Boolean BuscarPersona(String idEstudiante, String contra) throws CIAException;
+    public Boolean BuscarPersona(String idEstudiante, String contra) throws Exception;
 }

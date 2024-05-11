@@ -5,7 +5,7 @@
 package metodos;
 
 import BOs.ValidarTarjetaBO;
-import excepciones.BancoException;
+import excepciones.PersitenciaException;
 import interfaces.IValidarTarjetaBO;
 import javax.swing.JOptionPane;
 
@@ -17,7 +17,7 @@ public class ValidarDatosTarjetas {
     
     IValidarTarjetaBO tarjeta = new ValidarTarjetaBO();
     
-    public boolean validarDatos(String numeroTarjeta) throws BancoException{
+    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
         if(tarjeta.validarDatos(numeroTarjeta)){
             JOptionPane.showMessageDialog(null, "Datos Validos");
             return true;

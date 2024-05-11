@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dominio;
 
 import org.bson.types.ObjectId;
@@ -11,19 +15,14 @@ public class DetalleProducto {
     private ObjectId id;
     private Integer cantidad;
     private Float subtotal;
-    //desnormalización
     private String nombre;
     private Float precio;
     private Integer puntosCuesta, puntosGenera;
     private String direccionImagen;
     private String codigoProducto;
 
-    public DetalleProducto(Integer cantidad, String codigoProducto) {
-        this.cantidad = cantidad;
-        this.codigoProducto = codigoProducto;
-    }
-
-    public DetalleProducto(Integer cantidad, Float subtotal, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen, String codigoProducto) {
+    public DetalleProducto(ObjectId id, Integer cantidad, Float subtotal, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen, String codigoProducto) {
+        this.id = id;
         this.cantidad = cantidad;
         this.subtotal = subtotal;
         this.nombre = nombre;
@@ -34,8 +33,7 @@ public class DetalleProducto {
         this.codigoProducto = codigoProducto;
     }
 
-    public DetalleProducto(ObjectId id, Integer cantidad, Float subtotal, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen, String codigoProducto) {
-        this.id = id;
+    public DetalleProducto(Integer cantidad, Float subtotal, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String direccionImagen, String codigoProducto) {
         this.cantidad = cantidad;
         this.subtotal = subtotal;
         this.nombre = nombre;

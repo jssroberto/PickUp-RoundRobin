@@ -5,7 +5,7 @@
 package BOs;
 
 import insercionesMasivas.InsercionMasivaBanco;
-import inserciones.InsercionMasivaProductos;
+import insercionesMasivas.InsercionMasivaProductos;
 import insercionesMasivas.InsercionMasivaProductosCafeteriaBO;
 import insercionesMasivas.InsercionMasivaUsuariosCIA;
 

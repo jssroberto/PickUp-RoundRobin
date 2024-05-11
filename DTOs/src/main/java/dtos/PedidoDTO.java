@@ -1,5 +1,10 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dtos;
 
+import dominio.MetodoPago;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -8,7 +13,6 @@ import java.util.List;
  * @author galan
  */
 public class PedidoDTO {
-
     private String idPedido;
     private String etiquetaPedido;
     private String numeroPedido;
@@ -16,13 +20,10 @@ public class PedidoDTO {
     private LocalDate fecha;
     private Integer numeroProductos;
     private Float total;
-    private int metodoPago;
+    private MetodoPago metodoPago;
     private List<DetalleProductoDTO> detalleProductos;
 
-    public PedidoDTO() {
-    }
-
-    public PedidoDTO(String idPedido, String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, int metodoPago, List<DetalleProductoDTO> detalleProductos) {
+    public PedidoDTO(String idPedido, String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProductoDTO> detalleProductos) {
         this.idPedido = idPedido;
         this.etiquetaPedido = etiquetaPedido;
         this.numeroPedido = numeroPedido;
@@ -34,7 +35,7 @@ public class PedidoDTO {
         this.detalleProductos = detalleProductos;
     }
 
-    public PedidoDTO(String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, int metodoPago, List<DetalleProductoDTO> detalleProductos) {
+    public PedidoDTO(String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProductoDTO> detalleProductos) {
         this.etiquetaPedido = etiquetaPedido;
         this.numeroPedido = numeroPedido;
         this.claveRecoleccion = claveRecoleccion;
@@ -43,6 +44,9 @@ public class PedidoDTO {
         this.total = total;
         this.metodoPago = metodoPago;
         this.detalleProductos = detalleProductos;
+    }
+
+    public PedidoDTO() {
     }
 
     public String getIdPedido() {
@@ -101,11 +105,11 @@ public class PedidoDTO {
         this.total = total;
     }
 
-    public int getMetodoPago() {
+    public MetodoPago getMetodoPago() {
         return metodoPago;
     }
 
-    public void setMetodoPago(int metodoPago) {
+    public void setMetodoPago(MetodoPago metodoPago) {
         this.metodoPago = metodoPago;
     }
 
@@ -119,19 +123,8 @@ public class PedidoDTO {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("PedidoDTO{");
-        sb.append("idPedido=").append(idPedido);
-        sb.append(", etiquetaPedido=").append(etiquetaPedido);
-        sb.append(", numeroPedido=").append(numeroPedido);
-        sb.append(", claveRecoleccion=").append(claveRecoleccion);
-        sb.append(", fecha=").append(fecha);
-        sb.append(", numeroProductos=").append(numeroProductos);
-        sb.append(", total=").append(total);
-        sb.append(", metodoPago=").append(metodoPago);
-        sb.append(", detalleProductos=").append(detalleProductos);
-        sb.append('}');
-        return sb.toString();
+        return "PedidoDTO{" + "idPedido=" + idPedido + ", etiquetaPedido=" + etiquetaPedido + ", numeroPedido=" + numeroPedido + ", claveRecoleccion=" + claveRecoleccion + ", fecha=" + fecha + ", numeroProductos=" + numeroProductos + ", total=" + total + ", metodoPago=" + metodoPago + ", detalleProductos=" + detalleProductos + '}';
     }
-
+    
+    
 }

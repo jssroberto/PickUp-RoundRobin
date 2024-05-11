@@ -4,8 +4,8 @@
  */
 package BOs;
 
-import daos.UsuarioCiaDAO;
-import interfaces.ICiaDAO;
+import DAOs.UsuarioCiaDAO;
+import IDAOs.ICiaDAO;
 import excepciones.PersistenciaException;
 
 /**

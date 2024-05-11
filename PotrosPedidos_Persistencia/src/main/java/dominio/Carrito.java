@@ -60,16 +60,8 @@ public class Carrito {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Carrito{");
-        sb.append("id=").append(id);
-        sb.append(", total=").append(total);
-        sb.append(", productos=").append(productos);
-        sb.append('}');
-        return sb.toString();
+        return "Carrito{" + "id=" + id + ", total=" + total + ", productos=" + productos + '}';
     }
-
-    
     
     
 }

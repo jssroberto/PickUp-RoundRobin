@@ -21,7 +21,8 @@ public class Usuario {
         pedidos = new ArrayList<>();
     }
 
-    public Usuario(String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
+    public Usuario(ObjectId id, String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
+        this.id = id;
         this.idCia = idCia;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -31,8 +32,7 @@ public class Usuario {
         this.pedidos = pedidos;
     }
 
-    public Usuario(ObjectId id, String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
-        this.id = id;
+    public Usuario(String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
         this.idCia = idCia;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;

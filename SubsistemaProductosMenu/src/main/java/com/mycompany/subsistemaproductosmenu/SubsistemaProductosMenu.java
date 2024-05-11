@@ -6,12 +6,8 @@ package com.mycompany.subsistemaproductosmenu;
 
 import control.ControlProductos;
 import dominio.ProductoCafeteria;
-import dtos.ProductoCafeteriaDTO;
-import excepciones.PersistenciaException;
-import excepciones.BancoException;
+import excepciones.PersitenciaException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -19,18 +15,14 @@ import java.util.logging.Logger;
  */
 public class SubsistemaProductosMenu {
 
-    public static void main(String[] args) throws BancoException {
+    public static void main(String[] args) throws PersitenciaException {
         
-        try {
-            ControlProductos control = new  ControlProductos();
-            
-            List<ProductoCafeteriaDTO> pros= control.obtenerTodosLosProductos();
-            
-            for(ProductoCafeteriaDTO pro : pros){
-                System.out.println(pro.getNombre());
-            }
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(SubsistemaProductosMenu.class.getName()).log(Level.SEVERE, null, ex);
+        ControlProductos control = new  ControlProductos();
+        
+        List<ProductoCafeteria> pros= control.obtenerTodosLosProductos();
+        
+        for(ProductoCafeteria pro : pros){
+            System.out.println(pro.getNombre());
         }
     }
 }

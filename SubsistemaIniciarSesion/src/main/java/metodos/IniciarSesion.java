@@ -4,7 +4,7 @@
  */
 package metodos;
 
-import objetosNegocio.UsuariosCiaBO;
+import BOs.UsuariosCiaBO;
 import interfaces.IUsuarioCiaBO;
 import javax.swing.JOptionPane;
 

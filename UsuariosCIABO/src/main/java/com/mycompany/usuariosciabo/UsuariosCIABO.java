@@ -4,7 +4,7 @@
 
 package com.mycompany.usuariosciabo;
 
-import objetosNegocio.UsuariosCiaBO;
+import BOs.UsuariosCiaBO;
 import interfaces.IUsuarioCiaBO;
 
 /**
