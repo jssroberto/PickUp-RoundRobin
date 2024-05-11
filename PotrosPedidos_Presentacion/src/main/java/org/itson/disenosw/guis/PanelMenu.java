@@ -47,14 +47,18 @@ public  class PanelMenu extends javax.swing.JPanel {
      * @param framePrincipal
      */
     public PanelMenu(FramePrincipal framePrincipal) {
-        this.framePrincipal = framePrincipal;
+        
+       
         initComponents();
+        this.framePrincipal = framePrincipal;
         try {
-            crearMenu();
+            this.crearMenu();
         } catch (PersitenciaException ex) {
-            logger.log(Level.SEVERE, "Error al consutlar el menú");
+            logger.log(Level.SEVERE, "Error al consultar el menú");
+            framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
         }
-        setFuentes();
+        this.setFuentes();
+        
     }
 
     /**

@@ -22,7 +22,7 @@ public class ProductoDAO implements IProductoDAO {
     private final MongoCollection<Producto> coleccionProductos;
 
     public ProductoDAO() {
-        this.coleccionProductos = Conexion.getDatabase().getCollection("prodcutos", Producto.class);
+        this.coleccionProductos = Conexion.getDatabase().getCollection("productos", Producto.class);
     }
 
     @Override
@@ -38,9 +38,9 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public Producto consultar(String codigoProducto) throws PersistenciaException {
+    public Producto consultar(Producto pro) throws PersistenciaException {
         try {
-            Producto producto = coleccionProductos.find(Filters.eq("codigoProducto", codigoProducto)).first();
+            Producto producto = coleccionProductos.find(Filters.eq("codigoProducto", pro.getCodigoProducto())).first();
             if (producto == null) {
                 throw new PersistenciaException("Producto no encontrado");
             }

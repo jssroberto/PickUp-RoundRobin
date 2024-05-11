@@ -12,7 +12,6 @@ dominioVIEJO\DetallePedido.class
 IDAOs\IPedidoDAO.class
 IDAOs\IProductoDAO.class
 dominioVIEJO\DetalleCarrito.class
-DAOs\ProductoCafeteriaDAOVIEJO.class
 dominioVIEJO\Usuario.class
 conexion\Conexion.class
 dominio\Usuario.class
@@ -24,9 +23,6 @@ prueba\Prueba.class
 prueba\pruebaMongo.class
 dominio\MetodoPago.class
 insercionesMasivas\InsercionMasivaProductos.class
-prueba\JframePruebaImagen$1.class
-DAOs\TarjetaDAOVIEJO.class
 dominioVIEJO\Carrito.class
 dominioVIEJO\Producto.class
-DAOs\UsuarioCiaDAOviejo.class
 IDAOs\ICiaDAO.class

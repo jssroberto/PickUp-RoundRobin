@@ -4,6 +4,9 @@
  */
 package interfaces;
 
+import dominio.DetalleProducto;
+import dominio.Producto;
+import dominio.Usuario;
 import dtos.DetalleProductoDTO;
 import dtos.UsuarioDTO;
 import excepciones.PersistenciaException;
@@ -14,7 +17,5 @@ import excepciones.PersistenciaException;
  */
 public interface ICarritoBO {
 
-    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException;
-
-    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException;
+    public void agregarCarrito(Usuario usuarioId, Producto codigoProducto, int cantidad);
 }

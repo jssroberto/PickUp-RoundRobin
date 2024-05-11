@@ -4,46 +4,55 @@
  */
 package objetosNegocio;
 
-import DAOs.UsuarioDAO;
-import convertidores.ConvertidorDTOaDAO;
-import dominio.DetalleProducto;
-import dominioVIEJO.Carrito;
-import dominioVIEJO.DetalleCarrito;
-import dominioVIEJO.Producto;
-import dominioVIEJO.Usuario;
-import dtos.CarritoDTO;
-import dtos.DetalleProductoDTO;
-import dtos.UsuarioDTO;
-import excepciones.PersistenciaException;
 
-import java.util.List;
+import DAOs.ProductoDAO;
+import DAOs.UsuarioDAO;
+import dominio.DetalleProducto;
+import dominio.Producto;
+import dominio.Usuario;
+import dtos.DetalleProductoDTO;
+import excepciones.PersistenciaException;
+import interfaces.ICarritoBO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
  * @author yohan
  */
-public class CarritoBO {
+public class CarritoBO implements ICarritoBO{
 
-    UsuarioDAO carrito = new UsuarioDAO();
-    ConvertidorDTOaDAO convertir = new ConvertidorDTOaDAO();
+    UsuarioDAO carrito;
+    ProductoDAO producto;
+    
 
-    public void agregarDetalleProductoAlCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
-        if (usuario == null || nuevoDetalleProductoDTO == null) {
-            throw new PersistenciaException("Usuario o DetalleProducto vacio");
-        } else {
-            carrito.agregarDetalleProductoAlCarrito(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
+    public CarritoBO(){
+        carrito = new UsuarioDAO();
+        producto = new ProductoDAO();
+    }
+    
+   
+
+    @Override
+    public void agregarCarrito(Usuario usuarioId, Producto product, int cantidad){
+         Producto pro = null;
+        try {
+            pro = producto.consultar(product);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(CarritoBO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        float subtotal = cantidad* pro.getPrecio();
+        DetalleProducto detalle = new DetalleProducto();
+        detalle.setCantidad(cantidad);
+        detalle.setCodigoProducto(pro.getCodigoProducto());
+        detalle.setDireccionImagen(pro.getDireccionImagen());
+        detalle.setNombre(pro.getNombre());
+        detalle.setSubtotal(subtotal);
+        detalle.setPrecio(pro.getPrecio());
+        detalle.setPuntosCuesta(pro.getPuntosCuesta());
+        detalle.setPuntosGenera(pro.getPuntosGenera());
+        carrito.agregarDetalleProductoAlCarrito(carrito.consultarUsuario(usuarioId).getId(), detalle);
     }
-//
-    public void eliminarProductoCarrito(UsuarioDTO usuario, DetalleProductoDTO nuevoDetalleProductoDTO) throws PersistenciaException {
-        if (usuario == null || nuevoDetalleProductoDTO == null) {
-            throw new PersistenciaException("Usuario o DetalleProducto vacio");
-        } else {
-            carrito.eliminarProductoCarrito(usuario.getId(), convertir.convertirDTOenDAO(nuevoDetalleProductoDTO));
-        }
-    }
-
-    public void vaciarCarrito(UsuarioDTO usuario, CarritoDTO carrito) throws PersistenciaException {
-
-    }
+    
 }

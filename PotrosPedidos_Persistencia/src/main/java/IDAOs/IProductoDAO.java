@@ -11,7 +11,7 @@ public interface IProductoDAO {
 
     public void persistir(Producto producto) throws PersistenciaException;
 
-    public Producto consultar(String nombre) throws PersistenciaException;
+    public Producto consultar(Producto producto) throws PersistenciaException;
 
     public Producto consultar(Long idProducto) throws PersistenciaException;
 }

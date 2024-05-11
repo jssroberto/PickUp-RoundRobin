@@ -114,6 +114,7 @@ public class PruebaConsulta {
 //        usuarioDAO.persistir(usuario);
 //        user.eliminarProductoCarrito(user.consultarUsuario("0000000").getId(), user.consultarUsuario("0000000").getCarrito().getProductos().get(0));
    
+
     }
     
 }

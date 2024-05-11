@@ -1,6 +1,5 @@
 package prueba;
 
-import dominio.ProductoCafeteria;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -80,39 +79,40 @@ public class JframePruebaImagen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new JframePruebaImagen().setVisible(true);
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexionPU");
-
-                EntityManager em = emf.createEntityManager();
-
-                CriteriaBuilder cb = em.getCriteriaBuilder();
-
-                CriteriaQuery<ProductoCafeteria> cq = cb.createQuery(ProductoCafeteria.class);
-
-                Root<ProductoCafeteria> root = cq.from(ProductoCafeteria.class);
-
-                cq.select(root).where(cb.equal(root.get("id"), 1));
-
-                TypedQuery<ProductoCafeteria> query = em.createQuery(cq);
-
-                ProductoCafeteria producto = query.getSingleResult();
-
-                em.close();
-
-                try {
-                    BufferedImage bufferedImage = ImageIO.read(new File(producto.getDireccionImagen()));
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-                
-//                JPanel jPanel =  new JPanel
-            }
-        });
-    }
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new JframePruebaImagen().setVisible(true);
+//                EntityManagerFactory emf = Persistence.createEntityManagerFactory("conexionPU");
+//
+//                EntityManager em = emf.createEntityManager();
+//
+//                CriteriaBuilder cb = em.getCriteriaBuilder();
+//
+//                CriteriaQuery<ProductoCafeteria> cq = cb.createQuery(ProductoCafeteria.class);
+//
+//                Root<ProductoCafeteria> root = cq.from(ProductoCafeteria.class);
+//
+//                cq.select(root).where(cb.equal(root.get("id"), 1));
+//
+//                TypedQuery<ProductoCafeteria> query = em.createQuery(cq);
+//
+//                ProductoCafeteria producto = query.getSingleResult();
+//
+//                em.close();
+//
+//                try {
+//                    BufferedImage bufferedImage = ImageIO.read(new File(producto.getDireccionImagen()));
+//                } catch (IOException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//                
+////                JPanel jPanel =  new JPanel
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+}
 }
