@@ -13,4 +13,5 @@ import excepciones.PersitenciaException;
 public interface IControlTarjeta {
     
     public boolean validarDatos(String numeroTarjeta) throws PersitenciaException;
+    public boolean validacionCompra(String num, float total);
 }

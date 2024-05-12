@@ -15,9 +15,15 @@ import metodos.ValidarDatosTarjetas;
  */
 public class ControlTarjeta implements IControlTarjeta{
     
-    ValidarCompraTarjeta compra = new ValidarCompraTarjeta();
-    ValidarDatosTarjetas datos = new ValidarDatosTarjetas();
+    ValidarCompraTarjeta compra;
+    ValidarDatosTarjetas datos;
     
+    public ControlTarjeta(){
+        compra = new ValidarCompraTarjeta();
+        datos = new ValidarDatosTarjetas();
+    }
+    
+    @Override
     public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
         
         if (datos.validarDatos(numeroTarjeta)) {
@@ -25,5 +31,10 @@ public class ControlTarjeta implements IControlTarjeta{
         }else{
             return false;
         }
+    }
+    
+    @Override
+    public boolean validacionCompra(String num, float total){
+        return compra.validacionCompra(num, total);
     }
 }

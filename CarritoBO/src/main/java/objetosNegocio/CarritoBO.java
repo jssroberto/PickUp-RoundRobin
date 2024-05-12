@@ -10,11 +10,11 @@ import DAOs.UsuarioDAO;
 import dominio.DetalleProducto;
 import dominio.Producto;
 import dominio.Usuario;
-import dtos.DetalleProductoDTO;
 import excepciones.PersistenciaException;
 import interfaces.ICarritoBO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.types.ObjectId;
 
 
 /**
@@ -54,5 +54,16 @@ public class CarritoBO implements ICarritoBO{
         detalle.setPuntosGenera(pro.getPuntosGenera());
         carrito.agregarDetalleProductoAlCarrito(carrito.consultarUsuario(usuarioId).getId(), detalle);
     }
+    
+    @Override
+    public void vaciarCarrito(Usuario user){
+        carrito.vaciarCarrito(user);
+    }
+    
+    public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto){
+        carrito.eliminarProductoCarrito(usuarioId, nuevoDetalleProducto);
+    }
+    
+    
     
 }

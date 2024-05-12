@@ -33,11 +33,11 @@ public class InsercionMasivaUsuarios {
         List<ObjectId> pedidos3 = new LinkedList<>();
         List<ObjectId> pedidos4 = new LinkedList<>();
         List<ObjectId> pedidos5 = new LinkedList<>();
-        pedidos1.add(new Pedido().getIdPedido());
-        pedidos2.add(new Pedido().getIdPedido());
-        pedidos3.add(new Pedido().getIdPedido());
-        pedidos4.add(new Pedido().getIdPedido());
-        pedidos5.add(new Pedido().getIdPedido());
+        pedidos1.add(new Pedido().getId());
+        pedidos2.add(new Pedido().getId());
+        pedidos3.add(new Pedido().getId());
+        pedidos4.add(new Pedido().getId());
+        pedidos5.add(new Pedido().getId());
         usuario.add(new Usuario("00000011211", "Juan", "Perez", "Garcia", new Carrito(), 0, pedidos1));
         usuario.add(new Usuario("00000244454", "Maria", "Lopez", "Martinez", new Carrito(), 0, pedidos2));
         usuario.add(new Usuario("00000046574", "Pedro", "Gonzalez", "Santos", new Carrito(), 0, pedidos3));

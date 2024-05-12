@@ -15,7 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class ValidarDatosTarjetas {
     
-    IValidarTarjetaBO tarjeta = new ValidarTarjetaBO();
+    IValidarTarjetaBO tarjeta;
+    public ValidarDatosTarjetas(){
+        tarjeta = new ValidarTarjetaBO();
+    }
     
     public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
         if(tarjeta.validarDatos(numeroTarjeta)){

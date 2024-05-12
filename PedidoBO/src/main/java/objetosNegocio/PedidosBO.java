@@ -5,13 +5,15 @@
 package objetosNegocio;
 
 import DAOs.PedidoDAO;
-import convertidores.ConvertidorDAOaDTO;
-import convertidores.ConvertidorDTOaDAO;
+import DAOs.UsuarioDAO;
 import dominio.Pedido;
-import dtos.PedidoDTO;
-import excepciones.BOException;
+import dominio.Usuario;
 import excepciones.PersistenciaException;
 import interfaces.IPedidoBO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -19,28 +21,33 @@ import interfaces.IPedidoBO;
  */
 public class PedidosBO implements IPedidoBO {
 
+    PedidoDAO pedidosDAO;
+    public PedidosBO(){
+        pedidosDAO = new PedidoDAO();
+    }
     @Override
-    public void persistir(PedidoDTO pedido) throws BOException {
-        PedidoDAO pedidosDAO = new PedidoDAO();
-        ConvertidorDTOaDAO dtoADao = new ConvertidorDTOaDAO();
+    public void persistir(Pedido pedido) {
         try {
-            pedidosDAO.persistir(dtoADao.convertirDAOenDTO(pedido));
-        } catch (PersistenciaException e) {
-            throw new BOException(e.getMessage());
+            pedidosDAO.persistir(pedido);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(PedidosBO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public PedidoDTO consultarPedido(String numeroPedido) throws BOException {
-        PedidoDAO pedidosDAO = new PedidoDAO();
-        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
+    public Pedido consultarPedido(Pedido etiqueta) {
         try {
-            Pedido pedido = pedidosDAO.consultar(numeroPedido);
-            PedidoDTO pedidoDTO = daoADto.convertirDAOenDTO(pedido);
-            return pedidoDTO;
-        } catch (PersistenciaException e) {
-            throw new BOException(e.getMessage(), e);
+            return pedidosDAO.consultar(etiqueta);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(PedidosBO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
+    }
+    
+    @Override
+    public void referenciarPedido(Usuario usuario, Pedido pedido){
+        UsuarioDAO user = new UsuarioDAO();
+        user.referenciarPedido(usuario, pedido);
     }
 
 }

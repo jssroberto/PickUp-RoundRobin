@@ -4,13 +4,13 @@
  */
 package prueba;
 
-import DAOs.ProductoDAO;
-import DAOs.UsuarioDAO;
-import dominio.Producto;
-import dominio.Usuario;
+import DAOs.PedidoDAO;
+import IDAOs.IPedidoDAO;
+import dominio.Pedido;
 import insercionesMasivas.InsercionMasivaProductos;
-import insercionesMasivas.InsercionMasivaUsuarios;
 import java.io.IOException;
+
+
 
 /**
  *
@@ -21,10 +21,10 @@ public class pruebaMongo {
 
     InsercionMasivaProductos pro = new InsercionMasivaProductos();
 //
- pro.insertarRegistros ();
-        InsercionMasivaUsuarios u = new InsercionMasivaUsuarios();
-        u.insertarRegistros();
-    }
+// pro.insertarRegistros ();
+//        InsercionMasivaUsuarios u = new InsercionMasivaUsuarios();
+//        u.insertarRegistros();
+//    }
 
 //        ProductoDAO pro = new ProductoDAO();
 //        Producto pros = new Producto();
@@ -33,6 +33,26 @@ public class pruebaMongo {
 //        Usuario user2 = new Usuario();
 //        user2.setIdCia("00000244913");
 //        System.out.println(pro.consultar(pros));
+            
+//        UsuarioDAO user = new UsuarioDAO();
+//        Usuario u = new Usuario();
+//        u.setIdCia("00000244913");
+//        u = user.consultarUsuario(u);
+//        
+////        user.eliminarProductoCarrito(u.getId(), u.getCarrito().getProductos().get(0));
+//        for (int i = 0; i < u.getCarrito().getProductos().size(); i++) {
+//            user.eliminarProductoCarrito(u.getId(), u.getCarrito().getProductos().get(i));
         
-
+    PedidoDAO p = new PedidoDAO();
+        Pedido pe = new Pedido();
+        pe.setEtiquetaPedido("123455");
+        System.out.println(p.consultar(pe));
+    }
+            
+            
+        
+          
+        
+        
 }
+

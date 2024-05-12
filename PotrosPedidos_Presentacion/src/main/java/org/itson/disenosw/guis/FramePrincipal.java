@@ -1,5 +1,7 @@
 package org.itson.disenosw.guis;
 
+import dominio.ProductoCafeteria;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -18,6 +20,17 @@ public class FramePrincipal extends javax.swing.JFrame {
     private JPanel panelActual;
     private Long idProducto;
     private String numID;
+    private List<ProductoCafeteria> productos;
+
+    public List<ProductoCafeteria> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ProductoCafeteria> productos) {
+        this.productos = productos;
+    }
+    
+    
 
     /**
      * Constructor de la clase Ventana.

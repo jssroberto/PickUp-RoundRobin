@@ -100,23 +100,23 @@ public final class PanelBuscar extends javax.swing.JPanel {
     }
 
     private void buscarProductosSimilares(String textoBusqueda) throws PersitenciaException {
-        if (textoBusqueda.isEmpty()) {
-            // Si el texto de búsqueda está vacío, mostrar todos los productos
-            List<ProductoCafeteria> productosCafeteria = controlProductos.obtenerTodosLosProductos();
-            productos.clear();
-            for (ProductoCafeteria producto : productosCafeteria) {
-                productos.add(convertirDAOenDTO(producto));
-            }
-        } else {
-            // Aplicar filtro de búsqueda
-            IBusqueda busqueda = new BusquedaDinamica();
-            productos = busqueda.consultarProductos(textoBusqueda);
-        }
-        panelTop.removeAll();
-        panelTop.revalidate();
-        panelTop.repaint();
-        // Volver a crear el menú con los productos encontrados
-        menu.crearMenu();
+//        if (textoBusqueda.isEmpty()) {
+//            // Si el texto de búsqueda está vacío, mostrar todos los productos
+//            List<ProductoCafeteria> productosCafeteria = controlProductos.obtenerTodosLosProductos();
+//            productos.clear();
+//            for (ProductoCafeteria producto : productosCafeteria) {
+//                productos.add(convertirDAOenDTO(producto));
+//            }
+//        } else {
+//            // Aplicar filtro de búsqueda
+//            IBusqueda busqueda = new BusquedaDinamica();
+//            productos = busqueda.consultarProductos(textoBusqueda);
+//        }
+//        panelTop.removeAll();
+//        panelTop.revalidate();
+//        panelTop.repaint();
+//        // Volver a crear el menú con los productos encontrados
+//        menu.crearMenu();
 
     }
 
