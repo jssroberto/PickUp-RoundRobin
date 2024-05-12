@@ -1,5 +1,6 @@
 package org.itson.disenosw.guis;
 
+import Metodos.BusquedaDinamica;
 import dominio.ProductoCafeteria;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -36,6 +37,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public FramePrincipal() {
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

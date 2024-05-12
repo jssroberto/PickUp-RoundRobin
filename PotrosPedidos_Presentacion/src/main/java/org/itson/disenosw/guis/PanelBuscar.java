@@ -1,15 +1,10 @@
 package org.itson.disenosw.guis;
 
-import DAOs.ProductoDAO;
 import Metodos.BusquedaDinamica;
-import static com.mysql.cj.conf.PropertyKey.logger;
-import control.ControlProductos;
 import dominio.ProductoCafeteria;
 import dtos.ProductoCafeteriaDTO;
-import excepciones.PersistenciaException;
 import excepciones.PersitenciaException;
 import interfaces.IBusqueda;
-import interfaces.IControlProductos;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -18,8 +13,6 @@ import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -47,7 +40,6 @@ public final class PanelBuscar extends javax.swing.JPanel {
 
     private FramePrincipal framePrincipal;
     private List<ProductoCafeteriaDTO> productos;
-    private IControlProductos controlProductos;
 
     /**
      * Constructor de la clase PanelBuscar.
@@ -59,7 +51,6 @@ public final class PanelBuscar extends javax.swing.JPanel {
             this.framePrincipal = framePrincipal;
             initComponents();
             productos = new ArrayList<>();
-            controlProductos = new ControlProductos();
             crearMenu();
 
             Buscador.getDocument().addDocumentListener(new DocumentListener() {
@@ -108,7 +99,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
     }
 
     private void buscarProductosSimilares(String textoBusqueda) throws PersitenciaException {
-        if (textoBusqueda.isEmpty()) {
+     if (textoBusqueda.isEmpty()) {
             // Si el texto de búsqueda está vacío, mostrar todos los productos
             List<ProductoCafeteria> productosCafeteria = framePrincipal.getP();
             productos.clear();
@@ -120,7 +111,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
             IBusqueda busqueda = new BusquedaDinamica();
             productos = busqueda.consultarProductos(textoBusqueda);
         }
-        panelTop.removeAll();
+        panelTop.removeAll(); // Limpiar el panel antes de agregar nuevos elementos
         panelTop.revalidate();
         panelTop.repaint();
         // Volver a crear el menú con los productos encontrados

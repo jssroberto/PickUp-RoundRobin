@@ -47,7 +47,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     }
 
     @Override
-    public  ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
+    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -125,18 +125,25 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
 
     @Override
     public List<ProductoCafeteria> consultarProductos(String palabra) throws PersitenciaException {
+        EntityManager em = emf.createEntityManager();  // Crear EntityManager
         try {
-            List<ProductoCafeteria> productos = new ArrayList<>();
-            List<ProductoCafeteria> productosCafeteria = obtenerTodosLosProductos();
+            em.getTransaction().begin();
 
-            for (ProductoCafeteria producto : productosCafeteria) {
-                if (producto.getNombre().toLowerCase().contains(palabra.toLowerCase())) {
-                    productos.add(producto);
-                }
-            }
+            String jpql = "SELECT p FROM ProductoCafeteria p";
+
+            TypedQuery<ProductoCafeteria> query = em.createQuery(jpql, ProductoCafeteria.class);
+            List<ProductoCafeteria> productos = query.getResultList();
+
+            em.getTransaction().commit();
+
             return productos;
-        } catch (PersitenciaException e) {
-            throw new PersitenciaException(e.getMessage());
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new PersitenciaException("Error al obtener todos los productos de cafetería");
+        } finally {
+            em.close();  // Cerrar EntityManager en el bloque finally
         }
     }
 

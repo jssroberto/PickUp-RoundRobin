@@ -1,7 +1,10 @@
 package org.itson.disenosw.main;
 
+import BOs.BusquedaBO;
+import Interfaz.IBusquedaBO;
 import control.ControlProductos;
 import dominio.ProductoCafeteria;
+import dtos.ProductoCafeteriaDTO;
 import excepciones.PersitenciaException;
 import interfaces.IControlProductos;
 import java.util.List;
@@ -19,16 +22,18 @@ public class Principal {
     static final Logger logger = Logger.getLogger(Principal.class.getName());
 
     public static void main(String[] args) throws PersitenciaException {
-        
+
         FramePrincipal framePrincipal = new FramePrincipal();
         framePrincipal.cambiarVistaInicio();
         framePrincipal.setVisible(true);
-//   IControlProductos consultarProductoBO = new ControlProductos();
-//        List<ProductoCafeteria> productos = consultarProductoBO.obtenerTodosLosProductos();
-//            for (ProductoCafeteria  prrr : productos) {
-//            System.out.println(prrr);
+//        IBusquedaBO b = new BusquedaBO();
+//
+//        List<ProductoCafeteriaDTO> pa = b.consultarProductos("h");
+//
+//        for (ProductoCafeteriaDTO prrr : pa) {
+//            System.out.println(prrr.getNombre());
 //        }
-    
-        System.out.println(        System.getProperty("user.dir"));
+
+        System.out.println(System.getProperty("user.dir"));
     }
 }
