@@ -24,7 +24,7 @@ public class Cafeteria {
 //        
         List<ProductoCafeteria> pa = pro.obtenerTodosLosProductos();
 
-        for (ProductoCafeteria prrr : pa) {
+        for (ProductoCafeteria  prrr : pa) {
             System.out.println(prrr);
         }
     }
