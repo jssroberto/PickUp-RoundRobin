@@ -17,4 +17,5 @@ public interface IControlPedido {
     public Pedido consultarPedido(Pedido numeroPedido);
     public void referenciarPedido(Usuario usuario, Pedido pedido);
     public boolean pedidoAceptado();
+    public  String generateRandomString();
 }

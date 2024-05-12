@@ -4,6 +4,7 @@
  */
 package control;
 
+import dominio.DetalleProducto;
 import dominio.Producto;
 import dominio.Usuario;
 import excepciones.PersistenciaException;
@@ -12,6 +13,7 @@ import interfaces.IControlCarrito;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import objetosNegocio.CarritoBO;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -28,5 +30,15 @@ public class ControlCarrito implements IControlCarrito{
     public boolean agregarCarrito(Usuario usuarioId, Producto product, int cantidad) throws PersistenciaException{
         carro.agregarCarrito(usuarioId, product, cantidad);
         return true;
+    }
+    
+    @Override
+    public void vaciarCarrito(Usuario user){
+        carro.vaciarCarrito(user);
+    }
+    
+    @Override
+    public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto){
+        carro.eliminarProductoCarrito(usuarioId, nuevoDetalleProducto);
     }
 }

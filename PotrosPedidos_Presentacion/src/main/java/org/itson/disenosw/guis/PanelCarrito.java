@@ -1,12 +1,16 @@
 package org.itson.disenosw.guis;
 
 
+import control.ControlCarrito;
+import control.ControlPedido;
 import control.ControlUsuario;
 import dominio.DetalleProducto;
 import dominio.Usuario;
 import dtos.DetalleProductoDTO;
 import dtos.UsuarioDTO;
 import excepciones.PersitenciaException;
+import interfaces.IControlCarrito;
+import interfaces.IControlPedido;
 import interfaces.IControlUsuario;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -117,7 +121,21 @@ public final class PanelCarrito extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        framePrincipal.cambiarVistaMetodoPago();
+        IControlPedido pedido = new ControlPedido();
+        IControlUsuario usuario = new ControlUsuario();
+            IControlCarrito carrito = new ControlCarrito();
+            Usuario user = new Usuario();
+            user.setIdCia(framePrincipal.getNumID());
+            framePrincipal.cambiarVistaMetodoPago();
+//        if (pedido.pedidoAceptado()) {
+//            framePrincipal.mostrarAviso("PEDIDO ACEPTADO", "Solicitud");
+//            framePrincipal.cambiarVistaMetodoPago();
+//        }else{
+//        framePrincipal.mostrarAviso("PEDIDO NO ACEPADO", "Solicitud");
+//        carrito.vaciarCarrito(usuario.consultarUsuario(user));
+//        framePrincipal.cambiarVistaMenu();
+//        }
+        
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -147,7 +165,11 @@ public final class PanelCarrito extends javax.swing.JPanel {
         Usuario u = new Usuario();
         u.setIdCia(framePrincipal.getNumID());
         List<DetalleProducto> detallesCarritos = user.consultarUsuario(u).getCarrito().getProductos();
-
+        float total = 0.0f;
+        for(DetalleProducto de: detallesCarritos){
+            total+=de.getSubtotal();
+        }
+        framePrincipal.setTotalCarrito(total);
         if (detallesCarritos == null) {
             Font sizedFont = cargarFuente("/fonts/futura/FuturaPTBook.otf", 48F);
             lblCarritoVacío.setFont(sizedFont);
