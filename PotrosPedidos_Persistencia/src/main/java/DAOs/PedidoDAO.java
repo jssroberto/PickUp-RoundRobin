@@ -35,16 +35,8 @@ public class PedidoDAO implements IPedidoDAO {
     }
 
     @Override
-    public Pedido consultar(String etiquetaPedido) throws PersistenciaException {
-        try {
-            Pedido pedido = coleccionPedido.find(Filters.eq("etiquetaPedido", etiquetaPedido)).first();
-            if (pedido == null) {
-                throw new PersistenciaException("No se encontró ningún pedido");
-            }
-            return pedido;
-        } catch (MongoException e) {
-            throw new PersistenciaException("Error al conusltar el pedido", e);
-        }
+    public Pedido consultar(Pedido etiquetaPedido) throws PersistenciaException {
+         return coleccionPedido.find(Filters.eq("etiquetaPedido", etiquetaPedido.getEtiquetaPedido())).first();
     }
 
     @Override

@@ -5,6 +5,7 @@
 package BOs;
 
 import DAOs.TarjetaDAO;
+import dominio.Tarjeta;
 import excepciones.PersitenciaException;
 import interfaces.ITarejaDAO;
 import interfaces.IValidarTarjetaBO;
@@ -15,8 +16,10 @@ import interfaces.IValidarTarjetaBO;
  */
 public class ValidarTarjetaBO implements IValidarTarjetaBO{
     
-   ITarejaDAO tarjeta = new TarjetaDAO(); 
-   
+   ITarejaDAO tarjeta; 
+   public ValidarTarjetaBO(){
+       tarjeta=new TarjetaDAO();
+   }
    @Override
    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
        
@@ -25,5 +28,10 @@ public class ValidarTarjetaBO implements IValidarTarjetaBO{
        }else{
            throw new PersitenciaException("Tarjeta no encontrada");
        }
+   }
+   
+   @Override
+   public Tarjeta consultar(String num){
+       return tarjeta.consultarTarjeta(num);
    }
 }

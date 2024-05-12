@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import dominio.Tarjeta;
 import excepciones.PersitenciaException;
 
 /**
@@ -13,4 +14,5 @@ import excepciones.PersitenciaException;
 public interface IValidarTarjetaBO {
     
     public boolean validarDatos(String numeroTarjeta) throws PersitenciaException;
+    public Tarjeta consultar(String num);
 }

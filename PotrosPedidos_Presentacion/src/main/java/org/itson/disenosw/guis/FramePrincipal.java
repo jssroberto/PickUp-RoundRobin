@@ -1,6 +1,5 @@
 package org.itson.disenosw.guis;
 
-import Metodos.BusquedaDinamica;
 import dominio.ProductoCafeteria;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,15 +20,17 @@ public class FramePrincipal extends javax.swing.JFrame {
     private JPanel panelActual;
     private Long idProducto;
     private String numID;
-    List<ProductoCafeteria> p;
+    private List<ProductoCafeteria> productos;
 
-    public List<ProductoCafeteria> getP() {
-        return p;
+    public List<ProductoCafeteria> getProductos() {
+        return productos;
     }
 
-    public void setP(List<ProductoCafeteria> p) {
-        this.p = p;
+    public void setProductos(List<ProductoCafeteria> productos) {
+        this.productos = productos;
     }
+    
+    
 
     /**
      * Constructor de la clase Ventana.
@@ -37,7 +38,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     public FramePrincipal() {
         initComponents();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,9 +82,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     }
 
+    
+    
     /**
-     * Método para cambiar a la vista de la ventana de Inicio. Este método
-     * elimina el panel actual
+     * Método para cambiar a la vista de la ventana de Inicio. Este método elimina
+     * el panel actual
      */
     public void cambiarVistaInicio() {
         limpiarFrame();
@@ -92,10 +94,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaInicioSesion);
         panelActual = vistaInicioSesion;
     }
-
+    
     /**
-     * Método para cambiar a la vista de la ventana de Menu . Este método
-     * elimina el panel actual
+     * Método para cambiar a la vista de la ventana de Menu . Este método elimina
+     * el panel actual
      */
     public void cambiarVistaMenu() {
         limpiarFrame();
@@ -103,10 +105,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaMenu);
         panelActual = vistaMenu;
     }
-
+    
     /**
-     * Método para cambiar a la vista de la ventana de Carrito . Este método
-     * elimina el panel actual
+     * Método para cambiar a la vista de la ventana de Carrito . Este método elimina
+     * el panel actual
      */
     public void cambiarVistaCarrito() {
         limpiarFrame();
@@ -114,10 +116,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaCarrito);
         panelActual = vistaCarrito;
     }
-
+    
     /**
-     * Método para cambiar a la vista de la ventana de MetodoPago . Este método
-     * elimina el panel actual
+     * Método para cambiar a la vista de la ventana de MetodoPago . Este método elimina
+     * el panel actual
      */
     public void cambiarVistaMetodoPago() {
         limpiarFrame();
@@ -125,10 +127,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaMetodoPago);
         panelActual = vistaMetodoPago;
     }
-
+    
     /**
-     * Método para cambiar a la vista de la ventana de Menu . Este método
-     * elimina el panel actual
+     * Método para cambiar a la vista de la ventana de Menu . Este método elimina
+     * el panel actual
      */
     public void cambiarVistaProducto() {
         limpiarFrame();
@@ -136,10 +138,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaProducto);
         panelActual = vistaProducto;
     }
-
+    
     /**
-     * Método para cambiar a la vista de la ventana de Datos de Tarjeta . Este
-     * método elimina el panel actual
+     * Método para cambiar a la vista de la ventana de Datos de Tarjeta . Este método elimina
+     * el panel actual
      */
     public void cambiarVistaDatosTarjeta() {
         limpiarFrame();
@@ -147,27 +149,28 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaDatos);
         panelActual = vistaDatos;
     }
-
-    public void cambiarPanelPagoExito() {
+    
+    public void cambiarPanelPagoExito(){
         limpiarFrame();
         PanelPagoExito panelPagoExito = new PanelPagoExito(this);
         ponerEnJFrame(panelPagoExito);
         panelActual = panelPagoExito;
     }
-
-    public void cambiarPanelBuscar() {
+    
+    public void cambiarPanelBuscar(){
         limpiarFrame();
         PanelBuscar panelBuscar = new PanelBuscar(this);
         ponerEnJFrame(panelBuscar);
         panelActual = panelBuscar;
     }
+    
 
-    public void cambiarPanelMenu2() {
+    public void cambiarPanelMenu2(){
         limpiarFrame();
         PanelMenu2 panelPagoExito = new PanelMenu2(this);
         ponerEnJFrame(panelPagoExito);
         panelActual = panelPagoExito;
-
+        
     }
 
     /**
@@ -231,5 +234,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void setNumID(String numID) {
         this.numID = numID;
     }
-
+    
+    
 }

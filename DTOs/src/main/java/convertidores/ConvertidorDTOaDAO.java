@@ -124,7 +124,7 @@
 //        pedido.setClaveRecoleccion(pedidoDTO.getClaveRecoleccion());
 //        pedido.setEtiquetaPedido(pedidoDTO.getEtiquetaPedido());
 //        pedido.setFecha(pedidoDTO.getFecha());
-//        pedido.setIdPedido(new ObjectId(pedidoDTO.getIdPedido()));
+//        pedido.setId(new ObjectId(pedidoDTO.getIdPedido()));
 //        pedido.setMetodoPago(pedidoDTO.getMetodoPago());
 //        pedido.setNumeroPedido(pedidoDTO.getNumeroPedido());
 //        pedido.setNumeroProductos(pedidoDTO.getNumeroProductos());

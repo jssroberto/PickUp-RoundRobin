@@ -4,6 +4,11 @@
  */
 package metodos;
 
+import BOs.ValidarTarjetaBO;
+import dominio.Tarjeta;
+import interfaces.IValidarTarjetaBO;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -12,5 +17,22 @@ package metodos;
  */
 public class ValidarCompraTarjeta {
     
+    IValidarTarjetaBO tarjeta;
+    public ValidarCompraTarjeta(){
+        tarjeta = new ValidarTarjetaBO();
+    }
     
+    public boolean validacionCompra(String num, float total){
+        Tarjeta tar = tarjeta.consultar(num);
+        float saldo = tar.getSaldo()-total;
+        
+        if (saldo >=0) {
+             JOptionPane.showMessageDialog(null, "Pago Aceptado");
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "Pago Rechazado");
+            return false;
+        }
+        
+    }
 }

@@ -13,6 +13,8 @@ import dominio.Carrito;
 import dominio.DetalleProducto;
 import dominio.Pedido;
 import dominio.Usuario;
+import java.util.LinkedList;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -52,11 +54,15 @@ public class UsuarioDAO implements IUsuarioDAO{
     
     @Override
     public void vaciarCarrito(Usuario usuario){
-        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.pull("carrito.productos", consultarUsuario(usuario).getCarrito().getProductos()));
+        for (int i = 0; i < usuario.getCarrito().getProductos().size(); i++) {
+            this.eliminarProductoCarrito(usuario.getId(), usuario.getCarrito().getProductos().get(i));
+        }
+        
     }
     @Override
     public void referenciarPedido(Usuario usuario, Pedido pedido){
-        
+        PedidoDAO pedidos = new PedidoDAO();
+        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.push("pedidos", pedido));
     }
             
 }

@@ -45,4 +45,20 @@ public class TarjetaDAO implements ITarejaDAO{
         }
         return true;
     }
+    
+    @Override
+    public Tarjeta consultarTarjeta(String num){
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tarjeta> cq = cb.createQuery(Tarjeta.class);
+        Root<Tarjeta> root = cq.from(Tarjeta.class);
+
+        Predicate predicado = cb.equal(root.get("numeroTarjeta"), num);
+        cq.select(root).where(predicado);
+        try {
+            return em.createQuery(cq).getSingleResult();
+        } catch (Exception e) {
+            System.out.println("bo");
+            return null;
+        }
+    }
 }

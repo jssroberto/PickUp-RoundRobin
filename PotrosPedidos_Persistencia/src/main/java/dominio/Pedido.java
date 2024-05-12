@@ -14,7 +14,7 @@ import org.bson.types.ObjectId;
  * @author jl4ma
  */
 public class Pedido {
-    private ObjectId idPedido;
+    private ObjectId _id;
     private String etiquetaPedido;
     private String numeroPedido;
     private String claveRecoleccion;
@@ -25,7 +25,7 @@ public class Pedido {
     private List<DetalleProducto> detalleProductos;
 
     public Pedido(ObjectId idPedido, String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProducto> detalleProductos) {
-        this.idPedido = idPedido;
+        this._id = idPedido;
         this.etiquetaPedido = etiquetaPedido;
         this.numeroPedido = numeroPedido;
         this.claveRecoleccion = claveRecoleccion;
@@ -36,19 +36,30 @@ public class Pedido {
         this.detalleProductos = detalleProductos;
     }
 
-    public Pedido() {
-        detalleProductos = new ArrayList<>();
+    public Pedido(String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProducto> detalleProductos) {
+        this.etiquetaPedido = etiquetaPedido;
+        this.numeroPedido = numeroPedido;
+        this.claveRecoleccion = claveRecoleccion;
+        this.fecha = fecha;
+        this.numeroProductos = numeroProductos;
+        this.total = total;
+        this.metodoPago = metodoPago;
+        this.detalleProductos = detalleProductos;
     }
     
 
-    public ObjectId getIdPedido() {
-        return idPedido;
+    public Pedido() {
+        detalleProductos = new ArrayList<>();
     }
 
-    public void setIdPedido(ObjectId idPedido) {
-        this.idPedido = idPedido;
+    public ObjectId getId() {
+        return _id;
     }
 
+    public void setId(ObjectId _id) {
+        this._id = _id;
+    }
+   
     public String getEtiquetaPedido() {
         return etiquetaPedido;
     }
@@ -115,22 +126,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Pedido{");
-        sb.append("idPedido=").append(idPedido);
-        sb.append(", etiquetaPedido=").append(etiquetaPedido);
-        sb.append(", numeroPedido=").append(numeroPedido);
-        sb.append(", claveRecoleccion=").append(claveRecoleccion);
-        sb.append(", fecha=").append(fecha);
-        sb.append(", numeroProductos=").append(numeroProductos);
-        sb.append(", total=").append(total);
-        sb.append(", metodoPago=").append(metodoPago);
-        sb.append(", detalleProductos=").append(detalleProductos);
-        sb.append('}');
-        return sb.toString();
+        return "Pedido{" + "_id=" + _id + ", etiquetaPedido=" + etiquetaPedido + ", numeroPedido=" + numeroPedido + ", claveRecoleccion=" + claveRecoleccion + ", fecha=" + fecha + ", numeroProductos=" + numeroProductos + ", total=" + total + ", metodoPago=" + metodoPago + ", detalleProductos=" + detalleProductos + '}';
     }
-    
-    
-    
-    
+ 
 }

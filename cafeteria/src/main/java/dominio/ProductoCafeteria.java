@@ -37,6 +37,9 @@ public class ProductoCafeteria implements Serializable {
     
     @Column(name = "direccion_imagen", nullable = true)
     private String direccionImagen;
+    
+    @Column(name ="codigo_producto", nullable = true, length = 6, unique=true)
+    private String codigoProducto;
 
     public ProductoCafeteria() {
     }
@@ -70,9 +73,28 @@ public class ProductoCafeteria implements Serializable {
         this.cantidadDisponible = cantidadDisponible;
         this.direccionImagen = direccionImagen;
     }
+
+    public ProductoCafeteria(Float precio, String nombre, String descripcion, Integer cantidadDisponible, String direccionImagen, String codigoProducto) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidadDisponible = cantidadDisponible;
+        this.direccionImagen = direccionImagen;
+        this.codigoProducto = codigoProducto;
+    }
     
     
 
+    public String getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }

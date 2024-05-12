@@ -123,7 +123,7 @@
 //        pedidoDTO.setClaveRecoleccion(pedido.getClaveRecoleccion());
 //        pedidoDTO.setEtiquetaPedido(pedido.getEtiquetaPedido());
 //        pedidoDTO.setFecha(pedido.getFecha());
-//        pedidoDTO.setIdPedido(pedido.getIdPedido().toString());
+//        pedidoDTO.setIdPedido(pedido.getId().toString());
 //        pedidoDTO.setMetodoPago(pedido.getMetodoPago());
 //        pedidoDTO.setNumeroPedido(pedido.getNumeroPedido());
 //        pedidoDTO.setNumeroProductos(pedido.getNumeroProductos());

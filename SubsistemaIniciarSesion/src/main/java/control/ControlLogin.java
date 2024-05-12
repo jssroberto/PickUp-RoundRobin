@@ -13,6 +13,7 @@ import metodos.IniciarSesion;
  */
 public class ControlLogin implements IControlLogin{
     IniciarSesion inicio;
+    
     public ControlLogin(){
         inicio = new IniciarSesion();
     }

@@ -16,16 +16,11 @@
             <artifactId>BusquedaBO</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>SubsistemaCarrito</groupId>
-            <artifactId>SubsistemaException</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>com.mycompany.subsistemabusquedadinamica.SubsistemaBusquedaDinamica</exec.mainClass>
     </properties>
 </project>

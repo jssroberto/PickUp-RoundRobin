@@ -113,12 +113,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>banco</artifactId>
+            <artifactId>SubsistemaBusquedaDinamica</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaBusquedaDinamica</artifactId>
+            <artifactId>SubsistemaPedido</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -133,7 +133,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaIniciarSesion</artifactId>
+            <artifactId>SubsistemaProductosMenu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -143,7 +143,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaProductosMenu</artifactId>
+            <artifactId>SubsistemaIniciarSesion</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
