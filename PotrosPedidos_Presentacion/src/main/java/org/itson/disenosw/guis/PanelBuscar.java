@@ -101,7 +101,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
     private void buscarProductosSimilares(String textoBusqueda) throws PersitenciaException {
      if (textoBusqueda.isEmpty()) {
             // Si el texto de búsqueda está vacío, mostrar todos los productos
-            List<ProductoCafeteria> productosCafeteria = framePrincipal.getP();
+            List<ProductoCafeteria> productosCafeteria = framePrincipal.getProductos();
             productos.clear();
             for (ProductoCafeteria producto : productosCafeteria) {
                 productos.add(convertirDAOenDTO(producto));
@@ -131,12 +131,12 @@ public final class PanelBuscar extends javax.swing.JPanel {
         c.anchor = GridBagConstraints.NORTH;
 
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < framePrincipal.getP().size(); i++) {
+        for (int i = 0; i < framePrincipal.getProductos().size(); i++) {
 //            String[] producto = productosDTO.get(i);
-            JPanel productoPanel = createProductoPanel(framePrincipal.getP().get(i).getNombre(), framePrincipal.getP().get(i).getPrecio(), framePrincipal.getP().get(i).getDireccionImagen());
+            JPanel productoPanel = createProductoPanel(framePrincipal.getProductos().get(i).getNombre(), framePrincipal.getProductos().get(i).getPrecio(), framePrincipal.getProductos().get(i).getDireccionImagen());
 
 //            String identificador = "producto_" + i;
-            Long identificador = framePrincipal.getP().get(i).getId();
+            Long identificador =framePrincipal.getProductos().get(i).getId();
             productoPanel.putClientProperty(identificador, productoPanel);
 //            String identificadorString = String.valueOf(identificador);
 //            productoPanel.putClientProperty(i, idProducto);
@@ -148,7 +148,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
             mainPanel.add(productoPanel, c);
 
             // Añade un separador después de cada producto, excepto el último
-            if (i < framePrincipal.getP().size() - 1) {
+            if (i < framePrincipal.getProductos().size() - 1) {
                 JPanel separatorPanel = createSeparatorPanel();
                 c.gridx = 0;
                 c.gridy = i * 2 + 1;
