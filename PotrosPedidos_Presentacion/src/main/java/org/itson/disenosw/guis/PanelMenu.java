@@ -146,7 +146,8 @@ public final  class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
+        framePrincipal.cambiarPanelBuscar();  
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
@@ -264,18 +265,17 @@ public final  class PanelMenu extends javax.swing.JPanel {
 
         GridBagConstraints c = new GridBagConstraints();
 
-        IControlProductos consultarProductoBO = new ControlProductos();
-        List<ProductoCafeteria> productos = consultarProductoBO.obtenerTodosLosProductos();
+
         //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
         c.anchor = GridBagConstraints.NORTH;
 
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < productos.size(); i++) {
+        for (int i = 0; i < framePrincipal.getP().size(); i++) {
 //            String[] producto = productosDTO.get(i);
-            JPanel productoPanel = createProductoPanel(productos.get(i).getNombre(), productos.get(i).getPrecio(), productos.get(i).getDireccionImagen());
+            JPanel productoPanel = createProductoPanel(framePrincipal.getP().get(i).getNombre(), framePrincipal.getP().get(i).getPrecio(), framePrincipal.getP().get(i).getDireccionImagen());
 
 //            String identificador = "producto_" + i;
-            Long identificador = productos.get(i).getId();
+            Long identificador = framePrincipal.getP().get(i).getId();
             productoPanel.putClientProperty(identificador, productoPanel);
 //            String identificadorString = String.valueOf(identificador);
 //            productoPanel.putClientProperty(i, idProducto);
@@ -303,7 +303,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
             mainPanel.add(productoPanel, c);
 
             // Añade un separador después de cada producto, excepto el último
-            if (i < productos.size() - 1) {
+            if (i < framePrincipal.getP().size() - 1) {
                 JPanel separatorPanel = createSeparatorPanel();
                 c.gridx = 0;
                 c.gridy = i * 2 + 1;

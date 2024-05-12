@@ -1,5 +1,10 @@
 package org.itson.disenosw.main;
 
+import control.ControlProductos;
+import dominio.ProductoCafeteria;
+import excepciones.PersitenciaException;
+import interfaces.IControlProductos;
+import java.util.List;
 import org.itson.disenosw.guis.FramePrincipal;
 import java.util.logging.Logger;
 
@@ -13,12 +18,17 @@ public class Principal {
 
     static final Logger logger = Logger.getLogger(Principal.class.getName());
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PersitenciaException {
         
         FramePrincipal framePrincipal = new FramePrincipal();
         framePrincipal.cambiarVistaInicio();
         framePrincipal.setVisible(true);
-
+//   IControlProductos consultarProductoBO = new ControlProductos();
+//        List<ProductoCafeteria> productos = consultarProductoBO.obtenerTodosLosProductos();
+//            for (ProductoCafeteria  prrr : productos) {
+//            System.out.println(prrr);
+//        }
+    
         System.out.println(        System.getProperty("user.dir"));
     }
 }

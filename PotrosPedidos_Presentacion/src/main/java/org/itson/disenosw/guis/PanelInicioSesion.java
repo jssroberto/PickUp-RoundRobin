@@ -5,11 +5,15 @@ import Incerciones.InsercionMasivaProductosCafeteriaBO;
 import Incersiones.InsercionMasivaUsuariosCIA;
 import static com.mysql.cj.conf.PropertyKey.logger;
 import control.ControlLogin;
+import control.ControlProductos;
+import dominio.ProductoCafeteria;
 import interfaces.IControlLogin;
+import interfaces.IControlProductos;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,11 +35,11 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
         initComponents();
         setFonts();
-        try {
-            setRegistros();
-        } catch (Exception ex) {
-            Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            setRegistros();
+//        } catch (Exception ex) {
+//            Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**
@@ -103,6 +107,8 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             try {
                 if (control.validacionDatos(txtId.getText(), txtContraseña.getText())) {
                     framePrincipal.setNumID(txtId.getText());
+                    IControlProductos consultarProductoBO = new ControlProductos();
+                    framePrincipal.setP(consultarProductoBO.obtenerTodosLosProductos());
                     framePrincipal.cambiarVistaMenu();
                 } else {
                     framePrincipal.mostrarAviso("Credenciales no válidas", "Aviso");
@@ -117,25 +123,24 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
-   public void setRegistros() throws Exception {
-    InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
-    InsercionMasivaProductosCafeteriaBO cafeteria = new InsercionMasivaProductosCafeteriaBO();
-    InsercionMasivaBanco banco = new InsercionMasivaBanco();
-    try {
-        if (!cia.datosExisten()) {
-            cia.insertarRegistros();
-        }
-        if (!cafeteria.datosExisten()) {
-            cafeteria.insertarRegistros();
-        }
-//        if (!banco.datosExisten()) {
-//            banco.insertarRegistros();
+//   public void setRegistros() throws Exception {
+//    InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
+//    InsercionMasivaProductosCafeteriaBO cafeteria = new InsercionMasivaProductosCafeteriaBO();
+//    InsercionMasivaBanco banco = new InsercionMasivaBanco();
+//    try {
+//        if (!cia.datosExisten()) {
+//            cia.insertarRegistros();
 //        }
-    } catch (Exception e) {
-        throw new Exception(e.getMessage());
-    }
-}
-
+//        if (!cafeteria.datosExisten()) {
+//            cafeteria.insertarRegistros();
+//        }
+////        if (!banco.datosExisten()) {
+////            banco.insertarRegistros();
+////        }
+//    } catch (Exception e) {
+//        throw new Exception(e.getMessage());
+//    }
+//}
     private void setFonts() {
         try {
             InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");

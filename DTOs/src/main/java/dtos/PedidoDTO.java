@@ -4,7 +4,6 @@
  */
 package dtos;
 
-import dominio.MetodoPago;
 import java.time.LocalDate;
 import java.util.List;
 

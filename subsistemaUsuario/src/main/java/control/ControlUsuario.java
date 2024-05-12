@@ -7,7 +7,6 @@ package control;
 import BOs.UsuarioBO;
 import Interfaz.IUsuarioBO;
 import dominio.Usuario;
-import dtos.UsuarioDTO;
 import interfaces.IControlUsuario;
 
 /**

@@ -5,7 +5,6 @@
 package interfaces;
 
 import dominio.Usuario;
-import dtos.UsuarioDTO;
 
 /**
  *

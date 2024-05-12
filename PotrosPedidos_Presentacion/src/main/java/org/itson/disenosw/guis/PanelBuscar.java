@@ -26,6 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -35,10 +43,11 @@ import javax.swing.event.DocumentListener;
  */
 public final class PanelBuscar extends javax.swing.JPanel {
 
+    private static final Logger logger = Logger.getLogger(PanelBuscar.class.getName());
+
     private FramePrincipal framePrincipal;
     private List<ProductoCafeteriaDTO> productos;
     private IControlProductos controlProductos;
-    private PanelMenu menu;
 
     /**
      * Constructor de la clase PanelBuscar.
@@ -51,8 +60,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
             initComponents();
             productos = new ArrayList<>();
             controlProductos = new ControlProductos();
-            this.menu = new PanelMenu(framePrincipal);
-            menu.crearMenu();
+            crearMenu();
 
             Buscador.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
@@ -102,7 +110,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
     private void buscarProductosSimilares(String textoBusqueda) throws PersitenciaException {
         if (textoBusqueda.isEmpty()) {
             // Si el texto de búsqueda está vacío, mostrar todos los productos
-            List<ProductoCafeteria> productosCafeteria = controlProductos.obtenerTodosLosProductos();
+            List<ProductoCafeteria> productosCafeteria = framePrincipal.getP();
             productos.clear();
             for (ProductoCafeteria producto : productosCafeteria) {
                 productos.add(convertirDAOenDTO(producto));
@@ -116,9 +124,208 @@ public final class PanelBuscar extends javax.swing.JPanel {
         panelTop.revalidate();
         panelTop.repaint();
         // Volver a crear el menú con los productos encontrados
-        menu.crearMenu();
+        crearMenu();
 
     }
+
+    public void crearMenu() throws PersitenciaException {
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setOpaque(false);
+        mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
+        mainPanel.setSize(new Dimension(370, 550));
+
+        GridBagConstraints c = new GridBagConstraints();
+
+        //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
+        c.anchor = GridBagConstraints.NORTH;
+
+        // Iterar sobre la lista de productos y crear los paneles correspondientes
+        for (int i = 0; i < framePrincipal.getP().size(); i++) {
+//            String[] producto = productosDTO.get(i);
+            JPanel productoPanel = createProductoPanel(framePrincipal.getP().get(i).getNombre(), framePrincipal.getP().get(i).getPrecio(), framePrincipal.getP().get(i).getDireccionImagen());
+
+//            String identificador = "producto_" + i;
+            Long identificador = framePrincipal.getP().get(i).getId();
+            productoPanel.putClientProperty(identificador, productoPanel);
+//            String identificadorString = String.valueOf(identificador);
+//            productoPanel.putClientProperty(i, idProducto);
+            // Añade un ActionListener al panel de producto
+            
+            // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
+            c.gridx = 0;
+            c.gridy = i * 2;
+            mainPanel.add(productoPanel, c);
+
+            // Añade un separador después de cada producto, excepto el último
+            if (i < framePrincipal.getP().size() - 1) {
+                JPanel separatorPanel = createSeparatorPanel();
+                c.gridx = 0;
+                c.gridy = i * 2 + 1;
+                mainPanel.add(separatorPanel, c);
+            }
+
+            productoPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+
+        //TODO hacer el scrollPane un ScrollPaneWin11
+        // Configurar el JScrollPane para desplazamiento vertical
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+
+        scrollPane.setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado
+        scrollPane.setMaximumSize(new Dimension(370, 550)); // Establece un tamaño máximo
+        scrollPane.getViewport().setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado para el viewport
+        scrollPane.getViewport().setMaximumSize(new Dimension(370, 550)); // Establece un tamaño mínimo para el viewport
+        scrollPane.getViewport().setSize(370, 550);
+
+        scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
+        scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
+        scrollPane.setBorder(null); // Eliminar el borde del JScrollPane
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Ajustar la velocidad del scroll vertical
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // Ocultar la barra de desplazamiento horizontal
+
+        JPanel cont = new JPanel();
+        cont.add(scrollPane);
+        cont.setOpaque(false);
+
+        panelTop.add(cont);
+
+    }
+
+    /**
+     * Crea un panel que muestra la información de un producto, incluyendo
+     * nombre, precio e imagen.
+     *
+     * @param nombre El nombre del producto a mostrar.
+     * @param precio El precio del producto a mostrar.
+     * @param rutaImagen La ruta de la imagen del producto.
+     * @return El panel del producto creado.
+     */
+    private JPanel createProductoPanel(String nombre, Float precio, String rutaImagen) {
+        // Crear un nuevo panel para el producto con GridBagLayout
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setOpaque(false); // Hacer que el fondo del panel sea transparente
+
+        // Configuración de GridBagConstraints para organizar los componentes dentro del panel
+        GridBagConstraints c = new GridBagConstraints();
+
+        String rutaFolder = "/productos/120x100/";
+        StringBuilder rutaRelativa = new StringBuilder();
+        rutaRelativa.append(rutaFolder);
+        rutaRelativa.append(rutaImagen);
+
+        // Cargar la imagen del producto
+        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
+        JLabel imagenLabel = new JLabel(icon);
+
+        Font sizedFontMedium = cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F);
+        Font sizedFontBook = cargarFuente("/fonts/futura/FuturaPTBook.otf", 24F);
+
+        // Configurar la etiqueta del nombre del producto
+        JLabel nombreLabel = new JLabel(nombre);
+        nombreLabel.setFont(sizedFontMedium);
+        nombreLabel.setForeground(Color.BLACK);
+        nombreLabel.setPreferredSize(new Dimension(250, 31));
+        nombreLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+
+        String precioFormateado = String.valueOf(precio);
+        if (precioFormateado.endsWith(".0")) {
+            precioFormateado = precioFormateado.substring(0, precioFormateado.length() - 2);
+        }
+        // Configurar la etiqueta del precio
+        JLabel precioLabel = new JLabel("$" + precioFormateado);
+        precioLabel.setFont((sizedFontBook));
+        precioLabel.setForeground(Color.BLACK);
+        precioLabel.setPreferredSize(new Dimension(110, 31));
+        precioLabel.setVerticalAlignment(SwingConstants.TOP);
+
+        // Añadir la imagen a la parte derecha del panel
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridheight = 2;
+        c.fill = GridBagConstraints.BOTH;
+        panel.add(imagenLabel, c);
+
+        // Añadir la etiqueta del nombre del producto en la primera fila y primera columna
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridheight = 1;
+//        c.anchor = GridBagConstraints.CENTER; // Añadir esta línea para centrar horizontalmente
+        panel.add(nombreLabel, c);
+
+        // Añadir la etiqueta del precio en la segunda fila y primera columna
+        c.gridx = 0;
+        c.gridy = 1;
+        panel.add(precioLabel, c);
+
+        return panel; // Devuelve el panel del producto creado
+    }
+
+    /**
+     * Crea un panel separador con una imagen personalizada. El panel separador
+     * consiste en una imagen centrada verticalmente dentro de un panel que
+     * actúa como un separador visual entre componentes.
+     *
+     * @return El panel separador creado.
+     */
+    private static JPanel createSeparatorPanel() {
+        // Crear un nuevo panel para el separador
+        JPanel panel = new JPanel();
+        panel.setOpaque(false); // Hace que el panel sea transparente
+        panel.setPreferredSize(new Dimension(350, 11)); // Establece el tamaño preferido del panel
+
+        // Cargar la imagen del separador
+        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource("/separador.png"));
+
+        // Crear una etiqueta para mostrar la imagen del separador
+        JLabel imagen = new JLabel(icon);
+
+        // Configurar el layout del panel como BoxLayout vertical
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        // Añadir pegamento vertical para centrar la imagen verticalmente
+        panel.add(Box.createVerticalGlue());
+
+        // Añadir la imagen al panel
+        panel.add(imagen);
+
+        // Añadir más pegamento vertical para centrar la imagen verticalmente
+        panel.add(Box.createVerticalGlue());
+
+        return panel; // Devuelve el panel separador creado
+    }
+
+    /**
+     * Carga una fuente desde un archivo de fuente TrueType (TTF) y la devuelve
+     * con el tamaño especificado.
+     *
+     * @param rutaFuente La ruta del archivo de fuente TrueType (TTF).
+     * @param size El tamaño de la fuente a cargar.
+     * @return La fuente cargada con el tamaño especificado.
+     * @throws IllegalArgumentException Si el archivo de fuente no se encuentra
+     * en la ruta especificada.
+     */
+    private static Font cargarFuente(String rutaFuente, float size) {
+        InputStream is = PanelMenu.class.getResourceAsStream(rutaFuente);
+        if (is == null) {
+            throw new IllegalArgumentException("Archivo no encontrado: " + rutaFuente);
+        }
+
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            return font.deriveFont(size);
+        } catch (FontFormatException | IOException ex) {
+            logger.log(Level.SEVERE, "Error al cargar la fuente: " + rutaFuente, ex);
+            return null;
+        } finally {
+            try {
+                is.close();
+            } catch (IOException ex) {
+                logger.log(Level.SEVERE, "Error al cerrar InputStream", ex);
+            }
+        }
+    }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
