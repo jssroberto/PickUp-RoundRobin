@@ -19,6 +19,6 @@ public class Principal {
         framePrincipal.cambiarVistaInicio();
         framePrincipal.setVisible(true);
 
-        System.out.println(        System.getProperty("user.dir"));
+        System.out.println(System.getProperty("user.dir"));
     }
 }

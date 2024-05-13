@@ -6,16 +6,26 @@ package interfaces;
 
 import dominio.Pedido;
 import dominio.Usuario;
+import dtos.PedidoDTO;
+import excepciones.BOException;
+import excepciones.PersistenciaException;
+import java.util.List;
 
 /**
  *
  * @author jl4ma
  */
 public interface IControlPedido {
-    
+
     public void persistir(Pedido pedido);
+
     public Pedido consultarPedido(Pedido numeroPedido);
+
+    public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException;
+
     public void referenciarPedido(Usuario usuario, Pedido pedido);
+
     public boolean pedidoAceptado();
-    public  String generateRandomString();
+
+    public String generateRandomString();
 }

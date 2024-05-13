@@ -7,8 +7,12 @@ package control;
 import dominio.DetalleProducto;
 import dominio.Pedido;
 import dominio.Usuario;
+import dtos.PedidoDTO;
+import excepciones.BOException;
+import excepciones.PersistenciaException;
 import interfaces.IControlPedido;
 import interfaces.IPedidoBO;
+import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import objetosNegocio.PedidosBO;
@@ -82,6 +86,14 @@ public class ControlPedido implements IControlPedido{
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException{
+        
+        IPedidoBO pedidoBO = new PedidosBO();
+        List<PedidoDTO> pedidoDTOs = pedidoBO.consultarPedidos(idUsuario);
+        return pedidoDTOs;
     }
     
     

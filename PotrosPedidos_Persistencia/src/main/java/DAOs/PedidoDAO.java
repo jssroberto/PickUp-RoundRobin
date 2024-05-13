@@ -10,8 +10,11 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.Conexion;
 import dominio.Pedido;
+import dominio.Usuario;
 import excepciones.PersistenciaException;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -20,9 +23,11 @@ import java.util.List;
 public class PedidoDAO implements IPedidoDAO {
 
     private final MongoCollection<Pedido> coleccionPedido;
+    private final MongoCollection<Usuario> coleccionUsuarios;
 
     public PedidoDAO() {
         this.coleccionPedido = Conexion.getDatabase().getCollection("pedidos", Pedido.class);
+        this.coleccionUsuarios = Conexion.getDatabase().getCollection("usuarios", Usuario.class);
     }
 
     @Override
@@ -36,13 +41,18 @@ public class PedidoDAO implements IPedidoDAO {
 
     @Override
     public Pedido consultar(Pedido etiquetaPedido) throws PersistenciaException {
-         return coleccionPedido.find(Filters.eq("etiquetaPedido", etiquetaPedido.getEtiquetaPedido())).first();
+        return coleccionPedido.find(Filters.eq("etiquetaPedido", etiquetaPedido.getEtiquetaPedido())).first();
     }
 
     @Override
-    public List<Pedido> consultar() throws PersistenciaException {
-        
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Pedido> consultarPedidos(String idUsuario) throws PersistenciaException {
+        Usuario usuario = coleccionUsuarios.find(Filters.eq("_id", new ObjectId(idUsuario))).first();
+        if (usuario != null) {
+            return usuario.getPedidos().stream()
+                    .map(pedidoId -> coleccionPedido.find(Filters.eq("_id", pedidoId)).first())
+                    .collect(Collectors.toList());
+        } else {
+            throw new PersistenciaException("No se encontró el usuario proporcionado.");
+        }
     }
-
 }

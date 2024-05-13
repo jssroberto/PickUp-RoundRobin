@@ -69,6 +69,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
 
         btnCarrito = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnOrdenar = new javax.swing.JButton();
         panelTop = new javax.swing.JPanel();
@@ -99,6 +100,16 @@ public final  class PanelMenu extends javax.swing.JPanel {
             }
         });
         add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 18, 50, 50));
+
+        btnHistorial.setBorder(null);
+        btnHistorial.setContentAreaFilled(false);
+        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
+        add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 18, 50, 50));
 
         btnBuscar.setBorder(null);
         btnBuscar.setContentAreaFilled(false);
@@ -150,6 +161,10 @@ public final  class PanelMenu extends javax.swing.JPanel {
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOrdenarActionPerformed
+
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        framePrincipal.cambiarPanelHistorial();
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
     public void inicializarCarrito() {
 
@@ -258,7 +273,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
         int i = 0;
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
-        mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
+        mainPanel.setMaximumSize(new Dimension(370, 550));
         mainPanel.setSize(new Dimension(370, 550));
 
         GridBagConstraints c = new GridBagConstraints();
@@ -479,6 +494,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JLabel lblCantidadCarrito;

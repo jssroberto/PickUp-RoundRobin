@@ -3,6 +3,7 @@ package BOs;
 import DAOs.UsuarioDAO;
 import IDAOs.IUsuarioDAO;
 import Interfaz.IUsuarioBO;
+import convertidores.ConvertidorDAOaDTO;
 import dominio.Carrito;
 import dominio.DetalleProducto;
 import dominio.Producto;
@@ -11,27 +12,24 @@ import dtos.CarritoDTO;
 import dtos.DetalleProductoDTO;
 import dtos.ProductoDTO;
 import dtos.UsuarioDTO;
+import excepciones.BOException;
+import excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 
 /**
  *
  * @author yohan
  */
-public class UsuarioBO implements IUsuarioBO{
+public class UsuarioBO implements IUsuarioBO {
 
     IUsuarioDAO usuarios;
-    
-    public UsuarioBO(){
+
+    public UsuarioBO() {
         usuarios = new UsuarioDAO();
     }
+
     public Usuario convertirDTOenDAO(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
 
@@ -48,6 +46,7 @@ public class UsuarioBO implements IUsuarioBO{
 
         return usuario;
     }
+
     public Carrito convertirDTOenDAO(CarritoDTO carritoDTO) {
         Carrito carrito = new Carrito();
 
@@ -62,6 +61,7 @@ public class UsuarioBO implements IUsuarioBO{
 
         return carrito;
     }
+
     public DetalleProducto convertirDTOenDAO(DetalleProductoDTO detalleProductoDTO) {
         DetalleProducto detalleProducto = new DetalleProducto();
 
@@ -77,7 +77,6 @@ public class UsuarioBO implements IUsuarioBO{
 
         return detalleProducto;
     }
-
 
     public UsuarioDTO convertirDAOenDTO(Usuario usuario) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -96,8 +95,9 @@ public class UsuarioBO implements IUsuarioBO{
         usuarioDTO.setPedidos(lista);
 
         return usuarioDTO;
-        
+
     }
+
     public CarritoDTO convertirDAOenDTO(Carrito carrito) {
         CarritoDTO carritoDTO = new CarritoDTO();
 
@@ -110,8 +110,9 @@ public class UsuarioBO implements IUsuarioBO{
         }
         carritoDTO.setProductos(lista);
 
-        return carritoDTO;  
+        return carritoDTO;
     }
+
     public DetalleProductoDTO convertirDAOenDTO(DetalleProducto detalleProducto) {
         DetalleProductoDTO detalleProductoDTO = new DetalleProductoDTO();
 
@@ -127,7 +128,7 @@ public class UsuarioBO implements IUsuarioBO{
 
         return detalleProductoDTO;
     }
-    
+
     public ProductoDTO convertirDAOenDTO(Producto producto) {
         ProductoDTO productoDTO = new ProductoDTO();
 
@@ -153,13 +154,23 @@ public class UsuarioBO implements IUsuarioBO{
     }
 
     @Override
-    public Usuario consultarUsuario(Usuario usuario)  {
+    public Usuario consultarUsuario(Usuario usuario) {
 
         if (usuario == null) {
             return null;
         } else {
             return usuarios.consultarUsuario(usuario);
         }
+    }
+
+    @Override
+    public UsuarioDTO consultarUsuario(String idCia) throws BOException, PersistenciaException {
+        IUsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.consultarUsuario(idCia);
+        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
+        UsuarioDTO usuarioDTO = daoADto.convertirDAOenDTO(usuario);
+        return usuarioDTO;
+
     }
 
 //    public void referenciarPedido(Usuario usuario, Pedido pedido) {

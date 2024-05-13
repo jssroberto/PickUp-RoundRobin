@@ -23,6 +23,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     private float totalCarrito = 0.0f;
     private String numID;
     private List<ProductoCafeteria> productos;
+    private String idUsuario;
+    private String etiquetaPedido;
 
     public float getTotalCarrito() {
         return totalCarrito;
@@ -184,6 +186,20 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelActual = panelBuscar;
     }
     
+    public void cambiarPanelHistorial(){
+        limpiarFrame();
+        PanelHistorial panelHistorial = new PanelHistorial(this);
+        ponerEnJFrame(panelHistorial);
+        panelActual = panelHistorial;
+        
+    }
+    public void cambiarPanelHistorialPedido(){
+        limpiarFrame();
+        PanelHistorialPedido panelHistorialPedido = new PanelHistorialPedido(this);
+        ponerEnJFrame(panelHistorialPedido);
+        panelActual = panelHistorialPedido;
+        
+    }
 
   
 
@@ -247,6 +263,30 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     public void setNumID(String numID) {
         this.numID = numID;
+    }
+
+    public String getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getEtiquetaPedido() {
+        return etiquetaPedido;
+    }
+
+    public void setEtiquetaPedido(String etiquetaPedido) {
+        this.etiquetaPedido = etiquetaPedido;
     }
     
     

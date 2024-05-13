@@ -6,6 +6,8 @@ package interfaces;
 
 import dominio.Usuario;
 import dtos.UsuarioDTO;
+import excepciones.BOException;
+import excepciones.PersistenciaException;
 
 /**
  *
@@ -14,4 +16,6 @@ import dtos.UsuarioDTO;
 public interface IControlUsuario {
     
     public Usuario consultarUsuario(Usuario usuario);
+    
+    public UsuarioDTO consultarUsuario(String idCia) throws PersistenciaException,BOException;
 }

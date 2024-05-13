@@ -9,14 +9,15 @@ import org.bson.types.ObjectId;
  * @author Roberto García
  */
 public class UsuarioDTO {
-    private ObjectId id;
+
+    private String id;
     private String idCia;
     private String Nombre, apellidoPaterno, apellidoMaterno;
     private CarritoDTO carrito;
     private Integer saldoPuntos;
     private List<String> pedidos;
 
-    public UsuarioDTO(ObjectId id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
+    public UsuarioDTO(String id, String idCia, String Nombre, String apellidoPaterno, String apellidoMaterno, CarritoDTO carrito, Integer saldoPuntos, List<String> pedidos) {
         this.id = id;
         this.idCia = idCia;
         this.Nombre = Nombre;
@@ -40,11 +41,11 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -120,9 +121,4 @@ public class UsuarioDTO {
         return sb.toString();
     }
 
-    
-    
-   
-    
-    
 }

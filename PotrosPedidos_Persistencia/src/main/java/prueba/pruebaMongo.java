@@ -23,9 +23,9 @@ import java.io.IOException;
 public class pruebaMongo {
     public static void main(String[] args) throws IOException, Exception {
 
-//    InsercionMasivaProductos pro = new InsercionMasivaProductos();
-//
-// pro.insertarRegistros ();
+    InsercionMasivaProductos pro = new InsercionMasivaProductos();
+
+ pro.insertarRegistros ();
         InsercionMasivaUsuarios u = new InsercionMasivaUsuarios();
         u.insertarRegistros();
     
