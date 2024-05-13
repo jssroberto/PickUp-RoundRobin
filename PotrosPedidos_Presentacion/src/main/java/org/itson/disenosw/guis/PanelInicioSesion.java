@@ -10,7 +10,11 @@ import dominio.ProductoCafeteria;
 import dtos.UsuarioDTO;
 import interfaces.IControlLogin;
 import interfaces.IControlProductos;
+<<<<<<< Updated upstream
 import interfaces.IControlUsuario;
+=======
+import java.awt.BorderLayout;
+>>>>>>> Stashed changes
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -18,6 +22,10 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -42,6 +50,24 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
+        ((AbstractDocument) txtId.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+                if (newText.matches("[0-9]*")) { // Solo permite números
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+                if (newText.matches("[0-9]*")) { // Solo permite números
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
     }
 
     /**

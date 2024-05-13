@@ -128,14 +128,14 @@ public final class PanelCarrito extends javax.swing.JPanel {
             Usuario user = new Usuario();
             user.setIdCia(framePrincipal.getNumID());
             framePrincipal.cambiarVistaMetodoPago();
-//        if (pedido.pedidoAceptado()) {
-//            framePrincipal.mostrarAviso("PEDIDO ACEPTADO", "Solicitud");
-//            framePrincipal.cambiarVistaMetodoPago();
-//        }else{
-//        framePrincipal.mostrarAviso("PEDIDO NO ACEPADO", "Solicitud");
-//        carrito.vaciarCarrito(usuario.consultarUsuario(user));
-//        framePrincipal.cambiarVistaMenu();
-//        }
+        if (pedido.pedidoAceptado()) {
+            framePrincipal.mostrarAviso("PEDIDO ACEPTADO", "Solicitud");
+            framePrincipal.cambiarVistaMetodoPago();
+        }else{
+        framePrincipal.mostrarAviso("PEDIDO NO ACEPADO", "Solicitud");
+        carrito.vaciarCarrito(usuario.consultarUsuario(user));
+        framePrincipal.cambiarVistaMenu();
+        }
         
     }//GEN-LAST:event_btnPagarActionPerformed
 
@@ -239,6 +239,7 @@ public final class PanelCarrito extends javax.swing.JPanel {
         cont.setOpaque(false);
 
         panelTop.add(cont);
+        lblTotal.setText("Total: "+framePrincipal.getTotalCarrito());
         
 
     }

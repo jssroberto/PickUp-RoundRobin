@@ -19,6 +19,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private JPanel panelActual;
     private String codigoProducto;
+    private String claveRecoleccion;
     private int idPedido = 0;
     private float totalCarrito = 0.0f;
     private String numID;
@@ -26,6 +27,23 @@ public class FramePrincipal extends javax.swing.JFrame {
     private String idUsuario;
     private String etiquetaPedido;
 
+    public String getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public String getClaveRecoleccion() {
+        return claveRecoleccion;
+    }
+
+    public void setClaveRecoleccion(String claveRecoleccion) {
+        this.claveRecoleccion = claveRecoleccion;
+    }
+
+    
     public float getTotalCarrito() {
         return totalCarrito;
     }

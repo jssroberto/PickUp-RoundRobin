@@ -67,9 +67,10 @@ public class PanelProducto extends javax.swing.JPanel {
         txtCantidad = new javax.swing.JTextField();
         lblImagen = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
@@ -117,7 +118,6 @@ public class PanelProducto extends javax.swing.JPanel {
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 665, 40, 40));
 
         txtCantidad.setBackground(new java.awt.Color(250, 250, 250));
-        txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
         txtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCantidad.setText("1");
         txtCantidad.setBorder(null);
@@ -127,19 +127,17 @@ public class PanelProducto extends javax.swing.JPanel {
 
         lblImagen.setText("jLabel1");
         add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 95, 400, 200));
-
-        lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 380, 30));
-
-        lblPrecio.setForeground(new java.awt.Color(0, 0, 0));
-        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 345, 90, 31));
-
-        lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
-        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 379, 380, 66));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelProducto.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 345, 90, 31));
+
+        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 379, 380, 66));
+
+        jTextField1.setBorder(null);
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 360, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -467,6 +465,7 @@ public class PanelProducto extends javax.swing.JPanel {
     private javax.swing.JButton btnMenos;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblNombre;
