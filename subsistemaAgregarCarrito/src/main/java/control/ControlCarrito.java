@@ -4,23 +4,16 @@
  */
 package control;
 
-<<<<<<< HEAD
-import BOs.CarritoBO;
-=======
 import dominio.DetalleProducto;
->>>>>>> Compra-tarjeta
 import dominio.Producto;
 import dominio.Usuario;
 import excepciones.PersistenciaException;
-import Interfaz.ICarritoBO;
+import interfaces.ICarritoBO;
 import interfaces.IControlCarrito;
-<<<<<<< HEAD
-=======
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import objetosNegocio.CarritoBO;
 import org.bson.types.ObjectId;
->>>>>>> Compra-tarjeta
+
+
 
 /**
  *
