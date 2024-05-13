@@ -4,14 +4,12 @@
  */
 package control;
 
+import BOs.CarritoBO;
 import dominio.Producto;
 import dominio.Usuario;
 import excepciones.PersistenciaException;
-import interfaces.ICarritoBO;
+import Interfaz.ICarritoBO;
 import interfaces.IControlCarrito;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import objetosNegocio.CarritoBO;
 
 /**
  *

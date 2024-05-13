@@ -4,14 +4,14 @@
  */
 package control;
 
+import BOs.PedidosBO;
+import Interfaz.IPedidoBO;
 import dominio.DetalleProducto;
 import dominio.Pedido;
 import dominio.Usuario;
 import interfaces.IControlPedido;
-import interfaces.IPedidoBO;
 import java.util.Random;
 import javax.swing.JOptionPane;
-import objetosNegocio.PedidosBO;
 
 /**
  *

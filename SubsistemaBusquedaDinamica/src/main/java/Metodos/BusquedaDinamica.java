@@ -54,4 +54,31 @@ public class BusquedaDinamica implements IBusqueda {
         }
     }
 
+    @Override
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosPorPrecio(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            return c.ordenarProductosFiltradosPorPrecio(productos);
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosAZ(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            return c.ordenarProductosFiltradosAZ(productos);
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosZA(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            return c.ordenarProductosFiltradosZA(productos);
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
 }

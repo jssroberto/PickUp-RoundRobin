@@ -5,8 +5,8 @@
 package metodos;
 
 import BOs.ValidarTarjetaBO;
+import Interfaz.IValidarTarjetaBO;
 import dominio.Tarjeta;
-import interfaces.IValidarTarjetaBO;
 import javax.swing.JOptionPane;
 
 

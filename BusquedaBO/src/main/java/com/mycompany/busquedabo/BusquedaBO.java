@@ -4,7 +4,7 @@
 package com.mycompany.busquedabo;
 
 import Interfaz.IBusquedaBO;
- import dtos.ProductoCafeteriaDTO;
+import dtos.ProductoCafeteriaDTO;
 import excepciones.PersitenciaException;
 
 import java.util.List;
@@ -15,15 +15,14 @@ import java.util.List;
  */
 public class BusquedaBO {
 
-    public static void main(String[] args)  throws PersitenciaException{
+    public static void main(String[] args) throws PersitenciaException {
         System.out.println("Hello World!");
         IBusquedaBO b = new BOs.BusquedaBO();
-     
-        List<ProductoCafeteriaDTO> pa = b.consultarProductos("h");
 
+        List<ProductoCafeteriaDTO> pa = b.consultarProductos("h");
+        pa = b.ordenarProductosFiltradosPorPrecio(pa);
         for (ProductoCafeteriaDTO prrr : pa) {
-            System.out.println(prrr.getNombre());
+            System.out.println(prrr.getNombre()+""+prrr.getPrecio());
         }
     }
 }
-

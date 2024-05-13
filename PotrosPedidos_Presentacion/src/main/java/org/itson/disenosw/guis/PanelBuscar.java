@@ -12,7 +12,11 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -47,43 +52,126 @@ public final class PanelBuscar extends javax.swing.JPanel {
      * @param framePrincipal La framePrincipal principal de la aplicación.
      */
     public PanelBuscar(FramePrincipal framePrincipal) {
-        try {
-            this.framePrincipal = framePrincipal;
-            initComponents();
-            productos = new ArrayList<>();
-            crearMenu();
+        this.framePrincipal = framePrincipal;
+        initComponents();
+        productos = new ArrayList<>();
+        inicializarProductos();
+        inicializarMenu();
+        Buscador.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                buscarProductosSimilares(Buscador.getText());
+            }
 
-            Buscador.getDocument().addDocumentListener(new DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    try {
-                        buscarProductosSimilares(Buscador.getText());
-                    } catch (PersitenciaException ex) {
-                        Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                buscarProductosSimilares(Buscador.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                buscarProductosSimilares(Buscador.getText());
+            }
+        });
+    }
+
+    public void inicializarMenu() {
+        JMenuItem ordenarAZ = new JMenuItem("Ordenar desde A");
+        JMenuItem ordenarZA = new JMenuItem("Ordenar desde Z");
+        JMenuItem ordenarPrecio = new JMenuItem("Ordenar por Precio");
+
+        ppMenu.add(ordenarAZ);
+        ppMenu.addSeparator();
+        ppMenu.add(ordenarZA);
+        ppMenu.addSeparator();
+        ppMenu.add(ordenarPrecio);
+
+        btnOrdenar.setComponentPopupMenu(ppMenu);
+
+        ordenarAZ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<ProductoCafeteriaDTO> productosFiltrados = new ArrayList<>(productos);
+
+                IBusqueda busqueda = new BusquedaDinamica();
+                List<ProductoCafeteriaDTO> productosOrdenados;
+                try {
+                    productosOrdenados = busqueda.ordenarProductosFiltradosAZ(productosFiltrados);
+                } catch (PersitenciaException ex) {
+                    Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
                 }
 
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    try {
-                        buscarProductosSimilares(Buscador.getText());
-                    } catch (PersitenciaException ex) {
-                        Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                panelTop.removeAll();
+                panelTop.revalidate();
+                panelTop.repaint();
+
+                productos.clear();
+                productos.addAll(productosOrdenados);
+                try {
+                    crearMenu();
+                } catch (PersitenciaException ex) {
+                    Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        ordenarZA.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<ProductoCafeteriaDTO> productosFiltrados = new ArrayList<>(productos);
+
+                IBusqueda busqueda = new BusquedaDinamica();
+                List<ProductoCafeteriaDTO> productosOrdenados;
+                try {
+                    productosOrdenados = busqueda.ordenarProductosFiltradosZA(productosFiltrados);
+                } catch (PersitenciaException ex) {
+                    Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
                 }
 
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    try {
-                        buscarProductosSimilares(Buscador.getText());
-                    } catch (PersitenciaException ex) {
-                        Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                panelTop.removeAll();
+                panelTop.revalidate();
+                panelTop.repaint();
+
+                productos.clear();
+                productos.addAll(productosOrdenados);
+                try {
+                    crearMenu();
+                } catch (PersitenciaException ex) {
+                    Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            });
-        } catch (PersitenciaException ex) {
-            Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
+        });
+
+        ordenarPrecio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<ProductoCafeteriaDTO> productosFiltrados = new ArrayList<>(productos);
+
+                IBusqueda busqueda = new BusquedaDinamica();
+                List<ProductoCafeteriaDTO> productosOrdenados;
+                try {
+                    productosOrdenados = busqueda.ordenarProductosFiltradosPorPrecio(productosFiltrados);
+                } catch (PersitenciaException ex) {
+                    Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                    return;
+                }
+
+                panelTop.removeAll();
+                panelTop.revalidate();
+                panelTop.repaint();
+
+                productos.clear();
+                productos.addAll(productosOrdenados);
+                try {
+                    crearMenu();
+                } catch (PersitenciaException ex) {
+                    Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
     }
 
     public ProductoCafeteriaDTO convertirDAOenDTO(ProductoCafeteria productoCafeteria) {
@@ -98,25 +186,57 @@ public final class PanelBuscar extends javax.swing.JPanel {
         return productoCafeteriaDTO;
     }
 
-    private void buscarProductosSimilares(String textoBusqueda) throws PersitenciaException {
-     if (textoBusqueda.isEmpty()) {
+    private void buscarProductosSimilares(String textoBusqueda) {
+        // Obtener todos los productos al inicio
+        List<ProductoCafeteria> productosCafeteria = framePrincipal.getProductos();
+
+        // Crear una lista para almacenar los productos filtrados
+        List<ProductoCafeteriaDTO> productosFiltrados = new ArrayList<>();
+
+        // Verificar si el texto de búsqueda no está vacío
+        if (!textoBusqueda.isEmpty()) {
+            // Aplicar filtro de búsqueda
+            IBusqueda busqueda = new BusquedaDinamica();
+            try {
+                productosFiltrados = busqueda.consultarProductos(textoBusqueda);
+            } catch (PersitenciaException ex) {
+                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             // Si el texto de búsqueda está vacío, mostrar todos los productos
+            for (ProductoCafeteria producto : productosCafeteria) {
+                productosFiltrados.add(convertirDAOenDTO(producto));
+            }
+        }
+
+        // Limpiar el panel antes de agregar nuevos elementos
+        panelTop.removeAll();
+        panelTop.revalidate();
+        panelTop.repaint();
+
+        // Volver a crear el menú con los productos encontrados
+        productos.clear();
+        productos.addAll(productosFiltrados);
+        try {
+            crearMenu();
+        } catch (PersitenciaException ex) {
+            Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void inicializarProductos() {
+        try {
+            // Obtener todos los productos al inicio
             List<ProductoCafeteria> productosCafeteria = framePrincipal.getProductos();
             productos.clear();
             for (ProductoCafeteria producto : productosCafeteria) {
                 productos.add(convertirDAOenDTO(producto));
             }
-        } else {
-            // Aplicar filtro de búsqueda
-            IBusqueda busqueda = new BusquedaDinamica();
-            productos = busqueda.consultarProductos(textoBusqueda);
-        }
-        panelTop.removeAll(); // Limpiar el panel antes de agregar nuevos elementos
-        panelTop.revalidate();
-        panelTop.repaint();
-        // Volver a crear el menú con los productos encontrados
-        crearMenu();
 
+            crearMenu();
+        } catch (PersitenciaException ex) {
+            Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void crearMenu() throws PersitenciaException {
@@ -131,27 +251,38 @@ public final class PanelBuscar extends javax.swing.JPanel {
         c.anchor = GridBagConstraints.NORTH;
 
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < framePrincipal.getProductos().size(); i++) {
-//            String[] producto = productosDTO.get(i);
-            JPanel productoPanel = createProductoPanel(framePrincipal.getProductos().get(i).getNombre(), framePrincipal.getProductos().get(i).getPrecio(), framePrincipal.getProductos().get(i).getDireccionImagen());
+        for (ProductoCafeteriaDTO producto : productos) {
+            JPanel productoPanel = createProductoPanel(producto.getNombre(), producto.getPrecio(), producto.getDireccionImagen());
 
-//            String identificador = "producto_" + i;
-            Long identificador =framePrincipal.getProductos().get(i).getId();
+            Long identificador = producto.getIdProductoCafeteria();
             productoPanel.putClientProperty(identificador, productoPanel);
-//            String identificadorString = String.valueOf(identificador);
-//            productoPanel.putClientProperty(i, idProducto);
+            productoPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    try {
+                        // Acción a realizar al hacer clic en el panel de producto
+                        // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
+
+                        framePrincipal.setIdProducto(identificador);
+                        System.out.println(framePrincipal.getIdProducto());
+                        framePrincipal.cambiarVistaProducto();
+                    } catch (Exception ex) {
+                        framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                    }
+
+                }
+            });
             // Añade un ActionListener al panel de producto
-            
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
-            c.gridy = i * 2;
+            c.gridy = productos.indexOf(producto) * 2;
             mainPanel.add(productoPanel, c);
 
             // Añade un separador después de cada producto, excepto el último
-            if (i < framePrincipal.getProductos().size() - 1) {
+            if (productos.indexOf(producto) < productos.size() - 1) {
                 JPanel separatorPanel = createSeparatorPanel();
                 c.gridx = 0;
-                c.gridy = i * 2 + 1;
+                c.gridy = productos.indexOf(producto) * 2 + 1;
                 mainPanel.add(separatorPanel, c);
             }
 
@@ -316,8 +447,6 @@ public final class PanelBuscar extends javax.swing.JPanel {
         }
     }
 
-  
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -327,12 +456,20 @@ public final class PanelBuscar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ppMenu = new javax.swing.JPopupMenu();
         btnCarrito = new javax.swing.JButton();
+        btnOrdenar = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
         Buscador = new javax.swing.JTextField();
         panelTop = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         lblBuscar = new javax.swing.JLabel();
+
+        ppMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ppMenuMouseClicked(evt);
+            }
+        });
 
         setPreferredSize(new java.awt.Dimension(400, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -347,6 +484,16 @@ public final class PanelBuscar extends javax.swing.JPanel {
         });
         add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 15, 50, 50));
 
+        btnOrdenar.setBorder(null);
+        btnOrdenar.setContentAreaFilled(false);
+        btnOrdenar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenarActionPerformed(evt);
+            }
+        });
+        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 60, 60));
+
         btnUsuario.setBorder(null);
         btnUsuario.setContentAreaFilled(false);
         btnUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -358,7 +505,6 @@ public final class PanelBuscar extends javax.swing.JPanel {
         add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 15, 50, 50));
 
         Buscador.setBackground(new java.awt.Color(250, 250, 250));
-        Buscador.setForeground(new java.awt.Color(0, 0, 0));
         Buscador.setBorder(null);
         Buscador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,28 +551,31 @@ public final class PanelBuscar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void BuscadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BuscadorKeyPressed
-        if (evt.getKeyCode() != KeyEvent.VK_ENTER) {
-            try {
 
-                buscarProductosSimilares(Buscador.getText());
-            } catch (PersitenciaException ex) {
-                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     }//GEN-LAST:event_BuscadorKeyPressed
 
     private void BuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BuscadorActionPerformed
 
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrdenarActionPerformed
+
+    private void ppMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ppMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ppMenuMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Buscador;
     private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JPanel panelTop;
+    private javax.swing.JPopupMenu ppMenu;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -5,7 +5,7 @@
 package metodos;
 
 import BOs.UsuariosCiaBO;
-import interfaces.IUsuarioCiaBO;
+import Interfaz.IUsuarioCiaBO;
 import javax.swing.JOptionPane;
 
 /**

@@ -2,10 +2,11 @@ package org.itson.disenosw.main;
 
 import BOs.BusquedaBO;
 import Interfaz.IBusquedaBO;
+import control.ControlLogin;
 import control.ControlProductos;
-import dominio.ProductoCafeteria;
 import dtos.ProductoCafeteriaDTO;
 import excepciones.PersitenciaException;
+import interfaces.IControlLogin;
 import interfaces.IControlProductos;
 import java.util.List;
 import org.itson.disenosw.guis.FramePrincipal;
@@ -19,21 +20,34 @@ import java.util.logging.Logger;
  */
 public class Principal {
 
-    static final Logger logger = Logger.getLogger(Principal.class.getName());
 
-    public static void main(String[] args) throws PersitenciaException {
+    public static void main(String[] args) throws PersitenciaException, Exception {
 
         FramePrincipal framePrincipal = new FramePrincipal();
         framePrincipal.cambiarVistaInicio();
         framePrincipal.setVisible(true);
-//        IBusquedaBO b = new BusquedaBO();
 //
+//        IBusquedaBO b = new BusquedaBO();
 //        List<ProductoCafeteriaDTO> pa = b.consultarProductos("h");
 //
-//        for (ProductoCafeteriaDTO prrr : pa) {
+//        for (ProductoCafeteriaDTO prrr : b.ordenarProductosAZ()) {
 //            System.out.println(prrr.getNombre());
 //        }
 
-        System.out.println(System.getProperty("user.dir"));
+//        IControlProductos b = new ControlProductos();
+////
+//        List<ProductoCafeteria> pa = b.obtenerTodosLosProductos();
+//
+//        for (ProductoCafeteria prrr : pa) {
+//            System.out.println(prrr.getNombre());
+//        }
+// IControlLogin control = new ControlLogin();
+//        if (control.validacionDatos("00000244978", "MNO97531")) {
+//            System.out.println("si");
+//        } else {
+//            System.out.println("no");
+//        }
+//        System.out.println(System.getProperty("user.dir"));
+//    }
     }
 }

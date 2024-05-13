@@ -22,10 +22,10 @@ public class Cafeteria {
         };
         ProductoCafeteriaDAO pro = new ProductoCafeteriaDAO();
 //        
-        List<ProductoCafeteria> pa = pro.obtenerTodosLosProductos();
+        List<ProductoCafeteria> pa = pro.consultarProductos("l");
 
-        for (ProductoCafeteria  prrr : pa) {
-            System.out.println(prrr);
+        for (ProductoCafeteria  prrr : pro.ordenarProductosZA()) {
+            System.out.println(prrr.getNombre());
         }
     }
 }

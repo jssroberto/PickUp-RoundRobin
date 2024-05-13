@@ -1,8 +1,11 @@
 package org.itson.disenosw.guis;
 
+import Metodos.BusquedaDinamica;
 import control.ControlProductos;
 import dominio.ProductoCafeteria;
+import dtos.ProductoCafeteriaDTO;
 import excepciones.PersitenciaException;
+import interfaces.IBusqueda;
 import interfaces.IControlProductos;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,10 +17,13 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +31,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -35,7 +42,7 @@ import javax.swing.SwingConstants;
  * banco. Permite a los usuarios iniciar sesión proporcionando su nombre de
  * usuario y contraseña.
  */
-public final  class PanelMenu extends javax.swing.JPanel {
+public final class PanelMenu extends javax.swing.JPanel {
 
     private static final Logger logger = Logger.getLogger(PanelMenu.class.getName());
     private FramePrincipal framePrincipal;
@@ -47,11 +54,9 @@ public final  class PanelMenu extends javax.swing.JPanel {
      * @param framePrincipal
      */
     public PanelMenu(FramePrincipal framePrincipal) {
-        
-       this.framePrincipal = framePrincipal;
+
+        this.framePrincipal = framePrincipal;
         initComponents();
-        
-        
         try {
             this.crearMenu();
         } catch (PersitenciaException ex) {
@@ -69,6 +74,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ppMenu = new javax.swing.JPopupMenu();
         btnCarrito = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -115,12 +121,17 @@ public final  class PanelMenu extends javax.swing.JPanel {
         btnOrdenar.setBorder(null);
         btnOrdenar.setContentAreaFilled(false);
         btnOrdenar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrdenar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnOrdenarMousePressed(evt);
+            }
+        });
         btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdenarActionPerformed(evt);
             }
         });
-        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 97, 50, 39));
+        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 96, 50, 40));
 
         panelTop.setOpaque(false);
         add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 380, 600));
@@ -152,6 +163,10 @@ public final  class PanelMenu extends javax.swing.JPanel {
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOrdenarActionPerformed
+
+    private void btnOrdenarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdenarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrdenarMousePressed
 
     public void inicializarCarrito() {
 
@@ -255,7 +270,6 @@ public final  class PanelMenu extends javax.swing.JPanel {
 //            panelContenedor.repaint();
 //        }
 //    }
-    
     public void crearMenu() throws PersitenciaException {
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
@@ -264,7 +278,6 @@ public final  class PanelMenu extends javax.swing.JPanel {
 
         GridBagConstraints c = new GridBagConstraints();
 
-        
         //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
         c.anchor = GridBagConstraints.NORTH;
 
@@ -290,7 +303,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
                         System.out.println(framePrincipal.getIdProducto());
                         framePrincipal.cambiarVistaProducto();
                     } catch (Exception ex) {
-                         framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                        framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
                     }
 
                 }
@@ -335,7 +348,6 @@ public final  class PanelMenu extends javax.swing.JPanel {
         panelTop.add(cont);
 
     }
-
 
     /**
      * Crea un panel que muestra la información de un producto, incluyendo
@@ -484,5 +496,6 @@ public final  class PanelMenu extends javax.swing.JPanel {
     private javax.swing.JLabel lblCantidadCarrito;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JPanel panelTop;
+    private javax.swing.JPopupMenu ppMenu;
     // End of variables declaration//GEN-END:variables
 }

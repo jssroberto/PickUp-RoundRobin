@@ -17,6 +17,7 @@ import java.util.List;
  * @author yohan
  */
 public class BusquedaBO implements IBusquedaBO {
+
     ProductoCafeteriaDAO productoCafeteriaDAO = new ProductoCafeteriaDAO();
 
     public ProductoCafeteriaDTO convertirDAOenDTO(ProductoCafeteria productoCafeteria) {
@@ -29,6 +30,19 @@ public class BusquedaBO implements IBusquedaBO {
         productoCafeteriaDTO.setDireccionImagen(productoCafeteria.getDireccionImagen());
         productoCafeteriaDTO.setIdProductoCafeteria(productoCafeteria.getId());
         return productoCafeteriaDTO;
+    }
+
+    public ProductoCafeteria convertirDTOenDAO(ProductoCafeteriaDTO productoCafeteriaDTO) {
+        ProductoCafeteria productoCafeteria = new ProductoCafeteria();
+
+        productoCafeteria.setPrecio(productoCafeteriaDTO.getPrecio());
+        productoCafeteria.setNombre(productoCafeteriaDTO.getNombre());
+        productoCafeteria.setDescripcion(productoCafeteriaDTO.getDescripcion());
+        productoCafeteria.setCantidadDisponible(productoCafeteriaDTO.getCantidadDisponible());
+        productoCafeteria.setDireccionImagen(productoCafeteriaDTO.getDireccionImagen());
+        productoCafeteria.setId(productoCafeteriaDTO.getIdProductoCafeteria());
+
+        return productoCafeteria;
     }
 
     @Override
@@ -47,6 +61,7 @@ public class BusquedaBO implements IBusquedaBO {
         }
     }
 
+    @Override
     public List<ProductoCafeteriaDTO> ordenarProductosAZ() throws PersitenciaException {
         try {
             List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
@@ -62,6 +77,7 @@ public class BusquedaBO implements IBusquedaBO {
         }
     }
 
+    @Override
     public List<ProductoCafeteriaDTO> ordenarProductosZA() throws PersitenciaException {
         try {
             List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
@@ -77,10 +93,71 @@ public class BusquedaBO implements IBusquedaBO {
         }
     }
 
+    @Override
     public List<ProductoCafeteriaDTO> ordenarProductosPorPrecio() throws PersitenciaException {
         try {
             List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
             List<ProductoCafeteria> productosCafeteria = productoCafeteriaDAO.ordenarProductosPorPrecio();
+
+            for (ProductoCafeteria producto : productosCafeteria) {
+                ProductoCafeteriaDTO dto = this.convertirDAOenDTO(producto);
+                productosDTO.add(dto);
+            }
+            return productosDTO;
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosPorPrecio(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
+            List<ProductoCafeteria> pro = new ArrayList<>();
+            for (ProductoCafeteriaDTO p : productos) {
+                pro.add(convertirDTOenDAO(p));
+            }
+            List<ProductoCafeteria> productosCafeteria = productoCafeteriaDAO.ordenarProductosFiltradosPorPrecio(pro);
+
+            for (ProductoCafeteria producto : productosCafeteria) {
+                ProductoCafeteriaDTO dto = this.convertirDAOenDTO(producto);
+                productosDTO.add(dto);
+            }
+            return productosDTO;
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosAZ(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
+            List<ProductoCafeteria> pro = new ArrayList<>();
+            for (ProductoCafeteriaDTO p : productos) {
+                pro.add(convertirDTOenDAO(p));
+            }
+            List<ProductoCafeteria> productosCafeteria = productoCafeteriaDAO.ordenarProductosFiltradosAZ(pro);
+
+            for (ProductoCafeteria producto : productosCafeteria) {
+                ProductoCafeteriaDTO dto = this.convertirDAOenDTO(producto);
+                productosDTO.add(dto);
+            }
+            return productosDTO;
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosZA(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
+            List<ProductoCafeteria> pro = new ArrayList<>();
+            for (ProductoCafeteriaDTO p : productos) {
+                pro.add(convertirDTOenDAO(p));
+            }
+            List<ProductoCafeteria> productosCafeteria = productoCafeteriaDAO.ordenarProductosFiltradosZA(pro);
 
             for (ProductoCafeteria producto : productosCafeteria) {
                 ProductoCafeteriaDTO dto = this.convertirDAOenDTO(producto);

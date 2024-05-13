@@ -5,8 +5,8 @@
 package metodos;
 
 import BOs.ValidarTarjetaBO;
+import Interfaz.IValidarTarjetaBO;
 import excepciones.PersitenciaException;
-import interfaces.IValidarTarjetaBO;
 import javax.swing.JOptionPane;
 
 /**

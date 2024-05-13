@@ -33,12 +33,12 @@ public class PanelInicioSesion extends javax.swing.JPanel {
     public PanelInicioSesion(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
-//        setFonts();
-        try {
-            setRegistros();
-        } catch (Exception ex) {
-            Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        setFonts();
+//        try {
+//            setRegistros();
+//        } catch (Exception ex) {
+//            Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**
@@ -122,7 +122,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
-   public void setRegistros() throws Exception {
+//   public void setRegistros() throws Exception {
 ////    InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
 ////    InsercionMasivaProductosCafeteriaBO cafeteria = new InsercionMasivaProductosCafeteriaBO();
 ////    InsercionMasivaBanco banco = new InsercionMasivaBanco();
@@ -141,17 +141,17 @@ public class PanelInicioSesion extends javax.swing.JPanel {
 ////    }
 ////}
 ////
-////    private void setFonts() {
-////        try {
-////            InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");
-////            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-////            Font sizedFont = font.deriveFont(24F);
-////            txtId.setFont(sizedFont);
-////            txtContraseña.setFont(sizedFont);
-////        } catch (FontFormatException | IOException e) {
-////            framePrincipal.mostrarAviso(e.getMessage(), "Aviso");
-////
-////        }
+    private void setFonts() {
+        try {
+            InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            Font sizedFont = font.deriveFont(24F);
+            txtId.setFont(sizedFont);
+            txtContraseña.setFont(sizedFont);
+        } catch (FontFormatException | IOException e) {
+            framePrincipal.mostrarAviso(e.getMessage(), "Aviso");
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
