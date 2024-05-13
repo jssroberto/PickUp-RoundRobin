@@ -3,6 +3,7 @@ org\itson\disenosw\guis\PanelDatosTarjeta$4.class
 org\itson\disenosw\main\Principal.class
 org\itson\disenosw\guis\PanelHistorialPedido$2.class
 org\itson\disenosw\guis\PanelInicioSesion.class
+org\itson\disenosw\guis\PanelHistorialPedido$5.class
 org\itson\disenosw\guis\PanelPagoExito.class
 org\itson\disenosw\guis\FramePrincipal.class
 org\itson\disenosw\guis\PanelHistorial$2.class
@@ -38,6 +39,7 @@ org\itson\disenosw\guis\PanelBuscar$4.class
 <<<<<<< Updated upstream
 org\itson\disenosw\guis\PanelHistorialPedido$1.class
 org\itson\disenosw\guis\PanelMetodoPago.class
+org\itson\disenosw\guis\PanelHistorialPedido$4.class
 org\itson\disenosw\guis\PanelHistorial.class
 =======
 org\itson\disenosw\guis\PanelDatosTarjeta$3.class

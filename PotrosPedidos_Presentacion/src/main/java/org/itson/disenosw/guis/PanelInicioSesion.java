@@ -1,12 +1,9 @@
 package org.itson.disenosw.guis;
 
 //import Incerciones.InsercionMasivaBanco;
-import Incerciones.InsercionMasivaProductosCafeteriaBO;
-import static com.mysql.cj.conf.PropertyKey.logger;
 import control.ControlLogin;
 import control.ControlProductos;
 import control.ControlUsuario;
-import dominio.ProductoCafeteria;
 import dtos.UsuarioDTO;
 import interfaces.IControlLogin;
 import interfaces.IControlProductos;
@@ -20,6 +17,8 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
