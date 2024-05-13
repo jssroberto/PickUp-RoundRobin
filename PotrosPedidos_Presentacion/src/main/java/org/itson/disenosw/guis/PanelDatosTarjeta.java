@@ -120,8 +120,8 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
                 }else{
                     ventana.mostrarAviso("Datos no válidos", "Aviso");
                 }
-            } catch (PersitenciaException ex) {
-                Logger.getLogger(PanelDatosTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalArgumentException | PersitenciaException ex ) {
+                ventana.mostrarAviso("Vuelva a intentarlo", "Aviso");
             }
            
         }else{

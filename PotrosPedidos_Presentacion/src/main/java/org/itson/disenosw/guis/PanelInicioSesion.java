@@ -113,7 +113,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
                     framePrincipal.mostrarAviso("Credenciales no válidas", "Aviso");
                 }
             } catch (Exception ex) {
-                framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed

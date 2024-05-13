@@ -50,13 +50,11 @@ public final  class PanelMenu extends javax.swing.JPanel {
         
        this.framePrincipal = framePrincipal;
         initComponents();
-        
-        
+
         try {
             this.crearMenu();
         } catch (PersitenciaException ex) {
-            logger.log(Level.SEVERE, ex.getMessage());
-            framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+            framePrincipal.mostrarAviso("Vuelva a Intentarlo", "Aviso");
         }
         setFuentes();
     }
@@ -257,6 +255,7 @@ public final  class PanelMenu extends javax.swing.JPanel {
 //    }
     
     public void crearMenu() throws PersitenciaException {
+        int i = 0;
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
         mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
@@ -269,12 +268,13 @@ public final  class PanelMenu extends javax.swing.JPanel {
         c.anchor = GridBagConstraints.NORTH;
 
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < framePrincipal.getProductos().size(); i++) {
+        for (ProductoCafeteria pro: framePrincipal.getProductos()) {
+            
 //            String[] producto = productosDTO.get(i);
-            JPanel productoPanel = createProductoPanel(framePrincipal.getProductos().get(i).getNombre(), framePrincipal.getProductos().get(i).getPrecio(), framePrincipal.getProductos().get(i).getDireccionImagen());
+            JPanel productoPanel = createProductoPanel(pro.getNombre(), pro.getPrecio(), pro.getDireccionImagen());
 
 //            String identificador = "producto_" + i;
-            Long identificador = framePrincipal.getProductos().get(i).getId();
+            String identificador = pro.getCodigo();
             productoPanel.putClientProperty(identificador, productoPanel);
 //            String identificadorString = String.valueOf(identificador);
 //            productoPanel.putClientProperty(i, idProducto);
@@ -285,17 +285,17 @@ public final  class PanelMenu extends javax.swing.JPanel {
                     try {
                         // Acción a realizar al hacer clic en el panel de producto
                         // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
-
                         framePrincipal.setIdProducto(identificador);
                         System.out.println(framePrincipal.getIdProducto());
+                        
                         framePrincipal.cambiarVistaProducto();
                     } catch (Exception ex) {
-                         framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                         framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
                     }
 
                 }
             });
-            idProducto++;
+            i++;
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
             c.gridy = i * 2;

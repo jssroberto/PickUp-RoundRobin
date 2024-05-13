@@ -49,4 +49,13 @@ public class ConsultarProductos {
             return pro;
         }
     }
+    
+    public ProductoCafeteria consultarProductosPorCodigo(String codigo) throws PersitenciaException{
+        ProductoCafeteria pro = producto.consultarProductosPorCodigo(codigo);
+        if(pro==null){
+            throw  new PersitenciaException("Producto encontrado ");
+        }else{
+            return pro;
+        }
+    }
 }

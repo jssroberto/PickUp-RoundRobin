@@ -1,14 +1,14 @@
 package org.itson.disenosw.guis;
 
 import DAOs.ProductoDAO;
-import Metodos.BusquedaDinamica;
+//import Metodos.BusquedaDinamica;
 import static com.mysql.cj.conf.PropertyKey.logger;
 import control.ControlProductos;
 import dominio.ProductoCafeteria;
 import dtos.ProductoCafeteriaDTO;
 import excepciones.PersistenciaException;
 import excepciones.PersitenciaException;
-import interfaces.IBusqueda;
+//import interfaces.IBusqueda;
 import interfaces.IControlProductos;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -193,7 +193,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
 
-        framePrincipal.setIdProducto(1L);
+//        framePrincipal.setIdProducto(1L);
 
         framePrincipal.cambiarVistaCarrito();
     }//GEN-LAST:event_btnCarritoActionPerformed

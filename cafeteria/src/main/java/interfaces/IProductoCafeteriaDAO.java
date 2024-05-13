@@ -29,4 +29,6 @@ public interface IProductoCafeteriaDAO {
     public List<ProductoCafeteria> ordenarProductosZA() throws PersitenciaException;
 
     public List<ProductoCafeteria> ordenarProductosPorPrecio() throws PersitenciaException;
+    
+    public ProductoCafeteria consultarProductosPorCodigo(String codigo) throws PersitenciaException;
 }

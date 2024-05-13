@@ -14,16 +14,16 @@ import interfaces.IValidarTarjetaBO;
  *
  * @author jl4ma
  */
-public class ValidarTarjetaBO implements IValidarTarjetaBO{
+public class ValidarTarjeta implements IValidarTarjetaBO{
     
    ITarejaDAO tarjeta; 
-   public ValidarTarjetaBO(){
+   public ValidarTarjeta(){
        tarjeta=new TarjetaDAO();
    }
    @Override
    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
        
-       if (tarjeta.BuscarTarjeta(numeroTarjeta)) {
+       if (tarjeta.consultarTarjeta(numeroTarjeta)!=null) {
            return true;
        }else{
            throw new PersitenciaException("Tarjeta no encontrada");

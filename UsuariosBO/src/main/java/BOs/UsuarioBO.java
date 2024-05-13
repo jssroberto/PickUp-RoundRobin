@@ -52,7 +52,7 @@ public class UsuarioBO implements IUsuarioBO{
         Carrito carrito = new Carrito();
 
         carrito.setId(new ObjectId(carritoDTO.getId()));
-        carrito.setTotal(carritoDTO.getTotal());
+        carrito.setTotalCarrito(carritoDTO.getTotal());
 
         List<DetalleProducto> lista = new ArrayList<>();
         for (DetalleProductoDTO producto : carritoDTO.getProductos()) {
@@ -102,7 +102,7 @@ public class UsuarioBO implements IUsuarioBO{
         CarritoDTO carritoDTO = new CarritoDTO();
 
         carritoDTO.setId(carrito.getId().toHexString());
-        carritoDTO.setTotal(carrito.getTotal());
+        carritoDTO.setTotal(carrito.getTotalCarrito());
 
         List<DetalleProductoDTO> lista = new ArrayList<>();
         for (DetalleProducto producto : carrito.getProductos()) {

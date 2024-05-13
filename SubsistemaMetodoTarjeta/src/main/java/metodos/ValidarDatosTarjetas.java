@@ -4,7 +4,7 @@
  */
 package metodos;
 
-import BOs.ValidarTarjetaBO;
+import BOs.ValidarTarjeta;
 import excepciones.PersitenciaException;
 import interfaces.IValidarTarjetaBO;
 import javax.swing.JOptionPane;
@@ -14,19 +14,20 @@ import javax.swing.JOptionPane;
  * @author jl4ma
  */
 public class ValidarDatosTarjetas {
-    
+
     IValidarTarjetaBO tarjeta;
-    public ValidarDatosTarjetas(){
-        tarjeta = new ValidarTarjetaBO();
+
+    public ValidarDatosTarjetas() {
+        tarjeta = new ValidarTarjeta();
     }
-    
-    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException{
-        if(tarjeta.validarDatos(numeroTarjeta)){
-            JOptionPane.showMessageDialog(null, "Datos Validos");
-            return true;
-        }else{
-            JOptionPane.showMessageDialog(null, "Tarjeta no encontrada");
-            return false;
+
+    public boolean validarDatos(String numeroTarjeta) throws PersitenciaException {
+        try {
+
+            return tarjeta.validarDatos(numeroTarjeta);
+
+        } catch (PersitenciaException e) {
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 }

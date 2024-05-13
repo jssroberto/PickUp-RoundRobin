@@ -14,6 +14,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -47,7 +50,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     }
 
     @Override
-    public  ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
+    public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
         try {
             em = emf.createEntityManager();
             em.getTransaction().begin();
@@ -76,7 +79,6 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     @Override
     public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException {
         try {
-            em = emf.createEntityManager();
             em.getTransaction().begin();
 
             String jpql3 = "SELECT p FROM ProductoCafeteria p WHERE p.id = :id";
@@ -86,41 +88,57 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
             List<ProductoCafeteria> usuario = query.getResultList();
 
             em.getTransaction().commit();
-            em.close();
 
-            if (!usuario.isEmpty()) {
-                return usuario.get(0);
-            } else {
-                throw new PersitenciaException("Producto no encontrado por su id");
+            for (ProductoCafeteria pro : usuario) {
+                return pro;
             }
         } catch (Exception e) {
-            System.out.println(e.getCause());
-            System.out.println(e.getLocalizedMessage());
-            return null;
+            throw new PersitenciaException(e.getMessage());
         }
+        return null;
     }
 
     @Override
     public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException {
         try {
-            em.getTransaction().begin();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<ProductoCafeteria> cq = cb.createQuery(ProductoCafeteria.class);
+            Root<ProductoCafeteria> root = cq.from(ProductoCafeteria.class);
 
-            String jpql = "SELECT p FROM ProductoCafeteria p";
+            cq.select(root);
 
-            TypedQuery<ProductoCafeteria> query = em.createQuery(jpql, ProductoCafeteria.class);
-            List<ProductoCafeteria> productos = query.getResultList();
-
-            em.getTransaction().commit();
+            List<ProductoCafeteria> eliana= em.createQuery(cq).getResultList();
             em.close();
-
-            return productos;
+            // Ejecutar la consulta
+            return eliana;
         } catch (Exception e) {
-            if (em != null && em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
-            em.close();
-            throw new PersitenciaException("Error al obtener todos los productos de cafetería");
+            throw new PersitenciaException("Error al obtener todos los productos de cafetería: " + e.getMessage());
         }
+    }
+
+    @Override
+    public ProductoCafeteria consultarProductosPorCodigo(String codigo) throws PersitenciaException {
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<ProductoCafeteria> cq = cb.createQuery(ProductoCafeteria.class);
+            Root<ProductoCafeteria> root = cq.from(ProductoCafeteria.class);
+
+            // Agregar predicado para filtrar por código
+            cq.where(cb.equal(cb.lower(root.get("codigo")), codigo.toLowerCase()));
+
+            // Ejecutar la consulta
+            List<ProductoCafeteria> resultados = em.createQuery(cq).getResultList();
+            em.close();
+            // Devolver el primer resultado si existe
+            if (!resultados.isEmpty()) {
+                return resultados.get(0);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            throw new PersitenciaException("Error al consultar productos por código: " + e.getMessage());
+        }
+
     }
 
     @Override

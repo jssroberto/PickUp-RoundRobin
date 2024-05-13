@@ -48,4 +48,9 @@ public class ProductoCafeteriaBO implements IProductoCafeteriaBO {
             return pro;
         }
     }
+    
+    @Override
+    public ProductoCafeteria consultarProductosPorCodigo(String codigo) throws PersitenciaException{
+        return cafeteria.consultarProductosPorCodigo(codigo);
+    }
 }

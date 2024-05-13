@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 public class FramePrincipal extends javax.swing.JFrame {
 
     private JPanel panelActual;
-    private Long idProducto;
+    private String codigoProducto;
     private int idPedido = 0;
     private float totalCarrito = 0.0f;
     private String numID;
@@ -185,13 +185,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
     
 
-    public void cambiarPanelMenu2(){
-        limpiarFrame();
-        PanelMenu2 panelPagoExito = new PanelMenu2(this);
-        ponerEnJFrame(panelPagoExito);
-        panelActual = panelPagoExito;
-        
-    }
+  
 
     /**
      * Método para agregar un panel a la ventana. Este método agrega el panel
@@ -239,12 +233,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public Long getIdProducto() {
-        return idProducto;
+    public String getIdProducto() {
+        return codigoProducto;
     }
 
-    public void setIdProducto(Long idProducto) {
-        this.idProducto = idProducto;
+    public void setIdProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
     }
 
     public String getNumID() {

@@ -62,7 +62,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public void referenciarPedido(Usuario usuario, Pedido pedido){
         PedidoDAO pedidos = new PedidoDAO();
-        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.push("pedidos", pedido));
+        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.push("pedidos", pedido.getId()));
     }
             
 }

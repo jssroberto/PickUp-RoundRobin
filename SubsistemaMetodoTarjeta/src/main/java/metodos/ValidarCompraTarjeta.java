@@ -4,9 +4,10 @@
  */
 package metodos;
 
-import BOs.ValidarTarjetaBO;
+import BOs.ValidarTarjeta;
 import dominio.Tarjeta;
 import interfaces.IValidarTarjetaBO;
+import javax.persistence.PersistenceException;
 import javax.swing.JOptionPane;
 
 
@@ -19,19 +20,18 @@ public class ValidarCompraTarjeta {
     
     IValidarTarjetaBO tarjeta;
     public ValidarCompraTarjeta(){
-        tarjeta = new ValidarTarjetaBO();
+        tarjeta = new ValidarTarjeta();
     }
     
     public boolean validacionCompra(String num, float total){
+        
         Tarjeta tar = tarjeta.consultar(num);
         float saldo = tar.getSaldo()-total;
         
         if (saldo >=0) {
-             JOptionPane.showMessageDialog(null, "Pago Aceptado");
             return true;
         }else{
-            JOptionPane.showMessageDialog(null, "Pago Rechazado");
-            return false;
+            throw new IllegalArgumentException("Saldo insuficiente");
         }
         
     }

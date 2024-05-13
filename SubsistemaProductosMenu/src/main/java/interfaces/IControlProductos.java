@@ -16,4 +16,5 @@ public interface IControlProductos {
     
     public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException;
      public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException;
+     public ProductoCafeteria consultarProductosPorCodigo(String codigo) throws PersitenciaException;
 }

@@ -124,6 +124,7 @@ public final class PanelCarrito extends javax.swing.JPanel {
         IControlPedido pedido = new ControlPedido();
         IControlUsuario usuario = new ControlUsuario();
             IControlCarrito carrito = new ControlCarrito();
+            
             Usuario user = new Usuario();
             user.setIdCia(framePrincipal.getNumID());
             framePrincipal.cambiarVistaMetodoPago();
@@ -166,16 +167,14 @@ public final class PanelCarrito extends javax.swing.JPanel {
         u.setIdCia(framePrincipal.getNumID());
         List<DetalleProducto> detallesCarritos = user.consultarUsuario(u).getCarrito().getProductos();
         float total = 0.0f;
-        for(DetalleProducto de: detallesCarritos){
-            total+=de.getSubtotal();
-        }
-        framePrincipal.setTotalCarrito(total);
-        if (detallesCarritos == null) {
+        
+        if (detallesCarritos.isEmpty()) {
             Font sizedFont = cargarFuente("/fonts/futura/FuturaPTBook.otf", 48F);
             lblCarritoVacío.setFont(sizedFont);
             lblCarritoVacío.setText("¡CARRITO VACÍO!");
             lblCarritoVacío.setForeground(Color.BLACK);
             lblCarritoVacío.setEnabled(true);
+            btnPagar.setEnabled(false);
 //            lblCarritoVacío
             JPanel panelVacio = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 90));
             panelVacio.add(lblCarritoVacío);
@@ -184,7 +183,10 @@ public final class PanelCarrito extends javax.swing.JPanel {
             panelTop.add(panelVacio);
             return;
         }
-
+        for(DetalleProducto de: detallesCarritos){
+            total+=de.getSubtotal();
+        }
+        framePrincipal.setTotalCarrito(total);
         GridBagConstraints c = new GridBagConstraints();
 
         //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
