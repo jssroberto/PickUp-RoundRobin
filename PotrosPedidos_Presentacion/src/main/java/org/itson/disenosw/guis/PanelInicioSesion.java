@@ -10,22 +10,16 @@ import dominio.ProductoCafeteria;
 import dtos.UsuarioDTO;
 import interfaces.IControlLogin;
 import interfaces.IControlProductos;
-<<<<<<< Updated upstream
-import interfaces.IControlUsuario;
-=======
-import java.awt.BorderLayout;
->>>>>>> Stashed changes
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import interfaces.IControlUsuario;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -48,7 +42,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         try {
             setRegistros();
         } catch (Exception ex) {
-            Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+            framePrincipal.mostrarAviso("Vuelvalo a intentar", "Aviso");
         }
         ((AbstractDocument) txtId.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override

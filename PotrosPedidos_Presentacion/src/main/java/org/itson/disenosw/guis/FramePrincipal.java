@@ -27,13 +27,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private String idUsuario;
     private String etiquetaPedido;
 
-    public String getCodigoProducto() {
-        return codigoProducto;
-    }
-
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
-    }
+    
 
     public String getClaveRecoleccion() {
         return claveRecoleccion;
