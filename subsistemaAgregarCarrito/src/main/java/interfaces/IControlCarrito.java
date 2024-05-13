@@ -4,9 +4,11 @@
  */
 package interfaces;
 
+import dominio.DetalleProducto;
 import dominio.Producto;
 import dominio.Usuario;
 import excepciones.PersistenciaException;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -15,4 +17,6 @@ import excepciones.PersistenciaException;
 public interface IControlCarrito {
     
     public boolean agregarCarrito(Usuario usuarioId, Producto product, int cantidad) throws PersistenciaException;
+    public void vaciarCarrito(Usuario user);
+    public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto);
 }

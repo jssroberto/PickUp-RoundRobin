@@ -5,6 +5,7 @@ org\itson\disenosw\guis\PanelPagoExito.class
 org\itson\disenosw\guis\FramePrincipal.class
 org\itson\disenosw\guis\PanelInicioSesion$2.class
 org\itson\disenosw\guis\PanelMenu$4.class
+org\itson\disenosw\guis\PanelMetodoPago$5.class
 org\itson\disenosw\guis\PanelProducto$3.class
 org\itson\disenosw\guis\PanelMenu$1.class
 org\itson\disenosw\guis\PanelDatosTarjeta.class
@@ -14,6 +15,7 @@ org\itson\disenosw\guis\PanelMenu$2.class
 org\itson\disenosw\guis\PanelCarrito$2.class
 org\itson\disenosw\guis\PanelProducto$2.class
 org\itson\disenosw\guis\PanelCarrito.class
+org\itson\disenosw\guis\PanelMetodoPago$4.class
 org\itson\disenosw\guis\PanelMenu2.class
 org\itson\disenosw\guis\PanelMenu$3.class
 org\itson\disenosw\guis\PanelBuscar.class
@@ -34,6 +36,7 @@ org\itson\disenosw\guis\PanelInicioSesion$1.class
 org\itson\disenosw\guis\PanelMenu2$3.class
 org\itson\disenosw\guis\PanelMenu.class
 org\itson\disenosw\guis\PanelProducto$1.class
+org\itson\disenosw\guis\PanelMetodoPago$3.class
 org\itson\disenosw\guis\PanelBuscar$6.class
 org\itson\disenosw\guis\PanelProducto.class
 org\itson\disenosw\guis\PanelDatosTarjeta$1.class

@@ -60,6 +60,7 @@ public class CarritoBO implements ICarritoBO{
         carrito.vaciarCarrito(user);
     }
     
+    @Override
     public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto){
         carrito.eliminarProductoCarrito(usuarioId, nuevoDetalleProducto);
     }
