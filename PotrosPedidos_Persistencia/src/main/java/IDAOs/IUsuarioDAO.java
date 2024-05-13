@@ -6,6 +6,7 @@ package IDAOs;
 
 import dominio.DetalleProducto;
 import dominio.Pedido;
+import dominio.Usuario;
 import excepciones.PersistenciaException;
 import org.bson.types.ObjectId;
 
@@ -20,4 +21,5 @@ public interface IUsuarioDAO {
     public void eliminarProductoCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto);
     public void vaciarCarrito(dominio.Usuario usuario);
     public void referenciarPedido(dominio.Usuario usuario, Pedido pedido);
+    public void actualizarPuntosUsuario(Usuario usuario, Integer puntos);
 }

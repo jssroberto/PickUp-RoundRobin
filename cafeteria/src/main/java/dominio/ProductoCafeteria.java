@@ -150,15 +150,9 @@ public class ProductoCafeteria implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Producto{");
-        sb.append("id=").append(id);
-        sb.append(", precio=").append(precio);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", descripcion=").append(descripcion);
-        sb.append(", cantidadDisponible=").append(cantidadDisponible);
-        sb.append('}');
-        return sb.toString();
+        return "ProductoCafeteria{" + "id=" + id + ", precio=" + precio + ", nombre=" + nombre + ", descripcion=" + descripcion + ", cantidadDisponible=" + cantidadDisponible + ", direccionImagen=" + direccionImagen + ", codigoProducto=" + codigoProducto + '}';
     }
+
+    
     
 }

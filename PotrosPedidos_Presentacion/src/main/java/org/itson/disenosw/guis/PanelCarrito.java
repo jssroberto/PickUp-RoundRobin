@@ -103,7 +103,7 @@ public final class PanelCarrito extends javax.swing.JPanel {
 
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("Total:");
-        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 642, 150, 36));
+        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, 150, 36));
 
         lblCarritoVacío.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCarritoVacío.setEnabled(false);
@@ -147,7 +147,7 @@ public final class PanelCarrito extends javax.swing.JPanel {
         Usuario u = new Usuario();
         u.setIdCia(framePrincipal.getNumID());
         List<DetalleProducto> detallesCarritos = user.consultarUsuario(u).getCarrito().getProductos();
-
+        
         if (detallesCarritos == null) {
             Font sizedFont = cargarFuente("/fonts/futura/FuturaPTBook.otf", 48F);
             lblCarritoVacío.setFont(sizedFont);
@@ -236,14 +236,13 @@ public final class PanelCarrito extends javax.swing.JPanel {
         // Configuración de GridBagConstraints para organizar los componentes dentro del panel
         GridBagConstraints c = new GridBagConstraints();
 
-        String rutaFolder = "/productos/120x100/";
+        String rutaFolder = "/productos/120x100/"+rutaImagen;
         StringBuilder rutaRelativa = new StringBuilder();
         rutaRelativa.append(rutaFolder);
         rutaRelativa.append(rutaImagen);
-
-        // Cargar la imagen del producto
-        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
-        JLabel imagenLabel = new JLabel(icon);
+        
+        ImageIcon icon = new ImageIcon(rutaFolder);
+        JLabel imagenLabel = new JLabel();
 
         Font sizedFontMedium = cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F);
         Font sizedFontBook = cargarFuente("/fonts/futura/FuturaPTBook.otf", 24F);

@@ -16,14 +16,15 @@ public class Banco {
 
     public static void main(String[] args) throws PersitenciaException {
         InsercionMasivaBanco i = new InsercionMasivaBanco();
-          if (!i.datosExisten()) {
-            i.insertarRegistros();
-        };
-        TarjetaDAO tar = new TarjetaDAO();
-        if (tar.BuscarTarjeta("4696-1641-7464-6464")) {
-            System.out.println("si");
-        }else{
-            System.out.println("no");
-        }
+        i.insertarRegistros();
+//          if (!i.datosExisten()) {
+//            i.insertarRegistros();
+//        };
+//        TarjetaDAO tar = new TarjetaDAO();
+//        if (tar.BuscarTarjeta("4696-1641-7464-6464")) {
+//            System.out.println("si");
+//        }else{
+//            System.out.println("no");
+//        }
         }
 }

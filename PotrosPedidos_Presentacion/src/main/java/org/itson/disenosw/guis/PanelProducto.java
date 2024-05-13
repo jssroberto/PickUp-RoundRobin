@@ -390,7 +390,8 @@ public class PanelProducto extends javax.swing.JPanel {
         rutaRelativa.append(productoDTO.getDireccionImagen());
 
         // Cargar la imagen del producto
-        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
+//        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
+        ImageIcon icon = new ImageIcon("/productos/400x200/"+productoDTO.getDireccionImagen());
 
         lblImagen.setIcon(icon);
     }

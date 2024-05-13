@@ -37,11 +37,15 @@ public class UsuarioDAO implements IUsuarioDAO{
     public Usuario consultarUsuario(Usuario usuario){
         return coleccionCursos.find(Filters.eq("idCia", usuario.getIdCia())).first();
     }
+    
+    @Override
+    public void actualizarPuntosUsuario(Usuario usuario, Integer puntos){
+        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.set("saldoPuntos", puntos));
+    }
         
     
     @Override
     public void agregarDetalleProductoAlCarrito(ObjectId usuarioId, DetalleProducto nuevoDetalleProducto) {
- 
         coleccionCursos.updateOne(Filters.eq("_id", usuarioId), Updates.push("carrito.productos", nuevoDetalleProducto));
     }
     

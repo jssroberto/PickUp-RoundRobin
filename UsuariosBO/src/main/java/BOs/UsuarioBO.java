@@ -165,4 +165,9 @@ public class UsuarioBO implements IUsuarioBO{
 //    public void referenciarPedido(Usuario usuario, Pedido pedido) {
 //
 //    }
+
+    @Override
+    public void actualizarPuntosUsuario(Usuario usuario, Integer puntos) {
+        usuarios.actualizarPuntosUsuario(usuario, puntos);
+    }
 }

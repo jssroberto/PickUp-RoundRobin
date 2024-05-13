@@ -20,6 +20,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private JPanel panelActual;
     private Long idProducto;
     private String numID;
+    private Integer totalPuntos;
     private List<ProductoCafeteria> productos;
 
     public List<ProductoCafeteria> getProductos() {
@@ -137,6 +138,27 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelProducto vistaProducto = new PanelProducto(this);
         ponerEnJFrame(vistaProducto);
         panelActual = vistaProducto;
+    }
+    
+    public void cambiarPanelPagoExitoPuntos(){
+        limpiarFrame();
+        PanelPagoExitoPuntos panelBuscar = new PanelPagoExitoPuntos(this);
+        ponerEnJFrame(panelBuscar);
+        panelActual = panelBuscar;
+    }
+    
+    public void cambiarPanelPagoPuntosError(){
+        limpiarFrame();
+        PanelPagoPuntosError panelBuscar = new PanelPagoPuntosError(this);
+        ponerEnJFrame(panelBuscar);
+        panelActual = panelBuscar;
+    }
+    
+    public void cambiarPanelPagoPuntosExito(){
+        limpiarFrame();
+        PanelPagoPuntosExito panelBuscar = new PanelPagoPuntosExito(this);
+        ponerEnJFrame(panelBuscar);
+        panelActual = panelBuscar;
     }
     
     /**

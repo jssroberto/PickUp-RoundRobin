@@ -1,7 +1,9 @@
 package org.itson.disenosw.guis;
 
 //import Incerciones.InsercionMasivaBanco;
+import Incerciones.InsercionMasivaBanco;
 import Incerciones.InsercionMasivaProductosCafeteriaBO;
+import Incersiones.InsercionMasivaUsuariosCIA;
 import static com.mysql.cj.conf.PropertyKey.logger;
 import control.ControlLogin;
 import control.ControlProductos;
@@ -122,36 +124,36 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
-   public void setRegistros() throws Exception {
-////    InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
-////    InsercionMasivaProductosCafeteriaBO cafeteria = new InsercionMasivaProductosCafeteriaBO();
-////    InsercionMasivaBanco banco = new InsercionMasivaBanco();
-////    try {
-////        if (!cia.datosExisten()) {
-////            cia.insertarRegistros();
-////        }
-////        if (!cafeteria.datosExisten()) {
-////            cafeteria.insertarRegistros();
-////        }
-////        if (!banco.datosExisten()) {
-////            banco.insertarRegistros();
-////        }
-////    } catch (Exception e) {
-////        throw new Exception(e.getMessage());
-////    }
-////}
-////
-////    private void setFonts() {
-////        try {
-////            InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");
-////            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-////            Font sizedFont = font.deriveFont(24F);
-////            txtId.setFont(sizedFont);
-////            txtContraseña.setFont(sizedFont);
-////        } catch (FontFormatException | IOException e) {
-////            framePrincipal.mostrarAviso(e.getMessage(), "Aviso");
-////
-////        }
+    public void setRegistros() throws Exception {
+//        InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
+//        InsercionMasivaProductosCafeteriaBO cafeteria = new InsercionMasivaProductosCafeteriaBO();
+//        InsercionMasivaBanco banco = new InsercionMasivaBanco();
+//        try {
+//            if (!cia.datosExisten()) {
+//                cia.insertarRegistros();
+//            }
+//            if (!cafeteria.datosExisten()) {
+//                cafeteria.insertarRegistros();
+//            }
+//            if (!banco.datosExisten()) {
+//                banco.insertarRegistros();
+//            }
+//        } catch (Exception e) {
+//            throw new Exception(e.getMessage());
+//        }
+    }
+
+    private void setFonts() {
+        try {
+            InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            Font sizedFont = font.deriveFont(24F);
+            txtId.setFont(sizedFont);
+            txtContraseña.setFont(sizedFont);
+        } catch (FontFormatException | IOException e) {
+            framePrincipal.mostrarAviso(e.getMessage(), "Aviso");
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

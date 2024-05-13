@@ -16,4 +16,6 @@ public interface IUsuarioBO {
     public Usuario consultarUsuario(Usuario usuario);
 
     public void persistir(UsuarioDTO usuario);
+    
+    public void actualizarPuntosUsuario(Usuario usuario, Integer puntos);
 }

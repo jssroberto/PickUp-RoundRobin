@@ -1,25 +1,14 @@
-<<<<<<< HEAD
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\FramePrincipal.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelBuscar.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelPagoExito.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelInicioSesion.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMetodoPago.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelDatosTarjeta.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMenu.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMenu2.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelCarrito.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\main\Principal.java
-C:\Users\yohan\Documents\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelProducto.java
-=======
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMetodoPago.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\main\Principal.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelProducto.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelDatosTarjeta.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelInicioSesion.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelBuscar.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelPagoExito.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMenu2.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMenu.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\FramePrincipal.java
-C:\Users\jl4ma\OneDrive\Documentos\GitHub\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelCarrito.java
->>>>>>> Compra-tarjeta
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelPagoPuntosExito.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelCarrito.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelProducto.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelDatosTarjeta.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\main\Principal.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelInicioSesion.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMenu.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMetodoPago.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelMenu2.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\FramePrincipal.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelPagoPuntosError.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelBuscar.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelPagoExito.java
+C:\Documentos\ITSON\Cuarto Semestre\Diseño de Software\Caso de Uso Individual con Persistencia\PickUp-RoundRobin\PotrosPedidos_Presentacion\src\main\java\org\itson\disenosw\guis\PanelPagoExitoPuntos.java

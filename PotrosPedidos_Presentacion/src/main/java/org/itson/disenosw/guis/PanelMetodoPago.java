@@ -1,5 +1,17 @@
 package org.itson.disenosw.guis;
 
+import BOs.UsuarioBO;
+import Interfaz.IUsuarioBO;
+import control.ControlUsuario;
+import dominio.DetalleProducto;
+import dominio.Usuario;
+import interfaces.ICalcularCostoPuntos;
+import interfaces.IControlUsuario;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import metodos.CalcularCostoPuntos;
+
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del banco.
@@ -28,6 +40,7 @@ public class PanelMetodoPago extends javax.swing.JPanel {
 
         btnTarjeta = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        btnPuntos = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -55,6 +68,16 @@ public class PanelMetodoPago extends javax.swing.JPanel {
         });
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 50, 50));
 
+        btnPuntos.setBorder(null);
+        btnPuntos.setContentAreaFilled(false);
+        btnPuntos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPuntosActionPerformed(evt);
+            }
+        });
+        add(btnPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 370, 70));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMetodoPago.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -67,8 +90,29 @@ public class PanelMetodoPago extends javax.swing.JPanel {
         ventana.cambiarVistaCarrito();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void btnPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuntosActionPerformed
+        try {
+            IUsuarioBO usuarioBO= new UsuarioBO();
+            IControlUsuario user = new ControlUsuario();
+            Usuario u = new Usuario();
+            u.setIdCia(ventana.getNumID());
+            Usuario usuarioBueno= usuarioBO.consultarUsuario(u);
+            List<DetalleProducto> detallesCarritos = usuarioBueno.getCarrito().getProductos();
+            ICalcularCostoPuntos calcularPuntos= new CalcularCostoPuntos();
+            
+            if(usuarioBueno.getSaldoPuntos()>=calcularPuntos.calcularCostoPuntos(detallesCarritos)){
+                ventana.cambiarPanelPagoPuntosExito();
+            }else{
+               ventana.cambiarPanelPagoPuntosError(); 
+            }        
+        } catch (Exception ex) {
+            Logger.getLogger(PanelMetodoPago.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPuntosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPuntos;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnTarjeta;
     private javax.swing.JLabel fondo;

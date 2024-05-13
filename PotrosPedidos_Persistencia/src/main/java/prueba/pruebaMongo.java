@@ -8,6 +8,7 @@ import DAOs.PedidoDAO;
 import IDAOs.IPedidoDAO;
 import dominio.Pedido;
 import insercionesMasivas.InsercionMasivaProductos;
+import insercionesMasivas.InsercionMasivaUsuarios;
 import java.io.IOException;
 
 
@@ -20,6 +21,9 @@ public class pruebaMongo {
     public static void main(String[] args) throws IOException, Exception {
 
     InsercionMasivaProductos pro = new InsercionMasivaProductos();
+    pro.insertarRegistros();
+    InsercionMasivaUsuarios usu= new InsercionMasivaUsuarios();
+    usu.insertarRegistros();
 //
 // pro.insertarRegistros ();
 //        InsercionMasivaUsuarios u = new InsercionMasivaUsuarios();
@@ -43,10 +47,10 @@ public class pruebaMongo {
 //        for (int i = 0; i < u.getCarrito().getProductos().size(); i++) {
 //            user.eliminarProductoCarrito(u.getId(), u.getCarrito().getProductos().get(i));
         
-    PedidoDAO p = new PedidoDAO();
-        Pedido pe = new Pedido();
-        pe.setEtiquetaPedido("123455");
-        System.out.println(p.consultar(pe));
+//    PedidoDAO p = new PedidoDAO();
+//        Pedido pe = new Pedido();
+//        pe.setEtiquetaPedido("123455");
+//        System.out.println(p.consultar(pe));
     }
             
             

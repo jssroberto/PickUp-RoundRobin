@@ -146,5 +146,15 @@
             <artifactId>SubsistemaIniciarSesion</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SubsistemaPuntos</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PuntosBO</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

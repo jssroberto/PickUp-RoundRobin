@@ -25,13 +25,12 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     private EntityManagerFactory emf;
 
     public ProductoCafeteriaDAO() {
-        emf = Persistence.createEntityManagerFactory("conexionPU");
-        em = emf.createEntityManager();
     }
 
     @Override
     public void actualizarProducto(ProductoCafeteria productoCafeteria) throws PersitenciaException {
         try {
+            emf = Persistence.createEntityManagerFactory("conexionPU");
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
@@ -41,6 +40,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
             em.close();
         } catch (Exception e) {
             em.close();
+            emf.close();
             System.out.println(e.getCause());
             throw new PersitenciaException("Error al actualizar producto de cafeteria");
         }
@@ -49,6 +49,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     @Override
     public ProductoCafeteria buscarProductoCafeteriaPorNombre(String nombreProducto) throws PersitenciaException {
         try {
+            emf = Persistence.createEntityManagerFactory("conexionPU");
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
@@ -60,6 +61,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
 
             em.getTransaction().commit();
             em.close();
+            emf.close();
 
             if (!usuario.isEmpty()) {
                 return usuario.get(0);
@@ -76,6 +78,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     @Override
     public ProductoCafeteria buscarProductoCafeteriaPorID(Long id) throws PersitenciaException {
         try {
+            emf = Persistence.createEntityManagerFactory("conexionPU");
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
@@ -87,6 +90,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
 
             em.getTransaction().commit();
             em.close();
+            emf.close();
 
             if (!usuario.isEmpty()) {
                 return usuario.get(0);
@@ -103,6 +107,8 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
     @Override
     public List<ProductoCafeteria> obtenerTodosLosProductos() throws PersitenciaException {
         try {
+            emf = Persistence.createEntityManagerFactory("conexionPU");
+            em = emf.createEntityManager();
             em.getTransaction().begin();
 
             String jpql = "SELECT p FROM ProductoCafeteria p";
@@ -112,6 +118,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
 
             em.getTransaction().commit();
             em.close();
+            emf.close();
 
             return productos;
         } catch (Exception e) {
@@ -125,8 +132,9 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
 
     @Override
     public List<ProductoCafeteria> consultarProductos(String palabra) throws PersitenciaException {
-        EntityManager em = emf.createEntityManager();  // Crear EntityManager
         try {
+            emf = Persistence.createEntityManagerFactory("conexionPU");
+            em = emf.createEntityManager();
             em.getTransaction().begin();
 
             String jpql = "SELECT p FROM ProductoCafeteria p";
@@ -134,7 +142,8 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
             TypedQuery<ProductoCafeteria> query = em.createQuery(jpql, ProductoCafeteria.class);
             List<ProductoCafeteria> productos = query.getResultList();
 
-            em.getTransaction().commit();
+            em.close();
+            emf.close();
 
             return productos;
         } catch (Exception e) {

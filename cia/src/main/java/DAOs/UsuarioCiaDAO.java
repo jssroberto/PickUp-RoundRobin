@@ -14,23 +14,24 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-
-
 /**
  *
  * @author jl4ma
  */
-public class UsuarioCiaDAO implements IUsuarioCiaDAO{
+public class UsuarioCiaDAO implements IUsuarioCiaDAO {
+
     private EntityManager em;
     private EntityManagerFactory emf;
-    
+
     public UsuarioCiaDAO() {
-        emf = Persistence.createEntityManagerFactory("conexion");
-        em = emf.createEntityManager();
+
     }
 
     @Override
     public Boolean BuscarPersona(String idEstudiante, String contra) throws Exception {
+        emf = Persistence.createEntityManagerFactory("conexion");
+        em = emf.createEntityManager();
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<UsuarioCIA> cq = cb.createQuery(UsuarioCIA.class);
         Root<UsuarioCIA> root = cq.from(UsuarioCIA.class);
@@ -44,8 +45,12 @@ public class UsuarioCiaDAO implements IUsuarioCiaDAO{
         try {
             usuario = em.createQuery(cq).getSingleResult();
         } catch (Exception e) {
+            em.close();
+            emf.close();
             return false;
         }
+        em.close();
+        emf.close();
         return true;
     }
 }
