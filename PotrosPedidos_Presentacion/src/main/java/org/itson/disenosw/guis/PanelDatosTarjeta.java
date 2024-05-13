@@ -1,6 +1,19 @@
 package org.itson.disenosw.guis;
 
 
+import control.ControlCarrito;
+import control.ControlPedido;
+import control.ControlTarjeta;
+import control.ControlUsuario;
+import dominio.MetodoPago;
+import dominio.Pedido;
+import dominio.Usuario;
+import excepciones.PersitenciaException;
+import interfaces.IControlCarrito;
+import interfaces.IControlPedido;
+import interfaces.IControlTarjeta;
+import interfaces.IControlUsuario;
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JOptionPane;
 //import mocks.Banco;
@@ -28,10 +41,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
         initComponents();
 //        b.generarLista();
     }
-    public  int generarAleatorio() {
-        Random random = new Random();
-        return random.nextInt(2); // Genera un número aleatorio entre 0 y 1
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,10 +63,10 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(400, 800));
         setPreferredSize(new java.awt.Dimension(400, 800));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(txtcvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 60, 40));
-        add(txtfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 100, 40));
-        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 350, 40));
-        add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 350, 40));
+        add(txtcvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 80, 30));
+        add(txtfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 100, 30));
+        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 340, 40));
+        add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 340, 40));
 
         btnPagar.setBorder(null);
         btnPagar.setContentAreaFilled(false);
@@ -83,7 +93,40 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        
+        if (!(txtNombre.getText().equalsIgnoreCase("") || txtNumero.getText().equalsIgnoreCase("")  | txtcvv.getText().equalsIgnoreCase("")  || txtfecha.getText().equalsIgnoreCase(""))) {
+            IControlPedido pedido = new ControlPedido();
+            IControlUsuario usuario = new ControlUsuario();
+            IControlCarrito carrito = new ControlCarrito();
+            IControlTarjeta tarjeta = new ControlTarjeta();
+            Usuario user = new Usuario();
+            user.setIdCia(ventana.getNumID());
+            Usuario usuarioNuevo = usuario.consultarUsuario(user);
+            try {
+                if (tarjeta.validarDatos(txtNumero.getText())) {
+                    ventana.mostrarAviso("Tarjeta válida", "Aviso");
+                    if (tarjeta.validacionCompra(txtNumero.getText(), ventana.getTotalCarrito())) {
+                        ventana.mostrarAviso("Compra procesada con éxito", "Aviso");
+                        Pedido pedidoNuevo = new Pedido("", Integer.toString(ventana.getIdPedido()), "" , LocalDate.now(), usuarioNuevo.getCarrito().getProductos().size(), 0.0f, MetodoPago.TARJETA, usuarioNuevo.getCarrito().getProductos());
+                        pedidoNuevo.setClaveRecoleccion(pedido.generateRandomString());
+                        pedidoNuevo.setEtiquetaPedido(pedido.generateRandomString());
+                        pedido.persistir(pedidoNuevo);
+                        pedido.referenciarPedido(usuarioNuevo, pedido.consultarPedido(pedidoNuevo));
+                        carrito.vaciarCarrito(usuarioNuevo);
+                        ventana.cambiarPanelPagoExito();
+                    }else{
+                        ventana.mostrarAviso("Saldo insuficiente", "Aviso");
+                        ventana.cambiarVistaMetodoPago();
+                    }
+                }else{
+                    ventana.mostrarAviso("Datos no válidos", "Aviso");
+                }
+            } catch (PersitenciaException ex) {
+                Logger.getLogger(PanelDatosTarjeta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+        }else{
+            ventana.mostrarAviso("Rellena todos los campos", "AVISO");
+        }
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

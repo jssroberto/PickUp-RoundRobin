@@ -15,17 +15,17 @@ import org.bson.types.ObjectId;
 public class Carrito {
     
     private ObjectId id;
-    private Float total;
+    private Float totalCarrito;
     private List<DetalleProducto> productos;
 
     public Carrito(ObjectId id, Float total, List<DetalleProducto> productos) {
         this.id = id;
-        this.total = total;
+        this.totalCarrito = total;
         this.productos = productos;
     }
 
     public Carrito(Float total, List<DetalleProducto> productos) {
-        this.total = total;
+        this.totalCarrito = total;
         this.productos = productos;
     }
 
@@ -42,13 +42,15 @@ public class Carrito {
         this.id = id;
     }
 
-    public Float getTotal() {
-        return total;
+    public Float getTotalCarrito() {
+        return totalCarrito;
     }
 
-    public void setTotal(Float total) {
-        this.total = total;
+    public void setTotalCarrito(Float totalCarrito) {
+        this.totalCarrito = totalCarrito;
     }
+
+    
 
     public List<DetalleProducto> getProductos() {
         return productos;
@@ -57,10 +59,10 @@ public class Carrito {
     public void setProductos(List<DetalleProducto> productos) {
         this.productos = productos;
     }
-
+    
     @Override
     public String toString() {
-        return "Carrito{" + "id=" + id + ", total=" + total + ", productos=" + productos + '}';
+        return "Carrito{" + "id=" + id + ", total=" + totalCarrito + ", productos=" + productos + '}';
     }
     
     

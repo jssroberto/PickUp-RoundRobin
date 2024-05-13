@@ -19,8 +19,28 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private JPanel panelActual;
     private Long idProducto;
+    private int idPedido = 0;
+    private float totalCarrito = 0.0f;
     private String numID;
     private List<ProductoCafeteria> productos;
+
+    public float getTotalCarrito() {
+        return totalCarrito;
+    }
+
+    public void setTotalCarrito(float totalCarrito) {
+        this.totalCarrito = totalCarrito;
+    }
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
+    
+    
 
     public List<ProductoCafeteria> getProductos() {
         return productos;
