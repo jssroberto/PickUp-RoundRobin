@@ -26,21 +26,9 @@ public class PanelMetodoPago extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnTarjeta3 = new javax.swing.JButton();
         btnTarjeta = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
-        btnTarjeta1 = new javax.swing.JButton();
-        btnTarjeta2 = new javax.swing.JButton();
-
-        btnTarjeta3.setBorder(null);
-        btnTarjeta3.setContentAreaFilled(false);
-        btnTarjeta3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTarjeta3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTarjeta3ActionPerformed(evt);
-            }
-        });
 
         setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
@@ -69,26 +57,6 @@ public class PanelMetodoPago extends javax.swing.JPanel {
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMetodoPago.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        btnTarjeta1.setBorder(null);
-        btnTarjeta1.setContentAreaFilled(false);
-        btnTarjeta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTarjeta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTarjeta1ActionPerformed(evt);
-            }
-        });
-        add(btnTarjeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 370, 70));
-
-        btnTarjeta2.setBorder(null);
-        btnTarjeta2.setContentAreaFilled(false);
-        btnTarjeta2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTarjeta2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTarjeta2ActionPerformed(evt);
-            }
-        });
-        add(btnTarjeta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 370, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjetaActionPerformed
@@ -99,25 +67,10 @@ public class PanelMetodoPago extends javax.swing.JPanel {
         ventana.cambiarVistaCarrito();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnTarjeta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjeta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTarjeta1ActionPerformed
-
-    private void btnTarjeta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjeta2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTarjeta2ActionPerformed
-
-    private void btnTarjeta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTarjeta3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTarjeta3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnTarjeta;
-    private javax.swing.JButton btnTarjeta1;
-    private javax.swing.JButton btnTarjeta2;
-    private javax.swing.JButton btnTarjeta3;
     private javax.swing.JLabel fondo;
     // End of variables declaration//GEN-END:variables
 }

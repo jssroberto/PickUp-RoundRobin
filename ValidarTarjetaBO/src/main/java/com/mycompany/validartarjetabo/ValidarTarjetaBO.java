@@ -4,24 +4,13 @@
 
 package com.mycompany.validartarjetabo;
 
-import BOs.ValidarTarjetaBO;
-import excepciones.PersitenciaException;
-import interfaces.IValidarTarjetaBO;
-
 /**
  *
  * @author jl4ma
  */
-public class prueba {
+public class ValidarTarjetaBO {
 
-    public static void main(String[] args) throws PersitenciaException {
+    public static void main(String[] args) {
         System.out.println("Hello World!");
-        IValidarTarjetaBO tar = new ValidarTarjetaBO();
-        
-        if(tar.validarDatos("4696-6542-7464-6464")){
-            System.out.println("si");
-        }else{
-            System.out.println("no");
-        }
     }
 }

@@ -48,8 +48,10 @@ public class ControlPedido implements IControlPedido{
     @Override
     public boolean pedidoAceptado(){
         if(this.getRandomBinaryValue() ==0){
+             JOptionPane.showMessageDialog(null, "Pedido Aceptado");
             return true;
         }else{
+            JOptionPane.showMessageDialog(null, "Pedido NO Aceptado");
             return false;
         }
     }
@@ -57,31 +59,6 @@ public class ControlPedido implements IControlPedido{
     public  int getRandomBinaryValue() {
         Random random = new Random();
         return random.nextInt(2); // Genera un valor aleatorio entre 0 y 1
-    }
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    private static final String NUMBERS = "0123456789";
-    private static final int STRING_LENGTH = 6;
-
-    @Override
-    public  String generateRandomString() {
-        StringBuilder sb = new StringBuilder(STRING_LENGTH);
-        Random random = new Random();
-
-        // Agrega 3 letras aleatorias
-        for (int i = 0; i < 3; i++) {
-            int randomIndex = random.nextInt(CHARACTERS.length());
-            char randomChar = CHARACTERS.charAt(randomIndex);
-            sb.append(randomChar);
-        }
-
-        // Agrega 3 números aleatorios
-        for (int i = 0; i < 3; i++) {
-            int randomIndex = random.nextInt(NUMBERS.length());
-            char randomNumber = NUMBERS.charAt(randomIndex);
-            sb.append(randomNumber);
-        }
-
-        return sb.toString();
     }
     
     
