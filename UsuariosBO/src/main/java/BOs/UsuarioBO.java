@@ -83,6 +83,8 @@ public class UsuarioBO implements IUsuarioBO {
         usuarioDTO.setApellidoMaterno(usuario.getApellidoMaterno());
         usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
         usuarioDTO.setIdCia(usuario.getIdCia());
+        usuarioDTO.setId(usuario.getId().toString());
+
         usuarioDTO.setCarrito(convertirDAOenDTO(usuario.getCarrito()));
         usuarioDTO.setSaldoPuntos(usuario.getSaldoPuntos());
 

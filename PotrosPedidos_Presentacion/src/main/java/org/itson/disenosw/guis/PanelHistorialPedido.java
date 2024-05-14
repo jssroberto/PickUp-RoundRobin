@@ -1,13 +1,23 @@
 package org.itson.disenosw.guis;
 
+import control.ControlCarrito;
 import control.ControlPedido;
+import control.ControlProductos;
+import control.ProductosControl;
 import dominio.MetodoPago;
+import dominio.Producto;
 import dominio.ProductoCafeteria;
+import dominio.Usuario;
+import dtos.DetalleProductoDTO;
 import dtos.PedidoDTO;
+import dtos.ProductoDTO;
 import excepciones.BOException;
 import excepciones.PersistenciaException;
 import excepciones.PersitenciaException;
+import interfaces.IControlCarrito;
 import interfaces.IControlPedido;
+import interfaces.IControlProductos;
+import interfaces.IProductosControl;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -21,6 +31,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -33,6 +44,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -45,6 +57,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     FramePrincipal framePrincipal;
     private PedidoDTO pedidoDTO;
     private String idPedido;
+    List<DetalleProductoDTO> detalleProductoDTOs;
 
     /**
      * Creates new form PanelHistorial
@@ -52,7 +65,15 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     public PanelHistorialPedido(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         this.idPedido = framePrincipal.getIdPedido();
+        this.detalleProductoDTOs = new ArrayList<>();
         initComponents();
+        try {
+            consultarPedido();
+            setFuentes();
+            crearProductos();
+        } catch (BOException | PersistenciaException ex) {
+            framePrincipal.mostrarAviso("Aviso", ex.getMessage());
+        }
     }
 
     /**
@@ -74,6 +95,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
         lblMetodoPago = new javax.swing.JLabel();
         lblArticulos = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         panelTop = new javax.swing.JPanel();
         lblFondo = new javax.swing.JLabel();
 
@@ -151,8 +173,12 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
         lblFecha.setText("jLabel1");
         add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 276, -1, -1));
 
+        lblTotal.setForeground(new java.awt.Color(7, 7, 7));
+        lblTotal.setText("jLabel1");
+        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 307, -1, -1));
+
         panelTop.setOpaque(false);
-        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 380, 370));
+        add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 380, 340));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelPedidopng.png"))); // NOI18N
         add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -175,21 +201,55 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        try {
+            agregarCarrito();
+            framePrincipal.mostrarInformacion("Productos agregados al carrito", "Éxito");
+            framePrincipal.cambiarVistaCarrito();
+        } catch (PersitenciaException ex) {
+            framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    public void agregarCarrito() throws PersitenciaException {
+        try {
+            IControlPedido controlPedido = new ControlPedido();
+            detalleProductoDTOs = controlPedido.consultarDetalleProductosPorIdPedido(framePrincipal.getIdPedido());
+
+            List<ProductoDTO> productoDTOs = new ArrayList<>();
+            IProductosControl controlProductos = new ProductosControl();
+            IControlCarrito controlCarrito = new ControlCarrito();
+            for (int i = 0; i < detalleProductoDTOs.size(); i++) {
+                productoDTOs.add(controlProductos.consultarPorCodigo(detalleProductoDTOs.get(i).getCodigoProducto()));
+                Usuario usuario = new Usuario();
+                usuario.setId(new ObjectId(framePrincipal.getIdUsuario()));
+                usuario.setIdCia(framePrincipal.getNumID());
+                Producto producto = new Producto(new ObjectId(productoDTOs.get(i).getId()),
+                        detalleProductoDTOs.get(i).getCodigoProducto(),
+                        productoDTOs.get(i).getNombre(),
+                        productoDTOs.get(i).getPrecio(),
+                        productoDTOs.get(i).getDescripcion(),
+                        productoDTOs.get(i).getDireccionImagen());
+                controlCarrito.agregarCarrito(usuario, producto, detalleProductoDTOs.get(i).getCantidad());
+            }
+
+        } catch (BOException | PersistenciaException ex) {
+            Logger.getLogger(PanelHistorialPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void consultarPedido() throws BOException, PersistenciaException {
         IControlPedido controlPedido = new ControlPedido();
         pedidoDTO = controlPedido.consultarPorId(idPedido);
     }
 
-    public void crearMenu() throws PersitenciaException {
-        List<ProductoCafeteria> productos = framePrincipal.getProductos();
+    public void crearProductos() throws PersistenciaException, BOException {
+        IControlPedido controlPedido = new ControlPedido();
+        detalleProductoDTOs = controlPedido.consultarDetalleProductosPorIdPedido(framePrincipal.getIdPedido());
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
-        mainPanel.setMaximumSize(new Dimension(380, 600));
-        mainPanel.setSize(new Dimension(380, 600));
+        mainPanel.setMaximumSize(new Dimension(380, 340));
+        mainPanel.setSize(new Dimension(380, 340));
 
         GridBagConstraints c = new GridBagConstraints();
 
@@ -198,16 +258,16 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
         c.fill = GridBagConstraints.BOTH;
 
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < productos.size(); i++) {
+        for (int i = 0; i < detalleProductoDTOs.size(); i++) {
 
 //            String[] producto = productosDTO.get(i);
             JPanel productoPanel = createProductoPanel(
-                    productos.get(i).getNombre(),
-                    productos.get(i).getPrecio(),
-                    productos.get(i).getDireccionImagen());
+                    detalleProductoDTOs.get(i).getNombre(),
+                    detalleProductoDTOs.get(i).getPrecio(),
+                    detalleProductoDTOs.get(i).getDireccionImagen());
 
 //            String identificador = "producto_" + i;
-            String identificador = productos.get(i).getCodigo();
+            String identificador = detalleProductoDTOs.get(i).getCodigoProducto();
             productoPanel.putClientProperty(identificador, productoPanel);
 //            String identificadorString = String.valueOf(identificador);
 //            productoPanel.putClientProperty(i, idProducto);
@@ -229,7 +289,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
             mainPanel.add(productoPanel, c);
 
             // Añade un separador después de cada producto, excepto el último
-            if (i < productos.size() - 1) {
+            if (i < detalleProductoDTOs.size() - 1) {
                 JPanel separatorPanel = createSeparatorPanel();
                 c.gridx = 0;
                 c.gridy = i * 2 + 1;
@@ -244,11 +304,11 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
         JScrollPane scrollPane = new JScrollPane(mainPanel);
 //        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 
-        scrollPane.setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado
-        scrollPane.setMaximumSize(new Dimension(380, 600)); // Establece un tamaño máximo
-        scrollPane.getViewport().setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado para el viewport
-        scrollPane.getViewport().setMaximumSize(new Dimension(380, 600)); // Establece un tamaño mínimo para el viewport
-        scrollPane.getViewport().setSize(380, 600);
+        scrollPane.setPreferredSize(new Dimension(380, 340)); // Establece un tamaño predeterminado
+        scrollPane.setMaximumSize(new Dimension(380, 340)); // Establece un tamaño máximo
+        scrollPane.getViewport().setPreferredSize(new Dimension(380, 340)); // Establece un tamaño predeterminado para el viewport
+        scrollPane.getViewport().setMaximumSize(new Dimension(380, 340)); // Establece un tamaño mínimo para el viewport
+        scrollPane.getViewport().setSize(380, 340);
 
         scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
         scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
@@ -369,20 +429,25 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     }
 
     public void setFuentes() {
-        lblNumPedido.setText("Número de pedido: #" + pedidoDTO.getNumeroPedido());
-        lblCodigoRecoleccion.setText("Clave de recolección: " + pedidoDTO.getClaveRecoleccion());
+        lblNumPedido.setText("Pedido: #" + pedidoDTO.getEtiquetaPedido().toUpperCase());
+        lblCodigoRecoleccion.setText("Clave de recolección: " + pedidoDTO.getClaveRecoleccion().toUpperCase());
         lblMetodoPago.setText("Método de pago: " + MetodoPago.getByCodigo(pedidoDTO.getMetodoPago()));
         lblArticulos.setText(pedidoDTO.getNumeroProductos() + " artículo(s)");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.of("es", "ES"));
         String fechaFormateada = pedidoDTO.getFecha().format(formatter);
         lblFecha.setText("Fecha: " + fechaFormateada);
-        
+        String totalFormateado = String.valueOf(pedidoDTO.getTotal());
+        if (totalFormateado.endsWith(".0")) {
+            totalFormateado = totalFormateado.substring(0, totalFormateado.length() - 2);
+        }
+        lblTotal.setText("Total: $" + totalFormateado);
 
-        lblNumPedido.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
-        lblCodigoRecoleccion.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
+        lblNumPedido.setFont(cargarFuente("/fonts/futura/FuturaPTDemi.otf", 24F));
+        lblCodigoRecoleccion.setFont(cargarFuente("/fonts/futura/FuturaPTDemi.otf", 24F));
         lblMetodoPago.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
         lblArticulos.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
         lblFecha.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
+        lblTotal.setFont(cargarFuente("/fonts/futura/FuturaPTBook.otf", 24F));
 
     }
 
@@ -396,7 +461,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
      * @throws IllegalArgumentException Si el archivo de fuente no se encuentra
      * en la ruta especificada.
      */
-    private static Font cargarFuente(String rutaFuente, float size) {
+    private static Font cargarFuente(String rutaFuente, float size) throws IllegalArgumentException {
         InputStream is = PanelMenu.class.getResourceAsStream(rutaFuente);
         if (is == null) {
             throw new IllegalArgumentException("Archivo no encontrado: " + rutaFuente);
@@ -429,6 +494,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblMetodoPago;
     private javax.swing.JLabel lblNumPedido;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 

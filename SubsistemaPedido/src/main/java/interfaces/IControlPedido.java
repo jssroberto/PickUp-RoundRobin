@@ -6,6 +6,7 @@ package interfaces;
 
 import dominio.Pedido;
 import dominio.Usuario;
+import dtos.DetalleProductoDTO;
 import dtos.PedidoDTO;
 import excepciones.BOException;
 import excepciones.PersistenciaException;
@@ -31,4 +32,6 @@ public interface IControlPedido {
 
     public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException;
 
-    }
+    public List<DetalleProductoDTO> consultarDetalleProductosPorIdPedido(String idPedido) throws BOException, PersistenciaException;
+
+}

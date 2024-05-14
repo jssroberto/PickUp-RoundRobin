@@ -50,8 +50,8 @@ public class PanelHistorial extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
         this.pedidoDTO = new PedidoDTO();
         this.etiqueta = 1;
+        initComponents();
         try {
-            initComponents();
             crearHistorial();
         } catch (BOException | PersistenciaException ex) {
             framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
@@ -71,6 +71,7 @@ public class PanelHistorial extends javax.swing.JPanel {
         btnCarrito = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
+        lblHistorialVacio = new javax.swing.JLabel();
         panelTop = new javax.swing.JPanel();
         lblFondo = new javax.swing.JLabel();
 
@@ -106,6 +107,9 @@ public class PanelHistorial extends javax.swing.JPanel {
         });
         add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 18, 50, 50));
 
+        lblHistorialVacio.setEnabled(false);
+        add(lblHistorialVacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         panelTop.setOpaque(false);
         add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 380, 600));
 
@@ -129,8 +133,23 @@ public class PanelHistorial extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     public void crearHistorial() throws BOException, PersistenciaException {
-        IControlPedido conrtoPedido = new ControlPedido();
-        List<PedidoDTO> pedidoDTOs = conrtoPedido.consultarPedidos(framePrincipal.getIdUsuario());
+
+        IControlPedido controlPedido = new ControlPedido();
+        List<PedidoDTO> pedidoDTOs = controlPedido.consultarPedidos(framePrincipal.getIdUsuario());
+
+        if (pedidoDTOs == null) {
+            Font sizedFont = cargarFuente("/fonts/futura/FuturaPTBook.otf", 48F);
+            lblHistorialVacio.setFont(sizedFont);
+            lblHistorialVacio.setText("¡HISTORIAL VACÍO!");
+            lblHistorialVacio.setForeground(Color.BLACK);
+            lblHistorialVacio.setEnabled(true);
+            JPanel panelVacio = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 90));
+            panelVacio.add(lblHistorialVacio);
+            panelVacio.setOpaque(false);
+
+            panelTop.add(panelVacio);
+            return;
+        }
 
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
@@ -303,14 +322,15 @@ public class PanelHistorial extends javax.swing.JPanel {
         JLabel fechaLabel = new JLabel(fechaFormateada);
         fechaLabel.setFont(sizedFontMedium);
         fechaLabel.setForeground(Color.BLACK);
-        fechaLabel.setPreferredSize(new Dimension(130, 31));
+        fechaLabel.setPreferredSize(new Dimension(235, 31));
         fechaLabel.setVerticalAlignment(SwingConstants.CENTER);
+        fechaLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
         //Label de número de pedido
-        JLabel numeroLabel = new JLabel("#P-" + numero);
+        JLabel numeroLabel = new JLabel("P-" + numero.toUpperCase());
         numeroLabel.setFont(sizedFontDemi);
         numeroLabel.setForeground(Color.BLACK);
-        numeroLabel.setPreferredSize(new Dimension(95, 31));
+        numeroLabel.setPreferredSize(new Dimension(235, 31));
         numeroLabel.setVerticalAlignment(SwingConstants.CENTER);
         numeroLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -318,7 +338,7 @@ public class PanelHistorial extends javax.swing.JPanel {
         JLabel claveRecogerLabel = new JLabel(claveRecoger);
         claveRecogerLabel.setFont(sizedFontDemi);
         claveRecogerLabel.setForeground(Color.BLACK);
-        claveRecogerLabel.setPreferredSize(new Dimension(95, 31));
+        claveRecogerLabel.setPreferredSize(new Dimension(235, 31));
         claveRecogerLabel.setVerticalAlignment(SwingConstants.CENTER);
         claveRecogerLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
@@ -330,7 +350,6 @@ public class PanelHistorial extends javax.swing.JPanel {
 //        bulletPointLabel.setPreferredSize(new Dimension(20, 31));
 //        bulletPointLabel.setVerticalAlignment(SwingConstants.CENTER);
 //        bulletPointLabel.setHorizontalAlignment(SwingConstants.LEFT);
-
 //        c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
@@ -353,11 +372,11 @@ public class PanelHistorial extends javax.swing.JPanel {
 //        c.gridy = 2;
 //        panel.add(fechaLabel, c);
 
-        c.gridx = 2;
+        c.gridx = 1;
         c.gridy = 0;
         panel.add(numeroLabel, c);
 
-        c.gridx = 2;
+        c.gridx = 1;
         c.gridy = 1;
         panel.add(claveRecogerLabel, c);
 
@@ -446,6 +465,7 @@ public class PanelHistorial extends javax.swing.JPanel {
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblHistorialVacio;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,4 +29,6 @@ public interface IUsuarioDAO {
     public void vaciarCarrito(dominio.Usuario usuario);
 
     public void referenciarPedido(dominio.Usuario usuario, Pedido pedido);
+    
+        public Usuario consultarUsuarioPorId(Usuario usuario);
 }

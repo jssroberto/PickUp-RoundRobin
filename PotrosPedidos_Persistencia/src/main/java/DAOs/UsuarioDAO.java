@@ -37,6 +37,11 @@ public class UsuarioDAO implements IUsuarioDAO {
     public Usuario consultarUsuario(Usuario usuario) {
         return coleccionCursos.find(Filters.eq("idCia", usuario.getIdCia())).first();
     }
+    
+    @Override
+    public Usuario consultarUsuarioPorId(Usuario usuario) {
+        return coleccionCursos.find(Filters.eq("_id", usuario.getId())).first();
+    }
 
     @Override
     public Usuario consultarUsuario(String idCia) throws PersistenciaException {
