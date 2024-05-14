@@ -30,7 +30,16 @@ public class FramePrincipal extends javax.swing.JFrame {
     private List<ProductoCafeteria> productos;
     private String idUsuario;
     private String idPedido;
-    private Integer numPedido;
+    private int numPedido=0;
+    private Long idProducto2;
+
+    public Long getIdProducto2() {
+        return idProducto2;
+    }
+
+    public void setIdProducto2(Long idProducto2) {
+        this.idProducto2 = idProducto2;
+    }
 
     /**
      * Constructor de la clase Ventana.
@@ -294,11 +303,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.claveRecoleccion = claveRecoleccion;
     }
 
-    public Integer getNumPedido() {
+    public int getNumPedido() {
         return numPedido;
     }
 
-    public void setNumPedido(Integer numPedido) {
+    public void setNumPedido(int numPedido) {
         this.numPedido = numPedido;
     }
 

@@ -49,7 +49,6 @@ public class UsuarioBO implements IUsuarioBO {
     public Carrito convertirDTOenDAO(CarritoDTO carritoDTO) {
         Carrito carrito = new Carrito();
 
-        carrito.setId(new ObjectId(carritoDTO.getId()));
         carrito.setTotalCarrito(carritoDTO.getTotal());
 
         List<DetalleProducto> lista = new ArrayList<>();
@@ -100,7 +99,6 @@ public class UsuarioBO implements IUsuarioBO {
     public CarritoDTO convertirDAOenDTO(Carrito carrito) {
         CarritoDTO carritoDTO = new CarritoDTO();
 
-        carritoDTO.setId(carrito.getId().toHexString());
         carritoDTO.setTotal(carrito.getTotalCarrito());
 
         List<DetalleProductoDTO> lista = new ArrayList<>();

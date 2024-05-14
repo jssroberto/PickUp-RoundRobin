@@ -21,19 +21,19 @@ import objetosNegocio.PedidosBO;
  *
  * @author jl4ma
  */
-public class ControlPedido implements IControlPedido{
-    
+public class ControlPedido implements IControlPedido {
+
     IPedidoBO pedidos;
-    
-    public ControlPedido(){
+
+    public ControlPedido() {
         pedidos = new PedidosBO();
     }
 
     @Override
     public void persistir(Pedido pedido) {
         float total = 0;
-        for(DetalleProducto pe: pedido.getDetalleProductos()){
-            total+= pe.getSubtotal();
+        for (DetalleProducto pe : pedido.getDetalleProductos()) {
+            total += pe.getSubtotal();
         }
         pedido.setTotal(total);
         pedidos.persistir(pedido);
@@ -48,17 +48,17 @@ public class ControlPedido implements IControlPedido{
     public void referenciarPedido(Usuario usuario, Pedido pedido) {
         pedidos.referenciarPedido(usuario, pedido);
     }
-    
+
     @Override
-    public boolean pedidoAceptado(){
-        if(this.getRandomBinaryValue() ==0){
+    public boolean pedidoAceptado() {
+        if (this.getRandomBinaryValue() == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    public  int getRandomBinaryValue() {
+
+    public int getRandomBinaryValue() {
         Random random = new Random();
         return random.nextInt(2); // Genera un valor aleatorio entre 0 y 1
     }
@@ -67,7 +67,7 @@ public class ControlPedido implements IControlPedido{
     private static final int STRING_LENGTH = 6;
 
     @Override
-    public  String generateRandomString() {
+    public String generateRandomString() {
         StringBuilder sb = new StringBuilder(STRING_LENGTH);
         Random random = new Random();
 
@@ -89,12 +89,11 @@ public class ControlPedido implements IControlPedido{
     }
 
     @Override
-    public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException{
-        
+    public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException {
+
         IPedidoBO pedidoBO = new PedidosBO();
         List<PedidoDTO> pedidoDTOs = pedidoBO.consultarPedidos(idUsuario);
         return pedidoDTOs;
     }
-    
-    
+
 }

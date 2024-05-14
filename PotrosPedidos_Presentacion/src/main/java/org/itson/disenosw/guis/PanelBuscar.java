@@ -65,6 +65,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
                     buscarProductosSimilares(Buscador.getText());
                 } catch (PersitenciaException ex) {
                     System.out.println("Error en la búsqueda: "); // Imprime el mensaje de error en la consola
+                    framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
                 }
             }
 
@@ -74,6 +75,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
                     buscarProductosSimilares(Buscador.getText());
                 } catch (PersitenciaException ex) {
                     System.out.println("Error en la búsqueda: "); // Imprime el mensaje de error en la consola
+                    framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
                 }
             }
 
@@ -83,7 +85,7 @@ public final class PanelBuscar extends javax.swing.JPanel {
                     buscarProductosSimilares(Buscador.getText());
                 } catch (PersitenciaException ex) {
                     System.out.println("Error en la búsqueda: "); // Imprime el mensaje de error en la consola
-
+                    framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
                 }
             }
         });
@@ -255,55 +257,49 @@ public final class PanelBuscar extends javax.swing.JPanel {
     }
 
     public void crearMenu() throws PersitenciaException {
-        List<ProductoCafeteria> productos = framePrincipal.getProductos();
-
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
-        mainPanel.setMaximumSize(new Dimension(380, 600));
-        mainPanel.setSize(new Dimension(380, 600));
+        mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
+        mainPanel.setSize(new Dimension(370, 550));
 
         GridBagConstraints c = new GridBagConstraints();
 
         //TODO no jala el insertar elemento de arriba a abajo, empiezan del centro
         c.anchor = GridBagConstraints.NORTH;
-        c.fill = GridBagConstraints.BOTH;
 
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < productos.size(); i++) {
+        for (ProductoCafeteriaDTO producto : productos) {
+            JPanel productoPanel = createProductoPanel(producto.getNombre(), producto.getPrecio(), producto.getDireccionImagen());
 
-//            String[] producto = productosDTO.get(i);
-            JPanel productoPanel = createProductoPanel(
-                    productos.get(i).getNombre(),
-                    productos.get(i).getPrecio(),
-                    productos.get(i).getDireccionImagen());
-
-//            String identificador = "producto_" + i;
-            String identificador = productos.get(i).getCodigo();
+            Long identificador = producto.getIdProductoCafeteria();
             productoPanel.putClientProperty(identificador, productoPanel);
-//            String identificadorString = String.valueOf(identificador);
-//            productoPanel.putClientProperty(i, idProducto);
-            // Añade un ActionListener al panel de producto
             productoPanel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    try {
+                        // Acción a realizar al hacer clic en el panel de producto
+                        // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
 
-                    // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
-                    framePrincipal.setIdProducto(identificador);
-                    framePrincipal.cambiarVistaProducto();
+                        framePrincipal.setIdProducto2(identificador);
+                        System.out.println(framePrincipal.getIdProducto());
+                        framePrincipal.cambiarVistaProducto();
+                    } catch (Exception ex) {
+                        framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                    }
 
                 }
             });
-
+            // Añade un ActionListener al panel de producto
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
-            c.gridy = i * 2;
+            c.gridy = productos.indexOf(producto) * 2;
             mainPanel.add(productoPanel, c);
 
             // Añade un separador después de cada producto, excepto el último
-            if (i < productos.size() - 1) {
+            if (productos.indexOf(producto) < productos.size() - 1) {
                 JPanel separatorPanel = createSeparatorPanel();
                 c.gridx = 0;
-                c.gridy = i * 2 + 1;
+                c.gridy = productos.indexOf(producto) * 2 + 1;
                 mainPanel.add(separatorPanel, c);
             }
 
@@ -313,13 +309,12 @@ public final class PanelBuscar extends javax.swing.JPanel {
         //TODO hacer el scrollPane un ScrollPaneWin11
         // Configurar el JScrollPane para desplazamiento vertical
         JScrollPane scrollPane = new JScrollPane(mainPanel);
-//        scrollPane.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
 
-        scrollPane.setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado
-        scrollPane.setMaximumSize(new Dimension(380, 600)); // Establece un tamaño máximo
-        scrollPane.getViewport().setPreferredSize(new Dimension(380, 600)); // Establece un tamaño predeterminado para el viewport
-        scrollPane.getViewport().setMaximumSize(new Dimension(380, 600)); // Establece un tamaño mínimo para el viewport
-        scrollPane.getViewport().setSize(380, 600);
+        scrollPane.setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado
+        scrollPane.setMaximumSize(new Dimension(370, 550)); // Establece un tamaño máximo
+        scrollPane.getViewport().setPreferredSize(new Dimension(370, 550)); // Establece un tamaño predeterminado para el viewport
+        scrollPane.getViewport().setMaximumSize(new Dimension(370, 550)); // Establece un tamaño mínimo para el viewport
+        scrollPane.getViewport().setSize(370, 550);
 
         scrollPane.setOpaque(false); // Hacer el JScrollPane transparente
         scrollPane.getViewport().setOpaque(false); // Hacer transparente el viewport del JScrollPane
@@ -327,11 +322,10 @@ public final class PanelBuscar extends javax.swing.JPanel {
         scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Ajustar la velocidad del scroll vertical
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER); // Ocultar la barra de desplazamiento horizontal
 
-        JPanel cont = new JPanel(new FlowLayout(FlowLayout.LEADING, 0, 0));
+        JPanel cont = new JPanel();
         cont.add(scrollPane);
         cont.setOpaque(false);
 
-        panelTop.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
         panelTop.add(cont);
 
     }

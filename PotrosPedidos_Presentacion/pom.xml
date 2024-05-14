@@ -107,6 +107,17 @@
             <version>RELEASE150</version>
         </dependency>
         <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.4.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SubsistemaIniciarSesion</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>subsistemaUsuario</artifactId>
             <version>${project.version}</version>
@@ -118,12 +129,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaPedido</artifactId>
+            <artifactId>SubsistemaProductosMenu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaProductosMenu</artifactId>
+            <artifactId>SubsistemaBusquedaDinamica</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -132,40 +143,13 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>excepciones</groupId>
-            <artifactId>BOException</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf</artifactId>
-            <version>3.4.1</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaBusquedaDinamica</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mycompany</groupId>
-                    <artifactId>DTOs</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>cafeteria</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SubsistemaIniciarSesion</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>DTOs</artifactId>
+            <artifactId>SubsistemaPedido</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

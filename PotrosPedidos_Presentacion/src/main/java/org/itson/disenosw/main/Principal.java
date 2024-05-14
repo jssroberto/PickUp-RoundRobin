@@ -16,7 +16,7 @@ public class Principal {
     public static void main(String[] args) {
         
         FramePrincipal framePrincipal = new FramePrincipal();
-        framePrincipal.cambiarVistaDatosTarjeta();
+        framePrincipal.cambiarVistaInicio();
         framePrincipal.setVisible(true);
 
         System.out.println(System.getProperty("user.dir"));

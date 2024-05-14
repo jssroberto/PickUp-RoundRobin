@@ -80,7 +80,6 @@ public class ConvertidorDTOaDAO {
     public Carrito convertirDTOenDAO(CarritoDTO carritoDTO) {
         Carrito carrito = new Carrito();
 
-        carrito.setId(new ObjectId(carritoDTO.getId()));
         carrito.setTotalCarrito(carritoDTO.getTotal());
 
         List<DetalleProducto> lista = new ArrayList<>();
