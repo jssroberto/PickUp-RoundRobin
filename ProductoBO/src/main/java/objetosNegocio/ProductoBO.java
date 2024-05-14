@@ -31,11 +31,14 @@ public class ProductoBO implements IProductoBO {
         IProductoDAO productoDAO = new ProductoDAO();
 
         try {
-            Producto producto =productoDAO.consultar(pro);
+            Producto producto = productoDAO.consultar(pro);
 
             ConvertidorDAOaDTO convertidorDAOaDTO = new ConvertidorDAOaDTO();
-            return convertidorDAOaDTO.convertirDAOenDTO(producto);
-            //TODO cambiar Exception por DAOException
+
+            ProductoDTO productoDTO = convertidorDAOaDTO.convertirDAOenDTO(producto);
+
+            return productoDTO;
+
         } catch (PersistenciaException e) {
             throw new BOException(e.getMessage(), e);
         }
@@ -53,6 +56,15 @@ public class ProductoBO implements IProductoBO {
         } catch (PersistenciaException e) {
             throw new BOException(e.getMessage(), e);
         }
+    }
+
+    @Override
+    public ProductoDTO consultarPorCodigo(String codigoProducto) throws PersistenciaException {
+        IProductoDAO productoDAO = new ProductoDAO();
+        Producto producto = productoDAO.consultarPorCodigo(codigoProducto);
+        ConvertidorDAOaDTO convertidorDAOaDTO = new ConvertidorDAOaDTO();
+        ProductoDTO productoDTO = convertidorDAOaDTO.convertirDAOenDTO(producto);
+        return productoDTO;
     }
 
 }

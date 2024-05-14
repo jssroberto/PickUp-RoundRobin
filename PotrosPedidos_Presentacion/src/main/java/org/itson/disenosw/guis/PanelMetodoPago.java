@@ -11,6 +11,9 @@ import dominio.MetodoPago;
 import dominio.Pedido;
 import dominio.Usuario;
 import interfaces.ICalcularCostoPuntos;
+import dominio.MetodoPago;
+import dominio.Pedido;
+import dominio.Usuario;
 import interfaces.IControlCarrito;
 import interfaces.IControlPedido;
 import interfaces.IControlTarjeta;
@@ -90,6 +93,10 @@ public class PanelMetodoPago extends javax.swing.JPanel {
             }
         });
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 50, 50));
+
+        btnEfectivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelMetodoPago.png"))); // NOI18N
+        btnEfectivo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        add(btnEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         btnTarjeta1.setBorder(null);
         btnTarjeta1.setContentAreaFilled(false);

@@ -29,11 +29,6 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public void actualizarPuntosUsuario(Usuario usuario, Integer puntos){
-        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.set("saldoPuntos", puntos));
-    }
-    
-    @Override
     public void persistir(Usuario usuario) {
         coleccionCursos.insertOne(usuario);
     }
@@ -41,6 +36,11 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public Usuario consultarUsuario(Usuario usuario) {
         return coleccionCursos.find(Filters.eq("idCia", usuario.getIdCia())).first();
+    }
+    
+    @Override
+    public Usuario consultarUsuarioPorId(Usuario usuario) {
+        return coleccionCursos.find(Filters.eq("_id", usuario.getId())).first();
     }
 
     @Override
@@ -79,7 +79,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public void referenciarPedido(Usuario usuario, Pedido pedido) {
         PedidoDAO pedidos = new PedidoDAO();
-        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.push("pedidos", pedido));
+        coleccionCursos.updateOne(Filters.eq("_id", usuario.getId()), Updates.push("pedidos", pedido.getId()));
     }
 
 }

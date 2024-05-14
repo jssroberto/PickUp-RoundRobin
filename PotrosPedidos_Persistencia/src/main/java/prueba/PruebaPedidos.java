@@ -4,9 +4,12 @@ import DAOs.PedidoDAO;
 import DAOs.UsuarioDAO;
 import IDAOs.IPedidoDAO;
 import IDAOs.IUsuarioDAO;
+import dominio.DetalleProducto;
+import dominio.MetodoPago;
 import dominio.Pedido;
 import dominio.Usuario;
 import excepciones.PersistenciaException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,13 +30,15 @@ public class PruebaPedidos {
 //        usuario = usuarioDAO.consultarUsuario(usuario);
 //        System.out.println(usuario.getId().toString());
         IPedidoDAO pedidoDAO = new PedidoDAO();
+
+        List<DetalleProducto> productos;
         try {
-            
-            
-            Pedido pedido = pedidoDAO.consultarPorId("6641fa39b4fa762fef8b4c03");
-            System.out.println(pedido.getEtiquetaPedido());
+            productos = pedidoDAO.consultarDetalleProductosPorIdPedido("6642de7044a4e34b81505bbc");
+            System.out.println(productos.get(0).getNombre());
+
+//            pedidoDAO.persistir(new Pedido("54564", "10", "456", LocalDate.now(), 1, 1000.0, MetodoPago.EFECTIVO, new DetalleProducto(Integer.SIZE, Float.NaN, nombre, Float.NaN, Integer.MIN_VALUE, Integer.MIN_VALUE, direccionImagen, codigoProducto)));
         } catch (PersistenciaException ex) {
-            Logger.getLogger(PruebaPedidos.class.getName()).log(Level.SEVERE, "No hay pedidos");
+            Logger.getLogger(PruebaPedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 //        try {
@@ -43,7 +48,6 @@ public class PruebaPedidos {
 //        } catch (PersistenciaException ex) {
 //            Logger.getLogger(PruebaPedidos.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
     }
 
 }
