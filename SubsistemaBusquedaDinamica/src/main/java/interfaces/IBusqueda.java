@@ -21,4 +21,10 @@ public interface IBusqueda {
     public List<ProductoCafeteriaDTO> ordenarProductosZA() throws PersitenciaException;
 
     public List<ProductoCafeteriaDTO> ordenarProductosPorPrecio() throws PersitenciaException;
+
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosPorPrecio(List<ProductoCafeteriaDTO> productos) throws PersitenciaException;
+
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosAZ(List<ProductoCafeteriaDTO> productos) throws PersitenciaException;
+
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosZA(List<ProductoCafeteriaDTO> productos) throws PersitenciaException;
 }

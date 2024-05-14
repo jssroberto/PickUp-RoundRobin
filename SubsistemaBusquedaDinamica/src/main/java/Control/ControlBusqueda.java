@@ -35,7 +35,7 @@ public class ControlBusqueda {
 
     public List<ProductoCafeteriaDTO> ordenarProductosZA() throws PersitenciaException {
         try {
-                    return b.ordenarProductosZA();
+            return b.ordenarProductosZA();
         } catch (PersitenciaException e) {
             throw new PersitenciaException(e.getMessage());
         }
@@ -43,7 +43,31 @@ public class ControlBusqueda {
 
     public List<ProductoCafeteriaDTO> ordenarProductosPorPrecio() throws PersitenciaException {
         try {
-                    return b.ordenarProductosPorPrecio();
+            return b.ordenarProductosPorPrecio();
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosPorPrecio(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            return b.ordenarProductosFiltradosPorPrecio(productos);
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosAZ(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            return b.ordenarProductosFiltradosAZ(productos);
+        } catch (PersitenciaException e) {
+            throw new PersitenciaException(e.getMessage());
+        }
+    }
+
+    public List<ProductoCafeteriaDTO> ordenarProductosFiltradosZA(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
+        try {
+            return b.ordenarProductosFiltradosZA(productos);
         } catch (PersitenciaException e) {
             throw new PersitenciaException(e.getMessage());
         }

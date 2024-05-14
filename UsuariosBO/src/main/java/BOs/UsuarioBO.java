@@ -3,7 +3,6 @@ package BOs;
 import DAOs.UsuarioDAO;
 import IDAOs.IUsuarioDAO;
 import Interfaz.IUsuarioBO;
-import convertidores.ConvertidorDAOaDTO;
 import dominio.Carrito;
 import dominio.DetalleProducto;
 import dominio.Producto;
@@ -167,8 +166,7 @@ public class UsuarioBO implements IUsuarioBO {
     public UsuarioDTO consultarUsuario(String idCia) throws BOException, PersistenciaException {
         IUsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.consultarUsuario(idCia);
-        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
-        UsuarioDTO usuarioDTO = daoADto.convertirDAOenDTO(usuario);
+        UsuarioDTO usuarioDTO = convertirDAOenDTO(usuario);
         return usuarioDTO;
 
     }

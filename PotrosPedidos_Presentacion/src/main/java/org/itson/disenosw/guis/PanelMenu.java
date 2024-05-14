@@ -156,7 +156,11 @@ public final class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
+        try {
+            framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
+        } catch (PersitenciaException ex) {
+            framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
@@ -271,8 +275,7 @@ public final class PanelMenu extends javax.swing.JPanel {
 //    }
     public void crearMenu() throws PersitenciaException {
         List<ProductoCafeteria> productos = framePrincipal.getProductos();
-        
-        
+
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
         mainPanel.setMaximumSize(new Dimension(380, 600));
@@ -289,8 +292,8 @@ public final class PanelMenu extends javax.swing.JPanel {
 
 //            String[] producto = productosDTO.get(i);
             JPanel productoPanel = createProductoPanel(
-                    productos.get(i).getNombre(), 
-                    productos.get(i).getPrecio(), 
+                    productos.get(i).getNombre(),
+                    productos.get(i).getPrecio(),
                     productos.get(i).getDireccionImagen());
 
 //            String identificador = "producto_" + i;
@@ -309,7 +312,7 @@ public final class PanelMenu extends javax.swing.JPanel {
 
                 }
             });
-            
+
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
             c.gridy = i * 2;

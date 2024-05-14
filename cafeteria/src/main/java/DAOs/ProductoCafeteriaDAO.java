@@ -7,7 +7,6 @@ package DAOs;
 import dominio.ProductoCafeteria;
 import excepciones.PersitenciaException;
 import interfaces.IProductoCafeteriaDAO;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -107,7 +106,7 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
 
             cq.select(root);
 
-            List<ProductoCafeteria> eliana= em.createQuery(cq).getResultList();
+            List<ProductoCafeteria> eliana = em.createQuery(cq).getResultList();
             em.close();
             // Ejecutar la consulta
             return eliana;
@@ -143,56 +142,123 @@ public class ProductoCafeteriaDAO implements IProductoCafeteriaDAO {
 
     @Override
     public List<ProductoCafeteria> consultarProductos(String palabra) throws PersitenciaException {
+        em = emf.createEntityManager();
         try {
-            List<ProductoCafeteria> productos = new ArrayList<>();
-            List<ProductoCafeteria> productosCafeteria = obtenerTodosLosProductos();
+            em.getTransaction().begin();
 
-            for (ProductoCafeteria producto : productosCafeteria) {
-                if (producto.getNombre().toLowerCase().contains(palabra.toLowerCase())) {
-                    productos.add(producto);
-                }
-            }
+            String jpql = "SELECT p FROM ProductoCafeteria p WHERE p.nombre LIKE :palabra";
+
+            TypedQuery<ProductoCafeteria> query = em.createQuery(jpql, ProductoCafeteria.class);
+            query.setParameter("palabra", "%" + palabra + "%");
+            List<ProductoCafeteria> productos = query.getResultList();
+
+            em.getTransaction().commit();
+
             return productos;
-        } catch (PersitenciaException e) {
-            throw new PersitenciaException(e.getMessage());
+        } catch (Exception e) {
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw new PersitenciaException("Error al obtener los productos de cafetería que coinciden con la palabra: " + palabra, e);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
     @Override
     public List<ProductoCafeteria> ordenarProductosAZ() throws PersitenciaException {
+        em = emf.createEntityManager();
         try {
-            List<ProductoCafeteria> productos = obtenerTodosLosProductos();
             em.getTransaction().begin();
 
+            List<ProductoCafeteria> productos = obtenerTodosLosProductos();
+
+            // Sort the list
             productos.sort(Comparator.comparing(ProductoCafeteria::getNombre));
-            em.close();
+
+            em.getTransaction().commit();
             return productos;
-        } catch (PersitenciaException e) {
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             throw new PersitenciaException("Error al ordenar productos de forma ascendente", e);
+        } finally {
+            em.close();
         }
     }
 
     @Override
     public List<ProductoCafeteria> ordenarProductosZA() throws PersitenciaException {
+        em = emf.createEntityManager();
         try {
+            em.getTransaction().begin();
+
             List<ProductoCafeteria> productos = obtenerTodosLosProductos();
             productos.sort(Comparator.comparing(ProductoCafeteria::getNombre).reversed());
-            em.close();
+
+            em.getTransaction().commit(); 
             return productos;
-        } catch (PersitenciaException e) {
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             throw new PersitenciaException("Error al ordenar productos de forma descendente", e);
+        } finally {
+            em.close(); 
         }
     }
 
     @Override
     public List<ProductoCafeteria> ordenarProductosPorPrecio() throws PersitenciaException {
+            em = emf.createEntityManager();
         try {
+            em.getTransaction().begin();
+
             List<ProductoCafeteria> productos = obtenerTodosLosProductos();
             productos.sort(Comparator.comparingDouble(ProductoCafeteria::getPrecio));
-            em.close();
+
+            em.getTransaction().commit(); 
             return productos;
-        } catch (PersitenciaException e) {
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             throw new PersitenciaException("Error al ordenar productos por precio", e);
+        } finally {
+            em.close(); 
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteria> ordenarProductosFiltradosAZ(List<ProductoCafeteria> productos) throws PersitenciaException {
+        try {
+            productos.sort(Comparator.comparing(ProductoCafeteria::getNombre));
+            return productos;
+        } catch (Exception e) {
+            throw new PersitenciaException("Error al ordenar productos filtrados de forma ascendente", e);
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteria> ordenarProductosFiltradosZA(List<ProductoCafeteria> productos) throws PersitenciaException {
+        try {
+            productos.sort(Comparator.comparing(ProductoCafeteria::getNombre).reversed());
+            return productos;
+        } catch (Exception e) {
+            throw new PersitenciaException("Error al ordenar productos filtrados de forma descendente", e);
+        }
+    }
+
+    @Override
+    public List<ProductoCafeteria> ordenarProductosFiltradosPorPrecio(List<ProductoCafeteria> productos) throws PersitenciaException {
+        try {
+            productos.sort(Comparator.comparingDouble(ProductoCafeteria::getPrecio));
+            return productos;
+        } catch (Exception e) {
+            throw new PersitenciaException("Error al ordenar productos filtrados por precio", e);
         }
     }
 }

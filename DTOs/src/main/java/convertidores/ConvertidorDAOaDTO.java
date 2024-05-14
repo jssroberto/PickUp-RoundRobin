@@ -4,6 +4,8 @@
  */
 package convertidores;
 
+
+
 import dominio.Carrito;
 import dominio.DetalleProducto;
 import dominio.Pedido;
@@ -18,10 +20,9 @@ import dtos.ProductoCafeteriaDTO;
 import dtos.ProductoDTO;
 import dtos.TarjetaDTO;
 import dtos.UsuarioDTO;
-import org.bson.types.ObjectId;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -71,7 +72,6 @@ public class ConvertidorDAOaDTO {
         productoCafeteriaDTO.setCantidadDisponible(productoCafeteria.getCantidadDisponible());
         productoCafeteriaDTO.setDireccionImagen(productoCafeteria.getDireccionImagen());
         productoCafeteriaDTO.setIdProductoCafeteria(productoCafeteria.getId());
-
         return productoCafeteriaDTO;
     }
 

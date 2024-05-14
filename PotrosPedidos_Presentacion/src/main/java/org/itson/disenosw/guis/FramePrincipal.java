@@ -3,6 +3,7 @@ package org.itson.disenosw.guis;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import dominio.ProductoCafeteria;
+import excepciones.PersitenciaException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -160,7 +161,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelActual = panelPagoExito;
     }
 
-    public void cambiarPanelBuscar() {
+    public void cambiarPanelBuscar() throws PersitenciaException {
         limpiarFrame();
         PanelBuscar panelBuscar = new PanelBuscar(this);
         ponerEnJFrame(panelBuscar);
