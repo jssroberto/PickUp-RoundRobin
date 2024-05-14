@@ -4,12 +4,12 @@
  */
 package metodos;
 
-import BOs.ProductoCafeteriaBO;
-import Interfaz.IProductoCafeteriaBO;
 import dominio.ProductoCafeteria;
 import excepciones.PersitenciaException;
+import interfaces.IProductoCafeteriaBO;
 import java.util.List;
 import javax.swing.JOptionPane;
+import objetosNegocio.ProductoCafeteriaBO;
 
 /**
  *
@@ -46,6 +46,15 @@ public class ConsultarProductos {
             return null;
         } else {
             JOptionPane.showMessageDialog(null, "Producto encontrado");
+            return pro;
+        }
+    }
+    
+    public ProductoCafeteria consultarProductosPorCodigo(String codigo) throws PersitenciaException{
+        ProductoCafeteria pro = producto.consultarProductosPorCodigo(codigo);
+        if(pro==null){
+            throw  new PersitenciaException("Producto encontrado ");
+        }else{
             return pro;
         }
     }

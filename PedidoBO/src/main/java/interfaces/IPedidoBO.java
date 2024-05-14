@@ -2,6 +2,10 @@ package interfaces;
 
 import dominio.Pedido;
 import dominio.Usuario;
+import dtos.PedidoDTO;
+import excepciones.BOException;
+import excepciones.PersistenciaException;
+import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,6 +18,12 @@ import dominio.Usuario;
 public interface IPedidoBO {
 
     public void persistir(Pedido pedido);
+
     public Pedido consultarPedido(Pedido numeroPedido);
+
     public void referenciarPedido(Usuario usuario, Pedido pedido);
+
+    public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException;
+
+    public PedidoDTO consultarPorId(String id) throws BOException, PersistenciaException;
 }

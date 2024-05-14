@@ -128,5 +128,7 @@ public class Pedido {
     public String toString() {
         return "Pedido{" + "_id=" + _id + ", etiquetaPedido=" + etiquetaPedido + ", numeroPedido=" + numeroPedido + ", claveRecoleccion=" + claveRecoleccion + ", fecha=" + fecha + ", numeroProductos=" + numeroProductos + ", total=" + total + ", metodoPago=" + metodoPago + ", detalleProductos=" + detalleProductos + '}';
     }
+
+  
  
 }

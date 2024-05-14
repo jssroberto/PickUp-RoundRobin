@@ -67,9 +67,10 @@ public class PanelProducto extends javax.swing.JPanel {
         txtCantidad = new javax.swing.JTextField();
         lblImagen = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
         setMinimumSize(new java.awt.Dimension(400, 800));
@@ -117,7 +118,6 @@ public class PanelProducto extends javax.swing.JPanel {
         add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 665, 40, 40));
 
         txtCantidad.setBackground(new java.awt.Color(250, 250, 250));
-        txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
         txtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCantidad.setText("1");
         txtCantidad.setBorder(null);
@@ -127,121 +127,39 @@ public class PanelProducto extends javax.swing.JPanel {
 
         lblImagen.setText("jLabel1");
         add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 95, 400, 200));
-
-        lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 380, 30));
-
-        lblPrecio.setForeground(new java.awt.Color(0, 0, 0));
-        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 345, 90, 31));
-
-        lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
-        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 379, 380, 66));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelProducto.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 345, 90, 31));
+
+        lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 379, 380, 66));
+
+        jTextField1.setBorder(null);
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 360, 60));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (txtCantidad.getText().isBlank()) {
             framePrincipal.mostrarAviso("El campo de cantidad no puede estar vacío", "Campo de cantidad vacío");
         } else {
-            IControlCarrito controlC = new ControlCarrito();
-            Usuario user = new Usuario();
-            user.setIdCia(framePrincipal.getNumID());
-            Producto pro = new Producto();
-            String CodigoProducto;
-            if (framePrincipal.getIdProducto() == 1) {
-                CodigoProducto = "CCN025";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 2) {
-                CodigoProducto = "SJL060";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 3) {
-                CodigoProducto = "CCL025";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 4) {
-                CodigoProducto = "TML065";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 5) {
-                CodigoProducto = "HCL080";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 6) {
-                CodigoProducto = "SCL100";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 7) {
-                CodigoProducto = "TCL070";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 8) {
-                CodigoProducto = "HPL085";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 9) {
-                CodigoProducto = "CCZ025";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (framePrincipal.getIdProducto() == 10) {
-                CodigoProducto = "AJL020";
-                try {
-                    pro.setCodigoProducto(CodigoProducto);
-                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
-                    framePrincipal.cambiarVistaCarrito();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            try {
+                IControlCarrito controlC = new ControlCarrito();
+                IControlProductos controlP = new ControlProductos();
+                Usuario user = new Usuario();
+                Producto pro = new Producto();
+                pro.setCodigoProducto(framePrincipal.getIdProducto());
+                user.setIdCia(framePrincipal.getNumID());
+                controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+                framePrincipal.setIdProducto(null);
+                framePrincipal.cambiarVistaCarrito();
+                
+
+            } catch (PersistenciaException ex) {
+                
+                framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+            }
             }
 
 //            try {
@@ -268,7 +186,7 @@ public class PanelProducto extends javax.swing.JPanel {
 //            }
 //            framePrincipal.setIdProducto(null);
 //            framePrincipal.cambiarVistaCarrito();
-        }
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -377,7 +295,8 @@ public class PanelProducto extends javax.swing.JPanel {
         try {
             consultarProducto();
         } catch (PersitenciaException ex) {
-            logger.log(Level.SEVERE, "Producto no encontrado");
+            framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
+            framePrincipal.cambiarVistaMenu();
         }
         lblNombre.setText(productoDTO.getNombre().toUpperCase());
         lblDescripcion.setText(productoDTO.getDescripcion());
@@ -396,8 +315,8 @@ public class PanelProducto extends javax.swing.JPanel {
     }
 
     private void consultarProducto() throws PersitenciaException {
-        Long idProducto = framePrincipal.getIdProducto();
-        productoDTO = control.buscarProductoCafeteriaPorID(idProducto);
+        String idProducto = framePrincipal.getIdProducto();
+        productoDTO = control.consultarProductosPorCodigo(idProducto);
     }
 
     private void setFuentes() {
@@ -442,12 +361,111 @@ public class PanelProducto extends javax.swing.JPanel {
             }
         }
     }
+    
+    
+    //            IControlCarrito controlC = new ControlCarrito();
+//            Usuario user = new Usuario();
+//            user.setIdCia(framePrincipal.getNumID());
+//            Producto pro = new Producto();
+//            String CodigoProducto;
+//            if (framePrincipal.getIdProducto() == 1) {
+//                CodigoProducto = "CCN025";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 2) {
+//                CodigoProducto = "SJL060";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 3) {
+//                CodigoProducto = "CCL025";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 4) {
+//                CodigoProducto = "TML065";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 5) {
+//                CodigoProducto = "HCL080";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 6) {
+//                CodigoProducto = "SCL100";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 7) {
+//                CodigoProducto = "TCL070";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 8) {
+//                CodigoProducto = "HPL085";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 9) {
+//                CodigoProducto = "CCZ025";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            } else if (framePrincipal.getIdProducto() == 10) {
+//                CodigoProducto = "AJL020";
+//                try {
+//                    pro.setCodigoProducto(CodigoProducto);
+//                    controlC.agregarCarrito(user, pro, Integer.parseInt(txtCantidad.getText()));
+//                    framePrincipal.cambiarVistaCarrito();
+//                } catch (PersistenciaException ex) {
+//                    Logger.getLogger(PanelProducto.class.getName()).log(Level.SEVERE, null, ex);
+//                }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnMas;
     private javax.swing.JButton btnMenos;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblNombre;

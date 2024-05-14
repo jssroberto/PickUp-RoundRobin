@@ -1,11 +1,9 @@
 package org.itson.disenosw.guis;
 
-import Metodos.BusquedaDinamica;
 import control.ControlProductos;
+import dominio.Producto;
 import dominio.ProductoCafeteria;
-import dtos.ProductoCafeteriaDTO;
 import excepciones.PersitenciaException;
-import interfaces.IBusqueda;
 import interfaces.IControlProductos;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,13 +15,10 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +26,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -57,11 +51,11 @@ public final class PanelMenu extends javax.swing.JPanel {
 
         this.framePrincipal = framePrincipal;
         initComponents();
+
         try {
             this.crearMenu();
-        } catch (PersitenciaException ex) {
-            logger.log(Level.SEVERE, ex.getMessage());
-            framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+        } catch (IllegalArgumentException | PersitenciaException ex) {
+            framePrincipal.mostrarAviso("Vuelva a Intentarlo", "Aviso");
         }
         setFuentes();
     }
@@ -74,9 +68,9 @@ public final class PanelMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ppMenu = new javax.swing.JPopupMenu();
         btnCarrito = new javax.swing.JButton();
         btnUsuario = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnOrdenar = new javax.swing.JButton();
         panelTop = new javax.swing.JPanel();
@@ -108,6 +102,16 @@ public final class PanelMenu extends javax.swing.JPanel {
         });
         add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 18, 50, 50));
 
+        btnHistorial.setBorder(null);
+        btnHistorial.setContentAreaFilled(false);
+        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
+        add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 18, 50, 50));
+
         btnBuscar.setBorder(null);
         btnBuscar.setContentAreaFilled(false);
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -121,17 +125,12 @@ public final class PanelMenu extends javax.swing.JPanel {
         btnOrdenar.setBorder(null);
         btnOrdenar.setContentAreaFilled(false);
         btnOrdenar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnOrdenar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnOrdenarMousePressed(evt);
-            }
-        });
         btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdenarActionPerformed(evt);
             }
         });
-        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 96, 50, 40));
+        add(btnOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 97, 50, 39));
 
         panelTop.setOpaque(false);
         add(panelTop, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 380, 600));
@@ -157,16 +156,20 @@ public final class PanelMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
+        try {
+            framePrincipal.cambiarPanelBuscar();        // TODO add your handling code here:
+        } catch (PersitenciaException ex) {
+            framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOrdenarActionPerformed
 
-    private void btnOrdenarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdenarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOrdenarMousePressed
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        framePrincipal.cambiarPanelHistorial();
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
     public void inicializarCarrito() {
 
@@ -271,9 +274,10 @@ public final class PanelMenu extends javax.swing.JPanel {
 //        }
 //    }
     public void crearMenu() throws PersitenciaException {
+        int i = 0;
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
-        mainPanel.setMaximumSize(new Dimension(370, 550));// Elimina esta línea
+        mainPanel.setMaximumSize(new Dimension(370, 550));
         mainPanel.setSize(new Dimension(370, 550));
 
         GridBagConstraints c = new GridBagConstraints();
@@ -282,12 +286,13 @@ public final class PanelMenu extends javax.swing.JPanel {
         c.anchor = GridBagConstraints.NORTH;
 
         // Iterar sobre la lista de productos y crear los paneles correspondientes
-        for (int i = 0; i < framePrincipal.getProductos().size(); i++) {
+        for (ProductoCafeteria pro : framePrincipal.getProductos()) {
+
 //            String[] producto = productosDTO.get(i);
-            JPanel productoPanel = createProductoPanel(framePrincipal.getProductos().get(i).getNombre(), framePrincipal.getProductos().get(i).getPrecio(), framePrincipal.getProductos().get(i).getDireccionImagen());
+            JPanel productoPanel = createProductoPanel(pro.getNombre(), pro.getPrecio(), pro.getDireccionImagen());
 
 //            String identificador = "producto_" + i;
-            Long identificador = framePrincipal.getProductos().get(i).getId();
+            String identificador = pro.getCodigo();
             productoPanel.putClientProperty(identificador, productoPanel);
 //            String identificadorString = String.valueOf(identificador);
 //            productoPanel.putClientProperty(i, idProducto);
@@ -298,17 +303,17 @@ public final class PanelMenu extends javax.swing.JPanel {
                     try {
                         // Acción a realizar al hacer clic en el panel de producto
                         // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
-
                         framePrincipal.setIdProducto(identificador);
                         System.out.println(framePrincipal.getIdProducto());
+
                         framePrincipal.cambiarVistaProducto();
                     } catch (Exception ex) {
-                        framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                        framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
                     }
 
                 }
             });
-            idProducto++;
+            i++;
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
             c.gridy = i * 2;
@@ -491,11 +496,11 @@ public final class PanelMenu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnOrdenar;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JLabel lblCantidadCarrito;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JPanel panelTop;
-    private javax.swing.JPopupMenu ppMenu;
     // End of variables declaration//GEN-END:variables
 }

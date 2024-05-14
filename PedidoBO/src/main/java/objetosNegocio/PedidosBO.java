@@ -8,12 +8,13 @@ import DAOs.PedidoDAO;
 import DAOs.UsuarioDAO;
 import dominio.Pedido;
 import dominio.Usuario;
+import dtos.PedidoDTO;
+import excepciones.BOException;
 import excepciones.PersistenciaException;
 import interfaces.IPedidoBO;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-
 
 /**
  *
@@ -22,9 +23,11 @@ import java.util.logging.Logger;
 public class PedidosBO implements IPedidoBO {
 
     PedidoDAO pedidosDAO;
-    public PedidosBO(){
+
+    public PedidosBO() {
         pedidosDAO = new PedidoDAO();
     }
+
     @Override
     public void persistir(Pedido pedido) {
         try {
@@ -43,11 +46,45 @@ public class PedidosBO implements IPedidoBO {
         }
         return null;
     }
-    
+
     @Override
-    public void referenciarPedido(Usuario usuario, Pedido pedido){
+    public void referenciarPedido(Usuario usuario, Pedido pedido) {
         UsuarioDAO user = new UsuarioDAO();
         user.referenciarPedido(usuario, pedido);
+    }
+// da error por que estas metiendo convertidores desde cafeteria y banco, saludos!!!
+    /**
+     *
+     * @param idUsuario
+     * @return
+     * @throws BOException
+     * @throws PersistenciaException
+     */
+    @Override
+    public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException {
+//        IPedidoDAO pedidoDAO = new PedidoDAO();
+//        List<Pedido> pedidos = pedidoDAO.consultarPedidos(idUsuario);
+//        if (pedidos.isEmpty()) {
+//            throw new BOException("El usuario no tiene pedidos asociados");
+//        }
+//        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
+//        List<PedidoDTO> pedidoDTOs = new ArrayList<>();
+//        for (Pedido pedido : pedidos) {
+//            pedidoDTOs.add(daoADto.convertirDAOenDTO(pedido));
+//        }
+//        return pedidoDTOs;
+        return null;
+    }
+
+    @Override
+    public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException {
+//        IPedidoDAO pedidoDAO = new PedidoDAO();
+//        Pedido pedido = pedidoDAO.consultarPorId(idPedido);
+//        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
+//        PedidoDTO pedidoDTO = daoADto.convertirDAOenDTO(pedido);
+//        return pedidoDTO;
+        return null;
+
     }
 
 }

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class BusquedaDinamica implements IBusqueda {
 
-    ControlBusqueda c = new ControlBusqueda();
+       ControlBusqueda c = new ControlBusqueda();
 
     @Override
     public List<ProductoCafeteriaDTO> consultarProductos(String palabra) throws PersitenciaException {

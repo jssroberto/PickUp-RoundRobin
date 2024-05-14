@@ -3,6 +3,7 @@ package objetosNegocio;
 import DAOs.ProductoDAO;
 import IDAOs.IProductoDAO;
 import com.mongodb.MongoException;
+import convertidores.ConvertidorDAOaDTO;
 import dominio.Producto;
 import dtos.ProductoDTO;
 import excepciones.BOException;
@@ -24,19 +25,7 @@ public class ProductoBO implements IProductoBO {
             throw new BOException(e.getMessage(), e);
         }
     }
-    public ProductoDTO convertirDAOenDTO(Producto producto) {
-        ProductoDTO productoDTO= new ProductoDTO();
-        
-        productoDTO.setDescripcion(producto.getDescripcion());
-        productoDTO.setDireccionImagen(producto.getDireccionImagen());
-        productoDTO.setId(producto.getId().toString());
-        productoDTO.setNombre(producto.getNombre());
-        productoDTO.setPrecio(producto.getPrecio());
-        productoDTO.setPuntosGenera(producto.getPuntosGenera());
-        
-        return productoDTO;
-    }
-    
+
     @Override
     public ProductoDTO consultarProducto(Producto pro) throws BOException {
         IProductoDAO productoDAO = new ProductoDAO();
@@ -44,10 +33,8 @@ public class ProductoBO implements IProductoBO {
         try {
             Producto producto =productoDAO.consultar(pro);
 
-
-            ProductoDTO productoDTO =convertirDAOenDTO(producto);
-
-            return productoDTO;
+            ConvertidorDAOaDTO convertidorDAOaDTO = new ConvertidorDAOaDTO();
+            return convertidorDAOaDTO.convertirDAOenDTO(producto);
             //TODO cambiar Exception por DAOException
         } catch (PersistenciaException e) {
             throw new BOException(e.getMessage(), e);
@@ -59,7 +46,8 @@ public class ProductoBO implements IProductoBO {
         IProductoDAO productoDAO = new ProductoDAO();
         try {
             Producto producto = productoDAO.consultar(idProducto);
-            ProductoDTO productoDTO = convertirDAOenDTO(producto);
+            ConvertidorDAOaDTO convertidorDAOaDTO = new ConvertidorDAOaDTO();
+            ProductoDTO productoDTO = convertidorDAOaDTO.convertirDAOenDTO(producto);
             return productoDTO;
             //TODO cambiar Exception por DAOException
         } catch (PersistenciaException e) {

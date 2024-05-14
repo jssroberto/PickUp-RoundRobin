@@ -8,26 +8,13 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>BOs</artifactId>
+            <artifactId>UsuariosBO</artifactId>
             <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mycompany</groupId>
-                    <artifactId>DTOs</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mycompany</groupId>
-                    <artifactId>banco</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mycompany</groupId>
-                    <artifactId>cafeteria</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mycompany</groupId>
-                    <artifactId>cia</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>excepciones</groupId>
+            <artifactId>BOException</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <properties>

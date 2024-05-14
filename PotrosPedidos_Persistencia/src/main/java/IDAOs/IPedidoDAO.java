@@ -14,5 +14,7 @@ public interface IPedidoDAO {
 
     public Pedido consultar(Pedido idPedido) throws PersistenciaException;
     
-    public List<Pedido> consultar() throws PersistenciaException;
+    public List<Pedido> consultarPedidos(String idUsuario) throws PersistenciaException;
+    
+    public Pedido consultarPorId(String id) throws PersistenciaException;
 }

@@ -104,5 +104,12 @@ public class Tarjeta implements Serializable {
     public void setCvv(Integer cvv) {
         this.cvv = cvv;
     }
+
+    @Override
+    public String toString() {
+        return "Tarjeta{" + "id=" + id + ", numeroTarjeta=" + numeroTarjeta + ", fechaVencimiento=" + fechaVencimiento + ", cvv=" + cvv + ", saldo=" + saldo + '}';
+    }
+    
+    
     
 }

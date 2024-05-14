@@ -58,7 +58,7 @@ public class ControlBusqueda {
     }
 
     public List<ProductoCafeteriaDTO> ordenarProductosFiltradosAZ(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
-         try {
+        try {
             return b.ordenarProductosFiltradosAZ(productos);
         } catch (PersitenciaException e) {
             throw new PersitenciaException(e.getMessage());
@@ -66,11 +66,10 @@ public class ControlBusqueda {
     }
 
     public List<ProductoCafeteriaDTO> ordenarProductosFiltradosZA(List<ProductoCafeteriaDTO> productos) throws PersitenciaException {
-         try {
+        try {
             return b.ordenarProductosFiltradosZA(productos);
         } catch (PersitenciaException e) {
             throw new PersitenciaException(e.getMessage());
         }
     }
 }
-

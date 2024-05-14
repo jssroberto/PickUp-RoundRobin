@@ -1,20 +1,22 @@
 package org.itson.disenosw.guis;
 
 //import Incerciones.InsercionMasivaBanco;
-import Incerciones.InsercionMasivaProductosCafeteriaBO;
-import static com.mysql.cj.conf.PropertyKey.logger;
 import control.ControlLogin;
 import control.ControlProductos;
-import dominio.ProductoCafeteria;
+import control.ControlUsuario;
+import dtos.UsuarioDTO;
 import interfaces.IControlLogin;
 import interfaces.IControlProductos;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import interfaces.IControlUsuario;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -24,6 +26,7 @@ import java.util.logging.Logger;
 public class PanelInicioSesion extends javax.swing.JPanel {
 
     private final FramePrincipal framePrincipal;
+    private UsuarioDTO usuarioDTO;
 
     /**
      * Constructor de la clase VistaInicioSesion.
@@ -34,11 +37,29 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
         initComponents();
         setFonts();
-//        try {
-//            setRegistros();
-//        } catch (Exception ex) {
-//            Logger.getLogger(PanelInicioSesion.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            setRegistros();
+        } catch (Exception ex) {
+            framePrincipal.mostrarAviso("Vuelvalo a intentar", "Aviso");
+        }
+        ((AbstractDocument) txtId.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+                if (newText.matches("[0-9]*")) { // Solo permite números
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
+                if (newText.matches("[0-9]*")) { // Solo permite números
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+
     }
 
     /**
@@ -105,6 +126,10 @@ public class PanelInicioSesion extends javax.swing.JPanel {
 
             try {
                 if (control.validacionDatos(txtId.getText(), txtContraseña.getText())) {
+//                    IControlUsuario controlUsuario = new ControlUsuario();
+//                     usuarioDTO = controlUsuario.consultarUsuarioPorId(txtId.getText());
+//                    framePrincipal.setIdUsuario(usuarioDTO.getId());
+
                     framePrincipal.setNumID(txtId.getText());
                     IControlProductos consultarProductoBO = new ControlProductos();
                     framePrincipal.setProductos(consultarProductoBO.obtenerTodosLosProductos());
@@ -112,8 +137,11 @@ public class PanelInicioSesion extends javax.swing.JPanel {
                 } else {
                     framePrincipal.mostrarAviso("Credenciales no válidas", "Aviso");
                 }
+            } catch (IllegalArgumentException | NoSuchMethodError ex) {
+                framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
             } catch (Exception ex) {
-                framePrincipal.mostrarAviso(ex.getMessage(), "Aviso");
+                System.out.println(ex.getMessage());
+                framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
@@ -122,7 +150,7 @@ public class PanelInicioSesion extends javax.swing.JPanel {
         framePrincipal.mostrarInformacion("Equipo Round Robin ;)", "Cafetería Potros");
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
-//   public void setRegistros() throws Exception {
+    public void setRegistros() throws Exception {
 ////    InsercionMasivaUsuariosCIA cia = new InsercionMasivaUsuariosCIA();
 ////    InsercionMasivaProductosCafeteriaBO cafeteria = new InsercionMasivaProductosCafeteriaBO();
 ////    InsercionMasivaBanco banco = new InsercionMasivaBanco();
@@ -141,6 +169,8 @@ public class PanelInicioSesion extends javax.swing.JPanel {
 ////    }
 ////}
 ////
+    }
+
     private void setFonts() {
         try {
             InputStream is = PanelInicioSesion.class.getResourceAsStream("/fonts/futura/FuturaPTBook.otf");
@@ -153,7 +183,6 @@ public class PanelInicioSesion extends javax.swing.JPanel {
 
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcercaDe;
     private javax.swing.JButton btnIngresar;

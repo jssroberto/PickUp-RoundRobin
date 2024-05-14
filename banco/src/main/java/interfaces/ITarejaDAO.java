@@ -5,7 +5,6 @@
 package interfaces;
 
 import dominio.Tarjeta;
-import excepciones.PersitenciaException;
 
 /**
  *
@@ -13,6 +12,5 @@ import excepciones.PersitenciaException;
  */
 public interface ITarejaDAO {
     
-    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersitenciaException;
     public Tarjeta consultarTarjeta(String num);
 }

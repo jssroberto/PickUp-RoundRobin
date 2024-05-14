@@ -19,10 +19,10 @@ public class PedidoDTO {
     private LocalDate fecha;
     private Integer numeroProductos;
     private Float total;
-    private MetodoPago metodoPago;
+    private int metodoPago;
     private List<DetalleProductoDTO> detalleProductos;
 
-    public PedidoDTO(String idPedido, String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProductoDTO> detalleProductos) {
+    public PedidoDTO(String idPedido, String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, int metodoPago, List<DetalleProductoDTO> detalleProductos) {
         this.idPedido = idPedido;
         this.etiquetaPedido = etiquetaPedido;
         this.numeroPedido = numeroPedido;
@@ -34,7 +34,7 @@ public class PedidoDTO {
         this.detalleProductos = detalleProductos;
     }
 
-    public PedidoDTO(String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, MetodoPago metodoPago, List<DetalleProductoDTO> detalleProductos) {
+    public PedidoDTO(String etiquetaPedido, String numeroPedido, String claveRecoleccion, LocalDate fecha, Integer numeroProductos, Float total, int metodoPago, List<DetalleProductoDTO> detalleProductos) {
         this.etiquetaPedido = etiquetaPedido;
         this.numeroPedido = numeroPedido;
         this.claveRecoleccion = claveRecoleccion;
@@ -104,11 +104,11 @@ public class PedidoDTO {
         this.total = total;
     }
 
-    public MetodoPago getMetodoPago() {
+    public int getMetodoPago() {
         return metodoPago;
     }
 
-    public void setMetodoPago(MetodoPago metodoPago) {
+    public void setMetodoPago(int metodoPago) {
         this.metodoPago = metodoPago;
     }
 

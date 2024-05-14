@@ -6,6 +6,8 @@ package BOs;
 
 import DAOs.ProductoCafeteriaDAO;
 import Interfaz.IBusquedaBO;
+import convertidores.ConvertidorDAOaDTO;
+import convertidores.ConvertidorDTOaDAO;
 import dominio.ProductoCafeteria;
 import dtos.ProductoCafeteriaDTO;
 import excepciones.PersitenciaException;
@@ -31,19 +33,8 @@ public class BusquedaBO implements IBusquedaBO {
         productoCafeteriaDTO.setIdProductoCafeteria(productoCafeteria.getId());
         return productoCafeteriaDTO;
     }
-
-    public ProductoCafeteria convertirDTOenDAO(ProductoCafeteriaDTO productoCafeteriaDTO) {
-        ProductoCafeteria productoCafeteria = new ProductoCafeteria();
-
-        productoCafeteria.setPrecio(productoCafeteriaDTO.getPrecio());
-        productoCafeteria.setNombre(productoCafeteriaDTO.getNombre());
-        productoCafeteria.setDescripcion(productoCafeteriaDTO.getDescripcion());
-        productoCafeteria.setCantidadDisponible(productoCafeteriaDTO.getCantidadDisponible());
-        productoCafeteria.setDireccionImagen(productoCafeteriaDTO.getDireccionImagen());
-        productoCafeteria.setId(productoCafeteriaDTO.getIdProductoCafeteria());
-
-        return productoCafeteria;
-    }
+    ConvertidorDAOaDTO c = new ConvertidorDAOaDTO();
+    ConvertidorDTOaDAO cc = new ConvertidorDTOaDAO();
 
     @Override
     public List<ProductoCafeteriaDTO> consultarProductos(String palabra) throws PersitenciaException {
@@ -115,7 +106,7 @@ public class BusquedaBO implements IBusquedaBO {
             List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
             List<ProductoCafeteria> pro = new ArrayList<>();
             for (ProductoCafeteriaDTO p : productos) {
-                pro.add(convertirDTOenDAO(p));
+                pro.add(cc.convertirDTOenDAO(p));
             }
             List<ProductoCafeteria> productosCafeteria = productoCafeteriaDAO.ordenarProductosFiltradosPorPrecio(pro);
 
@@ -135,7 +126,7 @@ public class BusquedaBO implements IBusquedaBO {
             List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
             List<ProductoCafeteria> pro = new ArrayList<>();
             for (ProductoCafeteriaDTO p : productos) {
-                pro.add(convertirDTOenDAO(p));
+                pro.add(cc.convertirDTOenDAO(p));
             }
             List<ProductoCafeteria> productosCafeteria = productoCafeteriaDAO.ordenarProductosFiltradosAZ(pro);
 
@@ -155,7 +146,7 @@ public class BusquedaBO implements IBusquedaBO {
             List<ProductoCafeteriaDTO> productosDTO = new ArrayList<>();
             List<ProductoCafeteria> pro = new ArrayList<>();
             for (ProductoCafeteriaDTO p : productos) {
-                pro.add(convertirDTOenDAO(p));
+                pro.add(cc.convertirDTOenDAO(p));
             }
             List<ProductoCafeteria> productosCafeteria = productoCafeteriaDAO.ordenarProductosFiltradosZA(pro);
 
@@ -168,5 +159,6 @@ public class BusquedaBO implements IBusquedaBO {
             throw new PersitenciaException(e.getMessage());
         }
     }
-
 }
+
+

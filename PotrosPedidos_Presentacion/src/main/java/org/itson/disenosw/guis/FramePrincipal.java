@@ -1,9 +1,14 @@
 package org.itson.disenosw.guis;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import dominio.ProductoCafeteria;
+import excepciones.PersitenciaException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * La clase Ventana representa la ventana principal de la aplicación bancaria.
@@ -18,45 +23,35 @@ import javax.swing.JPanel;
 public class FramePrincipal extends javax.swing.JFrame {
 
     private JPanel panelActual;
-    private Long idProducto;
-    private int idPedido = 0;
+    private String codigoProducto;
+    private String claveRecoleccion;
     private float totalCarrito = 0.0f;
     private String numID;
     private List<ProductoCafeteria> productos;
+    private String idUsuario;
+    private String idPedido;
+    private int numPedido=0;
+    private Long idProducto2;
 
-    public float getTotalCarrito() {
-        return totalCarrito;
+    public Long getIdProducto2() {
+        return idProducto2;
     }
 
-    public void setTotalCarrito(float totalCarrito) {
-        this.totalCarrito = totalCarrito;
+    public void setIdProducto2(Long idProducto2) {
+        this.idProducto2 = idProducto2;
     }
-
-    public int getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
-    }
-    
-    
-
-    public List<ProductoCafeteria> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<ProductoCafeteria> productos) {
-        this.productos = productos;
-    }
-    
-    
 
     /**
      * Constructor de la clase Ventana.
      */
     public FramePrincipal() {
         initComponents();
+        try {
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+
     }
 
     /**
@@ -102,11 +97,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     }
 
-    
-    
     /**
-     * Método para cambiar a la vista de la ventana de Inicio. Este método elimina
-     * el panel actual
+     * Método para cambiar a la vista de la ventana de Inicio. Este método
+     * elimina el panel actual
      */
     public void cambiarVistaInicio() {
         limpiarFrame();
@@ -114,10 +107,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaInicioSesion);
         panelActual = vistaInicioSesion;
     }
-    
+
     /**
-     * Método para cambiar a la vista de la ventana de Menu . Este método elimina
-     * el panel actual
+     * Método para cambiar a la vista de la ventana de Menu . Este método
+     * elimina el panel actual
      */
     public void cambiarVistaMenu() {
         limpiarFrame();
@@ -126,9 +119,30 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelActual = vistaMenu;
     }
     
+    public void cambiarPanelPagoExitoPuntos(Integer puntosGenerados, String numPedido, String numID){
+        limpiarFrame();
+        PanelPagoExitoPuntos panelBuscar = new PanelPagoExitoPuntos(this, puntosGenerados, numPedido, numID);
+        ponerEnJFrame(panelBuscar);
+        panelActual = panelBuscar;
+    }
+    
+    public void cambiarPanelPagoPuntosError(){
+        limpiarFrame();
+        PanelPagoPuntosError panelBuscar = new PanelPagoPuntosError(this);
+        ponerEnJFrame(panelBuscar);
+        panelActual = panelBuscar;
+    }
+    
+    public void cambiarPanelPagoPuntosExito(){
+        limpiarFrame();
+        PanelPagoPuntosExito panelBuscar = new PanelPagoPuntosExito(this);
+        ponerEnJFrame(panelBuscar);
+        panelActual = panelBuscar;
+    }
+
     /**
-     * Método para cambiar a la vista de la ventana de Carrito . Este método elimina
-     * el panel actual
+     * Método para cambiar a la vista de la ventana de Carrito . Este método
+     * elimina el panel actual
      */
     public void cambiarVistaCarrito() {
         limpiarFrame();
@@ -136,10 +150,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaCarrito);
         panelActual = vistaCarrito;
     }
-    
+
     /**
-     * Método para cambiar a la vista de la ventana de MetodoPago . Este método elimina
-     * el panel actual
+     * Método para cambiar a la vista de la ventana de MetodoPago . Este método
+     * elimina el panel actual
      */
     public void cambiarVistaMetodoPago() {
         limpiarFrame();
@@ -147,10 +161,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaMetodoPago);
         panelActual = vistaMetodoPago;
     }
-    
+
     /**
-     * Método para cambiar a la vista de la ventana de Menu . Este método elimina
-     * el panel actual
+     * Método para cambiar a la vista de la ventana de Menu . Este método
+     * elimina el panel actual
      */
     public void cambiarVistaProducto() {
         limpiarFrame();
@@ -158,10 +172,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaProducto);
         panelActual = vistaProducto;
     }
-    
+
     /**
-     * Método para cambiar a la vista de la ventana de Datos de Tarjeta . Este método elimina
-     * el panel actual
+     * Método para cambiar a la vista de la ventana de Datos de Tarjeta . Este
+     * método elimina el panel actual
      */
     public void cambiarVistaDatosTarjeta() {
         limpiarFrame();
@@ -169,28 +183,35 @@ public class FramePrincipal extends javax.swing.JFrame {
         ponerEnJFrame(vistaDatos);
         panelActual = vistaDatos;
     }
-    
-    public void cambiarPanelPagoExito(){
+
+    public void cambiarPanelPagoExito() {
         limpiarFrame();
         PanelPagoExito panelPagoExito = new PanelPagoExito(this);
         ponerEnJFrame(panelPagoExito);
         panelActual = panelPagoExito;
     }
-    
-    public void cambiarPanelBuscar(){
+
+    public void cambiarPanelBuscar() throws PersitenciaException {
         limpiarFrame();
         PanelBuscar panelBuscar = new PanelBuscar(this);
         ponerEnJFrame(panelBuscar);
         panelActual = panelBuscar;
     }
-    
 
-    public void cambiarPanelMenu2(){
+    public void cambiarPanelHistorial() {
         limpiarFrame();
-        PanelMenu2 panelPagoExito = new PanelMenu2(this);
-        ponerEnJFrame(panelPagoExito);
-        panelActual = panelPagoExito;
-        
+        PanelHistorial panelHistorial = new PanelHistorial(this);
+        ponerEnJFrame(panelHistorial);
+        panelActual = panelHistorial;
+
+    }
+
+    public void cambiarPanelHistorialPedido() {
+        limpiarFrame();
+        PanelHistorialPedido panelHistorialPedido = new PanelHistorialPedido(this);
+        ponerEnJFrame(panelHistorialPedido);
+        panelActual = panelHistorialPedido;
+
     }
 
     /**
@@ -239,12 +260,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public Long getIdProducto() {
-        return idProducto;
+    public String getIdProducto() {
+        return codigoProducto;
     }
 
-    public void setIdProducto(Long idProducto) {
-        this.idProducto = idProducto;
+    public void setIdProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
     }
 
     public String getNumID() {
@@ -254,6 +275,61 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void setNumID(String numID) {
         this.numID = numID;
     }
-    
-    
+
+    public String getCodigoProducto() {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(String idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public float getTotalCarrito() {
+        return totalCarrito;
+    }
+
+    public void setTotalCarrito(float totalCarrito) {
+        this.totalCarrito = totalCarrito;
+    }
+
+    public List<ProductoCafeteria> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ProductoCafeteria> productos) {
+        this.productos = productos;
+    }
+
+    public String getClaveRecoleccion() {
+        return claveRecoleccion;
+    }
+
+    public void setClaveRecoleccion(String claveRecoleccion) {
+        this.claveRecoleccion = claveRecoleccion;
+    }
+
+    public int getNumPedido() {
+        return numPedido;
+    }
+
+    public void setNumPedido(int numPedido) {
+        this.numPedido = numPedido;
+    }
+
 }

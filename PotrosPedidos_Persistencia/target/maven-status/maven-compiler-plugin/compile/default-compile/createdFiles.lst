@@ -17,5 +17,6 @@ IDAOs\IPedidoDAO.class
 IDAOs\IProductoDAO.class
 dominio\MetodoPago.class
 insercionesMasivas\InsercionMasivaProductos.class
+prueba\PruebaPedidos.class
 conexion\Conexion.class
 IDAOs\ICiaDAO.class

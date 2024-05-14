@@ -28,23 +28,6 @@ public class TarjetaDAO implements ITarejaDAO{
         em = emf.createEntityManager();
     }
 
-    @Override
-    public Boolean BuscarTarjeta(String numeroTarjeta) throws PersitenciaException {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Tarjeta> cq = cb.createQuery(Tarjeta.class);
-        Root<Tarjeta> root = cq.from(Tarjeta.class);
-
-        Predicate predicado = cb.equal(root.get("numeroTarjeta"), numeroTarjeta);
-        cq.select(root).where(predicado);
-
-        Tarjeta tarjeta = null;
-        try {
-            tarjeta = em.createQuery(cq).getSingleResult();
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
     
     @Override
     public Tarjeta consultarTarjeta(String num){
