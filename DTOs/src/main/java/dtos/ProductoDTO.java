@@ -10,7 +10,7 @@ package dtos;
  *
  * @author yohan
  */
-public class ProductoDTO {
+ public class ProductoDTO {
 
     private String id;
     private String nombre;
@@ -18,9 +18,8 @@ public class ProductoDTO {
     private Integer puntosCuesta, puntosGenera;
     private String descripcion;
     private String direccionImagen;
-    private String codigoProducto;
 
-    public ProductoDTO(String id, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen, String codigoProducto) {
+    public ProductoDTO(String id, String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -28,22 +27,21 @@ public class ProductoDTO {
         this.puntosGenera = puntosGenera;
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
-        this.codigoProducto = codigoProducto;
     }
 
-    public ProductoDTO(String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen, String codigoProducto) {
+    public ProductoDTO(String nombre, Float precio, Integer puntosCuesta, Integer puntosGenera, String descripcion, String direccionImagen) {
         this.nombre = nombre;
         this.precio = precio;
         this.puntosCuesta = puntosCuesta;
         this.puntosGenera = puntosGenera;
         this.descripcion = descripcion;
         this.direccionImagen = direccionImagen;
-        this.codigoProducto = codigoProducto;
-
     }
 
     public ProductoDTO() {
     }
+    
+    
 
     public String getId() {
         return id;
@@ -101,17 +99,11 @@ public class ProductoDTO {
         this.direccionImagen = direccionImagen;
     }
 
-    public String getCodigoProducto() {
-        return codigoProducto;
-    }
-
-    public void setCodigoProducto(String codigoProducto) {
-        this.codigoProducto = codigoProducto;
-    }
-
     @Override
     public String toString() {
         return "ProductoDTO{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", puntosCuesta=" + puntosCuesta + ", puntosGenera=" + puntosGenera + ", descripcion=" + descripcion + ", direccionImagen=" + direccionImagen + '}';
     }
+
+    
 
 }

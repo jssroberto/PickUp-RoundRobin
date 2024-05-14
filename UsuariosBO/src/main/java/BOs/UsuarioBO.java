@@ -29,89 +29,85 @@ public class UsuarioBO implements IUsuarioBO {
         usuarios = new UsuarioDAO();
     }
 
-    public Usuario convertirDTOenDAO(UsuarioDTO usuarioDTO) {
-        Usuario usuario = new Usuario();
-
-        usuario.setApellidoMaterno(usuarioDTO.getApellidoMaterno());
-        usuario.setApellidoPaterno(usuarioDTO.getApellidoPaterno());
-        usuario.setIdCia(usuarioDTO.getIdCia());
-        usuario.setSaldoPuntos(usuario.getSaldoPuntos());
-
-        List<ObjectId> lista = new ArrayList<>();
-        for (String pedido : usuarioDTO.getPedidos()) {
-            lista.add(new ObjectId(pedido));
-        }
-        usuario.setPedidos(lista);
-
-        return usuario;
-    }
-
-    public Carrito convertirDTOenDAO(CarritoDTO carritoDTO) {
-        Carrito carrito = new Carrito();
-
-        carrito.setTotalCarrito(carritoDTO.getTotal());
-
-        List<DetalleProducto> lista = new ArrayList<>();
-        for (DetalleProductoDTO producto : carritoDTO.getProductos()) {
-            lista.add(convertirDTOenDAO(producto));
-        }
-        carrito.setProductos(lista);
-
-        return carrito;
-    }
-
-    public DetalleProducto convertirDTOenDAO(DetalleProductoDTO detalleProductoDTO) {
-        DetalleProducto detalleProducto = new DetalleProducto();
-
-        detalleProducto.setCantidad(detalleProductoDTO.getCantidad());
-        detalleProducto.setCodigoProducto(detalleProductoDTO.getCodigoProducto());
-        detalleProducto.setDireccionImagen(detalleProductoDTO.getDireccionImagen());
-        detalleProducto.setNombre(detalleProductoDTO.getNombre());
-
-        detalleProducto.setPrecio(detalleProductoDTO.getPrecio());
-        detalleProducto.setPuntosCuesta(detalleProductoDTO.getPuntosCuesta());
-        detalleProducto.setPuntosGenera(detalleProductoDTO.getPuntosGenera());
-        detalleProducto.setSubtotal(detalleProductoDTO.getSubtotal());
-
-        return detalleProducto;
-    }
-
-    public UsuarioDTO convertirDAOenDTO(Usuario usuario) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-
-        usuarioDTO.setNombre(usuario.getNombre());
-        usuarioDTO.setApellidoMaterno(usuario.getApellidoMaterno());
-        usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
-        usuarioDTO.setIdCia(usuario.getIdCia());
-        usuarioDTO.setId(usuario.getId().toString());
-
-        usuarioDTO.setCarrito(convertirDAOenDTO(usuario.getCarrito()));
-        usuarioDTO.setSaldoPuntos(usuario.getSaldoPuntos());
-
-        List<String> lista = new ArrayList<>();
-        for (ObjectId producto : usuario.getPedidos()) {
-            lista.add(producto.toHexString());
-        }
-        usuarioDTO.setPedidos(lista);
-
-        return usuarioDTO;
-
-    }
-
-    public CarritoDTO convertirDAOenDTO(Carrito carrito) {
-        CarritoDTO carritoDTO = new CarritoDTO();
-
-        carritoDTO.setTotal(carrito.getTotalCarrito());
-
-        List<DetalleProductoDTO> lista = new ArrayList<>();
-        for (DetalleProducto producto : carrito.getProductos()) {
-            lista.add(convertirDAOenDTO(producto));
-        }
-        carritoDTO.setProductos(lista);
-
-        return carritoDTO;
-    }
-
+//    public Usuario convertirDTOenDAO(UsuarioDTO usuarioDTO) {
+//        Usuario usuario = new Usuario();
+//
+//        usuario.setApellidoMaterno(usuarioDTO.getApellidoMaterno());
+//        usuario.setApellidoPaterno(usuarioDTO.getApellidoPaterno());
+//        usuario.setIdCia(usuarioDTO.getIdCia());
+//        usuario.setSaldoPuntos(usuario.getSaldoPuntos());
+//
+//        List<ObjectId> lista = new ArrayList<>();
+//        for (String pedido : usuarioDTO.getPedidos()) {
+//            lista.add(new ObjectId(pedido));
+//        }
+//        usuario.setPedidos(lista);
+//
+//        return usuario;
+//    }
+//
+//    public Carrito convertirDTOenDAO(CarritoDTO carritoDTO) {
+//        Carrito carrito = new Carrito();
+//
+//        carrito.setTotalCarrito(carritoDTO.getTotal());
+//
+//        List<DetalleProducto> lista = new ArrayList<>();
+//        for (DetalleProductoDTO producto : carritoDTO.getProductos()) {
+//            lista.add(convertirDTOenDAO(producto));
+//        }
+//        carrito.setProductos(lista);
+//
+//        return carrito;
+//    }
+//
+//    public DetalleProducto convertirDTOenDAO(DetalleProductoDTO detalleProductoDTO) {
+//        DetalleProducto detalleProducto = new DetalleProducto();
+//
+//        detalleProducto.setCantidad(detalleProductoDTO.getCantidad());
+//        detalleProducto.setCodigoProducto(detalleProductoDTO.getCodigoProducto());
+//        detalleProducto.setDireccionImagen(detalleProductoDTO.getDireccionImagen());
+//        detalleProducto.setNombre(detalleProductoDTO.getNombre());
+//
+//        detalleProducto.setPrecio(detalleProductoDTO.getPrecio());
+//        detalleProducto.setPuntosCuesta(detalleProductoDTO.getPuntosCuesta());
+//        detalleProducto.setPuntosGenera(detalleProductoDTO.getPuntosGenera());
+//        detalleProducto.setSubtotal(detalleProductoDTO.getSubtotal());
+//
+//        return detalleProducto;
+//    }
+//
+//    public UsuarioDTO convertirDAOenDTO(Usuario usuario) {
+//        UsuarioDTO usuarioDTO = new UsuarioDTO();
+//
+//        usuarioDTO.setNombre(usuario.getNombre());
+//        usuarioDTO.setApellidoMaterno(usuario.getApellidoMaterno());
+//        usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
+//        usuarioDTO.setIdCia(usuario.getIdCia());
+//        usuarioDTO.setCarrito(convertirDAOenDTO(usuario.getCarrito()));
+//        usuarioDTO.setSaldoPuntos(usuario.getSaldoPuntos());
+//
+//        List<String> lista = new ArrayList<>();
+//        for (ObjectId producto : usuario.getPedidos()) {
+//            lista.add(producto.toHexString());
+//        }
+//        usuarioDTO.setPedidos(lista);
+//
+//        return usuarioDTO;
+//
+//    }
+//    public CarritoDTO convertirDAOenDTO(Carrito carrito) {
+//        CarritoDTO carritoDTO = new CarritoDTO();
+//
+//        carritoDTO.setTotal(carrito.getTotalCarrito());
+//
+//        List<DetalleProductoDTO> lista = new ArrayList<>();
+//        for (DetalleProducto producto : carrito.getProductos()) {
+//            lista.add(convertirDAOenDTO(producto));
+//        }
+//        carritoDTO.setProductos(lista);
+//
+//        return carritoDTO;
+//    }
     public DetalleProductoDTO convertirDAOenDTO(DetalleProducto detalleProducto) {
         DetalleProductoDTO detalleProductoDTO = new DetalleProductoDTO();
 
@@ -164,10 +160,11 @@ public class UsuarioBO implements IUsuarioBO {
 
     @Override
     public UsuarioDTO consultarUsuario(String idCia) throws BOException, PersistenciaException {
-        IUsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.consultarUsuario(idCia);
-        UsuarioDTO usuarioDTO = convertirDAOenDTO(usuario);
-        return usuarioDTO;
+//        IUsuarioDAO usuarioDAO = new UsuarioDAO();
+//        Usuario usuario = usuarioDAO.consultarUsuario(idCia);
+//        UsuarioDTO usuarioDTO = convertirDAOenDTO(usuario);
+//        return usuarioDTO;
+        return null;
 
     }
 

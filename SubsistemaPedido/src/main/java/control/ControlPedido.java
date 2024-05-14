@@ -7,7 +7,6 @@ package control;
 import dominio.DetalleProducto;
 import dominio.Pedido;
 import dominio.Usuario;
-import dtos.DetalleProductoDTO;
 import dtos.PedidoDTO;
 import excepciones.BOException;
 import excepciones.PersistenciaException;
@@ -96,19 +95,13 @@ public class ControlPedido implements IControlPedido {
         List<PedidoDTO> pedidoDTOs = pedidoBO.consultarPedidos(idUsuario);
         return pedidoDTOs;
     }
-
+    
+    
     @Override
-    public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException {
+    public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException{
         IPedidoBO pedidoBO = new PedidosBO();
         PedidoDTO pedidoDTO = pedidoBO.consultarPorId(idPedido);
         return pedidoDTO;
     }
-
-    @Override
-    public List<DetalleProductoDTO> consultarDetalleProductosPorIdPedido(String idPedido) throws BOException, PersistenciaException {
-        IPedidoBO pedidoBO = new PedidosBO();
-        List<DetalleProductoDTO> detalleProductoDTOs = pedidoBO.consultarDetalleProductosPorIdPedido(idPedido);
-        return detalleProductoDTOs;
-    }
-
+    
 }

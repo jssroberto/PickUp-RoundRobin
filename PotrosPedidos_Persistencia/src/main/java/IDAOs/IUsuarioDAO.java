@@ -31,5 +31,4 @@ public interface IUsuarioDAO {
     public void referenciarPedido(dominio.Usuario usuario, Pedido pedido);
     
     public void actualizarPuntosUsuario(Usuario usuario, Integer puntos);
-        public Usuario consultarUsuarioPorId(Usuario usuario);
 }

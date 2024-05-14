@@ -21,11 +21,11 @@ public class IniciarSesion {
     
     public boolean validacionDatos(String idEstudiante, String contra) throws Exception{
         if(usuario.validacionDatos(idEstudiante, contra)){
-//            JOptionPane.showMessageDialog(null, "Bienvenido");
+            JOptionPane.showMessageDialog(null, "Bienvenido");
             return true;
         }else{
-            throw new Exception("Credenciales no válidas");
-//            JOptionPane.showMessageDialog(null, "Credenciales no válidas");
+            JOptionPane.showMessageDialog(null, "Credenciales no válidas");
+            return false;
         }
     }
 }

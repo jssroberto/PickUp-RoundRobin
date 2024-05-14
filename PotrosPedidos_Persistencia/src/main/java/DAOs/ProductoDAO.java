@@ -49,19 +49,6 @@ public class ProductoDAO implements IProductoDAO {
             throw new PersistenciaException("Error al consultar el producto", e);
         }
     }
-    
-    @Override
-    public Producto consultarPorCodigo(String codigoProducto) throws PersistenciaException {
-        try {
-            Producto producto = coleccionProductos.find(Filters.eq("codigoProducto", codigoProducto)).first();
-            if (producto == null) {
-                throw new PersistenciaException("Producto no encontrado");
-            }
-            return producto;
-        } catch (MongoException e) {
-            throw new PersistenciaException("Error al consultar el producto", e);
-        }
-    }
 
     @Override
     public Producto consultar(Long idProducto) throws PersistenciaException {

@@ -6,16 +6,12 @@ package objetosNegocio;
 
 import DAOs.PedidoDAO;
 import DAOs.UsuarioDAO;
-import IDAOs.IPedidoDAO;
-import dominio.DetalleProducto;
 import dominio.Pedido;
 import dominio.Usuario;
-import dtos.DetalleProductoDTO;
 import dtos.PedidoDTO;
 import excepciones.BOException;
 import excepciones.PersistenciaException;
 import interfaces.IPedidoBO;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,64 +62,29 @@ public class PedidosBO implements IPedidoBO {
      */
     @Override
     public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException {
-        IPedidoDAO pedidoDAO = new PedidoDAO();
-        List<Pedido> pedidos = pedidoDAO.consultarPedidos(idUsuario);
-        if (pedidos.isEmpty()) {
-            throw new BOException("El usuario no tiene pedidos asociados");
-        }
-        List<PedidoDTO> pedidoDTOs = new ArrayList<>();
-        for (Pedido pedido : pedidos) {
-            pedidoDTOs.add(convertirDAOenDTO(pedido));
-        }
-        return pedidoDTOs;
+//        IPedidoDAO pedidoDAO = new PedidoDAO();
+//        List<Pedido> pedidos = pedidoDAO.consultarPedidos(idUsuario);
+//        if (pedidos.isEmpty()) {
+//            throw new BOException("El usuario no tiene pedidos asociados");
+//        }
+//        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
+//        List<PedidoDTO> pedidoDTOs = new ArrayList<>();
+//        for (Pedido pedido : pedidos) {
+//            pedidoDTOs.add(daoADto.convertirDAOenDTO(pedido));
+//        }
+//        return pedidoDTOs;
+        return null;
     }
 
     @Override
     public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException {
-        IPedidoDAO pedidoDAO = new PedidoDAO();
-        Pedido pedido = pedidoDAO.consultarPorId(idPedido);
-        PedidoDTO pedidoDTO = convertirDAOenDTO(pedido);
-        return pedidoDTO;
-    }
-        return detalleProductoDTOs;
+//        IPedidoDAO pedidoDAO = new PedidoDAO();
+//        Pedido pedido = pedidoDAO.consultarPorId(idPedido);
+//        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
+//        PedidoDTO pedidoDTO = daoADto.convertirDAOenDTO(pedido);
+//        return pedidoDTO;
+        return null;
 
-    }
-
-    public PedidoDTO convertirDAOenDTO(Pedido pedido) {
-        PedidoDTO pedidoDTO = new PedidoDTO();
-
-        pedidoDTO.setClaveRecoleccion(pedido.getClaveRecoleccion());
-        pedidoDTO.setEtiquetaPedido(pedido.getEtiquetaPedido());
-        pedidoDTO.setFecha(pedido.getFecha());
-        pedidoDTO.setIdPedido(pedido.getId().toString());
-        pedidoDTO.setMetodoPago(pedido.getMetodoPago().getCodigo());
-        pedidoDTO.setNumeroPedido(pedido.getNumeroPedido());
-        pedidoDTO.setNumeroProductos(pedido.getNumeroProductos());
-        pedidoDTO.setTotal(pedido.getTotal());
-
-        List<DetalleProductoDTO> lista = new ArrayList<>();
-        for (DetalleProducto producto : pedido.getDetalleProductos()) {
-            lista.add(convertirDAOenDTO(producto));
-        }
-        pedidoDTO.setDetalleProductos(lista);
-
-        return pedidoDTO;
-    }
-
-    public DetalleProductoDTO convertirDAOenDTO(DetalleProducto detalleProducto) {
-        DetalleProductoDTO detalleProductoDTO = new DetalleProductoDTO();
-
-        detalleProductoDTO.setCantidad(detalleProducto.getCantidad());
-        detalleProductoDTO.setCodigoProducto(detalleProducto.getCodigoProducto());
-        detalleProductoDTO.setDireccionImagen(detalleProducto.getDireccionImagen());
-        detalleProductoDTO.setId(detalleProducto.getId());
-        detalleProductoDTO.setNombre(detalleProducto.getNombre());
-        detalleProductoDTO.setPrecio(detalleProducto.getPrecio());
-        detalleProductoDTO.setPuntosCuesta(detalleProducto.getPuntosCuesta());
-        detalleProductoDTO.setPuntosGenera(detalleProducto.getPuntosGenera());
-        detalleProductoDTO.setSubtotal(detalleProducto.getSubtotal());
-
-        return detalleProductoDTO;
     }
 
 }

@@ -9,7 +9,6 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.Conexion;
-import dominio.DetalleProducto;
 import dominio.Pedido;
 import dominio.Usuario;
 import excepciones.PersistenciaException;
@@ -49,10 +48,9 @@ public class PedidoDAO implements IPedidoDAO {
     public List<Pedido> consultarPedidos(String idUsuario) throws PersistenciaException {
         Usuario usuario = coleccionUsuarios.find(Filters.eq("_id", new ObjectId(idUsuario))).first();
         if (usuario != null) {
-            List<Pedido> pedidos = usuario.getPedidos().stream()
+            return usuario.getPedidos().stream()
                     .map(pedidoId -> coleccionPedido.find(Filters.eq("_id", pedidoId)).first())
                     .collect(Collectors.toList());
-            return pedidos;
         } else {
             throw new PersistenciaException("No se encontró el usuario proporcionado.");
         }
@@ -72,23 +70,6 @@ public class PedidoDAO implements IPedidoDAO {
             throw new PersistenciaException("El ID proporcionado no es válido.", e);
         } catch (MongoException e) {
             throw new PersistenciaException("Error al consultar el pedido", e);
-        }
-    }
-    
-    @Override
-    public List<DetalleProducto> consultarDetalleProductosPorIdPedido(String idPedido) throws PersistenciaException {
-        try {
-            ObjectId objectId = new ObjectId(idPedido);
-            Pedido pedido = coleccionPedido.find(Filters.eq("_id", objectId)).first();
-            if (pedido != null) {
-                return pedido.getDetalleProductos();
-            } else {
-                throw new PersistenciaException("No se encontró el pedido con el ID proporcionado.");
-            }
-        } catch (MongoException e) {
-            throw new PersistenciaException("Error al consultar detalle de productos por ID de pedido", e);
-        } catch (IllegalArgumentException e) {
-            throw new PersistenciaException("ID de pedido inválido", e);
         }
     }
 }

@@ -16,8 +16,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  * Esta clase representa la vista de inicio de sesión en la interfaz gráfica del
@@ -25,8 +24,6 @@ import java.util.logging.Logger;
  * usuario y contraseña.
  */
 public class PanelInicioSesion extends javax.swing.JPanel {
-
-    private static final Logger logger = Logger.getLogger(PanelInicioSesion.class.getName());
 
     private final FramePrincipal framePrincipal;
     private UsuarioDTO usuarioDTO;
@@ -128,18 +125,23 @@ public class PanelInicioSesion extends javax.swing.JPanel {
             IControlLogin control = new ControlLogin();
 
             try {
-                control.validacionDatos(txtId.getText(), txtContraseña.getText());
-                IControlUsuario controlUsuario = new ControlUsuario();
-                usuarioDTO = controlUsuario.consultarUsuarioPorId(txtId.getText());
-                framePrincipal.setIdUsuario(usuarioDTO.getId());
-                framePrincipal.setNumID(txtId.getText());
-                IControlProductos consultarProductoBO = new ControlProductos();
-                framePrincipal.setProductos(consultarProductoBO.obtenerTodosLosProductos());
-                framePrincipal.cambiarVistaMenu();
+                if (control.validacionDatos(txtId.getText(), txtContraseña.getText())) {
+//                    IControlUsuario controlUsuario = new ControlUsuario();
+//                     usuarioDTO = controlUsuario.consultarUsuarioPorId(txtId.getText());
+//                    framePrincipal.setIdUsuario(usuarioDTO.getId());
 
+                    framePrincipal.setNumID(txtId.getText());
+                    IControlProductos consultarProductoBO = new ControlProductos();
+                    framePrincipal.setProductos(consultarProductoBO.obtenerTodosLosProductos());
+                    framePrincipal.cambiarVistaMenu();
+                } else {
+                    framePrincipal.mostrarAviso("Credenciales no válidas", "Aviso");
+                }
+            } catch (IllegalArgumentException | NoSuchMethodError ex) {
+                framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
             } catch (Exception ex) {
-                logger.log(Level.SEVERE, ex.getMessage());
-
+                System.out.println(ex.getMessage());
+                framePrincipal.mostrarAviso("Vuelva a intentarlo", "Aviso");
             }
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
