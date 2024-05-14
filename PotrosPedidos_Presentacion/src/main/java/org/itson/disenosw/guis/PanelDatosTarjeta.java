@@ -48,7 +48,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
             @Override
             public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
                 String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
-                if (newText.matches("[0-9]*")) { // Solo permite números
+                if (newText.matches("[0-9-]*")) { // Solo permite números
                     super.insertString(fb, offset, text, attr);
                 }
             }
@@ -56,7 +56,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
             @Override
             public void replace(DocumentFilter.FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
                 String newText = fb.getDocument().getText(0, fb.getDocument().getLength()) + text;
-                if (newText.matches("[0-9]*")) { // Solo permite números
+                if (newText.matches("[0-9-]*")) { // Solo permite números
                     super.replace(fb, offset, length, text, attrs);
                 }
             }
@@ -203,7 +203,6 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
                 }
             } catch (IllegalArgumentException | PersitenciaException ex) {
                 ventana.mostrarAviso("Vuelva a intentarlo", "Aviso");
-                logger.log(Level.SEVERE, "Error al cerrar InputStream", ex);
             }
 
         } else {
