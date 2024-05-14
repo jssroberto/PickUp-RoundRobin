@@ -1,7 +1,6 @@
 package org.itson.disenosw.guis;
 
 import control.ControlPedido;
-import dominio.Pedido;
 import dtos.PedidoDTO;
 import excepciones.BOException;
 import excepciones.PersistenciaException;

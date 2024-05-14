@@ -29,8 +29,15 @@ public class ControlUsuario implements IControlUsuario {
         return user.consultarUsuario(usuario);
     }
 
+    /**
+     *
+     * @param idCia
+     * @return
+     * @throws PersistenciaException
+     * @throws BOException
+     */
     @Override
-    public UsuarioDTO consultarUsuario(String idCia) throws PersistenciaException, BOException{
+    public UsuarioDTO consultarUsuarioPorId(String idCia) throws PersistenciaException, BOException{
         IUsuarioBO usuarioBO = new UsuarioBO();
         UsuarioDTO usuarioDTO = usuarioBO.consultarUsuario(idCia);
         return usuarioDTO;

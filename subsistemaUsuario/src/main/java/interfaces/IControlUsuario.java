@@ -17,5 +17,5 @@ public interface IControlUsuario {
     
     public Usuario consultarUsuario(Usuario usuario);
     
-    public UsuarioDTO consultarUsuario(String idCia) throws PersistenciaException,BOException;
+    public UsuarioDTO consultarUsuarioPorId(String idCia) throws PersistenciaException,BOException;
 }
