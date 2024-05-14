@@ -5,11 +5,13 @@
 package interfaces;
 
 import dominio.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author galan
  */
 public interface IPagarPuntos {
-    public boolean PagarPuntos(Usuario usuario, Integer puntosPagar, Integer puntosGenera) throws Exception;
+    public ArrayList<String> PagarPuntos(Usuario usuario, Integer puntosPagar, Integer puntosGenera) throws Exception;
 }

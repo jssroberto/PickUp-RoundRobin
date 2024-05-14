@@ -48,6 +48,7 @@ public class PanelPagoExitoPuntos extends javax.swing.JPanel {
         lblPuntosGenerados = new javax.swing.JLabel();
         lblClaveRecoger = new javax.swing.JLabel();
         lblNumPedido = new javax.swing.JLabel();
+        btnRegresarMenu = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -58,12 +59,27 @@ public class PanelPagoExitoPuntos extends javax.swing.JPanel {
         add(lblClaveRecoger, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 230, 30));
         add(lblNumPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 230, 30));
 
+        btnRegresarMenu.setBorder(null);
+        btnRegresarMenu.setContentAreaFilled(false);
+        btnRegresarMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarMenuActionPerformed(evt);
+            }
+        });
+        add(btnRegresarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 650, 170, 60));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelPagoExitoPuntos.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMenuActionPerformed
+        ventana.cambiarVistaMenu();
+    }//GEN-LAST:event_btnRegresarMenuActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresarMenu;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel lblClaveRecoger;
     private javax.swing.JLabel lblNumPedido;

@@ -140,9 +140,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelActual = vistaProducto;
     }
     
-    public void cambiarPanelPagoExitoPuntos(){
+    public void cambiarPanelPagoExitoPuntos(Integer puntosGenerados, String numPedido, String numID){
         limpiarFrame();
-        PanelPagoExitoPuntos panelBuscar = new PanelPagoExitoPuntos(this);
+        PanelPagoExitoPuntos panelBuscar = new PanelPagoExitoPuntos(this, puntosGenerados, numPedido, numID);
         ponerEnJFrame(panelBuscar);
         panelActual = panelBuscar;
     }

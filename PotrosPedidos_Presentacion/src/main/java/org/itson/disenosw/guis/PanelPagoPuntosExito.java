@@ -9,6 +9,7 @@ import interfaces.ICalcularCostoPuntos;
 import interfaces.IControlUsuario;
 import interfaces.IGenerarPuntos;
 import interfaces.IPagarPuntos;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,6 +65,7 @@ public class PanelPagoPuntosExito extends javax.swing.JPanel {
         lblPuntosRequeridos = new javax.swing.JLabel();
         lblPuntosRestantes = new javax.swing.JLabel();
         btnConfirmarPago = new javax.swing.JButton();
+        btnRegresarMenu = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 800));
@@ -84,6 +86,16 @@ public class PanelPagoPuntosExito extends javax.swing.JPanel {
         });
         add(btnConfirmarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 560, 170, 60));
 
+        btnRegresarMenu.setBorder(null);
+        btnRegresarMenu.setContentAreaFilled(false);
+        btnRegresarMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarMenuActionPerformed(evt);
+            }
+        });
+        add(btnRegresarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 60, 60));
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panelPagoPuntosExito.png"))); // NOI18N
         add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -100,9 +112,10 @@ public class PanelPagoPuntosExito extends javax.swing.JPanel {
 
         IPagarPuntos pagarPuntos = new PagarPuntos();
         try {
-            pagarPuntos.PagarPuntos(usuarioBueno, calcularPuntos.calcularCostoPuntos(detallesCarritos), generarPuntos.generarPuntos(detallesCarritos));
+            ArrayList<String> info= (ArrayList<String>) pagarPuntos.PagarPuntos(usuarioBueno, calcularPuntos.calcularCostoPuntos(detallesCarritos), generarPuntos.generarPuntos(detallesCarritos));
+            info.get(0);
             ventana.mostrarConfirmacion("PEDIDO EXITOSO", "EXITO");
-            ventana.cambiarPanelPagoExitoPuntos();
+            ventana.cambiarPanelPagoExitoPuntos(generarPuntos.generarPuntos(detallesCarritos), info.get(0), info.get(1));
         } catch (Exception ex) {
             ventana.mostrarAviso("Algo ha ocurrido mal", "ERROR");
             ventana.cambiarVistaMetodoPago();
@@ -110,9 +123,14 @@ public class PanelPagoPuntosExito extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnConfirmarPagoActionPerformed
 
+    private void btnRegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMenuActionPerformed
+        ventana.cambiarVistaMetodoPago();
+    }//GEN-LAST:event_btnRegresarMenuActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmarPago;
+    private javax.swing.JButton btnRegresarMenu;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel lblPuntosDisponibles;
     private javax.swing.JLabel lblPuntosRequeridos;

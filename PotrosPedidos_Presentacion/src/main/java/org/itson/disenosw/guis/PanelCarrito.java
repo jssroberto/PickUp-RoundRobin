@@ -236,13 +236,14 @@ public final class PanelCarrito extends javax.swing.JPanel {
         // Configuración de GridBagConstraints para organizar los componentes dentro del panel
         GridBagConstraints c = new GridBagConstraints();
 
-        String rutaFolder = "/productos/120x100/"+rutaImagen;
+        String rutaFolder = "/productos/120x100/";
         StringBuilder rutaRelativa = new StringBuilder();
         rutaRelativa.append(rutaFolder);
         rutaRelativa.append(rutaImagen);
-        
-        ImageIcon icon = new ImageIcon(rutaFolder);
-        JLabel imagenLabel = new JLabel();
+
+        // Cargar la imagen del producto
+        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
+        JLabel imagenLabel = new JLabel(icon);
 
         Font sizedFontMedium = cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F);
         Font sizedFontBook = cargarFuente("/fonts/futura/FuturaPTBook.otf", 24F);

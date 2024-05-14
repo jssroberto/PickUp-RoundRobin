@@ -7,6 +7,8 @@ package metodos;
 import control.ControlPagarPuntos;
 import dominio.Usuario;
 import interfaces.IPagarPuntos;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,7 +18,7 @@ public class PagarPuntos implements IPagarPuntos{
     ControlPagarPuntos control= new ControlPagarPuntos();
     
     @Override
-    public boolean PagarPuntos(Usuario usuario, Integer puntosPagar, Integer puntosGenera) throws Exception {
+    public ArrayList<String> PagarPuntos(Usuario usuario, Integer puntosPagar, Integer puntosGenera) throws Exception {
         return control.PagarPuntos(usuario, puntosPagar, puntosGenera);
     }  
 }

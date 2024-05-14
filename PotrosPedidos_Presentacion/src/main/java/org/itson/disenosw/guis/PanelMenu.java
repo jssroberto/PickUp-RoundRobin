@@ -354,13 +354,13 @@ public final  class PanelMenu extends javax.swing.JPanel {
         // Configuración de GridBagConstraints para organizar los componentes dentro del panel
         GridBagConstraints c = new GridBagConstraints();
 
-        String rutaFolder = "/productos/120x100/"+rutaImagen;
+        String rutaFolder = "/productos/120x100/";
         StringBuilder rutaRelativa = new StringBuilder();
         rutaRelativa.append(rutaFolder);
         rutaRelativa.append(rutaImagen);
 
         // Cargar la imagen del producto
-        ImageIcon icon = new ImageIcon("/productos/120x100/"+rutaFolder);
+        ImageIcon icon = new ImageIcon(PanelMenu.class.getResource(String.valueOf(rutaRelativa)));
         JLabel imagenLabel = new JLabel(icon);
 
         Font sizedFontMedium = cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F);

@@ -15,13 +15,13 @@ public class Usuario {
     private String nombre, apellidoPaterno, apellidoMaterno;
     private Carrito carrito;
     private Integer saldoPuntos;
-    private List<ObjectId> pedidos;
+    private List<Pedido> pedidos;
 
     public Usuario() {
         pedidos = new ArrayList<>();
     }
 
-    public Usuario(ObjectId id, String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
+    public Usuario(ObjectId id, String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<Pedido> pedidos) {
         this.id = id;
         this.idCia = idCia;
         this.nombre = nombre;
@@ -32,7 +32,16 @@ public class Usuario {
         this.pedidos = pedidos;
     }
 
-    public Usuario(String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<ObjectId> pedidos) {
+    public Usuario(String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos) {
+        this.idCia = idCia;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.carrito = carrito;
+        this.saldoPuntos = saldoPuntos;
+    }
+
+    public Usuario(String idCia, String nombre, String apellidoPaterno, String apellidoMaterno, Carrito carrito, Integer saldoPuntos, List<Pedido> pedidos) {
         this.idCia = idCia;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -82,11 +91,11 @@ public class Usuario {
         this.carrito = carrito;
     }
 
-    public List<ObjectId> getPedidos() {
+    public List<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(List<ObjectId> pedidos) {
+    public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
 
