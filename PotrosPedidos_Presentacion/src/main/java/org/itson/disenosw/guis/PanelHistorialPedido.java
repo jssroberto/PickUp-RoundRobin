@@ -369,13 +369,13 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     }
 
     public void setFuentes() {
-//        lblNumPedido.setText("Número de pedido: #" + pedidoDTO.getNumeroPedido());
-//        lblCodigoRecoleccion.setText("Clave de recolección: " + pedidoDTO.getClaveRecoleccion());
-//        lblMetodoPago.setText("Método de pago: " + MetodoPago.getByCodigo(pedidoDTO.getMetodoPago()));
-//        lblArticulos.setText(pedidoDTO.getNumeroProductos() + " artículo(s)");
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.of("es", "ES"));
-//        String fechaFormateada = pedidoDTO.getFecha().format(formatter);
-//        lblFecha.setText("Fecha: " + fechaFormateada);
+        lblNumPedido.setText("Número de pedido: #" + pedidoDTO.getNumeroPedido());
+        lblCodigoRecoleccion.setText("Clave de recolección: " + pedidoDTO.getClaveRecoleccion());
+        lblMetodoPago.setText("Método de pago: " + MetodoPago.getByCodigo(pedidoDTO.getMetodoPago()));
+        lblArticulos.setText(pedidoDTO.getNumeroProductos() + " artículo(s)");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.of("es", "ES"));
+        String fechaFormateada = pedidoDTO.getFecha().format(formatter);
+        lblFecha.setText("Fecha: " + fechaFormateada);
         
 
         lblNumPedido.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
