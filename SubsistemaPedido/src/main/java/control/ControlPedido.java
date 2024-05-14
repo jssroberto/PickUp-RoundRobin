@@ -95,5 +95,13 @@ public class ControlPedido implements IControlPedido {
         List<PedidoDTO> pedidoDTOs = pedidoBO.consultarPedidos(idUsuario);
         return pedidoDTOs;
     }
-
+    
+    
+    @Override
+    public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException{
+        IPedidoBO pedidoBO = new PedidosBO();
+        PedidoDTO pedidoDTO = pedidoBO.consultarPorId(idPedido);
+        return pedidoDTO;
+    }
+    
 }

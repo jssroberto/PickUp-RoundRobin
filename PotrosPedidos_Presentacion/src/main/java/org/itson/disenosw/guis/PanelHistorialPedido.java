@@ -1,8 +1,13 @@
 package org.itson.disenosw.guis;
 
+import control.ControlPedido;
+import dominio.MetodoPago;
 import dominio.ProductoCafeteria;
 import dtos.PedidoDTO;
+import excepciones.BOException;
+import excepciones.PersistenciaException;
 import excepciones.PersitenciaException;
+import interfaces.IControlPedido;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -15,7 +20,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Box;
@@ -44,7 +51,6 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
      */
     public PanelHistorialPedido(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
-        this.pedidoDTO = new PedidoDTO();
         this.idPedido = framePrincipal.getIdPedido();
         initComponents();
     }
@@ -65,7 +71,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
         btnAgregar = new javax.swing.JButton();
         lblNumPedido = new javax.swing.JLabel();
         lblCodigoRecoleccion = new javax.swing.JLabel();
-        lblEstado = new javax.swing.JLabel();
+        lblMetodoPago = new javax.swing.JLabel();
         lblArticulos = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         panelTop = new javax.swing.JPanel();
@@ -133,9 +139,9 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
         lblCodigoRecoleccion.setText("jLabel1");
         add(lblCodigoRecoleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, -1, -1));
 
-        lblEstado.setForeground(new java.awt.Color(7, 7, 7));
-        lblEstado.setText("jLabel1");
-        add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
+        lblMetodoPago.setForeground(new java.awt.Color(7, 7, 7));
+        lblMetodoPago.setText("jLabel1");
+        add(lblMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
 
         lblArticulos.setForeground(new java.awt.Color(7, 7, 7));
         lblArticulos.setText("jLabel1");
@@ -172,11 +178,14 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    
+    public void consultarPedido() throws BOException, PersistenciaException {
+        IControlPedido controlPedido = new ControlPedido();
+        pedidoDTO = controlPedido.consultarPorId(idPedido);
+    }
+
     public void crearMenu() throws PersitenciaException {
         List<ProductoCafeteria> productos = framePrincipal.getProductos();
-        
-        
+
         JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(false);
         mainPanel.setMaximumSize(new Dimension(380, 600));
@@ -193,8 +202,8 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
 
 //            String[] producto = productosDTO.get(i);
             JPanel productoPanel = createProductoPanel(
-                    productos.get(i).getNombre(), 
-                    productos.get(i).getPrecio(), 
+                    productos.get(i).getNombre(),
+                    productos.get(i).getPrecio(),
                     productos.get(i).getDireccionImagen());
 
 //            String identificador = "producto_" + i;
@@ -213,7 +222,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
 
                 }
             });
-            
+
             // Añade el panel del producto en la posición i * 2 (para dejar espacio para los separadores)
             c.gridx = 0;
             c.gridy = i * 2;
@@ -358,16 +367,25 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
 
         return panel; // Devuelve el panel separador creado
     }
-    
-    public void setFuentes(){
+
+    public void setFuentes() {
+        lblNumPedido.setText("Número de pedido: #" + pedidoDTO.getNumeroPedido());
+        lblCodigoRecoleccion.setText("Clave de recolección: " + pedidoDTO.getClaveRecoleccion());
+        lblMetodoPago.setText("Método de pago: " + MetodoPago.getByCodigo(pedidoDTO.getMetodoPago()));
+        lblArticulos.setText(pedidoDTO.getNumeroProductos() + " artículo(s)");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.of("es", "ES"));
+        String fechaFormateada = pedidoDTO.getFecha().format(formatter);
+        lblFecha.setText("Fecha: " + fechaFormateada);
+        
+
         lblNumPedido.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
         lblCodigoRecoleccion.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
-        lblEstado.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
+        lblMetodoPago.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
         lblArticulos.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
         lblFecha.setFont(cargarFuente("/fonts/futura/FuturaPTMedium.otf", 24F));
-        
+
     }
-    
+
     /**
      * Carga una fuente desde un archivo de fuente TrueType (TTF) y la devuelve
      * con el tamaño especificado.
@@ -398,7 +416,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
             }
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCarrito;
@@ -407,9 +425,9 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     private javax.swing.JButton btnUsuario;
     private javax.swing.JLabel lblArticulos;
     private javax.swing.JLabel lblCodigoRecoleccion;
-    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblMetodoPago;
     private javax.swing.JLabel lblNumPedido;
     private javax.swing.JPanel panelTop;
     // End of variables declaration//GEN-END:variables

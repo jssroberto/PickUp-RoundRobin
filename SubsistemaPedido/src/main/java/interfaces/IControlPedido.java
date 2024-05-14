@@ -28,4 +28,7 @@ public interface IControlPedido {
     public boolean pedidoAceptado();
 
     public String generateRandomString();
-}
+
+    public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException;
+
+    }

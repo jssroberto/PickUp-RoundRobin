@@ -36,12 +36,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>cafeteria</artifactId>
+            <artifactId>PotrosPedidos_Persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>PotrosPedidos_Persistencia</artifactId>
+            <artifactId>cafeteria</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
