@@ -24,12 +24,12 @@ public class FramePrincipal extends javax.swing.JFrame {
     private JPanel panelActual;
     private String codigoProducto;
     private String claveRecoleccion;
-    private int idPedido = 0;
     private float totalCarrito = 0.0f;
     private String numID;
     private List<ProductoCafeteria> productos;
     private String idUsuario;
-    private String etiquetaPedido;
+    private String idPedido;
+    private Integer numPedido;
 
     /**
      * Constructor de la clase Ventana.
@@ -261,12 +261,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.idUsuario = idUsuario;
     }
 
-    public String getEtiquetaPedido() {
-        return etiquetaPedido;
+    public String getIdPedido() {
+        return idPedido;
     }
 
-    public void setEtiquetaPedido(String etiquetaPedido) {
-        this.etiquetaPedido = etiquetaPedido;
+    public void setIdPedido(String idPedido) {
+        this.idPedido = idPedido;
     }
 
     public float getTotalCarrito() {
@@ -277,20 +277,28 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.totalCarrito = totalCarrito;
     }
 
-    public int getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
-    }
-
     public List<ProductoCafeteria> getProductos() {
         return productos;
     }
 
     public void setProductos(List<ProductoCafeteria> productos) {
         this.productos = productos;
+    }
+
+    public String getClaveRecoleccion() {
+        return claveRecoleccion;
+    }
+
+    public void setClaveRecoleccion(String claveRecoleccion) {
+        this.claveRecoleccion = claveRecoleccion;
+    }
+
+    public Integer getNumPedido() {
+        return numPedido;
+    }
+
+    public void setNumPedido(Integer numPedido) {
+        this.numPedido = numPedido;
     }
 
 }

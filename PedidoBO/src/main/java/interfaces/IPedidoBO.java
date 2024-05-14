@@ -24,4 +24,6 @@ public interface IPedidoBO {
     public void referenciarPedido(Usuario usuario, Pedido pedido);
 
     public List<PedidoDTO> consultarPedidos(String idUsuario) throws BOException, PersistenciaException;
+
+    public PedidoDTO consultarPorId(String id) throws BOException, PersistenciaException;
 }

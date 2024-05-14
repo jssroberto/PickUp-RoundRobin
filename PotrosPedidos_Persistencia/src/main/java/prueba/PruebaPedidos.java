@@ -26,23 +26,23 @@ public class PruebaPedidos {
 //        usuario.setIdCia("00000240157");
 //        usuario = usuarioDAO.consultarUsuario(usuario);
 //        System.out.println(usuario.getId().toString());
-//        IPedidoDAO pedidoDAO = new PedidoDAO();
-//        try {
-//            List<Pedido> pedidos = pedidoDAO.consultarPedidos("6641fa5323acc61bb9eb6eed");
-//            for (Pedido pedido : pedidos) {
-//                System.out.println(pedido.getNumeroProductos());
-//            }
-//        } catch (PersistenciaException ex) {
-//            Logger.getLogger(PruebaPedidos.class.getName()).log(Level.SEVERE, "No hay pedidos");
-//        }
-
+        IPedidoDAO pedidoDAO = new PedidoDAO();
         try {
-            IUsuarioDAO usuarioDAO = new UsuarioDAO();
-            Usuario usuario = usuarioDAO.consultarUsuario("00000011211");
-            System.out.println(usuario.getNombre());
+            
+            
+            Pedido pedido = pedidoDAO.consultarPorId("6641fa39b4fa762fef8b4c03");
+            System.out.println(pedido.getEtiquetaPedido());
         } catch (PersistenciaException ex) {
-            Logger.getLogger(PruebaPedidos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PruebaPedidos.class.getName()).log(Level.SEVERE, "No hay pedidos");
         }
+
+//        try {
+//            IUsuarioDAO usuarioDAO = new UsuarioDAO();
+//            Usuario usuario = usuarioDAO.consultarUsuario("00000011211");
+//            System.out.println(usuario.getNombre());
+//        } catch (PersistenciaException ex) {
+//            Logger.getLogger(PruebaPedidos.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 

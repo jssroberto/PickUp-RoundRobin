@@ -37,7 +37,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
 
     FramePrincipal framePrincipal;
     private PedidoDTO pedidoDTO;
-    private String etiquetaPedido;
+    private String idPedido;
 
     /**
      * Creates new form PanelHistorial
@@ -45,7 +45,7 @@ public class PanelHistorialPedido extends javax.swing.JPanel {
     public PanelHistorialPedido(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         this.pedidoDTO = new PedidoDTO();
-        this.etiquetaPedido = framePrincipal.getEtiquetaPedido();
+        this.idPedido = framePrincipal.getIdPedido();
         initComponents();
     }
 

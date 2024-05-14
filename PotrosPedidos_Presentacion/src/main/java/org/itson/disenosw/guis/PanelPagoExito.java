@@ -13,7 +13,7 @@ public class PanelPagoExito extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
         
         initComponents();
-        lblNumPeddo.setText(Integer.toString(framePrincipal.getIdPedido()+1));
+        lblNumPeddo.setText(Integer.toString(framePrincipal.getNumPedido()+1));
         lblCalave.setText(framePrincipal.getClaveRecoleccion());
         framePrincipal.setIdPedido(framePrincipal.getIdPedido()+1);
         

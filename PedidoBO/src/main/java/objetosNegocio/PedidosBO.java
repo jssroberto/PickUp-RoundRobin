@@ -78,4 +78,14 @@ public class PedidosBO implements IPedidoBO {
         return pedidoDTOs;
     }
 
+    @Override
+    public PedidoDTO consultarPorId(String idPedido) throws BOException, PersistenciaException {
+        IPedidoDAO pedidoDAO = new PedidoDAO();
+        Pedido pedido = pedidoDAO.consultarPorId(idPedido);
+        ConvertidorDAOaDTO daoADto = new ConvertidorDAOaDTO();
+        PedidoDTO pedidoDTO = daoADto.convertirDAOenDTO(pedido);
+        return pedidoDTO;
+
+    }
+
 }

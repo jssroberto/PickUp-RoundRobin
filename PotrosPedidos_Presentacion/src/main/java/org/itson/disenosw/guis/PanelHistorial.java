@@ -169,7 +169,7 @@ public class PanelHistorial extends javax.swing.JPanel {
                     pedidoDTOs.get(i).getFecha(),
                     rutas);
 
-            String identificador = pedidoDTOs.get(i).getEtiquetaPedido();
+            String identificador = pedidoDTOs.get(i).getIdPedido();
             productoPanel.putClientProperty(identificador, productoPanel);
             // Añade un ActionListener al panel de producto
             productoPanel.addMouseListener(new MouseAdapter() {
@@ -178,7 +178,7 @@ public class PanelHistorial extends javax.swing.JPanel {
                     // Acción a realizar al hacer clic en el panel de producto
                     // Aquí puedes acceder al identificador del panel haciendo uso de la variable 'identificador'
                     logger.log(Level.INFO, "Clic en el panel de pedido: {0}", identificador);
-                    framePrincipal.setEtiquetaPedido(identificador);
+                    framePrincipal.setIdPedido(identificador);
                     framePrincipal.cambiarPanelHistorialPedido();
 
                 }

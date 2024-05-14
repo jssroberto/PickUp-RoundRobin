@@ -55,4 +55,21 @@ public class PedidoDAO implements IPedidoDAO {
             throw new PersistenciaException("No se encontró el usuario proporcionado.");
         }
     }
+
+    @Override
+    public Pedido consultarPorId(String id) throws PersistenciaException {
+        try {
+            ObjectId objectId = new ObjectId(id);
+            Pedido pedido = coleccionPedido.find(Filters.eq("_id", objectId)).first();
+            if (pedido != null) {
+                return pedido;
+            } else {
+                throw new PersistenciaException("No se encontró el pedido con el ID proporcionado.");
+            }
+        } catch (IllegalArgumentException e) {
+            throw new PersistenciaException("El ID proporcionado no es válido.", e);
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al consultar el pedido", e);
+        }
+    }
 }

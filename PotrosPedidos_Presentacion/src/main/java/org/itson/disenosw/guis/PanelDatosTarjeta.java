@@ -186,7 +186,7 @@ public class PanelDatosTarjeta extends javax.swing.JPanel {
                     ventana.mostrarAviso("Tarjeta válida", "Aviso");
                     if (tarjeta.validacionCompra(txtNumero.getText(), ventana.getTotalCarrito())) {
                         ventana.mostrarAviso("Compra procesada con éxito", "Aviso");
-                        Pedido pedidoNuevo = new Pedido("", Integer.toString(ventana.getIdPedido()), "", LocalDate.now(), usuarioNuevo.getCarrito().getProductos().size(), 0.0f, MetodoPago.TARJETA, usuarioNuevo.getCarrito().getProductos());
+                        Pedido pedidoNuevo = new Pedido("", Integer.toString(ventana.getNumPedido()), "", LocalDate.now(), usuarioNuevo.getCarrito().getProductos().size(), 0.0f, MetodoPago.TARJETA, usuarioNuevo.getCarrito().getProductos());
                         pedidoNuevo.setClaveRecoleccion(pedido.generateRandomString());
                         pedidoNuevo.setEtiquetaPedido(pedido.generateRandomString());
                         pedido.persistir(pedidoNuevo);
